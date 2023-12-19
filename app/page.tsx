@@ -1,3 +1,6 @@
+import EventCard from './components/EventCard';
 export default function Home() {
-  return <div>Welcome</div>;
+  return <div>
+    <EventCard />
+    </div>;
 }
