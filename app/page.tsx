@@ -1,3 +1,11 @@
+"use client";
+
+import PageBuilder from "./../components/pageBuilder/PageBuilder";
+
 export default function Home() {
-  return <div>hello world</div>;
+  return (
+    <div>
+      <PageBuilder />
+    </div>
+  );
 }
