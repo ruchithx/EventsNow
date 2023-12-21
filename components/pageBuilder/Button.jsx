@@ -1,18 +1,21 @@
-import React from "react";
-import { Button as MaterialButton } from "@material-ui/core";
 import { useNode } from "@craftjs/core";
-export const Button = ({ size, variant, color, children }) => {
+import { Button as MaterialButton } from "@material-ui/core";
+function Button({ children }) {
   const {
     connectors: { connect, drag },
   } = useNode();
   return (
-    <MaterialButton
-      ref={(ref) => connect(drag(ref))}
-      size={size}
-      variant={variant}
-      color={color}
-    >
-      {children}
-    </MaterialButton>
+    <div ref={(ref) => connect(drag(ref))}>
+      <MaterialButton
+        ref={(ref) => connect(drag(ref))}
+        size="3"
+        variant="contained"
+        color="yello"
+      >
+        {children}
+      </MaterialButton>
+    </div>
   );
-};
+}
+
+export default Button;
