@@ -2,14 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-.height-394px {
-  height: 394px;
+.styleQ{
+  clip-path: polygon(0 0, 100% 0%, 100% 88%, 0% 100%);
 }
-.text{
-
-/* font-family: JetBrains Mono; */
+.mystyle{
 
 
-/* line-height: 118.3%;  */
-/* 23.66px */
 }
+.style{
+
+
+
+
+
+}
+

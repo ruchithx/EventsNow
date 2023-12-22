@@ -14,8 +14,23 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors:{
-        base:'#AC736D;'
+        'base':'#AC736D',
+        'base2': '#455273',
+        'oshadhi':'#A986A9'
+      },
+      height: {
+        '394': '394px',
+        '22' : '22px'
+      },
+      width: {
+        '63' : '63px',
+        '761' : '761px'
+      },
+      fontFamily: {
+        'khand': ['Khand', 'sans-serif'],
+        
       }
+      
     },
   },
   plugins: [],
