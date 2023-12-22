@@ -8,6 +8,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
+     
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -25,6 +26,10 @@ const config: Config = {
         base: "#AC736D",
         base2: "#455273",
         oshadhi: "#A986A9",
+        "custom-orange": "#D47151",
+        "custom-green": "#70B891",
+        "custom-blue": "#455273",
+        "custom-lightorange": "#F9EBE9",
       },
       fontFamily: {
         Inter: ["Inter", "sans - serif"],
@@ -37,6 +42,7 @@ const config: Config = {
       width: {
         "63": "63px",
         "761": "761px",
+
       },
     },
   },
