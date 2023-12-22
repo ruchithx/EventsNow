@@ -1,13 +1,14 @@
 import Image from "next/image";
 import React from "react";
 interface log {
+  bgcolors: String;
   titleOfbutton: String;
   image: String;
 }
 
-const Login: React.FC<log> = ({ titleOfbutton, image }) => {
+export default function Login({ image, titleOfbutton, bgcolors }: log) {
   return (
-    <div className="bg-custom-orange w-28 p-2 rounded-2xl">
+    <div className={`${bgcolors} w-28 p-2 rounded-2xl`}>
       <div className="flex flex-row ml-1" justify-center>
         <Image
           src={`/ReUsableComponentData/${image}`}
@@ -21,5 +22,4 @@ const Login: React.FC<log> = ({ titleOfbutton, image }) => {
       </div>
     </div>
   );
-};
-export default Login;
+}
