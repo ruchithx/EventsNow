@@ -1,9 +1,14 @@
 
-import EventCardOrgDash from '../components/EventCardOrgDash'
 export default function Home() {
   return (
     <div>
-      <EventCardOrgDash
+      <Post
+        profilePic="profilpic"
+        name="Ruchith Nusara"
+        caption="Beautiful days"
+        post="post"
+      />
+        <EventCardOrgDash
       img='/image 1.png'
       name="NADA GAMA"
       location = "KCC,Kandy Road,kandy."
