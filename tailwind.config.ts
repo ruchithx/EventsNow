@@ -22,28 +22,22 @@ const config: Config = {
       },
       colors: {
         initial: "#F9EBE9",
+        base: "#AC736D",
+        base2: "#455273",
+        oshadhi: "#A986A9",
       },
       fontFamily: {
         Inter: ["Inter", "sans - serif"],
-      },
-      colors:{
-        'base':'#AC736D',
-        'base2': '#455273',
-        'oshadhi':'#A986A9'
+        khand: ["Khand", "sans-serif"],
       },
       height: {
-        '394': '394px',
-        '22' : '22px'
+        "394": "394px",
+        "22": "22px",
       },
       width: {
-        '63' : '63px',
-        '761' : '761px'
+        "63": "63px",
+        "761": "761px",
       },
-      fontFamily: {
-        'khand': ['Khand', 'sans-serif'],
-        
-      }
-      
     },
   },
   plugins: [],

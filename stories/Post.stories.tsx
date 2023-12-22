@@ -5,39 +5,20 @@ import Post from "../components/Post";
 const meta: Meta<typeof Post> = {
   title: "Components/Post",
   component: Post,
+  argTypes: {
+    name: { control: "text" },
+    caption: { control: "text" },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Post>;
 
-// export const Basic: Story = {};
-
-// Other imports and story implementation
-// export const Default: ComponentStory<typeof Post> = (args) => (
-//   <Post
-//     profilePic="profilpic"
-//     name="Ruchith Nusara"
-//     caption="Beautiful days"
-//     post="post"
-//   />
-// );
-
-export const Primary: Story = {
-  render: () => (
-    <Post
-      profilePic="profilpic"
-      name="Ruchith Nusara"
-      caption="Beautiful days"
-      post="post"
-    />
-  ),
+export const Main: Story = {
+  args: {
+    profilePic: "profilpic",
+    post: "post",
+    name: "Ruchith Nusara",
+    caption: "Beautiful days",
+  },
 };
-
-// export const Primary: Story = {
-//   args: {
-//     profilePic: "profilpic",
-//     name: "Ruchith Nusara",
-//     caption: "Beautiful days",
-//     post: "post",
-//   },
-// };

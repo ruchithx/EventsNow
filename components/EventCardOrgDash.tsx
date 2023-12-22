@@ -1,16 +1,29 @@
+"use client";
 import Image from "next/image";
 
-function eventDashboardHandler() {
-  console.log("event dashboard clicked");
+interface EventCardOrgDash {
+  img: string;
+  name: string;
+  location: string;
+  date: string;
+  time: string;
 }
 
-function EventCardOrgDash(prop) {
+function eventDashboardHandler() {}
+
+function EventCardOrgDash({
+  img,
+  name,
+  location,
+  date,
+  time,
+}: EventCardOrgDash) {
   return (
     <div className="m-10 grid grid-cols-12 w-761 rounded-[10px] bg-[#D9D9D9]">
       <div className="col-span-4 h-60 overflow-hidden rounded-l-lg">
         <Image
           className="object-center"
-          src={prop.img}
+          src={`/${img}`}
           width={256}
           height={301}
           alt="event picture"
@@ -19,7 +32,7 @@ function EventCardOrgDash(prop) {
 
       <div className="col-span-5 grid grid-rows-4 mb-10 ml-5">
         <div className=" ml-2 mt-4 font-mono text-[#353535] text-2xl font-bold	">
-          {prop.name}
+          {name}
         </div>
 
         <div className="flex">
@@ -30,7 +43,7 @@ function EventCardOrgDash(prop) {
             alt="event picture"
           />
           <div className="ml-5 my-auto mystyle font-mono text-[#353c4e] font-normal	text-[16px]	">
-            {prop.location}
+            {location}
           </div>
         </div>
 
@@ -42,7 +55,7 @@ function EventCardOrgDash(prop) {
             alt="event picture"
           />
           <div className="ml-5 my-auto mystyle font-mono text-[#353c4e] font-normal	text-[16px]	">
-            {prop.date}
+            {date}
           </div>
         </div>
 
@@ -54,13 +67,16 @@ function EventCardOrgDash(prop) {
             alt="event picture"
           />
           <div className="ml-5 my-auto font-mono text-[#353c4e] font-normal	text-[13px][16px]	">
-            {prop.time}
+            {time}
           </div>
         </div>
       </div>
 
       <div className="col-span-3 ">
-        <button onClick={eventDashboardHandler()} className=" hover:bg-[#739C8F] font-mono w-[169px] h-[30px] rounded-[29px] text-white bg-[#4E8171] text-[13px] font-medium mt-4 ">
+        <button
+          onClick={() => eventDashboardHandler()}
+          className=" hover:bg-[#739C8F] font-mono w-[169px] h-[30px] rounded-[29px] text-white bg-[#4E8171] text-[13px] font-medium mt-4 "
+        >
           <div className="justify-center flex gap-3">
             <svg
               width="20"

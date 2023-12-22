@@ -2,18 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.styleQ{
+.styleQ {
   clip-path: polygon(0 0, 100% 0%, 100% 88%, 0% 100%);
 }
-.mystyle{
-
-
-}
-.style{
-
-
-
-
-
-}
-
