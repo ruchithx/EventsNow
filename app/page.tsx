@@ -1,21 +1,30 @@
 
-import BUyAdd from "@/components/BUyAdd";
-import CreateAccount from "@/components/CreateAccount";
-import Footer from "@/components/Footer";
-import InviteButton from "@/components/InviteButton";
-import Login from "@/components/Login";
-import Searchbar from "@/components/Searchbar";
+import EventCardEventDash from '../components/EventCardEventDash'
+// import BUyAdd from "@/components/BUyAdd";
+// import CreateAccount from "@/components/CreateAccount";
+// import Footer from "@/components/Footer";
+// import InviteButton from "@/components/InviteButton";
+// import Login from "@/components/Login";
+// import Searchbar from "@/components/Searchbar";
 
-import Post from "@/components/Post";
-import EventCardOrgDash from "@/components/EventCardOrgDash";
-import EventCard from "@/components/EventCard";
+// import Post from "@/components/Post";
+// import EventCardOrgDash from "@/components/EventCardOrgDash";
+// import EventCard from "@/components/EventCard";
 
 
 export default function Home() {
   return (
     <div>
 
-      <Login
+      <EventCardEventDash 
+      img="image 1.png"
+      name="NADA GAMA"
+      location="KCC,Kandy Road,kandy."
+      date="21st June 2023"
+      time="16.00 to 22.00"
+      buttonName="Stein Studios"/>
+
+      {/* <Login
         bgcolors={"bg-custom-orange"}
         titleOfbutton={"LOGOUT"}
         image={"Subtract.svg"}
@@ -41,7 +50,7 @@ export default function Home() {
         image3={"google.svg"}
         image4={"youtube.svg"}
         image5={"messenger.svg"}
-        imagelogo={"nav-logo.svg"}
+        imagelogo={"nav-logo.svg"}/>
 
       <Post
         profilePic="profilpic"
@@ -63,7 +72,11 @@ export default function Home() {
         date="2023-1-1"
         time="09.00"
 
-      />
+      /> */}
+
+
+
+
     </div>
   );
 }

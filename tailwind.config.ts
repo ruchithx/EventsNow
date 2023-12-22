@@ -25,7 +25,6 @@ const config: Config = {
         initial: "#F9EBE9",
         base: "#AC736D",
         base2: "#455273",
-        oshadhi: "#A986A9",
         "custom-orange": "#D47151",
         "custom-green": "#70B891",
         "custom-blue": "#455273",
