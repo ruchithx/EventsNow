@@ -18,7 +18,7 @@ export default function BUyAdd({
   bgcolors0,
 }: buyadd) {
   return (
-    <div className="flex flex-row justify-center text-white ">
+    <button className="flex flex-row justify-center text-white ">
       <div
         className={`flex justify-center w-32 ${bgcolors0} text-white font-semibold rounded-s-lg p-1`}
       >
@@ -43,6 +43,6 @@ export default function BUyAdd({
         />
         {Description2}
       </div>
-    </div>
+    </button>
   );
 }
