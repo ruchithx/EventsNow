@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.style{
+    /* display: flex; */
+    width: 161.936px;
+    height: 18.351px;
+    /* flex-direction: column; */
+    justify-content: center;
+    /* flex-shrink: 0; */
+    color: #FFF;
+
+font-family: IBM Plex Mono;
+font-size: 13px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
