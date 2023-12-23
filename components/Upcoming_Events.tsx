@@ -1,27 +1,42 @@
+"use client"
 import Image from 'next/image'
+
+function info(){
+  console.log("Direct to the info page")
+}
+
 import React from 'react'
 
-export default function Component_2() {
+interface Upcoming_Events{
+  EventName: String
+  Location : String
+  Time: String
+  Date: String
+  Ratings: String
+  image : String
+  buttonDesc: String
+}
+
+export default function Upcoming_Events({EventName , Location , Time , Date , Ratings , image , buttonDesc}:Upcoming_Events) {
   return (
     <div className='grid grid-cols-3 m-4 w-[1192px] h-[194.5px] rounded-lg bg-[#D9D9D9]'>
         <div>
-           <Image src='/image 3.png' alt='hay' width={410} height={200} />
+           <Image src={`/${image}`} alt='hay' width={410} height={200} />
         </div>
 
         
             <div className='grid grid-rows-3 ml-6'>
 
                 <div className='grid grid-cols-2 pt-6 item-center'>
-                    <div className='font-sans text-2xl font-bold leading-7 text-[#353535] pt-2'>NADA GAMA</div>
+                    <div className='font-sans text-2xl font-bold leading-7 text-[#353535] pt-2'>{EventName}</div>
                 
                     <div className='pt-2'>
-                    <button className='w-20 h-7 rounded-3xl bg-[#D47151] shrink-0 flex'>
-                        <div className='py-0.5 pl-1.5'>                    
-                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.48116 12.1048L7.60892 11.4807C5.25571 10.6963 4.0791 10.3041 4.0791 9.58335C4.0791 8.86259 5.25571 8.47039 7.60892 7.68598L15.3721 5.09826C17.0279 4.54633 17.8558 4.27036 18.2928 4.70738C18.7298 5.14439 18.4538 5.97228 17.9019 7.62805L17.9019 7.62807L17.9019 7.62808L15.3142 15.3913L15.3142 15.3913L15.3142 15.3913C14.5298 17.7445 14.1376 18.9211 13.4168 18.9211C12.6961 18.9211 12.3039 17.7445 11.5195 15.3912L10.8954 13.519L15.0823 9.33212C15.4728 8.9416 15.4728 8.30843 15.0823 7.91791C14.6917 7.52738 14.0586 7.52738 13.6681 7.91791L9.48116 12.1048Z" fill="white"/>
-                        </svg>
+                    <button onClick={() => info()}
+                    className='w-20 h-7 rounded-3xl bg-[#D47151] shrink-0 flex'>
+                        <div className='py-0.5 pl-1.5 pt-1'>                    
+                        <Image src={"Send_fill.svg"} alt='info' width={80} height={80} />
                         </div>
-                    <div className='w-40 h-4 text-white text-xs font-medium py-1.5 pl-0 '>INFO</div>
+                    <div className='w-40 h-4 text-white text-xs font-medium py-1.5 pl-0 mr-2 '>{buttonDesc}</div>
                     </button>
                     </div>
                 </div>
@@ -32,7 +47,7 @@ export default function Component_2() {
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4028 26.4711C18.1917 25.5629 25.3337 21.5085 25.3337 14.6667C25.3337 9.51205 21.155 5.33337 16.0003 5.33337C10.8457 5.33337 6.66699 9.51205 6.66699 14.6667C6.66699 21.5085 13.8089 25.5629 15.5978 26.4711C15.8518 26.6001 16.1488 26.6001 16.4028 26.4711ZM16.0003 18.6667C18.2095 18.6667 20.0003 16.8758 20.0003 14.6667C20.0003 12.4576 18.2095 10.6667 16.0003 10.6667C13.7912 10.6667 12.0003 12.4576 12.0003 14.6667C12.0003 16.8758 13.7912 18.6667 16.0003 18.6667Z" fill="#455273"/>
                     </svg>
                    </div> 
-                   <div className='text-[#353C4E] text-center text-base font-normal leading-4 pl-4 '>KCC, Kandy road, Kandy.</div>
+                   <div className='text-[#353C4E] text-center text-base font-normal leading-4 pl-4 '>{Location}</div>
                 </div>
 
                 <div className='flex '>
@@ -46,9 +61,9 @@ export default function Component_2() {
                     <rect x="9.33301" y="21.3334" width="5.33333" height="2.66667" rx="0.5" fill="#455273"/>
                     <rect x="17.333" y="16" width="5.33333" height="2.66667" rx="0.5" fill="#455273"/>
                     <rect x="17.333" y="21.3334" width="5.33333" height="2.66667" rx="0.5" fill="#455273"/>
-                 </svg>
+                  </svg>
                    </div> 
-                   <div className='text-[#353C4E] text-center text-base font-normal leading-4 pl-4 pt-2 '>21st June 2023.</div>
+                   <div className='text-[#353C4E] text-center text-base font-normal leading-4 pl-4 pt-2 '>{Date}</div>
                 </div>
             </div>
         
@@ -67,7 +82,7 @@ export default function Component_2() {
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M15.9997 26.6667C21.8907 26.6667 26.6663 21.8911 26.6663 16C26.6663 10.109 21.8907 5.33337 15.9997 5.33337C10.1086 5.33337 5.33301 10.109 5.33301 16C5.33301 21.8911 10.1086 26.6667 15.9997 26.6667ZM16.9997 10.6667C16.9997 10.1144 16.552 9.66671 15.9997 9.66671C15.4474 9.66671 14.9997 10.1144 14.9997 10.6667V15.75C14.9997 16.4404 15.5593 17 16.2497 17H19.9997C20.552 17 20.9997 16.5523 20.9997 16C20.9997 15.4478 20.552 15 19.9997 15H16.9997V10.6667Z" fill="#455273"/>
                    </svg>
                    </div> 
-                   <div className='text-[#353C4E] text-center text-base font-normal leading-4 pl-4 '>16.00 to 22.00</div>
+                   <div className='text-[#353C4E] text-center text-base font-normal leading-4 pl-4 '>{Time}</div>
             </div>
 
             <div className='flex '>
@@ -77,7 +92,7 @@ export default function Component_2() {
                     <path d="M4 4V24.8C4 25.9201 4 26.4802 4.21799 26.908C4.40973 27.2843 4.71569 27.5903 5.09202 27.782C5.51984 28 6.0799 28 7.2 28H28" stroke="#455273" stroke-width="2" stroke-linecap="round"/>
                     </svg>
                    </div> 
-                   <div className='text-[#353C4E] text-center text-base font-normal leading-4 pl-4 pt-2'>RATING 4.5/5</div>
+                   <div className='text-[#353C4E] text-center text-base font-normal leading-4 pl-4 pt-2'>{Ratings}</div>
             </div>
             
             
