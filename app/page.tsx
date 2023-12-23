@@ -7,7 +7,7 @@ import View_Report from "@/components/View_Report";
 export default function Home() {
   return (
     <div>
-      {/* <Event_Dashboard_Nav_bar 
+      <Event_Dashboard_Nav_bar 
       first={"OVERVIEW"}
       second={"HOST PAGE"}
       third={"MY TEAM"}
@@ -15,7 +15,7 @@ export default function Home() {
       fifth={"CAMPAIGN"}
       sixth={"SETTINGS"}
       seventh={"TICKETS"}
-      /> */}
+      />
 
       <Upcoming_Events 
         EventName={"NADAGAMA"} 
