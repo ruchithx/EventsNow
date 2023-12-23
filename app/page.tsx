@@ -1,4 +1,5 @@
 
+import ProfileCard from '@/components/ProfileCard';
 import EventCardEventDash from '../components/EventCardEventDash'
 // import BUyAdd from "@/components/BUyAdd";
 // import CreateAccount from "@/components/CreateAccount";
@@ -8,13 +9,30 @@ import EventCardEventDash from '../components/EventCardEventDash'
 // import Searchbar from "@/components/Searchbar";
 
 // import Post from "@/components/Post";
-// import EventCardOrgDash from "@/components/EventCardOrgDash";
-// import EventCard from "@/components/EventCard";
+import EventCardOrgDash from "@/components/EventCardOrgDash";
+import EventCard from "@/components/EventCard";
 
 
 export default function Home() {
   return (
     <div>
+        <EventCard
+        img="image 3.png"
+        name="Nadagama"
+        location="matara  "
+        date="21st MAY "
+        time="21.00"
+
+      />
+
+<EventCardOrgDash
+        img="image 1.png"
+        name="NADA GAMA  "
+        location="KCC,Kandy Road,kandy."
+        date="21st June 2023"
+        time="16.00 to 22.00"
+      />
+    
 
       <EventCardEventDash 
       img="image 1.png"
@@ -24,7 +42,15 @@ export default function Home() {
       time="16.00 to 22.00"
       buttonName="Stein Studios"/>
 
-      {/* <Login
+      <ProfileCard 
+        profilePic="profile.jpg"
+        name="A-shan Dilz"
+        accountType='Organization account'
+        email='ashandilsara8@gmail.com'/>
+
+      
+{/* 
+      <Login
         bgcolors={"bg-custom-orange"}
         titleOfbutton={"LOGOUT"}
         image={"Subtract.svg"}
@@ -58,22 +84,7 @@ export default function Home() {
         caption="Beautiful days"
         post="post"
       />
-      <EventCardOrgDash
-        img="image 1.png"
-        name="NADA GAMA"
-        location="KCC,Kandy Road,kandy."
-        date="21st June 2023"
-        time="16.00 to 22.00"
-      />
-      <EventCard
-        img="image 3.png"
-        name="Nadagama"
-        location="Matara"
-        date="2023-1-1"
-        time="09.00"
-
-      /> */}
-
+  */}
 
 
 

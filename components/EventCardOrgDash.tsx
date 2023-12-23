@@ -19,7 +19,7 @@ function EventCardOrgDash({
   time,
 }: EventCardOrgDash) {
   return (
-    <div className="m-10 grid grid-cols-12 w-761 rounded-[10px] bg-[#D9D9D9]">
+    <div className="m-10 grid grid-cols-12 w-761  rounded-[10px] bg-[#D9D9D9]">
       <div className="col-span-4 h-60 overflow-hidden rounded-l-lg">
         <Image
           className="object-center"

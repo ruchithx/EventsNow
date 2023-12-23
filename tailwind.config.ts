@@ -23,8 +23,7 @@ const config: Config = {
       },
       colors: {
         initial: "#F9EBE9",
-        base: "#AC736D",
-        base2: "#455273",
+        "myBrown": "#AC736D",
         "custom-orange": "#D47151",
         "custom-green": "#70B891",
         "custom-blue": "#455273",

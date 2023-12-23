@@ -10,16 +10,16 @@ interface EventCard {
 
 function EventCard({ name, img, location, date, time }: EventCard) {
   return (
-    <div className="text-neutral-50  bg-base rounded-[9px] w-64 shrink-0 drop-shadow-[4px_4px_4px_rgba(0,0,0,0.25)]  m-10">
-      <div className="styleQ">
-        <Image src={`/${img}`} alt={"event-img"} width={256} height={301} />
+    <div className="text-neutral-50  bg-myBrown rounded-[9px] w-64 shrink-0 drop-shadow-[4px_4px_4px_rgba(0,0,0,0.25)]  m-10">
+      <div className="styleQ h-[301px] overflow-hidden">
+        <Image className="rounded-t-[9px]" src={`/${img}`} alt={"event-img"} width={256} height={301} />
       </div>
 
       <div className="grid grid-cols-3 ">
         <div className="text ml-5 col-span-2  text-xl font-mono  font-extrabold ">
           {name}
         </div>
-        <button className="hover:bg-[#526595] col-span-1 w-63 h-22 mr-4 rounded-[10px]   text-center text-sm font-mono bg-base2">
+        <button className="hover:bg-[#526595] col-span-1 w-63 h-22 mr-4 rounded-[10px]   text-center text-sm font-mono bg-custom-blue">
           INFO
         </button>
       </div>
@@ -27,7 +27,8 @@ function EventCard({ name, img, location, date, time }: EventCard) {
         <hr className="w-52 ml-5 mt-1"></hr>
       </div>
 
-      <div className=" flex">
+      <div className=" grid grid-cols-12">
+        <div className="flex col-span-5">
         <Image
           className="mt-1"
           src={"/Pin_fill.svg"}
@@ -38,7 +39,9 @@ function EventCard({ name, img, location, date, time }: EventCard) {
         <div className="text-xs font-khand font-semibold my-auto ">
           {location}
         </div>
-        <div className=" ml-6 mr-2 border-l-[1px] border-solid border-white h-10 w-1"></div>
+        </div>
+        <div className="col-span-1 ml-4 border-r-[1px] border-solid border-white h-10 w-1"></div>
+        <div className="flex col-span-6">
         <Image
           src={"/Time_fill.svg"}
           alt={"time-fill"}
@@ -52,6 +55,7 @@ function EventCard({ name, img, location, date, time }: EventCard) {
           <div className="text-xs font-khand font-semibold my-auto ">
             {time}
           </div>
+        </div>
         </div>
       </div>
     </div>
