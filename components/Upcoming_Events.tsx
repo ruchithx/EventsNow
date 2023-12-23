@@ -18,30 +18,32 @@ interface Upcoming_Events{
 }
 
 export default function Upcoming_Events({EventName , Location , Time , Date , Ratings , image , buttonDesc}:Upcoming_Events) {
+ const margin = EventName.length > 14 ? 'mt-4' :' mt-0';
+
   return (
     <div className='grid grid-cols-3 m-4 w-[1192px] h-[194.5px] rounded-lg bg-[#D9D9D9]'>
-        <div>
+        <div className='h-[194.5px]'>
            <Image src={`/${image}`} alt='hay' width={410} height={200} />
         </div>
 
         
-            <div className='grid grid-rows-3 ml-6'>
+            <div className='grid grid-rows-3 ml-6 h-[194.5px]'>
 
                 <div className='grid grid-cols-2 pt-6 item-center'>
                     <div className='font-sans text-2xl font-bold leading-7 text-[#353535] pt-2'>{EventName}</div>
                 
                     <div className='pt-2'>
-                    <button onClick={() => info()}
-                    className='w-20 h-7 rounded-3xl bg-[#D47151] shrink-0 flex'>
-                        <div className='py-0.5 pl-1.5 pt-1'>                    
-                        <Image src={"Send_fill.svg"} alt='info' width={80} height={80} />
-                        </div>
-                    <div className='w-40 h-4 text-white text-xs font-medium py-1.5 pl-0 mr-2 '>{buttonDesc}</div>
-                    </button>
+                      <button onClick={() => info()}
+                      className='w-20 h-7 rounded-3xl bg-[#D47151] shrink-0 flex'>
+                          <div className='py-0.5 pl-1.5 pt-1'>                    
+                          <Image src={"Send_fill.svg"} alt='info' width={80} height={80} />
+                          </div>
+                      <div className='w-40 h-4 text-white text-xs font-medium py-1.5 pl-0 mr-2 '>{buttonDesc}</div>
+                      </button>
                     </div>
                 </div>
                 
-                <div className='flex items-center'>
+                <div className={`flex items-center h-auto ${margin}`}>
                  <div className='w-8 h-8'>
                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4028 26.4711C18.1917 25.5629 25.3337 21.5085 25.3337 14.6667C25.3337 9.51205 21.155 5.33337 16.0003 5.33337C10.8457 5.33337 6.66699 9.51205 6.66699 14.6667C6.66699 21.5085 13.8089 25.5629 15.5978 26.4711C15.8518 26.6001 16.1488 26.6001 16.4028 26.4711ZM16.0003 18.6667C18.2095 18.6667 20.0003 16.8758 20.0003 14.6667C20.0003 12.4576 18.2095 10.6667 16.0003 10.6667C13.7912 10.6667 12.0003 12.4576 12.0003 14.6667C12.0003 16.8758 13.7912 18.6667 16.0003 18.6667Z" fill="#455273"/>
@@ -50,7 +52,7 @@ export default function Upcoming_Events({EventName , Location , Time , Date , Ra
                    <div className='text-[#353C4E] text-center text-base font-normal leading-4 pl-4 '>{Location}</div>
                 </div>
 
-                <div className='flex '>
+                <div className={`flex ${margin}`}>
                  <div className='w-8 h-8'>
                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                     <rect x="4" y="8" width="24" height="20" rx="2" stroke="#455273"/>
@@ -68,13 +70,13 @@ export default function Upcoming_Events({EventName , Location , Time , Date , Ra
             </div>
         
 
-        <div className='grid grid-rows-3'>
+        <div className='grid grid-rows-3 h-[194.5px]'>
 
             <div className='flex items-center'>
                    
             </div>
 
-            <div className='flex items-center'>
+            <div className={`flex items-center ${margin}`}>
                  <div className='w-8 h-8'>
                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                     <path d="M7.95297 4.18173C7.04867 4.42403 6.22409 4.90011 5.5621 5.5621C4.90011 6.22409 4.42403 7.04867 4.18173 7.95297" stroke="#455273" stroke-width="2" stroke-linecap="round"/>
@@ -85,7 +87,7 @@ export default function Upcoming_Events({EventName , Location , Time , Date , Ra
                    <div className='text-[#353C4E] text-center text-base font-normal leading-4 pl-4 '>{Time}</div>
             </div>
 
-            <div className='flex '>
+            <div className={`flex ${margin}`}>
                  <div className='w-8 h-8'>
                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                     <path d="M28 8L20.7071 15.2929C20.3166 15.6834 19.6834 15.6834 19.2929 15.2929L16.7071 12.7071C16.3166 12.3166 15.6834 12.3166 15.2929 12.7071L9.33333 18.6667" stroke="#455273" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

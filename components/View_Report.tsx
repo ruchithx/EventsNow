@@ -29,10 +29,10 @@ export default function View_Report({discription1, img
             className='w-[116px] h-10 rounded-md bg-[#4E5381]'>
                 <div className='flex'>
                     <div className='ml-4'>
-                        <Image src='/Chart_alt_fill.svg' alt='chart' width={100} height={100}/>
+                        <Image src='/print.svg' alt='print' width={24} height={24}/>
                     </div>
 
-                    <div className='w-[87.751px] h-[19.317px] judtify-center text-white font-sans text-base font-medium'> Print</div>
+                    <div className='w-[87.751px] h-[19.317px] judtify-center text-white font-sans text-base font-medium mr-3 '> Print</div>
 
                 </div>
             </button>

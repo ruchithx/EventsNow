@@ -7,7 +7,7 @@ import View_Report from "@/components/View_Report";
 export default function Home() {
   return (
     <div>
-      <Event_Dashboard_Nav_bar 
+      {/* <Event_Dashboard_Nav_bar 
       first={"OVERVIEW"}
       second={"HOST PAGE"}
       third={"MY TEAM"}
@@ -15,9 +15,9 @@ export default function Home() {
       fifth={"CAMPAIGN"}
       sixth={"SETTINGS"}
       seventh={"TICKETS"}
-      />
+      /> */}
 
-      {/* <Upcoming_Events 
+      <Upcoming_Events 
         EventName={"NADAGAMA"} 
         Location={"KCC,Kandy Road,kandy."} 
         Time={"16.00 to 22.00"} 
@@ -25,24 +25,24 @@ export default function Home() {
         Ratings={"RATING 4.6/5"}
         image={"image 3.png"}
         buttonDesc={"INFO"}
-      /> */}
+      />
 
-      {/* <Org_RequestHandle
+      <Org_RequestHandle
         OrgName={"Stein Studio"}
         image={"image 1.png"}
-      /> */}
+      />
       
-      {/* <Available_Orgs
+      <Available_Orgs
         OrgName={"Stein Studios"}
         image={"image 1.png"}
         noOfEvents={"45"}
         noOfMembers={"35"}
-        /> */}
+        />
 
-      {/* <View_Report 
+      <View_Report 
         discription1={"Attendence Report"} 
         img={"Chart_alt_fill.svg"}
-      /> */}
+      />
 
     </div>
   );
