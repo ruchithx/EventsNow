@@ -28,6 +28,10 @@ function EventCardEventDash({
   time,
   buttonName,
 }: EventCardEventDash) {
+
+  const values1 = name.length > 12 ? 'mb-4' :'mb-8';
+  const values2 = name.length > 12 ? '' :'mt-4';
+  const values3 = name.length > 12 ? 'mt-5' :'';
   return (
     <div className="m-10 grid grid-cols-3 w-761 rounded-[10px] bg-[#D9D9D9]">
       <div className="col-span-1 h-60 overflow-hidden rounded-l-lg">
@@ -40,13 +44,13 @@ function EventCardEventDash({
         />
       </div>
 
-      <div className="col-span-2 grid grid-rows-4 mb-8 ml-5">
-        <div className=" ml-2 mt-4 font-mono text-[#353535] text-2xl font-bold grid grid-cols-3	">
+      <div className={`col-span-2 grid grid-rows-9  ${values1} ml-5`}>
+        <div className={` ml-2 ${values2} font-mono text-[#353535] text-2xl font-bold grid grid-cols-3	`}>
           <div className="col-span-1">{name}</div>
           <div className="col-span-1">
             <button
               onClick={() => organizationRedirectHandler()}
-              className=" hover:bg-[#676C9B] font-mono w-[146px] h-[30px] rounded-[29px] text-white bg-[#4E5381] text-[13px] font-medium "
+              className={` hover:bg-[#676C9B] font-mono w-[146px] h-[30px] rounded-[29px] text-white bg-[#4E5381] text-[13px] font-medium ${values3}`}
             >
               <div className="justify-center flex gap-3">
                 <svg
