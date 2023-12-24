@@ -14,10 +14,12 @@ import Upcoming_Events from "../components/Upcoming_Events";
 import Org_RequestHandle from "../components/Org_RequestHandle";
 import Available_Orgs from "@/components/Available_Orgs";
 import View_Report from "@/components/View_Report";
+import NavBar from "@/components/NavBar";
 
 export default function Home() {
   return (
     <div>
+      <NavBar />
       <Login
         bgcolors={"bg-custom-orange"}
         titleOfbutton={"LOGOUT"}
