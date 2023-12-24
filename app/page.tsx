@@ -20,7 +20,11 @@ import Upcoming_Events from "../components/Upcoming_Events";
 import Org_RequestHandle from "../components/Org_RequestHandle";
 import Available_Orgs from "@/components/Available_Orgs";
 import View_Report from "@/components/View_Report";
+
+import NavBar from "@/components/NavBar";
+
 import Event_Dashboard_Btn from "@/components/Event_Dashboard_Btn";
+
 
 
 export default function Home() {
@@ -32,6 +36,9 @@ export default function Home() {
   function handleTickets() {}
   return (
     <div>
+
+      <NavBar />
+
 
       <EventCardDisabled
         img="image 3.png"
@@ -71,7 +78,7 @@ export default function Home() {
         email="ashandilsara8@gmail.com"
       />
 
-      {/* 
+
       <Login
       {/* <Login
 
