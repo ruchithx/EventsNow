@@ -13,15 +13,12 @@ import EventCardDisabled from "../components/EventCardDisabled";
 import EventCardOrgDash from "@/components/EventCardOrgDash";
 import EventCard from "@/components/EventCard";
 
-
-
 import Event_Dashboard_Nav_bar from "@/components/Event_Dashboard_Nav_bar";
 import Upcoming_Events from "../components/Upcoming_Events";
 import Org_RequestHandle from "../components/Org_RequestHandle";
 import Available_Orgs from "@/components/Available_Orgs";
 import View_Report from "@/components/View_Report";
 import Event_Dashboard_Btn from "@/components/Event_Dashboard_Btn";
-
 
 export default function Home() {
   function handleOvervier() {}
@@ -32,37 +29,36 @@ export default function Home() {
   function handleTickets() {}
   return (
     <div>
-
-      <EventCardDisabled
+      {/* <EventCardDisabled
         img="image 3.png"
         name="MEGA"
         location="MATARA    "
         date="21st MAY "
-      />
-      <EventCard
+      /> */}
+      {/* <EventCard
         img="image 3.png"
         name="MEGA"
         location="MATARA    "
         date="21st MAY "
         time="21.00"
-      />
-
+      /> */}
+      {/* 
       <EventCardOrgDash
         img="image 1.png"
         name="NADA GAMA "
         location="KCC,Kandy Road,kandy."
         date="21st June 2023"
         time="16.00 to 22.00"
-      />
+      /> */}
 
-      <EventCardEventDash
+      {/* <EventCardEventDash
         img="image 1.png"
         name="NADA GAMA "
         location="KCC,Kandy Road,kandy."
         date="21st June 2023"
         time="16.00 to 22.00"
         buttonName="Stein Studios"
-      />
+      /> */}
 
       <ProfileCard
         profilePic="profile.jpg"
@@ -114,7 +110,6 @@ export default function Home() {
         post="post"<<<<<<< eventCardEventDash-As
       /> */}
 
-      />
       <EventCardOrgDash
         img="image 1.png"
         name="NADA GAMA"
@@ -128,7 +123,7 @@ export default function Home() {
         location="Matara"
         date="2023-1-1"
         time="09.00"
-      /> */}
+      />
 
       {/* <Event_Dashboard_Nav_bar>
         <Event_Dashboard_Btn onClick={handleOvervier} text="OVERVIEW" />
@@ -159,7 +154,6 @@ export default function Home() {
       /> */}
 
       {/* <View_Report discription1={"Attendence Report"} img={"Chartfill.svg"} /> */}
-
     </div>
   );
 }
