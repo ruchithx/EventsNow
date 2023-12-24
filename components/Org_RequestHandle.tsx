@@ -22,9 +22,10 @@ interface Org_RequestHandle{
 
 export default function Org_RequestHandle({OrgName , image}:Org_RequestHandle) {
   return (
-    <div className='grid grid-cols-12  m-6 w-[679px] h-[126px] rounded-lg bg-[#D9D9D9] '>
+    <div className='grid grid-cols-12  m-6 w-[679px] h-32 rounded-lg bg-[#D9D9D9] '>
 
-        <div className='col-span-5'>
+        
+        <div className='col-span-5 overflow-hidden rounded-lg'>
             <Image src={`/${image}`} alt='image2' width={249.64} height={126}/>
         </div>
 
