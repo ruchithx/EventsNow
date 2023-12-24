@@ -84,7 +84,7 @@ export default function Home() {
         <Event_Dashboard_Btn onClick={handleTickets} text="TICKETS" />
       </Event_Dashboard_Nav_bar> */}
 
-      <Upcoming_Events
+      {/* <Upcoming_Events
         EventName={"NADAGAMA"}
         Location={"KCC,Kandy Road,kandy."}
         Time={"16.00 to 22.00"}
@@ -92,23 +92,18 @@ export default function Home() {
         Ratings={"RATING 4.6/5"}
         image={"image3o.png"}
         buttonDesc={"INFO"}
-      />
+      /> */}
 
-      <Org_RequestHandle OrgName={"Stein Studio"} image={"image 1.png"} />
+      {/* <Org_RequestHandle OrgName={"Stein Studio"} image={"image 1.png"} /> */}
 
-      <Available_Orgs
+      {/* <Available_Orgs
         OrgName={"Stein Studios"}
         image={"image 1.png"}
         noOfEvents={"45"}
         noOfMembers={"35"}
-      />
+      /> */}
 
-      
-      <View_Report
-        discription1={"Attendence Report"}
-        img={"Chartfill.svg"}
-      />
-
+      {/* <View_Report discription1={"Attendence Report"} img={"Chartfill.svg"} /> */}
     </div>
   );
 }
