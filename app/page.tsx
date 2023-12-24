@@ -1,14 +1,19 @@
 "use client";
+import ProfileCard from "@/components/ProfileCard";
+import EventCardEventDash from "../components/EventCardEventDash";
 import BUyAdd from "@/components/BUyAdd";
 import CreateAccount from "@/components/CreateAccount";
 import Footer from "@/components/Footer";
 import InviteButton from "@/components/InviteButton";
 import Login from "@/components/Login";
 import Searchbar from "@/components/Searchbar";
+import EventCardDisabled from "../components/EventCardDisabled";
 
-import Post from "@/components/Post";
+// import Post from "@/components/Post";
 import EventCardOrgDash from "@/components/EventCardOrgDash";
 import EventCard from "@/components/EventCard";
+
+
 
 import Event_Dashboard_Nav_bar from "@/components/Event_Dashboard_Nav_bar";
 import Upcoming_Events from "../components/Upcoming_Events";
@@ -16,6 +21,7 @@ import Org_RequestHandle from "../components/Org_RequestHandle";
 import Available_Orgs from "@/components/Available_Orgs";
 import View_Report from "@/components/View_Report";
 import Event_Dashboard_Btn from "@/components/Event_Dashboard_Btn";
+
 
 export default function Home() {
   function handleOvervier() {}
@@ -26,7 +32,49 @@ export default function Home() {
   function handleTickets() {}
   return (
     <div>
+
+      <EventCardDisabled
+        img="image 3.png"
+        name="MEGA"
+        location="MATARA    "
+        date="21st MAY "
+      />
+      <EventCard
+        img="image 3.png"
+        name="MEGA"
+        location="MATARA    "
+        date="21st MAY "
+        time="21.00"
+      />
+
+      <EventCardOrgDash
+        img="image 1.png"
+        name="NADA GAMA "
+        location="KCC,Kandy Road,kandy."
+        date="21st June 2023"
+        time="16.00 to 22.00"
+      />
+
+      <EventCardEventDash
+        img="image 1.png"
+        name="NADA GAMA "
+        location="KCC,Kandy Road,kandy."
+        date="21st June 2023"
+        time="16.00 to 22.00"
+        buttonName="Stein Studios"
+      />
+
+      <ProfileCard
+        profilePic="profile.jpg"
+        name="A-shan Dilz"
+        accountType="Organization account"
+        email="ashandilsara8@gmail.com"
+      />
+
+      {/* 
+      <Login
       {/* <Login
+
         bgcolors={"bg-custom-orange"}
         titleOfbutton={"LOGOUT"}
         image={"Subtract.svg"}
@@ -52,13 +100,20 @@ export default function Home() {
         image3={"google.svg"}
         image4={"youtube.svg"}
         image5={"messenger.svg"}
+
+        imagelogo={"nav-logo.svg"}/> */}
+
+      {/* <Post
         imagelogo={"nav-logo.svg"}
       />
       <Post
+
         profilePic="profilpic"
         name="Ruchith Nusara"
         caption="Beautiful days"
-        post="post"
+        post="post"<<<<<<< eventCardEventDash-As
+      /> */}
+
       />
       <EventCardOrgDash
         img="image 1.png"
@@ -104,6 +159,7 @@ export default function Home() {
       /> */}
 
       {/* <View_Report discription1={"Attendence Report"} img={"Chartfill.svg"} /> */}
+
     </div>
   );
 }
