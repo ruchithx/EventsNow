@@ -1,3 +1,4 @@
+"use client";
 import BUyAdd from "@/components/BUyAdd";
 import CreateAccount from "@/components/CreateAccount";
 import Footer from "@/components/Footer";
@@ -14,11 +15,18 @@ import Upcoming_Events from "../components/Upcoming_Events";
 import Org_RequestHandle from "../components/Org_RequestHandle";
 import Available_Orgs from "@/components/Available_Orgs";
 import View_Report from "@/components/View_Report";
+import Event_Dashboard_Btn from "@/components/Event_Dashboard_Btn";
 
 export default function Home() {
+  function handleOvervier() {}
+  function handleMyteam() {}
+  function handleReports() {}
+  function handleCampaign() {}
+  function handleSetting() {}
+  function handleTickets() {}
   return (
     <div>
-      <Login
+      {/* <Login
         bgcolors={"bg-custom-orange"}
         titleOfbutton={"LOGOUT"}
         image={"Subtract.svg"}
@@ -37,8 +45,8 @@ export default function Home() {
         bgcolors0={"bg-custom-orange"}
         bgcolors1={"bg-custom-blue"}
       />
-      <Searchbar image={"Search.svg"} />
-      <Footer
+      <Searchbar image={"Search.svg"} /> */}
+      {/* <Footer
         image1={"facebook.svg"}
         image2={"instergram.svg"}
         image3={"google.svg"}
@@ -65,19 +73,18 @@ export default function Home() {
         location="Matara"
         date="2023-1-1"
         time="09.00"
-      />
+      /> */}
 
-      <Event_Dashboard_Nav_bar
-        first={"OVERVIEW"}
-        second={"HOST PAGE"}
-        third={"MY TEAM"}
-        fourth={"REPORTS"}
-        fifth={"CAMPAIGN"}
-        sixth={"SETTINGS"}
-        seventh={"TICKETS"}
-      />
+      {/* <Event_Dashboard_Nav_bar>
+        <Event_Dashboard_Btn onClick={handleOvervier} text="OVERVIEW" />
+        <Event_Dashboard_Btn onClick={handleMyteam} text="MY TEAM" />
+        <Event_Dashboard_Btn onClick={handleReports} text="REPORTS" />
+        <Event_Dashboard_Btn onClick={handleCampaign} text="CAMPAIGN" />
+        <Event_Dashboard_Btn onClick={handleSetting} text="SETTINGS" />
+        <Event_Dashboard_Btn onClick={handleTickets} text="TICKETS" />
+      </Event_Dashboard_Nav_bar> */}
 
-      <Upcoming_Events
+      {/* <Upcoming_Events
         EventName={"NADAGAMA"}
         Location={"KCC,Kandy Road,kandy."}
         Time={"16.00 to 22.00"}
@@ -85,21 +92,21 @@ export default function Home() {
         Ratings={"RATING 4.6/5"}
         image={"image 3.png"}
         buttonDesc={"INFO"}
-      />
+      /> */}
 
       <Org_RequestHandle OrgName={"Stein Studio"} image={"image 1.png"} />
 
-      <Available_Orgs
+      {/* <Available_Orgs
         OrgName={"Stein Studios"}
         image={"image 1.png"}
         noOfEvents={"45"}
         noOfMembers={"35"}
-      />
-
+      /> */}
+      {/* 
       <View_Report
         discription1={"Attendence Report"}
         img={"Chart_alt_fill.svg"}
-      />
+      /> */}
     </div>
   );
 }
