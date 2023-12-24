@@ -16,9 +16,9 @@ interface Available_Orgs{
 
 export default function Available_Orgs({OrgName , image  , noOfEvents , noOfMembers}: Available_Orgs) {
   return (
-    <div className='grid grid-cols-12  m-6 w-[679px] h-[126px] rounded-lg bg-[#D9D9D9] '>
+    <div className='grid grid-cols-12  m-6 w-[679px] h-32 rounded-lg bg-[#D9D9D9] '>
 
-         <div className='col-span-5'>
+         <div className='col-span-5 overflow-hidden rounded-lg'>
             <Image src={`/${image}`} alt='compo4' width={249.65} height={126}/>
         </div>
 
