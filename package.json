@@ -15,9 +15,11 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.1",
     "@mui/material": "^5.15.1",
+    "mongoose": "^8.0.3",
     "next": "14.0.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "validator": "^13.11.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.6",
@@ -47,6 +49,4 @@
   "keywords": [],
   "author": "",
   "license": "ISC"
-
 }
-
