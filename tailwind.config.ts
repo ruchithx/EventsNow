@@ -27,8 +27,11 @@ const config: Config = {
         "custom-green": "#70B891",
         "custom-blue": "#455273",
         "custom-lightorange": "#F9EBE9",
+
+        "custom-brown": "#D7CFC7",
         eventBrown: "#764C35",
         navWhite: "#D7CFC7",
+
       },
       fontFamily: {
         Inter: ["Inter", "sans - serif"],
