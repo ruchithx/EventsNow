@@ -1,6 +1,4 @@
-
 "use client";
-
 import BUyAdd from "@/components/BUyAdd";
 import CreateAccount from "@/components/CreateAccount";
 import Footer from "@/components/Footer";
@@ -13,16 +11,12 @@ import Post from "@/components/Post";
 import EventCardOrgDash from "@/components/EventCardOrgDash";
 import EventCard from "@/components/EventCard";
 
-import ViewDetailsButton from "@/components/ViewDetailsButton";
-
-
 import Event_Dashboard_Nav_bar from "@/components/Event_Dashboard_Nav_bar";
 import Upcoming_Events from "../components/Upcoming_Events";
 import Org_RequestHandle from "../components/Org_RequestHandle";
 import Available_Orgs from "@/components/Available_Orgs";
 import View_Report from "@/components/View_Report";
 import Event_Dashboard_Btn from "@/components/Event_Dashboard_Btn";
-
 
 export default function Home() {
   function handleOvervier() {}
@@ -33,12 +27,10 @@ export default function Home() {
   function handleTickets() {}
   return (
     <div>
+      {/* <NavBar /> */}
+      <Footer />
 
-      <Login
-
-      <NavBar />
       {/* <Login
-     
         bgcolors={"bg-custom-orange"}
         titleOfbutton={"LOGOUT"}
         image={"Subtract.svg"}
@@ -65,12 +57,6 @@ export default function Home() {
         image4={"youtube.svg"}
         image5={"messenger.svg"}
         imagelogo={"nav-logo.svg"}
-
-      />
-      <ViewDetailsButton
-        image={"Vector.svg"}
-        Description={"Total Attendence"}
-
       />
       <Post
         profilePic="profilpic"
@@ -110,7 +96,7 @@ export default function Home() {
         Ratings={"RATING 4.6/5"}
         image={"image3o.png"}
         buttonDesc={"INFO"}
-        />
+      />
 
       <Org_RequestHandle OrgName={"Stein Studio"} image={"image 1.png"} />
 

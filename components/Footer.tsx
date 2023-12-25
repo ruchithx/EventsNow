@@ -1,21 +1,7 @@
 import React from "react";
 import Image from "next/image";
-interface footer {
-  image1: String;
-  image2: String;
-  image3: String;
-  image4: String;
-  image5: String;
-  imagelogo: String;
-}
-export default function Footer({
-  image1,
-  image2,
-  image3,
-  image4,
-  image5,
-  imagelogo,
-}: footer) {
+
+export default function Footer() {
   return (
     <div className="flex sm:flex-row flex-col w-full bg-custom-brown pr-4 pl-4">
       <div className="flex flex-col  justify-evenly sm:w-7/12 w-full pt-6 pr-20 pl-4 mb-6 ">
@@ -32,35 +18,35 @@ export default function Footer({
 
         <div className="flex sm:flex-row sm:justify-evenly justify-between text-center mt-2">
           <Image
-            src={`/ReUsableComponentData/${image1}`}
+            src={`/ReUsableComponentData/facebook.svg`}
             alt="Picture of the button"
             width={30}
             height={30}
             className="mb-1 sm:mb-0 sm:mr-2 "
           />
           <Image
-            src={`/ReUsableComponentData/${image2}`}
+            src={`/ReUsableComponentData/instergram.svg`}
             alt="Picture of the button"
             width={30}
             height={30}
             className="mb-2 sm:mb-0"
           />
           <Image
-            src={`/ReUsableComponentData/${image3}`}
+            src={`/ReUsableComponentData/google.svg`}
             alt="Picture of the button"
             width={30}
             height={30}
             className="mb-2 sm:mb-0"
           />
           <Image
-            src={`/ReUsableComponentData/${image4}`}
+            src={`/ReUsableComponentData/youtube.svg`}
             alt="Picture of the button"
             width={30}
             height={30}
             className="mb-2 sm:mb-0"
           />
           <Image
-            src={`/ReUsableComponentData/${image5}`}
+            src={`/ReUsableComponentData/messenger.svg`}
             alt="Picture of the button"
             width={30}
             height={30}
@@ -69,7 +55,7 @@ export default function Footer({
         </div>
         <div className="flex justify-center  mt-2  sm:justify-center">
           <Image
-            src={`/ReUsableComponentData/${imagelogo}`}
+            src={`/ReUsableComponentData/nav-logo.svg`}
             alt="Picture of the button"
             width={60}
             height={60}
@@ -126,8 +112,8 @@ export default function Footer({
             <div className="flex sm:flex-row mb-4">
               <input type="checkbox" />
               <div className="text-black text-xs ml-2">
-                By checking and clicking "Submit", you are agreeing to
-                EventNow’s Privacy
+                By checking and clicking Submit, you are agreeing to EventNow’s
+                Privacy
               </div>
             </div>
             <button className="flex flex-start sm:w-1/2 w-full mb-4 ">
