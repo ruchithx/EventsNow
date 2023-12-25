@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import connectMongoDB from "../../../../lib/mongo/mongodb";
 const mongoose = require("mongoose");
-const User = mongoose.model("User");
+// const User = mongoose.model("User");
 
-// const User = require("./../../../../models/userModel");
+const User = require("./../../../../models/userModel");
 
 export async function GET() {
   await connectMongoDB();
