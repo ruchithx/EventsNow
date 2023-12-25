@@ -1,4 +1,5 @@
 "use client";
+
 import BUyAdd from "@/components/BUyAdd";
 import CreateAccount from "@/components/CreateAccount";
 import Footer from "@/components/Footer";
@@ -18,6 +19,7 @@ import Available_Orgs from "@/components/Available_Orgs";
 import View_Report from "@/components/View_Report";
 import Event_Dashboard_Btn from "@/components/Event_Dashboard_Btn";
 import ViewDetailsButton from "@/components/ViewDetailsButton";
+import LoginFormBasic from "@/components/LoginFormBasic";
 
 export default function Home() {
   function handleOvervier() {}
@@ -28,6 +30,9 @@ export default function Home() {
   function handleTickets() {}
   return (
     <div>
+      <LoginFormBasic/>
+
+
       {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}
       {/* <CreateAccount Description={"Create Account"} /> */}
 
