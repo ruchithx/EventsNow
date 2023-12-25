@@ -4,7 +4,7 @@ import CreateAccount from "@/components/CreateAccount";
 import Footer from "@/components/Footer";
 import InviteButton from "@/components/InviteButton";
 import Login from "@/components/Login";
-import Searchbar from "@/components/Searchbar";
+
 import NavBar from "@/components/NavBar";
 
 import Post from "@/components/Post";
@@ -17,6 +17,7 @@ import Org_RequestHandle from "../components/Org_RequestHandle";
 import Available_Orgs from "@/components/Available_Orgs";
 import View_Report from "@/components/View_Report";
 import Event_Dashboard_Btn from "@/components/Event_Dashboard_Btn";
+import ViewDetailsButton from "@/components/ViewDetailsButton";
 
 export default function Home() {
   function handleOvervier() {}
@@ -27,9 +28,20 @@ export default function Home() {
   function handleTickets() {}
   return (
     <div>
-      {/* <NavBar /> */}
-      <Footer />
+      {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}
+      {/* <CreateAccount Description={"Create Account"} /> */}
 
+      {/* <BUyAdd /> */}
+      {/* <NavBar /> */}
+      {/* <Footer /> */}
+      {/* <Login titleOfbutton={"LOGOUT"} image={"Subtract.svg"} /> */}
+      {/* <InviteButton /> */}
+      {/* <Post
+        profilePic="profilpic"
+        name="Ruchith Nusara"
+        caption="Beautiful days"
+        post="post"
+      /> */}
       {/* <Login
         bgcolors={"bg-custom-orange"}
         titleOfbutton={"LOGOUT"}
@@ -40,7 +52,7 @@ export default function Home() {
         bgcolors={"bg-custom-orange"}
         Description={"Create Account"}
       />
-      <InviteButton bgcolors={"bg-custom-green"} Description={"Invite"} />
+      
       <BUyAdd
         image1={"Check_fill.svg"}
         image2={"Paper_fill.svg"}
