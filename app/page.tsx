@@ -27,7 +27,10 @@ import Loginform from "@/components/Loginform";
 
 import EventHost from "@/components/EventHost";
 import LogIn from "@/app/User/Login/page";
+
 import SignupSocial from "../components/SignupSocial";
+
+
 
 export default function Home() {
   function handleOvervier() {}
@@ -54,11 +57,19 @@ export default function Home() {
       {/* <LoginFormBasic /> */}
 
     <div className="">
+
+    <div>
+      {/* <NavBar />
+
+      <LogIn /> */}
+      {/* <Footer /> */}
+
+
       {/* <PersonDetailsBar name="ashan dilsara" email="ashandilsara8@gmail.com" /> */}
       {/* <NavBar /> */}
       {/* useSearchparams */}
 
-      <LoginFormBasic />
+      {/* <LoginFormBasic /> */}
       {/* <Loginform /> */}
 
       {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}

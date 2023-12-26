@@ -1,7 +1,14 @@
-import React from "react";
+
+"use client";
+import React, { useState } from "react";
 import SignupSocial from "@/components/SignupSocial";
 import Terms from "@/components/Terms";
-import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
+import Footer from "@/components/Footer";
+import NavBar from "@/components/NavBar";
+
 
 export default function LogIn() {
   const [username, setUsername] = useState("");
@@ -9,59 +16,73 @@ export default function LogIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can add logic here to handle form submission (e.g., API calls, validation)
-    console.log("Username:", username);
-    console.log("Password:", password);
+
   };
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-    <div>
-      <div className="flex ">
-        <div className="w-1/2  justify-center items-center  ">
+    <>
+      <NavBar />
+      <div className="flex flex-col md:flex-row">
+        <div className="md:w-1/2  p-8">
           <h1 className="text-custom-blue font-khand text-5xl text-center mt-3 font-bold">
             Log-in to Events now
           </h1>
-          <div className="flex flex-col items-center my-[113px]">
+          <div className="flex flex-col items-center my-12">
             <form onSubmit={handleSubmit} className="w-full max-w-xs">
               <div className="mb-4">
                 <input
-                  type="text"
+                  type="email"
                   id="username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full px-3 py-2 border rounded-[12px] focus:outline-none  focus:border-custom-orange"
-                  placeholder="Enter your username"
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-custom-orange"
+                  placeholder="Enter your email"
                 />
               </div>
-              <div className="mb-6">
+              <div className="mb-6 relative">
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-3 py-2 border rounded-[12px] -md focus:outline-none  focus:border-custom-orange"
-                  placeholder="Enter your password"
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-custom-orange"
+                  placeholder="Create password"
                 />
+                <span
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                  onClick={togglePasswordVisibility}
+                >
+                  <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                </span>
               </div>
               <button
                 type="submit"
-                className="w-full py-2 px-4 uppercase bg-custom-orange text-white rounded-[12px] hover:bg-custom-orange focus:outline-none focus:bg-custom-orange"
+                className="w-full py-2 uppercase bg-custom-orange text-white rounded-md hover:bg-custom-orange focus:outline-none focus:bg-custom-orange"
               >
                 Login to account
               </button>
             </form>
           </div>
           <SignupSocial />
-          <div className="self-end">
-            <Terms />
-          </div>
+
+
+          <Terms />
         </div>
-        <img
-          className="w-1/2 h-[918px]"
-          src="./ReUsableComponentData/login.jpg"
+
+        <Image
+          src="/ReUsableComponentData/login.jpg"
           alt="Man"
+          width={900}
+          height={735}
         />
       </div>
-      <div className="bg-myBrown mt-0 p-0  h-[63px] flex flex-col"></div>
-    </div>
+      <Footer />
+    </>
+
   );
 }

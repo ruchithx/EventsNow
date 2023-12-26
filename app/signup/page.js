@@ -1,3 +1,4 @@
+
 import LoginFormBasic from "@/components/LoginFormBasic"
 import NavBar from "@/components/NavBar"
 import SignupSocial from "@/components/SignupSocial"
@@ -30,7 +31,7 @@ function page() {
                     <Image src={'/login.jpg'} alt={"event-img"} width={1000} height={1}/>
                 </div>
             </div>
-            
+   
         </div>
     )
 }
