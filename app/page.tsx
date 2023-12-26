@@ -32,9 +32,9 @@ export default function Home() {
   function handleSetting() {}
   function handleTickets() {}
   return (
-    <div className="grid grid-cols-3">
-      <PersonDetailsBar name="ashan dilsara" email="ashandilsara8@gmail.com" />
-
+    <div className="">
+      {/* <PersonDetailsBar name="ashan dilsara" email="ashandilsara8@gmail.com" /> */}
+      <NavBar />
       {/* useSearchparams */}
 
       {/* <LoginFormBasic /> */}
