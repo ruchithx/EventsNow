@@ -23,6 +23,7 @@ import ViewDetailsButton from "@/components/ViewDetailsButton";
 import PersonDetailsBar from "@/components/PersonDetailsBar";
 
 import LoginFormBasic from "@/components/LoginFormBasic";
+import Loginform from "@/components/Loginform";
 
 export default function Home() {
   function handleOvervier() {}
@@ -34,10 +35,11 @@ export default function Home() {
   return (
     <div className="">
       {/* <PersonDetailsBar name="ashan dilsara" email="ashandilsara8@gmail.com" /> */}
-      <NavBar />
+      {/* <NavBar /> */}
       {/* useSearchparams */}
 
       {/* <LoginFormBasic /> */}
+      <Loginform />
       {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}
       {/* <CreateAccount Description={"Create Account"} /> */}
 

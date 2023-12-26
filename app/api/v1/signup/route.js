@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 import connectMongoDB from "../../../../lib/mongo/mongodb";
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 // const User = mongoose.model("User");
+import bcrypt from "bcrypt";
 
-const User = require("./../../../../models/userModel");
+import User from "./../../../../models/userModel";
 
 export async function GET() {
   await connectMongoDB();
@@ -20,6 +21,8 @@ export async function POST(req) {
     phone_number,
     passwordConfirm,
   } = await req.json();
+  // const hashedPassword = await bcrypt.hash(password, 10);
+
   console.log(
     email,
     firstName,
