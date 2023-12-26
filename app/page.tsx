@@ -19,7 +19,11 @@ import Available_Orgs from "@/components/Available_Orgs";
 import View_Report from "@/components/View_Report";
 import Event_Dashboard_Btn from "@/components/Event_Dashboard_Btn";
 import ViewDetailsButton from "@/components/ViewDetailsButton";
+
+import PersonDetailsBar from "@/components/PersonDetailsBar";
+
 import LoginFormBasic from "@/components/LoginFormBasic";
+import Loginform from "@/components/Loginform";
 
 import EventHost from "@/components/EventHost";
 import LogIn from "@/app/User/Login/page";
@@ -32,12 +36,21 @@ export default function Home() {
   function handleSetting() {}
   function handleTickets() {}
   return (
+
     <div>
       <NavBar />
 
       <LogIn />
       <Footer />
 
+    <div className="">
+      {/* <PersonDetailsBar name="ashan dilsara" email="ashandilsara8@gmail.com" /> */}
+      {/* <NavBar /> */}
+      {/* useSearchparams */}
+
+
+      <LoginFormBasic />
+      {/* <Loginform /> */}
       {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}
       {/* <CreateAccount Description={"Create Account"} /> */}
 
