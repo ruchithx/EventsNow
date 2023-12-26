@@ -19,7 +19,11 @@ import Available_Orgs from "@/components/Available_Orgs";
 import View_Report from "@/components/View_Report";
 import Event_Dashboard_Btn from "@/components/Event_Dashboard_Btn";
 import ViewDetailsButton from "@/components/ViewDetailsButton";
+
+import PersonDetailsBar from "@/components/PersonDetailsBar";
+
 import LoginFormBasic from "@/components/LoginFormBasic";
+
 
 export default function Home() {
   function handleOvervier() {}
@@ -29,10 +33,17 @@ export default function Home() {
   function handleSetting() {}
   function handleTickets() {}
   return (
+
+    <div className="grid grid-cols-3">
+
+      <PersonDetailsBar
+      name="ashan dilsara"
+      email="ashandilsara8@gmail.com"/>
+
+      {/* useSearchparams */}
+
     <div>
       <LoginFormBasic/>
-
-
       {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}
       {/* <CreateAccount Description={"Create Account"} /> */}
 
