@@ -30,8 +30,6 @@ import LogIn from "@/app/User/Login/page";
 
 import SignupSocial from "../components/SignupSocial";
 
-
-
 export default function Home() {
   function handleOvervier() {}
   function handleMyteam() {}
@@ -39,31 +37,21 @@ export default function Home() {
   function handleCampaign() {}
   function handleSetting() {}
   function handleTickets() {}
-  
+
   return (
-
-
     <div>
-      <SignupSocial />
-      
-      
-      
+      {/* <SignupSocial /> */}
 
-        {/* <PersonDetailsBar name="ashan dilsara" email="ashandilsara8@gmail.com" /> */}
-      
+      {/* <PersonDetailsBar name="ashan dilsara" email="ashandilsara8@gmail.com" /> */}
+
       {/* useSearchparams */}
-
 
       {/* <LoginFormBasic /> */}
 
-    <div className="">
-
-    <div>
       {/* <NavBar />
 
       <LogIn /> */}
       {/* <Footer /> */}
-
 
       {/* <PersonDetailsBar name="ashan dilsara" email="ashandilsara8@gmail.com" /> */}
       {/* <NavBar /> */}

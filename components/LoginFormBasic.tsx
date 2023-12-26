@@ -17,7 +17,7 @@ export default function LoginFormBasic() {
       password,
       passwordConfirm,
     };
-    fetch("http://localhost:3000/api/v1/signup", {
+    fetch("http://localhost:3001/api/v1/signup", {
       method: "POST",
       mode: "cors",
       body: JSON.stringify(data),
