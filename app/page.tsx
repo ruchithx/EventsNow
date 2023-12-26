@@ -26,6 +26,7 @@ import LoginFormBasic from "@/components/LoginFormBasic";
 
 import EventHost from "@/components/EventHost";
 import LogIn from "@/app/User/Login/page";
+import SignupSocial from "../components/SignupSocial";
 
 export default function Home() {
   function handleOvervier() {}
@@ -34,16 +35,17 @@ export default function Home() {
   function handleCampaign() {}
   function handleSetting() {}
   function handleTickets() {}
+  
   return (
 
     <div>
-      <LoginFormBasic />
-      <EventHost />
-      <LogIn />
+      <SignupSocial />
+      
+      
+      
 
-    <div className="">
-      {/* <PersonDetailsBar name="ashan dilsara" email="ashandilsara8@gmail.com" /> */}
-      <NavBar />
+        {/* <PersonDetailsBar name="ashan dilsara" email="ashandilsara8@gmail.com" /> */}
+      
       {/* useSearchparams */}
 
 

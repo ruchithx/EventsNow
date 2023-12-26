@@ -32,7 +32,7 @@ export default function LoginFormBasic() {
   return (
     <div className="mx-auto  flex justify-center">
       <div className="">
-        <div className="text-center text-[#455273] font-khand  text-[64px] font-semibold">
+        <div className=" mt-2 leading-none	 text-center text-[#455273] font-khand text-[40px] sm:text-[64px] font-semibold">
           Create account
         </div>
         <form
