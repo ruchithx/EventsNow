@@ -43,7 +43,7 @@ export default function Home() {
       {/* <EventHost /> */}
       {/* <LogIn /> */}
 
-      {/* <LoginFormBasic /> */}
+      <LoginFormBasic />
       {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}
       {/* <CreateAccount Description={"Create Account"} /> */}
 
