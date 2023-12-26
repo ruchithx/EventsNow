@@ -9,35 +9,35 @@ export default function LoginFormBasic() {
 
   // const route = useRouter();
 
-  async function sendLoginData() {
-    const data = {
-      email,
-      password,
-    };
-    // fetch("http://localhost:3000/api/v1/signup", {
-    //   method: "POST",
-    //   mode: "cors",
-    //   body: JSON.stringify(data),
-    // });
+  // async function sendLoginData() {
+  //   const data = {
+  //     email,
+  //     password,
+  //   };
+  //   // fetch("http://localhost:3000/api/v1/signup", {
+  //   //   method: "POST",
+  //   //   mode: "cors",
+  //   //   body: JSON.stringify(data),
+  //   // });
 
-    try {
-      const res = await signIn("credentials", {
-        email,
-        password,
-        redirect: true,
-      });
+  //   try {
+  //     const res = await signIn("credentials", {
+  //       email,
+  //       password,
+  //       redirect: true,
+  //     });
 
-      if (res?.error) {
-        console.log("💥 error ");
-      }
-    } catch (e) {
-      console.log("💥💥💥💥💥" + e);
-    }
+  //     if (res?.error) {
+  //       console.log("💥 error ");
+  //     }
+  //   } catch (e) {
+  //     console.log("💥💥💥💥💥" + e);
+  //   }
 
-    // setemail("");
-    // setpassword("");
-    // route.replace("dashboard");
-  }
+  //   // setemail("");
+  //   // setpassword("");
+  //   // route.replace("dashboard");
+  // }
 
   return (
     <div className="mx-auto  flex justify-center">
@@ -47,8 +47,8 @@ export default function LoginFormBasic() {
         </div>
         <form
           className=" flex-column "
-          action={sendLoginData}
-          onSubmit={() => sendLoginData}
+          // action={sendLoginData}
+          // onSubmit={() => sendLoginData}
         >
           <input
             type="text"

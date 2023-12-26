@@ -38,8 +38,8 @@ export default function Home() {
       {/* <NavBar /> */}
       {/* useSearchparams */}
 
-      {/* <LoginFormBasic /> */}
-      <Loginform />
+      <LoginFormBasic />
+      {/* <Loginform /> */}
       {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}
       {/* <CreateAccount Description={"Create Account"} /> */}
 

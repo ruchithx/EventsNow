@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
 import connectMongoDB from "../../../../lib/mongo/mongodb";
-// const mongoose = require("mongoose");
-// const User = mongoose.model("User");
-import bcrypt from "bcrypt";
+const mongoose = require("mongoose");
+const User = mongoose.model("User");
 
-import User from "./../../../../models/userModel";
+// import User from "./../../../../models/userModel";
 
 export async function GET() {
   await connectMongoDB();
