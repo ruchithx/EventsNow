@@ -24,7 +24,6 @@ import PersonDetailsBar from "@/components/PersonDetailsBar";
 
 import LoginFormBasic from "@/components/LoginFormBasic";
 
-
 export default function Home() {
   function handleOvervier() {}
   function handleMyteam() {}
@@ -33,17 +32,12 @@ export default function Home() {
   function handleSetting() {}
   function handleTickets() {}
   return (
-
     <div className="grid grid-cols-3">
-
-      <PersonDetailsBar
-      name="ashan dilsara"
-      email="ashandilsara8@gmail.com"/>
+      <PersonDetailsBar name="ashan dilsara" email="ashandilsara8@gmail.com" />
 
       {/* useSearchparams */}
 
-    <div>
-      <LoginFormBasic/>
+      {/* <LoginFormBasic /> */}
       {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}
       {/* <CreateAccount Description={"Create Account"} /> */}
 
