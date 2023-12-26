@@ -21,6 +21,7 @@ import Event_Dashboard_Btn from "@/components/Event_Dashboard_Btn";
 import ViewDetailsButton from "@/components/ViewDetailsButton";
 import LoginFormBasic from "@/components/LoginFormBasic";
 import SignupSocial from "@/components/SignupSocial";
+import Terms from '../components/Terms'
 
 export default function Home() {
   function handleOvervier() {}
@@ -31,7 +32,7 @@ export default function Home() {
   function handleTickets() {}
   return (
     <div>
-      <SignupSocial/>
+      <Terms/>
 
 
       {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}
