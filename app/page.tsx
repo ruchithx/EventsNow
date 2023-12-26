@@ -23,6 +23,7 @@ import ViewDetailsButton from "@/components/ViewDetailsButton";
 import PersonDetailsBar from "@/components/PersonDetailsBar";
 
 import LoginFormBasic from "@/components/LoginFormBasic";
+import Loginform from "@/components/Loginform";
 
 import EventHost from "@/components/EventHost";
 import LogIn from "@/app/User/Login/page";
@@ -38,6 +39,7 @@ export default function Home() {
   
   return (
 
+
     <div>
       <SignupSocial />
       
@@ -50,6 +52,15 @@ export default function Home() {
 
 
       {/* <LoginFormBasic /> */}
+
+    <div className="">
+      {/* <PersonDetailsBar name="ashan dilsara" email="ashandilsara8@gmail.com" /> */}
+      {/* <NavBar /> */}
+      {/* useSearchparams */}
+
+      <LoginFormBasic />
+      {/* <Loginform /> */}
+
       {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}
       {/* <CreateAccount Description={"Create Account"} /> */}
 
