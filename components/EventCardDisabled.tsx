@@ -1,18 +1,19 @@
+import React from 'react'
 import Image from "next/image";
 
-interface EventCard {
-  name: string;
-  img: string;
-  location: string;
-  date: string;
-  time: string;
-}
+interface EventCardDisabled {
+    name: string;
+    img: string;
+    location: string;
+    date: string;
+  }
 
-function EventCard({ name, img, location, date, time }: EventCard) {
+export default function EventCardDisabled({ name, img, location, date }: EventCardDisabled) {
   return (
-    <div className="text-neutral-50  bg-myBrown rounded-[9px] w-64 shrink-0 drop-shadow-[4px_4px_4px_rgba(0,0,0,0.25)]  m-10">
-      <div className="styleQ h-[301px] overflow-hidden">
-        <Image className="rounded-t-[9px]" src={`/${img}`} alt={"event-img"} width={256} height={301} />
+    <div>
+      <div className=" saturate-0  text-neutral-50  bg-[#959595] rounded-[9px] w-64 shrink-0 drop-shadow-[4px_4px_4px_rgba(0,0,0,0.25)]  m-10">
+      <div className=" styleQ h-[301px] overflow-hidden">
+        <Image className="rounded-t-[9px] 	" src={`/${img}`} alt={"event-img"} width={256} height={301} />
       </div>
 
       <div className="grid grid-cols-3 ">
@@ -48,18 +49,14 @@ function EventCard({ name, img, location, date, time }: EventCard) {
           width={30}
           height={24}
         />
-        <div className="flex flex-col mr-auto my-auto ml-3">
-          <div className="text-xs font-khand font-semibold mt-1 mb-0 ">
+        <div className="flex flex-col mr-auto my-auto ml-3 text-xs font-khand font-semibold">
+          
             {date}
-          </div>
-          <div className="text-xs font-khand font-semibold mt-0 ">
-            {time}
-          </div>
+          
         </div>
         </div>
       </div>
     </div>
-  );
+    </div>
+  )
 }
-
-export default EventCard;
