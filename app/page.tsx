@@ -33,9 +33,10 @@ export default function Home() {
   function handleTickets() {}
   return (
     <div>
-      <LoginFormBasic />
-      <EventHost />
+      <NavBar />
+
       <LogIn />
+      <Footer />
 
       {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}
       {/* <CreateAccount Description={"Create Account"} /> */}
