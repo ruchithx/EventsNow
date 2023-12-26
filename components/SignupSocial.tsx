@@ -5,7 +5,7 @@ export default function SignupSocial() {
     <div className="  justify-center ">
       <div className="grid grid-cols-12 my-8">
         <div className="h-[1px] bg-black self-center col-span-5"></div>
-        <div className="  text-center font-serif text-[16px] font-normal col-span-2 ">
+        <div className="  text-center font-serif sm:text-[16px] font-normal col-span-2 ">
           OR
         </div>
         <div className="h-[1px] bg-black self-center col-span-5"></div>

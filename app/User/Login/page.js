@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState } from "react";
 import SignupSocial from "@/components/SignupSocial";
@@ -8,12 +9,14 @@ import Image from "next/image";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
 
+
 export default function LogIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
   };
   const [showPassword, setShowPassword] = useState(false);
 
@@ -67,6 +70,7 @@ export default function LogIn() {
           </div>
           <SignupSocial />
 
+
           <Terms />
         </div>
 
@@ -79,5 +83,6 @@ export default function LogIn() {
       </div>
       <Footer />
     </>
+
   );
 }

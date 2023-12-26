@@ -3,7 +3,11 @@ import React from "react";
 
 export default function Terms() {
   return (
+
+    <div className=" my-15 justify-center self-end font-sans">
+
     <div className=" mt-[100px] justify-center self-end font-sans">
+
       <div className="text-center ">
         By signing up, I have read an agree to{" "}
       </div>
