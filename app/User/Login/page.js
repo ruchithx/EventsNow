@@ -1,7 +1,9 @@
+"use client";
 import React from "react";
 import SignupSocial from "@/components/SignupSocial";
 import Terms from "@/components/Terms";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function LogIn() {
   const [username, setUsername] = useState("");
@@ -55,11 +57,17 @@ export default function LogIn() {
             <Terms />
           </div>
         </div>
-        <img
+        <Image
+          src="/ReUsableComponentData/login.jpg"
+          alt="Man"
+          width={800}
+          height={918}
+        />
+        {/* <img
           className="w-1/2 h-[918px]"
           src="./ReUsableComponentData/login.jpg"
           alt="Man"
-        />
+        /> */}
       </div>
       <div className="bg-myBrown mt-0 p-0  h-[63px] flex flex-col"></div>
     </div>

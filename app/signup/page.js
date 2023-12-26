@@ -1,9 +1,5 @@
 function page() {
-    return (
-        <div>
-            ashan
-        </div>
-    )
+  return <div>ashan</div>;
 }
 
-export default page
+export default page;

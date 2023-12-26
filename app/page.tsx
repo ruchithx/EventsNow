@@ -25,7 +25,7 @@ import PersonDetailsBar from "@/components/PersonDetailsBar";
 import LoginFormBasic from "@/components/LoginFormBasic";
 
 import EventHost from "@/components/EventHost";
-import LogIn from "@/app/User/Login/page";
+import LogIn from "@/app/User/login/page";
 
 export default function Home() {
   function handleOvervier() {}
@@ -35,17 +35,13 @@ export default function Home() {
   function handleSetting() {}
   function handleTickets() {}
   return (
-
-    <div>
-      <LoginFormBasic />
-      <EventHost />
-      <LogIn />
-
     <div className="">
       {/* <PersonDetailsBar name="ashan dilsara" email="ashandilsara8@gmail.com" /> */}
-      <NavBar />
+      {/* <NavBar /> */}
       {/* useSearchparams */}
-
+      {/* <LoginFormBasic /> */}
+      {/* <EventHost /> */}
+      {/* <LogIn /> */}
 
       {/* <LoginFormBasic /> */}
       {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}
