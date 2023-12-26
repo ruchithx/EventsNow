@@ -22,6 +22,7 @@ import ViewDetailsButton from "@/components/ViewDetailsButton";
 import LoginFormBasic from "@/components/LoginFormBasic";
 
 import EventHost from "@/components/EventHost";
+import LogIn from "@/app/User/Login/page";
 
 export default function Home() {
   function handleOvervier() {}
@@ -34,6 +35,7 @@ export default function Home() {
     <div>
       <LoginFormBasic />
       <EventHost />
+      <LogIn />
 
       {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}
       {/* <CreateAccount Description={"Create Account"} /> */}
