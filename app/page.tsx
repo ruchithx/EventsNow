@@ -20,6 +20,7 @@ import View_Report from "@/components/View_Report";
 import Event_Dashboard_Btn from "@/components/Event_Dashboard_Btn";
 import ViewDetailsButton from "@/components/ViewDetailsButton";
 import LoginFormBasic from "@/components/LoginFormBasic";
+import SignupSocial from "@/components/SignupSocial";
 
 export default function Home() {
   function handleOvervier() {}
@@ -30,7 +31,7 @@ export default function Home() {
   function handleTickets() {}
   return (
     <div>
-      <LoginFormBasic/>
+      <SignupSocial/>
 
 
       {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}
