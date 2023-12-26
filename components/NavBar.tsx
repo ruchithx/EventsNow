@@ -1,15 +1,17 @@
 import React from "react";
-
+import Image from "next/image";
 export default function NavBar() {
   return (
     <nav className="dark:bg-navWhite">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img
-            src="./ReUsableComponentData/nav-logo.png"
-            className="h-12 w-15"
+          <Image
+            src="/ReUsableComponentData/nav-logo.png"
             alt="EventNow Logo"
+            width={30}
+            height={20}
           />
+
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-eventBrown    ">
             EventNow
           </span>

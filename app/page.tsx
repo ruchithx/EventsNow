@@ -36,20 +36,17 @@ export default function Home() {
   function handleSetting() {}
   function handleTickets() {}
   return (
-
     <div>
-      <NavBar />
+      {/* <NavBar />
 
-      <LogIn />
-      <Footer />
+      <LogIn /> */}
+      {/* <Footer /> */}
 
-    <div className="">
       {/* <PersonDetailsBar name="ashan dilsara" email="ashandilsara8@gmail.com" /> */}
       {/* <NavBar /> */}
       {/* useSearchparams */}
 
-
-      <LoginFormBasic />
+      {/* <LoginFormBasic /> */}
       {/* <Loginform /> */}
       {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}
       {/* <CreateAccount Description={"Create Account"} /> */}
