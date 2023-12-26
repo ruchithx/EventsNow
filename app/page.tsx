@@ -20,6 +20,7 @@ import View_Report from "@/components/View_Report";
 import Event_Dashboard_Btn from "@/components/Event_Dashboard_Btn";
 import ViewDetailsButton from "@/components/ViewDetailsButton";
 import LoginFormBasic from "@/components/LoginFormBasic";
+
 import EventHost from "@/components/EventHost";
 
 export default function Home() {
