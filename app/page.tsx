@@ -17,6 +17,7 @@ import Org_RequestHandle from "../components/Org_RequestHandle";
 import Available_Orgs from "@/components/Available_Orgs";
 import View_Report from "@/components/View_Report";
 import Event_Dashboard_Btn from "@/components/Event_Dashboard_Btn";
+import BestPost from "@/components/BestPost";
 
 export default function Home() {
   function handleOvervier() {}
@@ -110,6 +111,14 @@ export default function Home() {
         discription1={"Attendence Report"}
         img={"Chartfill.svg"}
       /> */}
+      <BestPost
+        title={"Mega"}
+        year={"2021"}
+        image={"eventimage.svg"}
+        description={
+          "Darani, an extraordinary event, was held with unmatched grandeur and elegance. This remarkable gathering celebrated the fusion of culture and creativity, creating an unforgettable experience for all attendees. From captivating performances to delectable cuisine, Darani left a lasting impression on every guest. It was a momentous journey, where the vibrancy of tradition blended seamlessly with modernity. The event's success is a testament to the "
+        }
+      />
     </div>
   );
 }
