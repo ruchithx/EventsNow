@@ -26,6 +26,7 @@ import LoginFormBasic from "@/components/LoginFormBasic";
 
 import EventHost from "@/components/EventHost";
 import LogIn from "@/app/User/login/page";
+import ProfileCard from "@/components/ProfileCard";
 
 export default function Home() {
   function handleOvervier() {}
@@ -36,6 +37,17 @@ export default function Home() {
   function handleTickets() {}
   return (
     <div className="">
+      
+
+      <div  >
+        <div></div><div></div>
+        
+      <ProfileCard 
+      profilePic="./image 3.png"
+      name="Ashan Dilsara"
+      accountType="Organization Account "
+      email="ashandilsara8@gmail.com"/>
+      </div>
       {/* <PersonDetailsBar name="ashan dilsara" email="ashandilsara8@gmail.com" /> */}
       {/* <NavBar /> */}
       {/* useSearchparams */}
@@ -43,7 +55,7 @@ export default function Home() {
       {/* <EventHost /> */}
       {/* <LogIn /> */}
 
-      <LoginFormBasic />
+      {/* <LoginFormBasic /> */}
       {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}
       {/* <CreateAccount Description={"Create Account"} /> */}
 
