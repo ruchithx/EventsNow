@@ -56,9 +56,7 @@ export default function Home() {
 
       {/* <LoginFormBasic /> */}
 
-    <div className="">
-
-    <div>
+    
       {/* <NavBar />
 
       <LogIn /> */}

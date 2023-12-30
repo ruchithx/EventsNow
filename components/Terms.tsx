@@ -1,12 +1,13 @@
 import Link from "next/link";
 import React from "react";
+import Footer from '../components/Footer'
 
 export default function Terms() {
   return (
 
-    <div className=" my-15 justify-center self-end font-sans">
+    <div className=" my-5 justify-center self-end font-sans">
 
-    <div className=" mt-[100px] justify-center self-end font-sans">
+    
 
       <div className="text-center ">
         By signing up, I have read an agree to{" "}
@@ -22,5 +23,7 @@ export default function Terms() {
         </Link>{" "}
       </div>
     </div>
+    
+    
   );
 }
