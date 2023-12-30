@@ -8,7 +8,7 @@ export default function LoginFormBasic() {
   const [password, setpassword] = useState("");
   const [passwordConfirm, setCPassword] = useState("");
 
-  function sendLoginData() {
+  async function sendLoginData() {
     console.log(firstName, lastName, email, password, passwordConfirm);
     const data = {
       firstName,
@@ -17,11 +17,13 @@ export default function LoginFormBasic() {
       password,
       passwordConfirm,
     };
-    fetch("http://localhost:3001/api/v1/signup", {
+    const res = await fetch("http://localhost:3000/api/v1/signup", {
       method: "POST",
       mode: "cors",
       body: JSON.stringify(data),
     });
+
+    console.log(res);
     setFristName("");
     setLastName("");
     setemail("");

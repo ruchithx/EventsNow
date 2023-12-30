@@ -1,6 +1,5 @@
-
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import SignupSocial from "@/components/SignupSocial";
 import Terms from "@/components/Terms";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,21 +7,40 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
-
+import { redirect } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 export default function LogIn() {
+  const usernameInputRef = useRef();
+  const passwordInputRef = useRef();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-  };
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const enteredUsername = usernameInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
+
+    try {
+      const result = await signIn("credentials", {
+        redirect: false,
+        email: enteredUsername,
+        password: enteredPassword,
+      });
+
+      if (result.error) {
+        console.log("invalid credintials");
+      }
+    } catch (e) {
+      console.log("💥💥💥💥💥" + e);
+    }
+  }
 
   return (
     <>
@@ -42,6 +60,7 @@ export default function LogIn() {
                   onChange={(e) => setUsername(e.target.value)}
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-custom-orange"
                   placeholder="Enter your email"
+                  ref={usernameInputRef}
                 />
               </div>
               <div className="mb-6 relative">
@@ -52,6 +71,7 @@ export default function LogIn() {
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-custom-orange"
                   placeholder="Create password"
+                  ref={passwordInputRef}
                 />
                 <span
                   className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
@@ -70,7 +90,6 @@ export default function LogIn() {
           </div>
           <SignupSocial />
 
-
           <Terms />
         </div>
 
@@ -83,6 +102,5 @@ export default function LogIn() {
       </div>
       <Footer />
     </>
-
   );
 }

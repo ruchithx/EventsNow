@@ -1,6 +1,10 @@
+import { signIn } from "next-auth/react";
 import React from "react";
 
 export default function SignupSocial() {
+  function handlegoogle() {
+    console.log("hello");
+  }
   return (
     <div className="  justify-center ">
       <div className="grid grid-cols-12 my-8">
@@ -90,9 +94,12 @@ export default function SignupSocial() {
           </div>
         </button>
       </div>
-
+      {/* handlegoogle */}
       <div className="grid mt-2 mb-5">
-        <button className="justify-self-center  hover:bg-custom-lightorange rounded-[10px] border-solid border-[#D7CFC7] border-[1px]">
+        <button
+          onClick={() => signIn()}
+          className="justify-self-center   hover:bg-custom-lightorange rounded-[10px] border-solid border-[#D7CFC7] border-[1px]"
+        >
           <div className="flex">
             <svg
               className="self-center my-1 ml-4 mr-3"

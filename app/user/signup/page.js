@@ -1,3 +1,4 @@
+"use client";
 import LoginFormBasic from "@/components/LoginFormBasic";
 import NavBar from "@/components/NavBar";
 import SignupSocial from "@/components/SignupSocial";
