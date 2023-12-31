@@ -2,18 +2,14 @@ import React from "react";
 
 interface CreateAccount {
   Description: String;
-  bgcolors: String;
 }
 
-export default function CreateAccount({
-  bgcolors,
-  Description,
-}: CreateAccount) {
+export default function CreateAccount({ Description }: CreateAccount) {
   return (
-    <div className={`w-52 p-1 rounded-lg ${bgcolors}`}>
+    <button className={`w-52 p-1 rounded-lg bg-custom-orange`}>
       <div className="flex justify-center text-white font-bold">
         {Description}
       </div>
-    </div>
+    </button>
   );
 }

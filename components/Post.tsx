@@ -114,7 +114,6 @@ export default function Post({ profilePic, name, caption, post }: Post) {
             />
             <Button
               className="bg-gray-400 w-15 h-7"
-              variant="contained"
               endIcon={<SendIcon />}
               onClick={() => handleSendBtn()}
             >
