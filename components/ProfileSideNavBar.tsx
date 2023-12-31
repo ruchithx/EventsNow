@@ -21,7 +21,7 @@ export default function ProfileSideNavBar() {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-0 font-khand h-screen">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 font-khand h-screen">
         <div className="hidden sm:block bg-custom-blue p-4 col-span-1 sm:col-span-2 lg:col-span-2 ">
           <div className="grid grid-rows-5 grid-flow-col gap-4 justify-center items-center  mt-10  ">
             {btnNew}
@@ -35,7 +35,7 @@ export default function ProfileSideNavBar() {
           {detailsNew}
         </div>
 
-        <div className="bg-custom-blue p-4 col-span-1 sm:col-span-2 lg:col-span-3">
+        <div className="bg-custom-blue p-4 col-span-1 sm:col-span-2 lg:col-span-3   items-center justify-center">
           <div className="h-4 bg-white w-fit p-5 rounded-md flex items-center justify-center">
             <svg
               className="mr-2"
@@ -57,10 +57,10 @@ export default function ProfileSideNavBar() {
             </p>
           </div>
           <ProfileCard
-            profilePic={"./profile.jpg"}
-            name={"Arkam"}
-            accountType={"Org"}
-            email={"djhbs@gmail.com"}
+            profilePic="./image 3.png"
+            name="Ashan Dilsara"
+            accountType="Organization Account "
+            email="ashandilsara8@gmail.com"
           />
         </div>
       </div>

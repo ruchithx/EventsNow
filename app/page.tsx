@@ -27,7 +27,6 @@ import LoginFormBasic from "@/components/LoginFormBasic";
 import EventHost from "@/components/EventHost";
 import LogIn from "@/app/User/login/page";
 
-
 import ProfileSideNavBar from "@/components/ProfileSideNavBar";
 
 import ProfileCard from "@/components/ProfileCard";
@@ -41,22 +40,9 @@ export default function Home() {
   function handleTickets() {}
   return (
     <div className="">
-
-      
-
-      <div  >
-        <div></div><div></div>
-        
-      <ProfileCard 
-      profilePic="./image 3.png"
-      name="Ashan Dilsara"
-      accountType="Organization Account "
-      email="ashandilsara8@gmail.com"/>
-      </div>
-
       <NavBar />
-      <ProfileSideNavBar />
 
+      <ProfileSideNavBar />
 
       {/* <PersonDetailsBar name="ashan dilsara" email="ashandilsara8@gmail.com" /> */}
       {/* <NavBar /> */}
@@ -65,9 +51,7 @@ export default function Home() {
       {/* <EventHost /> */}
       {/* <LogIn /> */}
 
-
       {/* <LoginFormBasic /> */}
-
 
       {/* <ViewDetailsButton image="image 1.png" Description="hello" /> */}
       {/* <CreateAccount Description={"Create Account"} /> */}
