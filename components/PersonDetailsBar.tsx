@@ -5,9 +5,7 @@ interface PresonDetailsBar {
 }
 
 export default function PersonDetailsBar({ name, email }: PresonDetailsBar) {
-  function editDetails() {
-    console.log("edit done");
-  }
+  function editDetails() {}
   return (
     //parent div eken 3n 2k kiyala gaththe meka.wenas krla gann onnm.mn dila tynne meke mulu loku div ekatam col-span-2 kiyala-ashan
     <div className=" mx-10 my-4 item-center  bg-[#D9D9D9] w-full col-span-2 grid grid-cols-12 items-center  rounded-[5px]">

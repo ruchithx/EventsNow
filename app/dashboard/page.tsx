@@ -1,16 +1,15 @@
+"use client";
 import React from "react";
 import { signOut } from "next-auth/react";
+import NavBar from "@/components/NavBar";
+import Profile from "@/components/Profile";
+import Post from "@/components/Post";
+import Footer from "@/components/Footer";
 
 export default function page() {
   return (
     <div>
-      <button
-        type="submit"
-        className="flex text-center p-1 justify-center w-full bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono"
-        onClick={() => signOut()}
-      >
-        logout
-      </button>
+      <Footer />
     </div>
   );
 }

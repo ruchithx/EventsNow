@@ -5,9 +5,7 @@ import React from "react";
 export default function BUyAdd() {
   return (
     <button className="flex flex-row justify-center text-white ">
-      <div
-        className={`flex justify-center w-32 bg-custom-orange text-white font-semibold rounded-s-lg p-1`}
-      >
+      <div className="flex justify-center w-32 bg-custom-orange text-white font-semibold rounded-s-lg p-1">
         <Image
           className=" mr-4"
           src={`/ReUsableComponentData/Check_fill.svg`}
@@ -17,9 +15,7 @@ export default function BUyAdd() {
         />
         Buy Tickets
       </div>
-      <div
-        className={`flex justify-center w-32 bg-custom-blue text-white font-semibold rounded-e-lg p-1`}
-      >
+      <div className="flex justify-center w-32 bg-custom-blue text-white font-semibold rounded-e-lg p-1">
         <Image
           className="mr-4"
           src={`/ReUsableComponentData/Paper_fill.svg`}

@@ -1,5 +1,5 @@
 "use client";
-import LoginFormBasic from "@/components/LoginFormBasic";
+import LoginFormBasic from "@/app/user/login/LoginFormBasic";
 import NavBar from "@/components/NavBar";
 import SignupSocial from "@/components/SignupSocial";
 import Image from "next/image";
@@ -9,7 +9,6 @@ import Footer from "@/components/Footer";
 function page() {
   return (
     <div>
-      <NavBar />
       <div className="md:grid   md:grid-cols-2  ">
         <div className="grid grid-cols-6">
           <div className="col-span-1"></div>

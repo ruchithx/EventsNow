@@ -1,14 +1,15 @@
-"use client";
 import React, { useState, useRef } from "react";
 import SignupSocial from "@/components/SignupSocial";
-import Terms from "@/components/Terms";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import Footer from "@/components/Footer";
-import NavBar from "@/components/NavBar";
-import { redirect } from "next/navigation";
+
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import CreatAccountText from "./CreatAccountText";
+import { error } from "@/util/Toastify";
 
 export default function LogIn() {
   const usernameInputRef = useRef();
@@ -22,6 +23,8 @@ export default function LogIn() {
     setShowPassword(!showPassword);
   };
 
+  const router = useRouter();
+
   async function handleSubmit(e) {
     e.preventDefault();
     const enteredUsername = usernameInputRef.current.value;
@@ -34,8 +37,10 @@ export default function LogIn() {
         password: enteredPassword,
       });
 
-      if (result.error) {
-        console.log("invalid credintials");
+      if (!result.error && result) {
+        router.push("/");
+      } else {
+        error("Invalid username or password");
       }
     } catch (e) {
       console.log("💥💥💥💥💥" + e);
@@ -44,7 +49,6 @@ export default function LogIn() {
 
   return (
     <>
-      <NavBar />
       <div className="flex flex-col md:flex-row">
         <div className="md:w-1/2  p-8">
           <h1 className="text-custom-blue font-khand text-5xl text-center mt-3 font-bold">
@@ -90,7 +94,7 @@ export default function LogIn() {
           </div>
           <SignupSocial />
 
-          <Terms />
+          <CreatAccountText />
         </div>
 
         <Image

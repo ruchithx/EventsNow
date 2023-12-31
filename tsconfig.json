@@ -27,7 +27,11 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "components/Event_Dashboard_Nav_bar.tsx"
+    "components/Event_Dashboard_Nav_bar.tsx",
+    "util/Toastify.js",
+    "util/UserCheck.js",
+    "app/api/v1/user/exist/route.ts",
+    "app/user/login/page.js"
   ],
   "exclude": ["node_modules"]
 }
