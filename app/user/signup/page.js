@@ -1,5 +1,4 @@
-"use client";
-import LoginFormBasic from "@/app/user/login/LoginFormBasic";
+import SignUpFormBasic from "@/app/user/signup/SignUpFormBasic";
 import NavBar from "@/components/NavBar";
 import SignupSocial from "@/components/SignupSocial";
 import Image from "next/image";
@@ -16,7 +15,7 @@ function page() {
             <div className="grid grid-cols-8">
               <div></div>
               <div className="col-span-6">
-                <LoginFormBasic />
+                <SignUpFormBasic />
               </div>
               <div></div>
             </div>
