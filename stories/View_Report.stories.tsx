@@ -3,7 +3,7 @@ import type { ComponentStory, Meta, StoryObj } from "@storybook/react";
 import View_Report from "../components/View_Report";
 
 const meta: Meta<typeof View_Report> = {
-  title: "Components/View_Report",
+  title: "Components/Button/View_Report",
   component: View_Report,
   // argTypes: {
   //   name: { control: "text" },

@@ -1,26 +1,12 @@
 "use client";
 
-function overview() {
-  console.log("Direct to the overview");
-}
-function hostpage() {
-  console.log("Direct to the host page");
-}
-function team() {
-  console.log("Direct to the Team details");
-}
-function report() {
-  console.log("Direct to the repots");
-}
-function campaign() {
-  console.log("Direct to the campaign details");
-}
-function settings() {
-  console.log("Direct to the setttings");
-}
-function tickets() {
-  console.log("Direct to the Ticket purchases");
-}
+function overview() {}
+function hostpage() {}
+function team() {}
+function report() {}
+function campaign() {}
+function settings() {}
+function tickets() {}
 
 import React from "react";
 

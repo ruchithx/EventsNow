@@ -1,48 +1,30 @@
 import config from "@/tailwind.config";
 import Image from "next/image";
 import React from "react";
-interface buyadd {
-  Description1: String;
-  Description2: String;
-  image1: String;
-  image2: String;
-  bgcolors0: String;
-  bgcolors1: String;
-}
-export default function BUyAdd({
-  image1,
-  image2,
-  Description1,
-  Description2,
-  bgcolors1,
-  bgcolors0,
-}: buyadd) {
+
+export default function BUyAdd() {
   return (
-    <div className="flex flex-row justify-center text-white ">
-      <div
-        className={`flex justify-center w-32 ${bgcolors0} text-white font-semibold rounded-s-lg p-1`}
-      >
+    <button className="flex flex-row justify-center text-white ">
+      <div className="flex justify-center w-32 bg-custom-orange text-white font-semibold rounded-s-lg p-1">
         <Image
           className=" mr-4"
-          src={`/ReUsableComponentData/${image1}`}
+          src={`/ReUsableComponentData/Check_fill.svg`}
           alt="Picture of the button"
           width={30}
           height={30}
         />
-        {Description1}
+        Buy Tickets
       </div>
-      <div
-        className={`flex justify-center w-32 ${bgcolors1} text-white font-semibold rounded-e-lg p-1`}
-      >
+      <div className="flex justify-center w-32 bg-custom-blue text-white font-semibold rounded-e-lg p-1">
         <Image
           className="mr-4"
-          src={`/ReUsableComponentData/${image2}`}
+          src={`/ReUsableComponentData/Paper_fill.svg`}
           alt="Picture of the button"
           width={30}
           height={30}
         />
-        {Description2}
+        Add to wishlist
       </div>
-    </div>
+    </button>
   );
 }

@@ -1,15 +1,15 @@
 import Image from "next/image";
 import React from "react";
 interface log {
-  bgcolors: String;
   titleOfbutton: String;
   image: String;
+  fn: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export default function Login({ image, titleOfbutton, bgcolors }: log) {
+export default function Login({ image, titleOfbutton, fn }: log) {
   return (
-    <div className={`${bgcolors} w-28 p-2 rounded-2xl`}>
-      <div className="flex flex-row ml-1" justify-center>
+    <button onClick={fn} className={`bg-custom-orange w-28 p-2 rounded-2xl`}>
+      <div className="flex flex-row ml-1 justify-center">
         <Image
           src={`/ReUsableComponentData/${image}`}
           alt="Picture of the button"
@@ -20,6 +20,6 @@ export default function Login({ image, titleOfbutton, bgcolors }: log) {
           {titleOfbutton}
         </div>
       </div>
-    </div>
+    </button>
   );
 }
