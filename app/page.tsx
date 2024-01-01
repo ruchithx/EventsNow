@@ -22,7 +22,7 @@ import ViewDetailsButton from "@/components/ViewDetailsButton";
 
 import PersonDetailsBar from "@/components/PersonDetailsBar";
 
-import LoginFormBasic from "@/components/LoginFormBasic";
+import LoginFormBasic from "@/app/user/login/LoginFormBasic";
 
 import EventHost from "@/components/EventHost";
 import LogIn from "@/app/User/login/page";
