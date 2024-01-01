@@ -20,7 +20,6 @@ export default function Footer() {
               alt="Picture of the button"
               width={30}
               height={30}
-              className="mb-1 sm:mb-0 sm:mr-2 "
             />
           </button>
           <button>
@@ -29,7 +28,6 @@ export default function Footer() {
               alt="Picture of the button"
               width={30}
               height={30}
-              className="mb-2 sm:mb-0"
             />
           </button>
           <button>
@@ -38,7 +36,6 @@ export default function Footer() {
               alt="Picture of the button"
               width={30}
               height={30}
-              className="mb-2 sm:mb-0"
             />
           </button>
           <button>
@@ -47,7 +44,6 @@ export default function Footer() {
               alt="Picture of the button"
               width={30}
               height={30}
-              className="mb-2 sm:mb-0"
             />
           </button>
           <button>
@@ -56,7 +52,6 @@ export default function Footer() {
               alt="Picture of the button"
               width={30}
               height={30}
-              className="mb-2 sm:mb-0"
             />
           </button>
         </div>

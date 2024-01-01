@@ -1,21 +1,88 @@
+"use client";
 import React from "react";
+import Image from "next/image";
+import NavBarButton from "./NavBarButton";
+import { getSession, signOut, useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import Login from "./Login";
+import Profile from "@/components/Profile";
 
 export default function NavBar() {
+  const [userActive, setUserActive] = useState(false);
+  const [userName, setUserName] = useState();
+  const router = useRouter();
+  function clickAboutBtn() {}
+  function clickContactBtn() {}
+  function clickLoginBtn() {
+    router.push("/user/login");
+  }
+  function clickLogoutBtn() {
+    signOut();
+    router.push("/");
+  }
+  function clickSignupBtn() {
+    router.push("/user/signup");
+  }
+
+  useEffect(function () {
+    async function session() {
+      const session = await getSession();
+
+      if (session) {
+        const name = session?.user?.name ? session?.user?.name : "";
+        if (name !== "") {
+          setUserActive(true);
+          setUserName(name);
+          return;
+        }
+
+        const email = session?.user?.email;
+
+        const user = await fetch(
+          "http://localhost:3000/api/v1/user/getOneUser",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email }),
+          }
+        );
+
+        const { data } = await user.json();
+        if (data) {
+          setUserActive(true);
+
+          setUserName(data.firstName);
+        } else {
+          setUserActive(false);
+        }
+      }
+    }
+    session();
+  }, []);
+
   return (
     <nav className="dark:bg-navWhite">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img
-            src="./ReUsableComponentData/nav-logo.png"
-            className="h-12 w-15"
+        <div className="flex items-center space-x-3 rtl:space-x-reverse">
+          <Image
+            src="/ReUsableComponentData/nav-logo.png"
             alt="EventNow Logo"
+            width={30}
+            height={20}
           />
+
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-eventBrown    ">
             EventNow
           </span>
-        </a>
+        </div>
 
-        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+        <div
+          className="hidden w-full md:block md:w-auto flex items-end"
+          id="navbar-default"
+        >
           <ul className="text-xl font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white  md:dark:bg-navWhite dark:border-gray-700">
             <li>
               <a
@@ -26,23 +93,34 @@ export default function NavBar() {
                 Home
               </a>
             </li>
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-eventBrown md:p-0 dark:text-white md:dark:hover:text-eventBrown dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >
-                About
-              </a>
-            </li>
+            <NavBarButton handleNavBarButton={clickAboutBtn} text={"About"} />
+            <NavBarButton
+              handleNavBarButton={clickContactBtn}
+              text={"Contact"}
+            />
+            {userActive && (
+              <Login
+                fn={clickLogoutBtn}
+                titleOfbutton={"LOGOUT"}
+                image={"Subtract.svg"}
+              />
+            )}
+            {userActive && <Profile name={userName} picture="User_cicrle" />}
 
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-eventBrown md:p-0 dark:text-white md:dark:hover:text-eventBrown dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >
-                Contact
-              </a>
-            </li>
+            {!userActive && (
+              <Login
+                fn={clickLoginBtn}
+                titleOfbutton={"SIGNIN"}
+                image={"Sign_in.svg"}
+              />
+            )}
+            {!userActive && (
+              <Login
+                fn={clickSignupBtn}
+                titleOfbutton={"SIGNUP"}
+                image={"Sign_in_squre_fill.svg"}
+              />
+            )}
           </ul>
         </div>
       </div>

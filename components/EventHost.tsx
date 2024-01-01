@@ -8,6 +8,7 @@ export default function ToggleButtons() {
   };
 
   return (
+
     <div className="bg-initial m-4 w-1/4 h-15 p-2 font-semibold font-khand rounded-2xl flex text-center">
       <div
         className={`${
@@ -40,6 +41,7 @@ export default function ToggleButtons() {
         >
           Community
         </button>
+
       </div>
     </div>
   );
