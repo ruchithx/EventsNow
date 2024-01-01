@@ -6,9 +6,12 @@ export async function POST(req: Request) {
   try {
     connectMongoDB();
     const { email } = await req.json();
-    const data = await User.findOne({ email });
+    const user = await User.findOne({ email });
 
-    return NextResponse.json({ data });
+    if (!user) {
+      return;
+    }
+    return NextResponse.json({ user });
   } catch (e) {
     console.log(e);
   }

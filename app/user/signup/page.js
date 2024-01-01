@@ -1,9 +1,7 @@
 import SignUpFormBasic from "@/app/user/signup/SignUpFormBasic";
-import NavBar from "@/components/NavBar";
 import SignupSocial from "@/components/SignupSocial";
 import Image from "next/image";
 import Terms from "@/components/Terms";
-import Footer from "@/components/Footer";
 
 function page() {
   return (

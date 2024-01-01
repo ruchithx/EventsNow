@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Spinner from "../../../components/Spinner";
-import { success, error } from "../../../util/Toastify";
+import { error } from "../../../util/Toastify";
 
 export default function LoginFormBasic() {
   const [firstName, setFristName] = useState("");
@@ -45,7 +45,7 @@ export default function LoginFormBasic() {
         return;
       }
 
-      const user = await fetch("http://localhost:3000/api/v1/user/exist", {
+      const user = await fetch("http://localhost:3000/api/v1/user/getOneUser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
