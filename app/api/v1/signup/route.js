@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
 import connectMongoDB from "../../../../lib/mongo/mongodb";
-// const mongoose = require("mongoose");
-// const User = mongoose.model("User");
 
 import User from "./../../../../models/userModel";
 

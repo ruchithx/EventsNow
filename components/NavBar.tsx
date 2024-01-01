@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import NavBarButton from "./NavBarButton";
-import { getSession, signOut, useSession } from "next-auth/react";
+import { getSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Login from "./Login";
@@ -34,29 +34,28 @@ export default function NavBar() {
         if (name !== "") {
           setUserActive(true);
           setUserName(name);
-          return;
-        }
-
-        const email = session?.user?.email;
-
-        const user = await fetch(
-          "http://localhost:3000/api/v1/user/getOneUser",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email }),
-          }
-        );
-
-        const { data } = await user.json();
-        if (data) {
-          setUserActive(true);
-
-          setUserName(data.firstName);
         } else {
-          setUserActive(false);
+          const email = session?.user?.email;
+
+          const user = await fetch(
+            "http://localhost:3000/api/v1/user/getOneUser",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ email }),
+            }
+          );
+
+          const { data } = await user.json();
+          if (data) {
+            setUserActive(true);
+
+            setUserName(data.firstName);
+          } else {
+            setUserActive(false);
+          }
         }
       }
     }

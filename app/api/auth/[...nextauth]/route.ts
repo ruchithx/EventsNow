@@ -24,9 +24,8 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-
         const user = await User.findOne({ email: credentials.email });
-       
+
         if (!user) {
           return null;
         }
@@ -34,10 +33,7 @@ export const authOptions: NextAuthOptions = {
         return user;
       },
     }),
-    // GoogleProvider({
-    //   clientId: process.env.GOOGLE_CLIENET_ID,
-    //   clientSecret: process.env.GOOGLE_CLIENET_SECRET,
-    // }),
+
     GoogleProvider({
       clientId:
         "585040141563-5qq76qfjfl60d267mblh6voih0gj7uhh.apps.googleusercontent.com",
