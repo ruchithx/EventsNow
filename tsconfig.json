@@ -31,7 +31,8 @@
     "util/Toastify.js",
     "util/UserCheck.js",
     "app/api/v1/user/exist/route.ts",
-    "app/user/login/page.js"
+    "app/user/login/page.js",
+    "components/Dashboard.tsx"
   ],
   "exclude": ["node_modules"]
 }
