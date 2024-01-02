@@ -24,7 +24,8 @@ export default function LogIn() {
           src="/ReUsableComponentData/login.jpg"
           alt="Man"
           width={900}
-          height={735}
+          height={500}
+          className="h-screen"
         />
       </div>
       <Footer />
