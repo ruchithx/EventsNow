@@ -12,8 +12,14 @@ export default function NavBar() {
   const [userActive, setUserActive] = useState(false);
   const [userName, setUserName] = useState();
   const router = useRouter();
-  function clickAboutBtn() {}
-  function clickContactBtn() {}
+
+  function clickHomeBtn() {
+    router.push("/");
+  }
+  function clickAboutBtn() {
+    router.push("/about");
+  }
+
   function clickLoginBtn() {
     router.push("/user/login");
   }
@@ -84,19 +90,16 @@ export default function NavBar() {
         >
           <ul className="text-xl font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white  md:dark:bg-navWhite dark:border-gray-700">
             <li>
-              <a
-                href="#"
+              <button
+                onClick={clickHomeBtn}
                 className=" block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-eventBrown-700 md:p-0 dark:text-eventBrown md:dark:text-eventBrown"
                 aria-current="page"
               >
                 Home
-              </a>
+              </button>
             </li>
             <NavBarButton handleNavBarButton={clickAboutBtn} text={"About"} />
-            <NavBarButton
-              handleNavBarButton={clickContactBtn}
-              text={"Contact"}
-            />
+
             {userActive && (
               <Login
                 fn={clickLogoutBtn}
