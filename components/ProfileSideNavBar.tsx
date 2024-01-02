@@ -15,9 +15,7 @@ export default function ProfileSideNavBar() {
     "My tickets ",
     "Settings",
   ];
-  const btnNew = btn.map((btn) => {
-    return <ProfileBar name={btn} />;
-  });
+
   const details = ["First Name", "Last Name", "Email address"];
   const detailsNew = details.map((dtl) => {
     return <ProfileDetails name={dtl} />;
