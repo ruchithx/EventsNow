@@ -13,9 +13,9 @@ export default function Event_Dashboard_Btn({
   return (
     <button
       onClick={onClick}
-      className=" w-[306.14px] w-96 h-12 rounded-lg bg-[#A986A9] mx-9 mt-9"
+      className=" w-full px-[70px] hover:opacity-80  flex justify-center items-center  h-12   rounded-lg bg-navWhite my-12 mt-4"
     >
-      <div className=" font-sans	text-base font-semibold text-white leading-normal">
+      <div className=" font-sans text-center	text-base font-semibold text-[#696969]  leading-normal">
         {text}
       </div>
     </button>

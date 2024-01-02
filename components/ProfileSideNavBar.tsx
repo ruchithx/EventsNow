@@ -2,8 +2,12 @@ import React from "react";
 import ProfileCard from "./ProfileCard";
 import ProfileBar from "./ProfileBar";
 import ProfileDetails from "./ProfileDetails";
+import Event_Dashboard_Nav_bar from "./Dashboard";
+import Event_Dashboard_Btn from "./Dashboard_Btn";
 
 export default function ProfileSideNavBar() {
+  function handleOvervier() {}
+
   const btn = [
     "My profile",
     "Wish list",
@@ -21,15 +25,24 @@ export default function ProfileSideNavBar() {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 font-khand h-screen">
-        <div className="hidden sm:block bg-custom-blue p-4 col-span-1 sm:col-span-2 lg:col-span-2 ">
-          <div className="grid grid-rows-5 grid-flow-col gap-4 justify-center items-center  mt-10  ">
-            {btnNew}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 font-khand h-screen    ">
+        <div className="hidden sm:block bg-custom-blue p-4 col-span-1 sm:col-span-2 lg:col-span-2  h-screen">
+          <div className="grid grid-rows-5 grid-flow-col gap-4 justify-center items-center  ">
+            <Event_Dashboard_Nav_bar>
+              <Event_Dashboard_Btn onClick={handleOvervier} text="My profile" />
+              <Event_Dashboard_Btn onClick={handleOvervier} text="Wish list" />
+              <Event_Dashboard_Btn onClick={handleOvervier} text="My events" />
+              <Event_Dashboard_Btn
+                onClick={handleOvervier}
+                text="My tickets "
+              />
+              <Event_Dashboard_Btn onClick={handleOvervier} text="Settings" />
+            </Event_Dashboard_Nav_bar>
           </div>
         </div>
 
         <div className="bg-white p-4 col-span-1 sm:col-span-2 lg:col-span-7 sm:block hidden">
-          <p className="text-2xl text-custom-blue mt-10 font-bold">
+          <p className="text-2xl text-custom-blue mt-12 font-bold">
             My Profile
           </p>
           {detailsNew}

@@ -27,7 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "components/Event_Dashboard_Nav_bar.tsx"
+    "components/Dashboard.tsx"
   ],
   "exclude": ["node_modules"]
 }

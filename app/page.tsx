@@ -12,12 +12,10 @@ import Post from "@/components/Post";
 import EventCardOrgDash from "@/components/EventCardOrgDash";
 import EventCard from "@/components/EventCard";
 
-import Event_Dashboard_Nav_bar from "@/components/Event_Dashboard_Nav_bar";
 import Upcoming_Events from "../components/Upcoming_Events";
 import Org_RequestHandle from "../components/Org_RequestHandle";
 import Available_Orgs from "@/components/Available_Orgs";
 import View_Report from "@/components/View_Report";
-import Event_Dashboard_Btn from "@/components/Event_Dashboard_Btn";
 import ViewDetailsButton from "@/components/ViewDetailsButton";
 
 import PersonDetailsBar from "@/components/PersonDetailsBar";
@@ -30,6 +28,7 @@ import LogIn from "@/app/User/login/page";
 import ProfileSideNavBar from "@/components/ProfileSideNavBar";
 
 import ProfileCard from "@/components/ProfileCard";
+import EventCardEventDash from "@/components/EventCardEventDash";
 
 export default function Home() {
   function handleOvervier() {}
