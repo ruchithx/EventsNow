@@ -18,7 +18,7 @@ export default function ProfileSideNavBar() {
 
   const details = ["First Name", "Last Name", "Email address"];
   const detailsNew = details.map((dtl) => {
-    return <ProfileDetails name={dtl} />;
+    return <ProfileDetails key={dtl} name={dtl} />;
   });
 
   return (

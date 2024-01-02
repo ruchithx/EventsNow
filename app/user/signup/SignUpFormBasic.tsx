@@ -46,18 +46,15 @@ export default function LoginFormBasic() {
         return;
       }
 
-      const user = await fetch("http://localhost:3000/api/v1/user/getOneUser", {
+      const user = await fetch("http://localhost:3000/api/v1/user/exist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email }),
       });
-      const { message } = await user.json();
-      const dataas = await message;
-      console.log(dataas);
-
-      if (message) {
+      console.log(user.ok);
+      if (user.ok) {
         error("Already exist this email");
         return;
       }
@@ -94,7 +91,7 @@ export default function LoginFormBasic() {
         <form
           className=" flex-column "
           action={sendLoginData}
-          onSubmit={sendLoginData}
+          onSubmit={() => sendLoginData}
         >
           <input
             required

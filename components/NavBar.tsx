@@ -42,7 +42,7 @@ export default function NavBar() {
           setUserName(name);
         } else {
           const email = session?.user?.email;
-
+          console.log(email);
           const user = await fetch(
             "http://localhost:3000/api/v1/user/getOneUser",
             {

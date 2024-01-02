@@ -3,10 +3,12 @@ import Image from "next/image";
 import Footer from "@/components/Footer";
 import CreatAccountText from "./CreatAccountText";
 import LoginForm from "./LoginForm";
+import NavBar from "@/components/NavBar";
 
 export default function LogIn() {
   return (
     <>
+      <NavBar />
       <div className="flex flex-col md:flex-row">
         <div className="md:w-1/2  p-8">
           <h1 className="text-custom-blue font-khand text-5xl text-center mt-3 font-bold">
