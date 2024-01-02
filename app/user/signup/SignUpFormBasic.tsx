@@ -25,6 +25,7 @@ export default function LoginFormBasic() {
         password,
         passwordConfirm,
       };
+      console.log(firstName, lastName, email, password, passwordConfirm);
 
       if (!firstName || !lastName || !email || !password || !passwordConfirm) {
         error("Please fill the form");
@@ -52,9 +53,11 @@ export default function LoginFormBasic() {
         },
         body: JSON.stringify({ email }),
       });
+      const { message } = await user.json();
+      const dataas = await message;
+      console.log(dataas);
 
-      const { userData } = await user.json();
-      if (userData) {
+      if (message) {
         error("Already exist this email");
         return;
       }
@@ -66,6 +69,7 @@ export default function LoginFormBasic() {
       });
 
       if (!res.ok) {
+        error("There is a error for registartion");
         return;
       }
 
@@ -90,7 +94,7 @@ export default function LoginFormBasic() {
         <form
           className=" flex-column "
           action={sendLoginData}
-          onSubmit={() => sendLoginData}
+          onSubmit={sendLoginData}
         >
           <input
             required
