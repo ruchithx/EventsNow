@@ -112,7 +112,7 @@ export default function NavBar() {
             {!userActive && (
               <Login
                 fn={clickLoginBtn}
-                titleOfbutton={"SIGNIN"}
+                titleOfbutton={"LOGIN"}
                 image={"Sign_in.svg"}
               />
             )}

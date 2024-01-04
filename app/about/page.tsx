@@ -1,9 +1,11 @@
 import NavBar from "@/components/NavBar";
-import ProfileSideNavBar from "@/components/ProfileSideNavBar";
-export default function Home() {
+import React from "react";
+
+export default function page() {
   return (
     <div>
       <NavBar />
+      about page
     </div>
   );
 }
