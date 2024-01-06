@@ -27,7 +27,7 @@ export default function page() {
         </div>
 
         
-        <div className='xl:ml-40 md:ml-12 flex justify-center items-center xl:w-[23rem] md:w-[22rem] xl:mt-2 sm:-mt-12'>
+        <div className='xl:ml-40 md:ml-12 flex justify-center items-center xl:w-[23rem] md:w-[22rem] sm:-mt-12'>
           {/* <Image src={"/mission.png"} width={350} height={200} alt='mission' /> */}
           <img src="/mission.png" className="justify-center" alt="mission"  />
         </div>
@@ -44,7 +44,7 @@ export default function page() {
           </div>
         </div>
 
-        <div className='xl:ml-40 md:ml-12 flex justify-center items-center xl:w-[23rem] md:w-[22rem] xl:mt-8 sm:-mt-6'>
+        <div className='xl:ml-40 md:ml-12 flex justify-center items-center xl:w-[23rem] md:w-[22rem]  sm:-mt-6'>
           {/* <Image src={"/vision.png"}  width={350} height={200} alt='vision' /> */}
           <img src='/vision.png' className='justify-center' alt='visionn'/>
         </div>
