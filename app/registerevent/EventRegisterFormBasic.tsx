@@ -17,7 +17,7 @@ export default function EventRegisterFormBasic() {
   }
 
   return (
-    <div className="  2xl:px-28 xl:px-10 sm:max-md:px-20 justify-center">
+    <div className="  2xl:px-40 - sm:px-20 justify-center">
       <div className=" mt-8 leading-none	 text-center text-[#455273] font-khand text-[40px] sm:text-[64px] font-semibold mx-2">
         Create Event
       </div>
@@ -45,7 +45,7 @@ export default function EventRegisterFormBasic() {
         <div className=" mt-6 font-khand text-[#455273] flex text-basic font-normal m-0">
           Select the event type <div className="text-red-500 font-">*</div>
         </div>
-        <div className="pb-4 pt-1 pr-32 ">
+        <div className="pb-4 pt-1 max-2xl:pr-32 2xl:w-96 ">
           <div className="border-l-2 border-b-2 border-r-2 border-solid rounded-xl pb-4">
             <div className="flex   rounded-[10px] place-content-center bg-[#F9EBE9] hover:bg-gray-200 mb-1">
               <button
@@ -164,7 +164,7 @@ export default function EventRegisterFormBasic() {
           Cover photo <div className="text-red-500 font-">*</div>
         </div>
 
-        <div className="width-full border-2 border-solId rounded-xl ">
+        <div className=" border-2 w-auto border-solId rounded-xl  ">
           <input
             required
             type="file"
@@ -174,7 +174,7 @@ export default function EventRegisterFormBasic() {
                 setPreviewImage(URL.createObjectURL(e.target.files[0]));
               }
             }}
-            className="block w-full text-sm text-slate-500
+            className="block  text-sm text-slate-500
       file:mr-4 file:py-2 file:px-4
       file:rounded-lg file:border-0
       file:text-sm file:font-semibold
@@ -183,7 +183,7 @@ export default function EventRegisterFormBasic() {
           />
           {previewImage.length > 0 && (
             <Image
-            className="m-4"
+            className=""
               src={previewImage}
               width={500}
               height={500}

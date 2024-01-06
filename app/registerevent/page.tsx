@@ -10,9 +10,9 @@ export default function page() {
   return (
     <div>
         <NavBar/>
-        <div className="grid md:grid-cols-2">
+        <div className="grid lg:grid-cols-2">
             <EventRegisterFormBasic/>
-            <div className=" max-md:hidden  md:col-span-1  overflow-hidden	bg-[url('/eventRegFormImg.png')] bg-no-repeat bg-cover  bg-center">
+            <div className=" max-lg:hidden  md:col-span-1  overflow-hidden	bg-[url('/eventRegFormImg.png')] bg-no-repeat bg-cover  bg-center">
           
         </div>
         </div>
