@@ -16,9 +16,9 @@ export default function page() {
         </div>
       </div>
 
-      <div className='grid md:grid-cols-2 xl:mx-40 xl:my-14 md:my-14 md:place-items-center'>
+      <div className='grid md:grid-cols-2 xl:mx-40 xl:my-14 md:my-14 md:place-items-center place-items-center '>
         <div>
-        <div className=' xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] text-center flex-col shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:mt-8 font-semibold'>
+        <div className='mt-6 xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] text-center flex-col shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:mt-8 font-semibold'>
             OUR MISSION
           </div>
           <div className='xl:text-left flex-auto w-full h-[13rem] text-center flex-col shrink-0 text-black font-["Khand"] md:text-base  font-medium tracking-wider '> 
@@ -27,15 +27,15 @@ export default function page() {
         </div>
 
         
-        <div className='xl:ml-40 md:ml-12 place-items-center flex justify-center items-center xl:w-[23rem] md:w-[22rem] sm:-mt-12'>
+        <div className='mt-6 xl:ml-40 md:ml-12 place-items-center flex justify-center items-center xl:w-[23rem] md:w-[22rem] sm:-mt-12'>
           <Image src={"/mission.png"} width={350} height={200} alt='mission' />
           {/* <img src="/mission.png" className="justify-center" alt="mission"  /> */}
         </div>
       </div>
 
-      <div className='grid md:grid-cols-2 xl:mx-40 xl:my-14 md:my-14 md:place-items-center'>
+      <div className='grid md:grid-cols-2 xl:mx-40 xl:my-14 md:my-14 md:place-items-center place-items-center'>
         <div>
-          <div className=' xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] flex-col text-center justify-center shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl md:mt-8 sm:mt-8  font-semibold'>
+          <div className='mt-6 xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] flex-col text-center justify-center shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl md:mt-8 sm:mt-8  font-semibold'>
             OUR VISION
           </div>
           <div className=' xl:text-left flex-auto w-full h-[13rem] flex-col text-center shrink-0 text-black font-["Khand"] md:text-base font-medium tracking-wider'>
@@ -43,19 +43,19 @@ export default function page() {
           </div>
         </div>
 
-        <div className='xl:ml-40  md:ml-12 flex justify-center items-center xl:w-[23rem] md:w-[22rem]  sm:-mt-6'>
+        <div className='mt-6 xl:ml-40  md:ml-12 flex justify-center items-center xl:w-[23rem] md:w-[22rem]  sm:-mt-6 '>
           <Image src={"/vision.png"}  width={350} height={200} alt='vision' />
           {/* <img src='/vision.png' className='justify-center' alt='visionn'/> */}
         </div>
       </div>
 
-      <div className='text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:text-2xl md:mt-12 font-semibold sm:mt-12'>
+      <div className='mt-6 text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:text-2xl md:mt-12 font-semibold sm:mt-12'>
         OUR STORY
       </div>
 
       <div className='grid md:grid-cols-2 '>
 
-        <div className=' xl:ml-40 xl:-mt-16 flex justify-center items-center' >
+        <div className=' -mt-8 xl:ml-40 xl:-mt-16 flex justify-center items-center' >
           <Image src={"/story.png"} width={675} height={394} alt='story' />
           {/* <img src='/story.png' className='justify-center' alt='story'/> */}
         </div>
@@ -70,7 +70,7 @@ export default function page() {
       </div>
       </div>
 
-      <div className='text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:text-2xl md:mt-12 font-semibold sm:mt-8 '>
+      <div className='mt-6 text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:text-2xl md:mt-12 font-semibold sm:mt-8 '>
         BEST EVENTS
       </div>
 
