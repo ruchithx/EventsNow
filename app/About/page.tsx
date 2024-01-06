@@ -10,53 +10,59 @@ export default function page() {
     <div>
       <NavBar/>
      
-      <div className="h-[600px] w-[1440] bg-[url('/mainphoto.png')] bg-no-repeat bg-cover bg-center">
-        <div className="flex-auto w-[1263px] h-[213px] flex-col justify-center shrink-0 text-white text-center text-6xl pl-48	 pt-60  font-['Khand']">"Creating memorable moments through expert event management." </div>
+      <div className="xl:h-[600px] md:h-[400px] w-full bg-[url('/mainphoto.png')] bg-no-repeat bg-cover bg-center">
+        <div className="flex-auto w-full h-[213px] flex-col shrink-0 text-white text-center xl:text-6xl md:text-4xl sm:text-2xl md:py-40 xl:pt-56 py-20 px-20 font-['Khand'] font-semibold">
+          "Creating memorable moments through expert event management." 
+        </div>
       </div>
 
-      <div className='grid grid-cols-2 mx-40 my-14'>
+      <div className='grid md:grid-cols-2 xl:mx-40 xl:my-14 md:my-14'>
         <div>
-        <div className='flex-auto w-[28rem] h-[5rem] flex-col justify-center shrink-0 text-[#906953] font-["Khand"] text-5xl font-semibold'>
+        <div className='xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] text-center flex-col shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:mt-8 font-semibold'>
             OUR MISSION
           </div>
-          <div className='flex-auto w-[27rem] h-[13rem] flex-col justify-center shrink-0 text-black font-["Khand"] text-base font-medium tracking-wider '> 
+          <div className='xl:text-left flex-auto w-full h-[13rem] text-center flex-col shrink-0 text-black font-["Khand"] md:text-base font-medium tracking-wider '> 
           At EventNow our mission is to connect people through exceptional event experiences. We are committed to providing a seamless and user-friendly platform that empowers event organizers to create, promote, and manage their events effortlessly. By fostering a vibrant community of organizers and attendees, we aim to enhance the way people discover, share, and participate in events, fostering memorable moments and lasting connections.
           </div>
         </div>
 
-        <div className='ml-40'>
-          <Image src={"/mission.png"} width={350} height={200} alt='mission' />
+        
+        <div className='xl:ml-40 md:ml-12 flex justify-center items-center xl:w-[23rem] md:w-[22rem] xl:mt-2 sm:-mt-12'>
+          {/* <Image src={"/mission.png"} width={350} height={200} alt='mission' /> */}
+          <img src="/mission.png" className="justify-center" alt="mission"  />
         </div>
       </div>
 
 
-      <div className='grid grid-cols-2 mx-40 my-14'>
+      <div className='grid md:grid-cols-2 xl:mx-40 xl:my-14 md:my-14 '>
         <div>
-          <div className='flex-auto w-[28rem] h-[5rem] flex-col justify-center shrink-0 text-[#906953] font-["Khand"] text-5xl font-semibold'>
+          <div className='xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] flex-col text-center justify-center shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl md:mt-8 sm:mt-8  font-semibold'>
             OUR VISION
           </div>
-          <div className='flex-auto w-[27rem] h-[13rem] flex-col justify-center shrink-0 text-black font-["Khand"] text-base font-medium tracking-wider '>
-          Our vision is to be the go-to platform for event planning and participation, setting the standard for excellence in the digital events landscape. We envision a future where individuals and organizations worldwide turn to EventNow for all their event needs. By leveraging cutting-edge technology, fostering innovation, and prioritizing user satisfaction, we strive to become a global hub that transforms the way people celebrate, learn, and connect through events. 
+          <div className='xl:text-left flex-auto w-full h-[13rem] flex-col text-center shrink-0 text-black font-["Khand"] md:text-base font-medium tracking-wider'>
+            Our vision is to be the go-to platform for event planning and participation, setting the standard for excellence in the digital events landscape. We envision a future where individuals and organizations worldwide turn to EventNow for all their event needs. By leveraging cutting-edge technology, fostering innovation, and prioritizing user satisfaction, we strive to become a global hub that transforms the way people celebrate, learn, and connect through events. 
           </div>
         </div>
 
-        <div className='ml-40'>
-          <Image src={"/vision.png"}  width={350} height={200} alt='vision' />
+        <div className='xl:ml-40 md:ml-12 flex justify-center items-center xl:w-[23rem] md:w-[22rem] xl:mt-8 sm:-mt-6'>
+          {/* <Image src={"/vision.png"}  width={350} height={200} alt='vision' /> */}
+          <img src='/vision.png' className='justify-center' alt='visionn'/>
         </div>
       </div>
 
-      <div className='text-center w-[28rem] h-[5rem] flex-col text-[#906953] font-["Khand"] text-5xl font-semibold ml-[500px]'>
+      <div className='text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:text-2xl md:mt-12 font-semibold sm:mt-12'>
         OUR STORY
       </div>
 
-      <div className='grid grid-cols-2  my-14'>
+      <div className='grid md:grid-cols-2 '>
 
-        <div className='ml-40'>
-          <Image src={"/story.png"} width={675} height={394} alt='story' />
+        <div className=' xl:ml-40 xl:-mt-16 flex justify-center items-center' >
+          {/* <Image src={"/story.png"} width={675} height={394} alt='story' /> */}
+          <img src='/story.png' className='justify-center' alt='story'/>
         </div>
         
-        <div className='ml-24'>
-          <div className='flex-auto w-[35rem] h-[28rem] flex-col justify-center shrink-0 text-black font-["Khand"] text-base font-medium tracking-wider '>
+        <div className=' xl:ml-24 sm:mt-8  '>
+          <div className='flex-auto w-full xl:h-[28rem] xl:w-[34rem] flex-col text-center shrink-0 text-black font-["Khand"] md:text-base font-medium xl:tracking-wider '>
             As aspiring event organizers immersed in the dynamic landscape of IT in 2023, Team OneZero observed a seismic shift in how individuals engage with experiences. The traditional methods of marketing and sales pitches were losing their effectiveness, drowned out by a discerning audience that had mastered the art of ignoring interruptions.
             Inspired by this shift, the vision for EventNow emerged—a platform founded on the principles of "inbound" for the event space. The fundamental belief that people no longer desired interruptions but sought genuine assistance in their event journeys became the cornerstone of EventNow.
             In the spirit of the inbound movement, EventNow empowers event organizers to cease interruption, embrace assistance, and refocus on the attendee. Through our platform, we aim to catalyze a movement where events become authentic, enriching experiences rather than interruptions in people's lives.
@@ -65,11 +71,11 @@ export default function page() {
       </div>
       </div>
 
-      <div className='text-center w-[28rem] h-[5rem] flex-col text-[#906953] font-["Khand"] text-5xl font-semibold ml-[500px]'>
+      <div className='text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:text-2xl md:mt-12 font-semibold sm:mt-8 '>
         BEST EVENTS
       </div>
 
-      <div className='ml-20 grid grid-cols-3'>
+      <div className='grid md:grid-cols-3 xl:ml-20 -ml-12 flex justify-center items-center -mt-20 xl:mt-1'>
       <BestEvent 
         img="bestevent.png"
         eventname={"MEGA"}
