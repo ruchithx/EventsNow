@@ -16,37 +16,36 @@ export default function page() {
         </div>
       </div>
 
-      <div className='grid md:grid-cols-2 xl:mx-40 xl:my-14 md:my-14'>
+      <div className='grid md:grid-cols-2 xl:mx-40 xl:my-14 md:my-14 md:place-items-center'>
         <div>
-        <div className='xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] text-center flex-col shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:mt-8 font-semibold'>
+        <div className=' xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] text-center flex-col shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:mt-8 font-semibold'>
             OUR MISSION
           </div>
-          <div className='xl:text-left flex-auto w-full h-[13rem] text-center flex-col shrink-0 text-black font-["Khand"] md:text-base font-medium tracking-wider '> 
+          <div className='xl:text-left flex-auto w-full h-[13rem] text-center flex-col shrink-0 text-black font-["Khand"] md:text-base  font-medium tracking-wider '> 
           At EventNow our mission is to connect people through exceptional event experiences. We are committed to providing a seamless and user-friendly platform that empowers event organizers to create, promote, and manage their events effortlessly. By fostering a vibrant community of organizers and attendees, we aim to enhance the way people discover, share, and participate in events, fostering memorable moments and lasting connections.
           </div>
         </div>
 
         
-        <div className='xl:ml-40 md:ml-12 flex justify-center items-center xl:w-[23rem] md:w-[22rem] sm:-mt-12'>
-          {/* <Image src={"/mission.png"} width={350} height={200} alt='mission' /> */}
-          <img src="/mission.png" className="justify-center" alt="mission"  />
+        <div className='xl:ml-40 md:ml-12 place-items-center flex justify-center items-center xl:w-[23rem] md:w-[22rem] sm:-mt-12'>
+          <Image src={"/mission.png"} width={350} height={200} alt='mission' />
+          {/* <img src="/mission.png" className="justify-center" alt="mission"  /> */}
         </div>
       </div>
 
-
-      <div className='grid md:grid-cols-2 xl:mx-40 xl:my-14 md:my-14 '>
+      <div className='grid md:grid-cols-2 xl:mx-40 xl:my-14 md:my-14 md:place-items-center'>
         <div>
-          <div className='xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] flex-col text-center justify-center shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl md:mt-8 sm:mt-8  font-semibold'>
+          <div className=' xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] flex-col text-center justify-center shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl md:mt-8 sm:mt-8  font-semibold'>
             OUR VISION
           </div>
-          <div className='xl:text-left flex-auto w-full h-[13rem] flex-col text-center shrink-0 text-black font-["Khand"] md:text-base font-medium tracking-wider'>
+          <div className=' xl:text-left flex-auto w-full h-[13rem] flex-col text-center shrink-0 text-black font-["Khand"] md:text-base font-medium tracking-wider'>
             Our vision is to be the go-to platform for event planning and participation, setting the standard for excellence in the digital events landscape. We envision a future where individuals and organizations worldwide turn to EventNow for all their event needs. By leveraging cutting-edge technology, fostering innovation, and prioritizing user satisfaction, we strive to become a global hub that transforms the way people celebrate, learn, and connect through events. 
           </div>
         </div>
 
-        <div className='xl:ml-40 md:ml-12 flex justify-center items-center xl:w-[23rem] md:w-[22rem]  sm:-mt-6'>
-          {/* <Image src={"/vision.png"}  width={350} height={200} alt='vision' /> */}
-          <img src='/vision.png' className='justify-center' alt='visionn'/>
+        <div className='xl:ml-40  md:ml-12 flex justify-center items-center xl:w-[23rem] md:w-[22rem]  sm:-mt-6'>
+          <Image src={"/vision.png"}  width={350} height={200} alt='vision' />
+          {/* <img src='/vision.png' className='justify-center' alt='visionn'/> */}
         </div>
       </div>
 
@@ -57,8 +56,8 @@ export default function page() {
       <div className='grid md:grid-cols-2 '>
 
         <div className=' xl:ml-40 xl:-mt-16 flex justify-center items-center' >
-          {/* <Image src={"/story.png"} width={675} height={394} alt='story' /> */}
-          <img src='/story.png' className='justify-center' alt='story'/>
+          <Image src={"/story.png"} width={675} height={394} alt='story' />
+          {/* <img src='/story.png' className='justify-center' alt='story'/> */}
         </div>
         
         <div className=' xl:ml-24 sm:mt-8  '>
@@ -75,7 +74,7 @@ export default function page() {
         BEST EVENTS
       </div>
 
-      <div className='grid md:grid-cols-3 xl:ml-20 -ml-12 flex justify-center items-center -mt-20 xl:mt-1'>
+      <div className='grid xl:grid-cols-3 md:grid-cols-2  place-items-center -ml-12 flex justify-center items-center -mt-20 xl:mt-1'>
       <BestEvent 
         img="bestevent.png"
         eventname={"MEGA"}
