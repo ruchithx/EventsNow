@@ -10,7 +10,8 @@ export default function EventRegisterFormBasic() {
   const [numberOfTicketTypes, setNumberOfTicketTypes] = useState(1);
   const ticketDetails = [];
   for (let i = 1; i <= numberOfTicketTypes; i++) {
-    ticketDetails.push(<TicketDetails />);
+    ticketDetails.push(<TicketDetails 
+      id={String(i) }/>);
   }
   function sendEventData() {
     console.log("event Data send success");

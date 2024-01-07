@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function TicketDetails() {
+export default function TicketDetails({id}:{id:string;}) {
   return (
-    <div>
+    <div key={id}>
       <div className="grid grid-cols-2 gap-2 pt-2">
         <div>
             <label
