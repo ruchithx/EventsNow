@@ -25,6 +25,7 @@ const config: Config = {
         myBrown: "#AC736D",
         "custom-orange": "#D47151",
         "custom-green": "#70B891",
+        "custom-darkgreen": "#547345",
         "custom-blue": "#455273",
         "custom-lightorange": "#F9EBE9",
         profileName: "#505050",

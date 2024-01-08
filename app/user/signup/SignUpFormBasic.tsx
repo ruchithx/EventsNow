@@ -25,7 +25,6 @@ export default function LoginFormBasic() {
         password,
         passwordConfirm,
       };
-      console.log(firstName, lastName, email, password, passwordConfirm);
 
       if (!firstName || !lastName || !email || !password || !passwordConfirm) {
         error("Please fill the form");
