@@ -45,7 +45,7 @@ export default function ProfileSettings({ name }: Details) {
               onClick={handleSave}
               className="bg-custom-orange text-white px-4 py-1 mb-3 rounded-lg"
             >
-              Save
+              save
             </button>
           ) : (
             <button

@@ -8,6 +8,7 @@ import Event_Dashboard_Btn from "./Dashboard_Btn";
 import { text } from "stream/consumers";
 import Upcoming_Events from "./Upcoming_Events";
 import ProfileSettings from "./ProfileSettings";
+import Org_RequestHandle from "./Org_RequestHandle";
 
 export default function ProfileSideNavBar() {
   const [content, setContent] = useState("My profile");
@@ -76,6 +77,11 @@ export default function ProfileSideNavBar() {
                 <ProfileSettings name={"Last Name"} />
                 <ProfileSettings name={"Email Address"} />
               </>
+            </>
+          )}
+          {content === "My events" && (
+            <>
+              <Org_RequestHandle OrgName={"Amna"} image={"././image 1.png"} />
             </>
           )}
         </div>
