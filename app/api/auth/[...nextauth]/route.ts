@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { NextAuthOptions } from "next-auth";
 import User from "./../../../../models/userModel";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { redirect } from "next/navigation";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -44,6 +45,26 @@ export const authOptions: NextAuthOptions = {
     async signIn({ user, account }): Promise<boolean> {
       console.log("user", user);
       console.log("account", account);
+      // if (account?.provider === "google") {
+      //   const userdata = await User.findOne({ email: user.email });
+      //   if (userdata) {
+      //     return true;
+      //   } else {
+      //     try {
+      //       const data = {
+      //         email: user.email,
+      //         firstName: user.name?.split(" ")[0],
+      //         lastName: user.name?.split(" ")[1],
+      //       };
+      //       const newUser = await User.create(data);
+      //       if (!newUser) return false;
+      //       return true;
+      //     } catch (e) {
+      //       console.log(e);
+      //     }
+      //   }
+      // }
+
       return true;
     },
   },

@@ -42,7 +42,7 @@ export default function NavBar() {
           setUserName(name);
         } else {
           const email = session?.user?.email;
-
+          console.log(email);
           const user = await fetch(
             "http://localhost:3000/api/v1/user/getOneUser",
             {
@@ -69,7 +69,7 @@ export default function NavBar() {
   }, []);
 
   return (
-    <nav className="dark:bg-navWhite">
+    <nav className="dark:bg-navWhite ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div className="flex items-center space-x-3 rtl:space-x-reverse">
           <Image
@@ -112,7 +112,7 @@ export default function NavBar() {
             {!userActive && (
               <Login
                 fn={clickLoginBtn}
-                titleOfbutton={"SIGNIN"}
+                titleOfbutton={"LOGIN"}
                 image={"Sign_in.svg"}
               />
             )}

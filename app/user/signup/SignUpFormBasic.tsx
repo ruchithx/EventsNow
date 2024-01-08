@@ -45,16 +45,15 @@ export default function LoginFormBasic() {
         return;
       }
 
-      const user = await fetch("http://localhost:3000/api/v1/user/getOneUser", {
+      const user = await fetch("http://localhost:3000/api/v1/user/exist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email }),
       });
-
-      const { userData } = await user.json();
-      if (userData) {
+      console.log(user.ok);
+      if (user.ok) {
         error("Already exist this email");
         return;
       }
@@ -66,6 +65,7 @@ export default function LoginFormBasic() {
       });
 
       if (!res.ok) {
+        error("There is a error for registartion");
         return;
       }
 
