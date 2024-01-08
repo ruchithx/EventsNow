@@ -32,7 +32,8 @@
     "util/UserCheck.js",
     "app/api/v1/user/exist/route.ts",
     "app/user/login/page.js",
-    "components/Dashboard.tsx"
+    "components/Dashboard.tsx",
+    "app/api/v1/createOrganization/route.js"
   ],
   "exclude": ["node_modules"]
 }

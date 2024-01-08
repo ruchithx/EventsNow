@@ -10,7 +10,7 @@ export default function page() {
   return (
     <div>
       <NavBar />
-      <Footer />
+      dashoard
     </div>
   );
 }
