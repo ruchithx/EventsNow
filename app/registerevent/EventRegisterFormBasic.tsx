@@ -1,18 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import Image from "next/image";
-import TicketDetails from "./TicketDetails";
+
 
 export default function EventRegisterFormBasic() {
   const [selectedTab, setSelectedTab] = useState("Onsite");
   const [previewImage, setPreviewImage] = useState("");
   const [eventName, setEventName] = useState("");
   const [numberOfTicketTypes, setNumberOfTicketTypes] = useState(1);
-  const ticketDetails = [];
-  for (let i = 1; i <= numberOfTicketTypes; i++) {
-    ticketDetails.push(<TicketDetails 
-      id={String(i) }/>);
-  }
+ 
+ 
   function sendEventData() {
     console.log("event Data send success");
   }
@@ -161,7 +158,7 @@ export default function EventRegisterFormBasic() {
           className=" mt-1 w-full h-24 bg-transparent  pl-1 text-gray-900focus:ring-0 focus:outline-custom-orange sm:text-sm sm:leading-6 border-2 rounded-xl "
           cols={30}
         ></textarea>
-        <div className=" mt-5 pb-1 font-khand text-[#455273] flex text-basic font-normal m-0">
+        <div className=" mt-4 pb-1 font-khand text-[#455273] flex text-basic font-normal m-0">
           Cover photo <div className="text-red-500 font-">*</div>
         </div>
 
@@ -192,20 +189,8 @@ export default function EventRegisterFormBasic() {
             />
           )}
         </div>
-        <div className="mt-6 font-khand text-[#455273] flex text-basic font-normal mb-1">
-          Ticket Details
-        </div>
-        <div className="grid border-solid border-2 rounded-xl   px-2 pb-4 pt-4">
-          {ticketDetails}
-
-          <button
-            className="pr-1 place-self-end font-khand text-[#455273]"
-            type="button"
-            onClick={() => setNumberOfTicketTypes(numberOfTicketTypes + 1)}
-          >
-            Add more....
-          </button>
-        </div>
+      
+        
 
         <button
           type="submit"
