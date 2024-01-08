@@ -1,12 +1,20 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import ProfileCard from "./ProfileCard";
 import ProfileBar from "./ProfileBar";
 import ProfileDetails from "./ProfileDetails";
 import Event_Dashboard_Nav_bar from "./Dashboard";
 import Event_Dashboard_Btn from "./Dashboard_Btn";
+import { text } from "stream/consumers";
+import Upcoming_Events from "./Upcoming_Events";
+import ProfileSettings from "./ProfileSettings";
 
 export default function ProfileSideNavBar() {
-  function handleOvervier() {}
+  const [content, setContent] = useState("My profile");
+
+  const handleOvervier = (content: React.SetStateAction<string>) => {
+    setContent(content);
+  };
 
   const btn = [
     "My profile",
@@ -16,10 +24,10 @@ export default function ProfileSideNavBar() {
     "Settings",
   ];
 
-  const details = ["First Name", "Last Name", "Email address"];
-  const detailsNew = details.map((dtl) => {
-    return <ProfileDetails key={dtl} name={dtl} />;
-  });
+  // const details = ["First Name", "Last Name", "Email address"];
+  // const detailsNew = details.map((dtl) => {
+  //   return <ProfileDetails key={dtl} name={dtl} />;
+  // });
 
   return (
     <>
@@ -27,23 +35,49 @@ export default function ProfileSideNavBar() {
         <div className="hidden sm:block bg-custom-blue p-4 col-span-1 sm:col-span-2 lg:col-span-2  h-screen">
           <div className="grid grid-rows-5 grid-flow-col gap-4 justify-center items-center  ">
             <Event_Dashboard_Nav_bar>
-              <Event_Dashboard_Btn onClick={handleOvervier} text="My profile" />
-              <Event_Dashboard_Btn onClick={handleOvervier} text="Wish list" />
-              <Event_Dashboard_Btn onClick={handleOvervier} text="My events" />
-              <Event_Dashboard_Btn
-                onClick={handleOvervier}
-                text="My tickets "
-              />
-              <Event_Dashboard_Btn onClick={handleOvervier} text="Settings" />
+              {btn.map((buttonText, index) => (
+                <Event_Dashboard_Btn
+                  key={index}
+                  onClick={() => handleOvervier(buttonText)}
+                  text={buttonText}
+                />
+              ))}
             </Event_Dashboard_Nav_bar>
           </div>
         </div>
 
         <div className="bg-white p-4 col-span-1 sm:col-span-2 lg:col-span-7 sm:block hidden">
-          <p className="text-2xl text-custom-blue mt-12 font-bold">
-            My Profile
-          </p>
-          {detailsNew}
+          <p className="text-2xl text-custom-blue mt-12 font-bold">{content}</p>
+
+          {content === "My profile" && (
+            <>
+              <ProfileDetails key="First Name" name="First Name" />
+              <ProfileDetails key="Last Name" name="Last Name" />
+              <ProfileDetails key="Email address" name="Email address" />
+            </>
+          )}
+          {content === "Wish list" && (
+            <>
+              <Upcoming_Events
+                EventName={"nadagama"}
+                Location={"Colombo"}
+                Time={"10.00"}
+                Date={"02/04/2024"}
+                Ratings={"4.5"}
+                image={"././profile.jpg"}
+                buttonDesc={"Arka"}
+              />
+            </>
+          )}
+          {content === "Settings" && (
+            <>
+              <>
+                <ProfileSettings name={"First Name"} />
+                <ProfileSettings name={"Last Name"} />
+                <ProfileSettings name={"Email Address"} />
+              </>
+            </>
+          )}
         </div>
 
         <div className="bg-custom-blue p-4 col-span-1 sm:col-span-2 lg:col-span-3   items-center justify-center">
