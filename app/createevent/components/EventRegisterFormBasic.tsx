@@ -1,15 +1,14 @@
+"use client";
 import React from "react";
 import { useState } from "react";
 import Image from "next/image";
-
 
 export default function EventRegisterFormBasic() {
   const [selectedTab, setSelectedTab] = useState("Onsite");
   const [previewImage, setPreviewImage] = useState("");
   const [eventName, setEventName] = useState("");
   const [numberOfTicketTypes, setNumberOfTicketTypes] = useState(1);
- 
- 
+
   function sendEventData() {
     console.log("event Data send success");
   }
@@ -181,7 +180,7 @@ export default function EventRegisterFormBasic() {
           />
           {previewImage.length > 0 && (
             <Image
-            className=""
+              className=""
               src={previewImage}
               width={500}
               height={500}
@@ -189,8 +188,6 @@ export default function EventRegisterFormBasic() {
             />
           )}
         </div>
-      
-        
 
         <button
           type="submit"

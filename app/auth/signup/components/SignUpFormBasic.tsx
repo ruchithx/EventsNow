@@ -2,8 +2,8 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import Spinner from "../../../components/Spinner";
-import { error } from "../../../util/Toastify";
+import Spinner from "../../../../components/Spinner";
+import { error } from "../../../../util/Toastify";
 
 export default function LoginFormBasic() {
   const [firstName, setFristName] = useState("");

@@ -50,7 +50,7 @@ export default function LoginForm() {
     }
   }
   return (
-    <form onSubmit={(e) => handleSubmit(e)} className="w-full max-w-xs">
+    <form onSubmit={(e: any) => handleSubmit(e)} className="w-full max-w-xs">
       <div className="mb-4">
         <input
           type="email"

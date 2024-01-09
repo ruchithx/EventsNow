@@ -1,4 +1,4 @@
-import SignUpFormBasic from "@/app/user/signup/SignUpFormBasic";
+import SignUpFormBasic from "./components/SignUpFormBasic";
 import SignupSocial from "@/components/SignupSocial";
 import Image from "next/image";
 import Terms from "@/components/Terms";

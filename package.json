@@ -20,12 +20,9 @@
     "@material-tailwind/react": "^2.1.8",
     "@mui/icons-material": "^5.15.1",
     "@mui/material": "^5.15.1",
-
+    "@nextui-org/dropdown": "^2.1.16",
     "@nextui-org/react": "^2.2.9",
     "@nextui-org/tabs": "^2.0.26",
-
-    "@nextui-org/dropdown": "^2.1.16",
-
     "@types/next-auth": "^3.15.0",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
