@@ -52,7 +52,7 @@ export default function LoginFormBasic() {
         },
         body: JSON.stringify({ email }),
       });
-      console.log(user.ok);
+
       if (user.ok) {
         error("Already exist this email");
         return;

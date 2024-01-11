@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Login from "./Login";
 import Profile from "@/components/Profile";
+import Link from "next/link";
 
 export default function NavBar() {
   const [userActive, setUserActive] = useState(false);
@@ -21,7 +22,7 @@ export default function NavBar() {
   }
 
   function clickLoginBtn() {
-    router.push("/user/login");
+    // router.push("/user/login");
   }
   function clickLogoutBtn() {
     signOut();
@@ -90,38 +91,66 @@ export default function NavBar() {
         >
           <ul className="text-xl font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white  md:dark:bg-navWhite dark:border-gray-700">
             <li>
-              <button
-                onClick={clickHomeBtn}
-                className=" block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-eventBrown-700 md:p-0 dark:text-eventBrown md:dark:text-eventBrown"
-                aria-current="page"
-              >
-                Home
-              </button>
+              <Link href={"/"}>
+                <button
+                  className=" block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-eventBrown-700 md:p-0 dark:text-eventBrown md:dark:text-eventBrown"
+                  aria-current="page"
+                >
+                  Home
+                </button>
+              </Link>
             </li>
-            <NavBarButton handleNavBarButton={clickAboutBtn} text={"About"} />
+            <Link href={"/about"}>
+              <NavBarButton text={"About"} />
+            </Link>
 
             {userActive && (
-              <Login
-                fn={clickLogoutBtn}
-                titleOfbutton={"LOGOUT"}
-                image={"Subtract.svg"}
-              />
+              <Link href={"/createorganizaion"}>
+                <Login
+                  titleOfbutton={"CREATE EVENT"}
+                  image={"createevent.svg"}
+                />
+              </Link>
             )}
-            {userActive && <Profile name={userName} picture="User_cicrle" />}
+            {userActive && (
+              <div className="relative group transition-all">
+                <Profile name={userName} picture="User_cicrle" />
+                <div className="absolute gap-3   w-full hidden  group-hover:flex transition-all">
+                  <div className="mt-4 ml-4">
+                    <Login
+                      fn={clickLogoutBtn}
+                      titleOfbutton={"LOGOUT"}
+                      image={"Subtract.svg"}
+                    />
+                  </div>
+                  <Link href={"/profile"} className="mt-4">
+                    <Login
+                      fn={clickLogoutBtn}
+                      titleOfbutton={"PROFILE"}
+                      image={"user.svg"}
+                    />
+                  </Link>
+                </div>
+              </div>
+            )}
 
             {!userActive && (
-              <Login
-                fn={clickLoginBtn}
-                titleOfbutton={"LOGIN"}
-                image={"Sign_in.svg"}
-              />
+              <Link href={"/auth/login"}>
+                <Login
+                  fn={clickLoginBtn}
+                  titleOfbutton={"LOGIN"}
+                  image={"Sign_in.svg"}
+                />
+              </Link>
             )}
             {!userActive && (
-              <Login
-                fn={clickSignupBtn}
-                titleOfbutton={"SIGNUP"}
-                image={"Sign_in_squre_fill.svg"}
-              />
+              <Link href={"/auth/signup"}>
+                <Login
+                  fn={clickSignupBtn}
+                  titleOfbutton={"SIGNUP"}
+                  image={"Sign_in_squre_fill.svg"}
+                />
+              </Link>
             )}
           </ul>
         </div>

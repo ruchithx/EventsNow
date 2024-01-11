@@ -4,7 +4,6 @@ import { NextAuthOptions } from "next-auth";
 import User from "./../../../../models/userModel";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { redirect } from "next/navigation";
-import { error } from "@/util/Toastify";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -46,25 +45,6 @@ export const authOptions: NextAuthOptions = {
     async signIn({ user, account }): Promise<boolean> {
       console.log("user", user);
       console.log("account", account);
-      // if (account?.provider === "google") {
-      //   const email = user?.email;
-      //   console.log("yes");
-      //   const data = await fetch("http://localhost:3000/api/v1/user/exist", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-
-      //     body: JSON.stringify({ email }),
-      //   }).then((res) => res.json());
-      //   console.log(data);
-
-      //   if (data.ok) {
-      //     error("Already exist this email");
-      //     return false;
-      //   }
-      // }
-
       // if (account?.provider === "google") {
       //   const userdata = await User.findOne({ email: user.email });
       //   if (userdata) {

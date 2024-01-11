@@ -1,9 +1,7 @@
 "use client";
 import { useState } from "react";
-import NavBar from "@/components/NavBar";
+
 import React from "react";
-import Footer from "@/components/Footer";
-import ProfileSideNavBar from "@/components/ProfileSideNavBar";
 import Profile from "@/components/Profile";
 import SuperadminButton from "@/components/SuperadminButton";
 import SuperadminPages from "@/components/SuperadminPages";
