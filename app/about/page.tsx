@@ -2,7 +2,7 @@ import NavBar from '@/components/NavBar'
 import React from 'react'
 import Footer from '@/components/Footer'
 import Image from 'next/image'
-import BestEvent from '@/components/BestEvent'
+import BestEvent from '@/app/About/components/BestEvent'
 
 
 export default function page() {
@@ -77,7 +77,7 @@ export default function page() {
         BEST EVENTS
       </div>
 
-      <div className='mt-1 md:mt-4 md:ml-2 xl:ml-4 grid xl:grid-cols-3 md:grid-cols-3  place-items-center  flex justify-center items-center -mt-20 xl:mt-1'>
+      <div className='mt-1 md:mt-4 md:ml-2 xl:ml-4 grid xl:grid-cols-3 md:grid-cols-2  place-items-center  flex justify-center items-center -mt-20 xl:mt-1'>
       <BestEvent 
         img="bestevent.png"
         eventname={"MEGA"}
