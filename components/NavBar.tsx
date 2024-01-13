@@ -12,28 +12,16 @@ import Spinner from "./Spinner";
 
 export default function NavBar() {
   const [userActive, setUserActive] = useState(false);
-  const [userName, setUserName] = useState();
+  const [userName, setUserName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  function clickHomeBtn() {
-    router.push("/");
-  }
-  function clickAboutBtn() {
-    router.push("/about");
-  }
-
-  function clickLoginBtn() {
-    // router.push("/user/login");
-  }
   function clickLogoutBtn() {
     signOut();
     router.push("/");
   }
-  function clickSignupBtn() {
-    router.push("/user/signup");
-  }
 
+  // get data from api
   useEffect(function () {
     async function session() {
       setIsLoading(true);
@@ -75,10 +63,12 @@ export default function NavBar() {
 
   return (
     <nav className="dark:bg-navWhite ">
+      {/* check data has loaded */}
       {isLoading ? (
         <Spinner />
       ) : (
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+          {/* Events now logo and name */}
           <div className="flex items-center space-x-3 rtl:space-x-reverse">
             <Image
               src="/ReUsableComponentData/nav-logo.png"
@@ -97,6 +87,7 @@ export default function NavBar() {
             id="navbar-default"
           >
             <ul className="text-xl font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white  md:dark:bg-navWhite dark:border-gray-700">
+              {/* home button */}
               <li>
                 <Link href={"/"}>
                   <button
@@ -111,53 +102,52 @@ export default function NavBar() {
                 <NavBarButton text={"About"} />
               </Link>
 
+              {/* when user exist */}
               {userActive && (
-                <Link href={"/createorganizaion"}>
-                  <Login
-                    titleOfbutton={"CREATE EVENT"}
-                    image={"createevent.svg"}
-                  />
-                </Link>
-              )}
-              {userActive && (
-                <div className="relative max-w-2 group transition-all">
-                  <Profile name={userName} picture="User_cicrle" />
-                  <div className="absolute w-full hidden  group-hover:flex  transition-all">
-                    <div className="mt-4 ">
-                      <Login
-                        fn={clickLogoutBtn}
-                        titleOfbutton={"LOGOUT"}
-                        image={"Subtract.svg"}
-                      />
-                    </div>
-                    <Link href={"/profile"} className="mt-4">
-                      <Login
-                        fn={clickLogoutBtn}
-                        titleOfbutton={"PROFILE"}
-                        image={"user.svg"}
-                      />
-                    </Link>
-                  </div>
-                </div>
-              )}
+                <>
+                  {/* crete event button */}
+                  <Link href={"/createorganizaion"}>
+                    <Login
+                      titleOfbutton={"CREATE EVENT"}
+                      image={"createevent.svg"}
+                    />
+                  </Link>
 
-              {!userActive && (
-                <Link href={"/auth/login"}>
-                  <Login
-                    fn={clickLoginBtn}
-                    titleOfbutton={"LOGIN"}
-                    image={"Sign_in.svg"}
-                  />
-                </Link>
+                  {/* my profile part */}
+                  <div className="relative max-w-2 group transition-all">
+                    <Profile name={userName} picture="User_cicrle" />
+                    <div className="absolute w-full hidden  group-hover:flex  transition-all">
+                      <div className="mt-4 ">
+                        <Login
+                          fn={clickLogoutBtn}
+                          titleOfbutton={"LOGOUT"}
+                          image={"Subtract.svg"}
+                        />
+                      </div>
+                      <Link href={"/profile"} className="mt-4">
+                        <Login
+                          fn={clickLogoutBtn}
+                          titleOfbutton={"PROFILE"}
+                          image={"user.svg"}
+                        />
+                      </Link>
+                    </div>
+                  </div>
+                </>
               )}
+              {/* there is no user exist */}
               {!userActive && (
-                <Link href={"/auth/signup"}>
-                  <Login
-                    fn={clickSignupBtn}
-                    titleOfbutton={"SIGNUP"}
-                    image={"Sign_in_squre_fill.svg"}
-                  />
-                </Link>
+                <>
+                  <Link href={"/auth/login"}>
+                    <Login titleOfbutton={"LOGIN"} image={"Sign_in.svg"} />
+                  </Link>
+                  <Link href={"/auth/signup"}>
+                    <Login
+                      titleOfbutton={"SIGNUP"}
+                      image={"Sign_in_squre_fill.svg"}
+                    />
+                  </Link>
+                </>
               )}
             </ul>
           </div>

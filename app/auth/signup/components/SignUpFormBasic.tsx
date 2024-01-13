@@ -75,7 +75,7 @@ export default function LoginFormBasic() {
       setpassword("");
       setCPassword("");
       setSpinner(false);
-      router.push("/user/login");
+      router.push("/auth/login");
     } catch (e) {
       console.log(e);
     }
