@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-// import 'react-phone-number-input/style.css'
-import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import { z } from "zod";
 
 import { error } from "../../../util/Toastify";
 import {
@@ -19,38 +19,32 @@ export default function CreateOrganizationFormBasic() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
 
+  const validateOrganization = z.object({
+    fullName: z.string(),
+    numberType: z.string(),
+    number: z.string(),
+    companyName: z.string(),
+    address: z.string(),
+    phoneNumber: z.number(),
+    email: z.string().email(),
+  });
+
   async function sendOrganizationData() {
+    const data = {
+      fullName,
+      numberType,
+      number,
+      companyName,
+      address,
+      phoneNumber,
+      email,
+    };
+    if (numberType === "") {
+      error("select id number type");
+      return;
+    }
     try {
-      const data = {
-        fullName,
-        numberType,
-        number,
-        companyName,
-        address,
-        phoneNumber,
-        email,
-      };
-
-      // if (!firstName || !lastName || !email || !password || !passwordConfirm) {
-      //   error("Please fill the form");
-      //   return;
-      // }
-
-      const organization = await fetch(
-        "http://localhost:3000/api/v1/createOrganization/exist",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email }),
-        }
-      );
-      // console.log(organization.ok);
-      if (organization.ok) {
-        error("Already exist a organization for this email");
-        return;
-      }
+      validateOrganization.parse(data);
 
       const res = await fetch(
         "http://localhost:3000/api/v1/createOrganization",
@@ -74,7 +68,13 @@ export default function CreateOrganizationFormBasic() {
       setPhoneNumber("");
       setEmail("");
     } catch (e) {
-      console.log(e);
+      if (e instanceof z.ZodError) {
+        e.errors.forEach((err) => {
+          error(err.message);
+        });
+      } else {
+        error("An error occurred:" + e);
+      }
     }
   }
 
@@ -171,8 +171,8 @@ export default function CreateOrganizationFormBasic() {
         <input
           required
           type="text"
-          name="address"
-          id="address"
+          name="phoneNumber"
+          id="phoneNumber"
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
           className=" my-5 w-full h-8 block flex-1  bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:outline-custom-orange sm:text-sm sm:leading-6 border-2 rounded-[12px] pl-4"
