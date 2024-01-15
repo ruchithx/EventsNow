@@ -32,7 +32,6 @@ const organizationSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    unique: true,
     required: [true, "Please provide your email"],
     lowercase: true,
     validate: [validator.isEmail, "Please provide valid email"],
