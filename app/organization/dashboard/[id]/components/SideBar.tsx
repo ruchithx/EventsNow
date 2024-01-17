@@ -1,16 +1,18 @@
-import React, { use } from "react";
+"use client";
+import React, { use, useState } from "react";
 import Dashboard from "@/components/Dashboard";
 import Dashboard_Btn from "@/components/Dashboard_Btn";
-import { useOrgDashboard } from "./../OrgDashboardContext";
+import { useOrg } from "../OrgContext";
+
 export default function SideBar() {
-  const { handleDashboard, handleMyEvents, handleReports, handleMyTeam }: any =
-    useOrgDashboard();
+  const { handleDashboard, handleMyEvent, handleReport, handleMyTeam } =
+    useOrg();
   return (
     <div>
       <Dashboard>
         <Dashboard_Btn text="DASHBOARD" onClick={() => handleDashboard()} />
-        <Dashboard_Btn text="MY EVENTS" onClick={() => handleMyEvents()} />
-        <Dashboard_Btn text="REPORTS" onClick={() => handleReports()} />
+        <Dashboard_Btn text="MY EVENTS" onClick={() => handleMyEvent()} />
+        <Dashboard_Btn text="REPORTS" onClick={() => handleReport()} />
         <Dashboard_Btn text="MY TEAM" onClick={() => handleMyTeam()} />
       </Dashboard>
     </div>

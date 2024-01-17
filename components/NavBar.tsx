@@ -114,9 +114,9 @@ export default function NavBar() {
                   </Link>
 
                   {/* my profile part */}
-                  <div className="relative max-w-2 group transition-all">
+                  <div className="relative   group transition-all">
                     <Profile name={userName} picture="User_cicrle" />
-                    <div className="absolute w-full hidden  group-hover:flex  transition-all">
+                    <div className="absolute  hidden  group-hover:flex group-hover:justify-center	group-hover:gap-2	  transition-all">
                       <div className="mt-4 ">
                         <Login
                           fn={clickLogoutBtn}
@@ -128,7 +128,7 @@ export default function NavBar() {
                         <Login
                           fn={clickLogoutBtn}
                           titleOfbutton={"PROFILE"}
-                          image={"user.svg"}
+                          image={"pprofile.svg"}
                         />
                       </Link>
                     </div>

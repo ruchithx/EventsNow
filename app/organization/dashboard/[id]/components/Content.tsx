@@ -1,18 +1,19 @@
+"use client";
 import React from "react";
-import { useOrgDashboard } from "./../OrgDashboardContext";
 import Dashboard from "./Dashboard";
 import Report from "./Report";
 import MyTeam from "./MyTeam";
 import MyEvents from "./MyEvents";
+import { useOrg } from "../OrgContext";
 
 export default function Content() {
-  const { status }: any = useOrgDashboard();
+  const { status } = useOrg();
   return (
     <div>
       {status === "dashboard" && <Dashboard />}
       {status === "report" && <Report />}
-      {status === "my-team" && <MyTeam />}
-      {status === "my-events" && <MyEvents />}
+      {status === "myTeam" && <MyTeam />}
+      {status === "myEvents" && <MyEvents />}
     </div>
   );
 }

@@ -1,10 +1,12 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import AppleProvider from "next-auth/providers/apple";
 import { NextAuthOptions } from "next-auth";
 import User from "./../../../../models/userModel";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { redirect } from "next/navigation";
 import { error } from "@/util/Toastify";
+import FacebookProvider from "next-auth/providers/facebook";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -41,6 +43,14 @@ export const authOptions: NextAuthOptions = {
         "585040141563-5qq76qfjfl60d267mblh6voih0gj7uhh.apps.googleusercontent.com",
       clientSecret: "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",
     }),
+    FacebookProvider({
+      clientId: "683671997269456",
+      clientSecret: "9220a35f2ce17bc3a56a99d34c7e1d00",
+    }),
+    // AppleProvider({
+    //   clientId: process.env.APPLE_ID,
+    //   clientSecret: process.env.APPLE_SECRET,
+    // }),
   ],
   callbacks: {
     async signIn({ user, account }): Promise<boolean> {
