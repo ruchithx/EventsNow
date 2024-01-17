@@ -106,9 +106,9 @@ export default function NavBar() {
               {userActive && (
                 <>
                   {/* crete event button */}
-                  <Link href={"/createorganizaion"}>
+                  <Link href={"/createorganization"}>
                     <Login
-                      titleOfbutton={"CREATE EVENT"}
+                      titleOfbutton={"HOST EVENT"}
                       image={"createevent.svg"}
                     />
                   </Link>
