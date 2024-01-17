@@ -52,7 +52,7 @@ export default function LoginFormBasic() {
         },
         body: JSON.stringify({ email }),
       });
-      console.log(user.ok);
+
       if (user.ok) {
         error("Already exist this email");
         return;
@@ -75,7 +75,7 @@ export default function LoginFormBasic() {
       setpassword("");
       setCPassword("");
       setSpinner(false);
-      router.push("/user/login");
+      router.push("/auth/login");
     } catch (e) {
       console.log(e);
     }

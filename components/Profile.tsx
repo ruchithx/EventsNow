@@ -9,7 +9,7 @@ interface NavBarButton {
 export default function Profile({ name, picture }: NavBarButton) {
   return (
     <div>
-      <button className="flex gap-4 items-center justify-end">
+      <button className="flex gap-4  items-center justify-end">
         <Image
           src={`/ReUsableComponentData/${picture}.svg`}
           alt="profile picture"
