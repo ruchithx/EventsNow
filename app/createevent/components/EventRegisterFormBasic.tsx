@@ -3,16 +3,89 @@ import React from "react";
 import { useState } from "react";
 import Image from "next/image";
 
+import { z } from "zod";
+import { error, success } from "../../../util/Toastify";
+import DatePicker from "react-datepicker"; 
+import "react-datepicker/dist/react-datepicker.css"; 
+
 export default function EventRegisterFormBasic() {
-  const [selectedTab, setSelectedTab] = useState("Onsite");
-  const [previewImage, setPreviewImage] = useState("");
   const [eventName, setEventName] = useState("");
-  const [numberOfTicketTypes, setNumberOfTicketTypes] = useState(1);
+  const [selectedTab, setSelectedTab] = useState("Onsite");
+  const [eventStartDate, setEventStartDate] = useState(new Date()); 
+  const [startTime,setStartTime] = useState("");
+  const [duration,setDuration] = useState("");
+  const [eventTimeZone,setEventTimeZone] = useState("");
+  const [description, setDescription] = useState("");
+  const [postImage, setPostImage] = useState("");
 
-  function sendEventData() {
-    console.log("event Data send success");
+  const [previewImage, setPreviewImage] = useState("");
+
+  const validateEvent = z.object({
+    eventName: z.string().min(1, "Enter event name "),
+    selectedTab: z.string().min(1,{message:"select the event type"}),
+    eventStartDate: z.date(),  
+    startTime: z.string().min(1,{message:"Enter event start time "}),
+    duration: z.string(),
+    eventTimeZone: z.string().min(1,{message:"Enter event time zone"}),
+    description: z.string(),
+    postImage: z.string().min(1,{message:"Enter event cover photo "}),
+   
+  });
+
+  async function sendEventData() {
+    const data = {
+      eventName,
+      selectedTab,
+      eventStartDate,
+      startTime,
+      duration,
+      eventTimeZone,
+      description,
+      postImage,
+    };
+    const result = validateEvent.safeParse(data);
+    if (result.success) {
+      const res = await fetch(
+        "http://localhost:3000/api/v1/createEvent",
+        {
+          method: "POST",
+          mode: "cors",
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (!res.ok) {
+        error("There is an error for create event");
+        return;
+      }
+      success("registration data sent succesfully");
+
+      setEventName("");
+      setSelectedTab("Onsite");
+      setEventStartDate(new Date());
+      setStartTime("");
+      setDuration("");
+      setEventTimeZone("");
+      setDescription("");
+      setPreviewImage("");
+      setPostImage("");
+    } else {
+      error(result.error.errors[0].message);
+    }
+
   }
-
+  function convertTobase64(file: File) {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  }
   return (
     <div className="  2xl:px-40 - sm:px-20 justify-center">
       <div className=" mt-8 leading-none	 text-center text-[#455273] font-khand text-[40px] sm:text-[64px] font-semibold mx-2">
@@ -78,7 +151,7 @@ export default function EventRegisterFormBasic() {
           </div>
         </div>
         <div className="mt-1 font-khand text-[#455273] flex text-basic font-normal m-0">
-          Event data and time <div className="text-red-500 font-">*</div>
+          Event date and time <div className="text-red-500 font-">*</div>
         </div>
         <div className="border-solid border-2 rounded-xl grid grid-cols-2 gap-2 px-2 pb-4">
           <div>
@@ -88,13 +161,10 @@ export default function EventRegisterFormBasic() {
             >
               Date <div className="text-red-500 font-">*</div>
             </label>
-            <input
-              required
-              type="text"
-              name="eventDate"
-              id="eventDate"
-              className=" my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-xl focus:outline-custom-orange "
-            ></input>
+            
+              <DatePicker className="my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-xl mr-20 pr-0 focus:outline-custom-orange" selected={eventStartDate} onChange= 
+              {(date) => setEventStartDate(date || new Date())} /> 
+            
           </div>
 
           <div>
@@ -109,6 +179,8 @@ export default function EventRegisterFormBasic() {
               type="text"
               name="eventTime"
               id="eventTime"
+              value={startTime}
+              onChange={(e) => setStartTime(e.target.value)}
               className=" my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-xl focus:outline-custom-orange "
             ></input>
           </div>
@@ -118,12 +190,14 @@ export default function EventRegisterFormBasic() {
               htmlFor="duration"
               className="  font-khand text-[#455273] flex text-basic font-normal m-0"
             >
-              Duration
+              Duration (h)
             </label>
             <input
               type="text"
               name="duration"
               id="duration"
+              value={duration}
+              onChange={(e) => setDuration(e.target.value)}
               className=" my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-xl focus:outline-custom-orange "
             ></input>
           </div>
@@ -140,6 +214,8 @@ export default function EventRegisterFormBasic() {
               type="text"
               name="eventTimezone"
               id="eventTimezone"
+              value={eventTimeZone}
+              onChange={(e) => setEventTimeZone(e.target.value)}
               className=" my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-xl focus:outline-custom-orange "
             ></input>
           </div>
@@ -154,6 +230,8 @@ export default function EventRegisterFormBasic() {
         <textarea
           name="description"
           id="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           className=" mt-1 w-full h-24 bg-transparent  pl-1 text-gray-900focus:ring-0 focus:outline-custom-orange sm:text-sm sm:leading-6 border-2 rounded-xl "
           cols={30}
         ></textarea>
@@ -166,9 +244,13 @@ export default function EventRegisterFormBasic() {
             required
             type="file"
             accept="image/*"
-            onChange={(e) => {
+            onChange={async (e) => {
               if (e.target.files && e.target.files.length > 0) {
                 setPreviewImage(URL.createObjectURL(e.target.files[0]));
+                const file = e.target.files[0];
+                const base64 = await convertTobase64(file);
+                setPostImage(base64 as string);
+                console.log(postImage);
               }
             }}
             className="block  text-sm text-slate-500
