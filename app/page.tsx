@@ -6,7 +6,7 @@ import Upcoming_Events from "@/components/Upcoming_Events";
 export default function Home() {
   return (
    
-      <div className='mt-1 md:mt-4  gap-4 grid  md:grid-cols-3  place-items-center   justify-center items-center -mt-20 xl:mt-1 overflow-hidden'>
+      <div className=''>
         <BestEvent 
         img="bestevent.png"
         eventname={"MEGA"}

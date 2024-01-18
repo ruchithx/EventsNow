@@ -29,7 +29,7 @@ export default function Upcoming_Events({
   const margin = EventName.length > 14 ? "mt-4" : " mt-0";
 
   return (
-    <div className="grid grid-cols-3 m-4 w-[1192px] h-[12.15rem] rounded-lg bg-[#D9D9D9]">
+    <div className="grid grid-cols-3 w-[1192px] h-[12.15rem] rounded-lg bg-[#D9D9D9]">
 
       <div className="overflow-hidden rounded-lg">
         <Image src={`/${image}`} alt="hay" width={410} height={200} />

@@ -20,10 +20,10 @@ export default function page() {
      <div className='grid md:grid-cols-2 '>
 
         <div className=' xl:mx-40 sm:mt-8 md:mx-20 mx-4'>
-            <p className='xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] text-center flex-col shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:mt-2 font-semibold '>
+            <p className='mt-6 xl:mt-8 xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] text-center flex-col shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:mt-2 font-semibold '>
               OUR MISSION
             </p>
-            <div className='md:-mt-6 xl:text-left flex-auto text-center w-full xl:h-[28rem] xl:w-[34rem] flex-col shrink-0 text-black font-["Khand"] md:text-base font-medium xl:tracking-wider text-left mx-1'>
+            <div className='mt-2 md:-mt-6 xl:text-left flex-auto text-center w-full xl:h-[28rem] xl:w-[34rem] flex-col shrink-0 text-black font-["Khand"] md:text-base font-medium xl:tracking-wider text-left mx-1'>
             At EventNow our mission is to connect people through exceptional event experiences. We are committed to providing a seamless and user-friendly platform that empowers event organizers to create, promote, and manage their events effortlessly. By fostering a vibrant community of organizers and attendees, we aim to enhance the way people discover, share, and participate in events, fostering memorable moments and lasting connections.
             </div>
         </div>
@@ -38,10 +38,10 @@ export default function page() {
     <div className='grid md:grid-cols-2 xl:-mt-60'>
 
         <div className=' xl:mx-40 sm:mt-8 md:mx-20 mx-4'>
-            <p className='xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] text-center flex-col shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:mt-2 font-semibold '>
+            <p className='mt-2 xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] text-center flex-col shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:mt-2 font-semibold '>
               OUR VISION
             </p>
-            <div className='md:-mt-6 xl:text-left flex-auto text-center w-full xl:h-[28rem] xl:w-[34rem] flex-col shrink-0 text-black font-["Khand"] md:text-base font-medium xl:tracking-wider text-left mx-1'>
+            <div className='mt-2 md:-mt-6 xl:text-left flex-auto text-center w-full xl:h-[28rem] xl:w-[34rem] flex-col shrink-0 text-black font-["Khand"] md:text-base font-medium xl:tracking-wider text-left mx-1'>
                 Our vision is to be the go-to platform for event planning and participation, setting the standard for excellence in the digital events landscape. We envision a future where individuals and organizations worldwide turn to EventNow for all their event needs. By leveraging cutting-edge technology, fostering innovation, and prioritizing user satisfaction, we strive to become a global hub that transforms the way people celebrate, learn, and connect through events. 
             </div>
         </div>
@@ -77,7 +77,7 @@ export default function page() {
         BEST EVENTS
       </div>
 
-      <div className='mt-1 md:mt-4 md:ml-2 xl:ml-4 grid xl:grid-cols-3 md:grid-cols-2  place-items-center  flex justify-center items-center -mt-20 xl:mt-1'>
+      <div className='mt-1  overflow-hidden md:mt-4 md:ml-2 xl:ml-4 lg:grid-cols-3  grid gap-3 place-items-center   justify-center items-center -mt-20 xl:mt-1'>
       <BestEvent 
         img="bestevent.png"
         eventname={"MEGA"}
