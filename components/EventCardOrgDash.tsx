@@ -18,14 +18,13 @@ function EventCardOrgDash({
   date,
   time,
 }: EventCardOrgDash) {
-
-  const values1 = name.length > 21 ? 'mb-4' :'mb-10';
-  const values2 = name.length > 21 ? '' :'mt-4';
+  const values1 = name.length > 21 ? "mb-4" : "mb-10";
+  const values2 = name.length > 21 ? "" : "mt-4";
   return (
-    <div className="m-10 grid grid-cols-12 w-761  rounded-[10px] bg-[#D9D9D9]">
+    <div className=" grid grid-cols-12 w-761  rounded-[10px] bg-[#D9D9D9]">
       <div className="col-span-4 h-60 overflow-hidden rounded-l-lg">
         <Image
-          className="object-center"
+          className="object-center rounded-[10px]"
           src={`/${img}`}
           width={256}
           height={301}
@@ -34,7 +33,9 @@ function EventCardOrgDash({
       </div>
 
       <div className={`col-span-5 ${values1} grid grid-rows-9  ml-5`}>
-        <div className={` ml-2  ${values2} font-mono text-[#353535] text-2xl font-bold	row-span-3`}>
+        <div
+          className={` ml-2  ${values2} font-mono text-[#353535] text-2xl font-bold	row-span-3`}
+        >
           {name}
         </div>
 
@@ -78,7 +79,7 @@ function EventCardOrgDash({
       <div className="col-span-3 ">
         <button
           onClick={() => eventDashboardHandler()}
-          className=" hover:bg-[#739C8F] font-mono w-[169px] h-[30px] rounded-[29px] text-white bg-[#4E8171] text-[13px] font-medium mt-4 "
+          className=" hover:bg-[#D47165] font-mono bg-custom-orange w-[169px] h-[30px] rounded-[29px] text-white bg-custom text-[13px] font-medium mt-4 "
         >
           <div className="justify-center flex gap-3">
             <svg

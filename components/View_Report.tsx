@@ -10,9 +10,14 @@ interface View_Report {
 
 export default function View_Report({ discription1, img }: View_Report) {
   return (
-    <div className="grid grid-cols-12 w-[761px] h-32 rounded-[10px] bg-[#F8F8F8] m-6 border divide-[#848484]">
+    <div className="grid grid-cols-12 w-[761px] h-32 rounded-[10px] bg-[#F8F8F8]  border divide-[#848484]">
       <div className="col-span-4 my-3 ml-14 overflow-hidden">
-        <Image src={`/${img}`} alt="compo5" width={100} height={100} />
+        <Image
+          src={`/ReusableComponentData/${img}`}
+          alt="compo5"
+          width={100}
+          height={100}
+        />
       </div>
 
       <div className="col-span-5 mt-4">
@@ -25,7 +30,7 @@ export default function View_Report({ discription1, img }: View_Report) {
       <div className="col-span-3 my-10">
         <button
           onClick={() => print()}
-          className="w-[116px] h-10 rounded-md bg-[#4E5381]"
+          className="w-[116px] h-10 rounded-md bg-custom-orange"
         >
           <div className="flex">
             <div className="ml-4">

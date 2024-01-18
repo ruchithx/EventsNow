@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState } from "react";
 const orgContext = createContext();
 
 function OrgContextProvider({ children }) {
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("dashboard");
   console.log(status);
 
   function handleDashboard() {

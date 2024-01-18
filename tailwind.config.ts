@@ -38,6 +38,7 @@ const config: Config = {
       fontFamily: {
         Inter: ["Inter", "sans - serif"],
         khand: ["Khand", "sans-serif"],
+        IBM: ["IBM Plex Mono", "monospace"],
       },
       height: {
         "394": "394px",
