@@ -5,6 +5,7 @@ import Report from "./Report";
 import MyTeam from "./MyTeam";
 import MyEvents from "./MyEvents";
 import { useOrg } from "../OrgContext";
+import NotActive from "./CheckActive";
 
 export default function Content() {
   const { status } = useOrg();

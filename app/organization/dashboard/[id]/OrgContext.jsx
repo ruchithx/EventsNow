@@ -5,6 +5,12 @@ const orgContext = createContext();
 
 function OrgContextProvider({ children }) {
   const [status, setStatus] = useState("dashboard");
+  const [revenue, setRevenue] = useState(0);
+  const [ticketSold, setTicketSold] = useState(0);
+  const [events, setEvents] = useState([]);
+  const [team, setTeam] = useState([]);
+  const [isActive, setIsActive] = useState(true);
+
   console.log(status);
 
   function handleDashboard() {
@@ -22,6 +28,11 @@ function OrgContextProvider({ children }) {
   return (
     <orgContext.Provider
       value={{
+        events,
+        isActive,
+        revenue,
+        team,
+        ticketSold,
         status,
         handleDashboard,
         handleMyEvent,
