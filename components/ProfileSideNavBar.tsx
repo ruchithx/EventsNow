@@ -9,14 +9,26 @@ import { text } from "stream/consumers";
 import Upcoming_Events from "./Upcoming_Events";
 import ProfileSettings from "./ProfileSettings";
 import Org_RequestHandle from "./Org_RequestHandle";
+import EventHost from "./EventHost";
 
 export default function ProfileSideNavBar() {
   const [content, setContent] = useState("My profile");
+  const [manageEventsContent, setManageEventsContent] =
+    useState("MANAGE EVENTS");
+  const [manage, setManage] = useState(true);
 
-  const handleOvervier = (content: React.SetStateAction<string>) => {
+  function handleOverview(content) {
     setContent(content);
-  };
+  }
 
+  const handleManageEventsContent = () => {
+    if (manage) {
+      setManageEventsContent("MANAGE EVENTS");
+      setManage(!manage);
+    } else {
+      setManageEventsContent("REGISTERED EVENTS");
+    }
+  };
   const btn = [
     "My profile",
     "Wish list",
@@ -39,7 +51,7 @@ export default function ProfileSideNavBar() {
               {btn.map((buttonText, index) => (
                 <Event_Dashboard_Btn
                   key={index}
-                  onClick={() => handleOvervier(buttonText)}
+                  onClick={() => handleOverview(buttonText)}
                   text={buttonText}
                 />
               ))}
@@ -81,7 +93,21 @@ export default function ProfileSideNavBar() {
           )}
           {content === "My events" && (
             <>
-              <Org_RequestHandle OrgName={"Amna"} image={"././image 1.png"} />
+              <EventHost
+                btn1={"MANAGE EVENTS"}
+                btn2={"REGISTERED EVENTS"}
+                onClick={handleManageEventsContent}
+              />
+              {manage && (
+                <>
+                  <h1>dkdkd</h1>
+                </>
+              )}
+              {!manage && (
+                <>
+                  <h1>ggggg</h1>
+                </>
+              )}
             </>
           )}
         </div>
