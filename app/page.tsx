@@ -1,20 +1,24 @@
 "use client";
 
+import EmptyStateComponent from "@/components/EmptyStateComponent";
 import NavBar from "@/components/NavBar";
+import OrganizationRequestPending from "@/components/OrganizationRequestPending";
 
-import Org_RequestHandle from "@/components/Org_RequestHandle";
-import ProfileSettings from "@/components/ProfileSettings";
-import ProfileSideNavBar from "@/components/ProfileSideNavBar";
-import LinearIndeterminate from "@/components/Spinner";
 
 
 export default function Home() {
-  return (
-    <div>
-      <NavBar />
-
+  return (<div className="">
+    <NavBar/>
+    
+    <div className="grid grid-cols-2">
+  
+      <EmptyStateComponent message="No organization found" />
       
-
+        <OrganizationRequestPending 
+        message="decision pending " />
+        
+        
+    E</div>
     </div>
   );
 }
