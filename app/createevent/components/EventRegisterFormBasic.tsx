@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useState } from "react";
+import { useState,useRef } from "react";
 import Image from "next/image";
 
 import { z } from "zod";
@@ -19,6 +19,7 @@ export default function EventRegisterFormBasic() {
   const [postImage, setPostImage] = useState("");
 
   const [previewImage, setPreviewImage] = useState("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const validateEvent = z.object({
     eventName: z.string().min(1, "Enter event name "),
@@ -69,6 +70,9 @@ export default function EventRegisterFormBasic() {
       setDescription("");
       setPreviewImage("");
       setPostImage("");
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     } else {
       error(result.error.errors[0].message);
     }
@@ -87,8 +91,8 @@ export default function EventRegisterFormBasic() {
     });
   }
   return (
-    <div className="  2xl:px-40 - sm:px-20 justify-center">
-      <div className=" mt-8 leading-none	 text-center text-[#455273] font-khand text-[40px] sm:text-[64px] font-semibold mx-2">
+    <div className=" lg:pb-10 2xl:px-40 - sm:px-20 justify-center">
+      <div className=" mt-8 leading-none text-center text-[#455273] font-khand text-[40px] sm:text-[64px] font-semibold mx-2">
         Create Event
       </div>
       <form
@@ -244,6 +248,7 @@ export default function EventRegisterFormBasic() {
             required
             type="file"
             accept="image/*"
+            ref={fileInputRef}
             onChange={async (e) => {
               if (e.target.files && e.target.files.length > 0) {
                 setPreviewImage(URL.createObjectURL(e.target.files[0]));
