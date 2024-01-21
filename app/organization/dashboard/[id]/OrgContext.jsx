@@ -29,6 +29,7 @@ function OrgContextProvider({ children }) {
     <orgContext.Provider
       value={{
         events,
+        setIsActive,
         isActive,
         revenue,
         team,

@@ -62,7 +62,7 @@ export default function LoginForm() {
           ref={usernameInputRef}
         />
       </div>
-      <div className="mb-6 relative">
+      <div className="mb-6 ">
         <input
           type={showPassword ? "text" : "password"}
           id="password"
@@ -72,12 +72,6 @@ export default function LoginForm() {
           placeholder="Create password"
           ref={passwordInputRef}
         />
-        <span
-          className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
-          onClick={togglePasswordVisibility}
-        >
-          <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-        </span>
       </div>
       <button
         type="submit"

@@ -21,7 +21,7 @@ function EventCardOrgDash({
   const values1 = name.length > 21 ? "mb-4" : "mb-10";
   const values2 = name.length > 21 ? "" : "mt-4";
   return (
-    <div className=" grid grid-cols-12 w-761  rounded-[10px] bg-[#D9D9D9]">
+    <div className=" grid grid-cols-12 mr-3  rounded-[10px] bg-[#D9D9D9]">
       <div className="col-span-4 h-60 overflow-hidden rounded-l-lg">
         <Image
           className="object-center rounded-[10px]"
@@ -79,7 +79,7 @@ function EventCardOrgDash({
       <div className="col-span-3 ">
         <button
           onClick={() => eventDashboardHandler()}
-          className=" hover:bg-[#D47165] font-mono bg-custom-orange w-[169px] h-[30px] rounded-[29px] text-white bg-custom text-[13px] font-medium mt-4 "
+          className=" hover:bg-[#D47165] font-mono bg-custom-orange w-30 lg:p-2 p-1 rounded-[29px] text-white bg-custom text-[13px] font-medium mt-4 "
         >
           <div className="justify-center flex gap-3">
             <svg
@@ -87,6 +87,7 @@ function EventCardOrgDash({
               height="20"
               viewBox="0 0 20 20"
               fill="none"
+              className="lg:block hidden"
               xmlns="http://www.w3.org/2000/svg"
             >
               <g id="Filter">

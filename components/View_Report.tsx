@@ -10,8 +10,8 @@ interface View_Report {
 
 export default function View_Report({ discription1, img }: View_Report) {
   return (
-    <div className="grid grid-cols-12 w-[761px] h-32 rounded-[10px] bg-[#F8F8F8]  border divide-[#848484]">
-      <div className="col-span-4 my-3 ml-14 overflow-hidden">
+    <div className="grid grid-cols-12 w-3/4 h-32 rounded-[10px] bg-[#F8F8F8]  border divide-[#848484]">
+      <div className="col-span-4 my-3 md:ml-5 lg:ml-14 overflow-hidden">
         <Image
           src={`/ReusableComponentData/${img}`}
           alt="compo5"
@@ -22,7 +22,7 @@ export default function View_Report({ discription1, img }: View_Report) {
 
       <div className="col-span-5 mt-4">
         <div className="text-[#666] font-sans text-xl font-normal">EVENT’S</div>
-        <div className="text-[#353535] font-sans text-2xl font-bold mt-6">
+        <div className="text-[#353535] font-sans md:text-md xl:text-2xl lg:text-xl md:text-lg font-bold mt-6">
           {discription1}
         </div>
       </div>
@@ -38,7 +38,6 @@ export default function View_Report({ discription1, img }: View_Report) {
             </div>
 
             <div className="w-[87.751px] h-[19.317px] judtify-center text-white font-sans text-base font-medium mr-3 ">
-              {" "}
               Print
             </div>
           </div>

@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 import { ToastContainer } from "react-toastify";
+import NavBar from "@/components/NavBar";
 
 export const metadata: Metadata = {
   title: "EventsNow",
@@ -20,6 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <link
+          rel="icon"
+          href="/ReUsableComponentData/nav-logo.png"
+          sizes="any"
+        />
+        {/* <NavBar /> */}
         <AuthProvider>{children}</AuthProvider>
         <ToastContainer />
       </body>

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "react-phone-number-input/style.css";
 import { z } from "zod";
-
+import { useRouter } from "next/navigation";
 import { error, success } from "../../../util/Toastify";
 import {
   Dropdown,
@@ -19,15 +19,22 @@ export default function CreateOrganizationFormBasic() {
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
-
+  const router = useRouter();
   const validateOrganization = z.object({
-    fullName: z.string().min(1, "Enter your full name ").regex(/^[a-zA-Z ]*$/,{message:"Cannot enter number or symbol for name"}),
-    numberType: z.string().min(1,{message:"select ID number type"}),
-    number: z.string().min(1,{message:"Enter your indentification card number  "}),
-    companyName: z.string().min(1,{message:"Enter your company name"}),
-    address: z.string().min(1,{message:"Enter your address"}),
-    phoneNumber: z.string().min(1,{message:"Enter your phone number "}),
-    email: z.string().email({message:"Invalid email"}),
+    fullName: z
+      .string()
+      .min(1, "Enter your full name ")
+      .regex(/^[a-zA-Z ]*$/, {
+        message: "Cannot enter number or symbol for name",
+      }),
+    numberType: z.string().min(1, { message: "select ID number type" }),
+    number: z
+      .string()
+      .min(1, { message: "Enter your indentification card number  " }),
+    companyName: z.string().min(1, { message: "Enter your company name" }),
+    address: z.string().min(1, { message: "Enter your address" }),
+    phoneNumber: z.string().min(1, { message: "Enter your phone number " }),
+    email: z.string().email({ message: "Invalid email" }),
   });
 
   async function sendOrganizationData() {
@@ -44,7 +51,7 @@ export default function CreateOrganizationFormBasic() {
     const result = validateOrganization.safeParse(data);
     if (result.success) {
       const res = await fetch(
-        "http://localhost:3000/api/v1/createOrganization",
+        "http://localhost:3000/api/v1/organization/createOrganization",
         {
           method: "POST",
           mode: "cors",
@@ -56,6 +63,7 @@ export default function CreateOrganizationFormBasic() {
         error("There is an error for registration");
         return;
       }
+      const id = await res.json();
       success("registration data sent succesfully");
 
       setFullName("");
@@ -65,6 +73,7 @@ export default function CreateOrganizationFormBasic() {
       setAddress("");
       setPhoneNumber("");
       setEmail("");
+      router.push(`/organization/dashboard/${id.id}`, { scroll: false });
     } else {
       const formattedError = result.error.format();
 
@@ -80,9 +89,10 @@ export default function CreateOrganizationFormBasic() {
         error(String(formattedError.address?._errors));
       } else if (formattedError.phoneNumber) {
         error(String(formattedError.phoneNumber?._errors));
-      }   else if (formattedError.email) {
+      } else if (formattedError.email) {
         error(String(formattedError.email._errors));
-      }  else(error("an unknown error occur in validation process"));}
+      } else error("an unknown error occur in validation process");
+    }
   }
 
   return (
