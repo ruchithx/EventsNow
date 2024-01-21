@@ -8,9 +8,11 @@ export async function POST(req) {
     numberType,
     number,
     companyName,
+    organizationName,
     address,
     phoneNumber,
-    email
+    email,
+    isApproved,
   } = await req.json();
 
    connectMongoDB();
@@ -19,9 +21,11 @@ export async function POST(req) {
     numberType,
     number,
     companyName,
+    organizationName,
     address,
     phoneNumber,
-    email
+    email,
+    isApproved,
   });
   return NextResponse.json({ message: "success" }, { status: 201 });
 }
