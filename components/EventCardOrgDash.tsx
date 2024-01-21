@@ -18,14 +18,13 @@ function EventCardOrgDash({
   date,
   time,
 }: EventCardOrgDash) {
-
-  const values1 = name.length > 21 ? 'mb-4' :'mb-10';
-  const values2 = name.length > 21 ? '' :'mt-4';
+  const values1 = name.length > 21 ? "md:mb-4 mb-0" : "md:mb-10 mb-0";
+  const values2 = name.length > 21 ? "" : "mb:mt-4 mt-0";
   return (
-    <div className="m-10 grid grid-cols-12 w-761  rounded-[10px] bg-[#D9D9D9]">
-      <div className="col-span-4 h-60 overflow-hidden rounded-l-lg">
+    <div className=" flex flex-col items-start  gap-2 md:gap-0 md:grid md:grid-cols-12 mr-3  rounded-[10px] bg-[#D9D9D9]">
+      <div className="md:col-span-4 h-60 overflow-hidden rounded-l-lg">
         <Image
-          className="object-center"
+          className="object-center rounded-[10px]"
           src={`/${img}`}
           width={256}
           height={301}
@@ -33,8 +32,12 @@ function EventCardOrgDash({
         />
       </div>
 
-      <div className={`col-span-5 ${values1} grid grid-rows-9  ml-5`}>
-        <div className={` ml-2  ${values2} font-mono text-[#353535] text-2xl font-bold	row-span-3`}>
+      <div
+        className={` md:col-span-5 ${values1} md:grid md:grid-rows-9  md:ml-5 ml-2`}
+      >
+        <div
+          className={` ml-2  ${values2} font-mono text-[#353535] text-2xl font-bold	row-span-3`}
+        >
           {name}
         </div>
 
@@ -75,10 +78,10 @@ function EventCardOrgDash({
         </div>
       </div>
 
-      <div className="col-span-3 ">
+      <div className="md:col-span-3  md:ml-0 ml-2 md:mb-0 mb-2">
         <button
           onClick={() => eventDashboardHandler()}
-          className=" hover:bg-[#739C8F] font-mono w-[169px] h-[30px] rounded-[29px] text-white bg-[#4E8171] text-[13px] font-medium mt-4 "
+          className=" hover:bg-[#D47165] font-mono bg-custom-orange w-30 lg:p-2 p-1 rounded-[29px] text-white bg-custom text-[13px] font-medium md:mt-4 mt-0"
         >
           <div className="justify-center flex gap-3">
             <svg
@@ -86,6 +89,7 @@ function EventCardOrgDash({
               height="20"
               viewBox="0 0 20 20"
               fill="none"
+              className="lg:block hidden"
               xmlns="http://www.w3.org/2000/svg"
             >
               <g id="Filter">

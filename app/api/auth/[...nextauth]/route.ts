@@ -56,6 +56,7 @@ export const authOptions: NextAuthOptions = {
     async signIn({ user, account }): Promise<boolean> {
       console.log("user", user);
       console.log("account", account);
+
       // if (account?.provider === "google") {
       //   const email = user?.email;
       //   console.log("yes");
@@ -64,7 +65,6 @@ export const authOptions: NextAuthOptions = {
       //     headers: {
       //       "Content-Type": "application/json",
       //     },
-
       //     body: JSON.stringify({ email }),
       //   }).then((res) => res.json());
       //   console.log(data);
@@ -76,7 +76,9 @@ export const authOptions: NextAuthOptions = {
       // }
 
       // if (account?.provider === "google") {
+      //   console.log("google");
       //   const userdata = await User.findOne({ email: user.email });
+      //   console.log(userdata);
       //   if (userdata) {
       //     return true;
       //   } else {

@@ -9,7 +9,6 @@ import NavBar from "@/components/NavBar";
 function page() {
   return (
     <div>
-      <NavBar />
       <div className="md:grid   md:grid-cols-2  ">
         <div className="grid  grid-cols-6 col-span-1">
           <div className="col-span-1"></div>

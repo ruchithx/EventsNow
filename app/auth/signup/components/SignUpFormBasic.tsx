@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Spinner from "../../../../components/Spinner";
-import { error } from "../../../../util/Toastify";
+import { error, success } from "../../../../util/Toastify";
 
 export default function LoginFormBasic() {
   const [firstName, setFristName] = useState("");
@@ -53,12 +53,15 @@ export default function LoginFormBasic() {
         body: JSON.stringify({ email }),
       });
 
-      if (user.ok) {
+      const dat = await user.json();
+      console.log(dat.user);
+
+      if (dat.user !== null) {
         error("Already exist this email");
         return;
       }
 
-      const res = await fetch("http://localhost:3000/api/v1/signup", {
+      const res = await fetch("http://localhost:3000/api/v1/user/signup", {
         method: "POST",
         mode: "cors",
         body: JSON.stringify(data),
@@ -75,6 +78,7 @@ export default function LoginFormBasic() {
       setpassword("");
       setCPassword("");
       setSpinner(false);
+      success("Successfully created your account");
       router.push("/auth/login");
     } catch (e) {
       console.log(e);

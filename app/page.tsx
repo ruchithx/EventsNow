@@ -5,8 +5,8 @@ import NavBar from "@/components/NavBar";
 import OrganizationRequestPending from "@/components/OrganizationRequestPending";
 
 
-
 export default function Home() {
+
   return (<div className="">
     <NavBar/>
     
@@ -21,4 +21,5 @@ export default function Home() {
     E</div>
     </div>
   );
+  
 }
