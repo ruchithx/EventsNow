@@ -10,25 +10,32 @@ function OrgContextProvider({ children }) {
   const [events, setEvents] = useState([]);
   const [team, setTeam] = useState([]);
   const [isActive, setIsActive] = useState(true);
+  const [isDashboardOpen, setIsDashboardOpen] = useState(true);
 
   console.log(status);
 
   function handleDashboard() {
     setStatus("dashboard");
+    setIsDashboardOpen(false);
   }
   function handleMyEvent() {
     setStatus("myEvents");
+    setIsDashboardOpen(false);
   }
   function handleMyTeam() {
     setStatus("myTeam");
+    setIsDashboardOpen(false);
   }
   function handleReport() {
     setStatus("report");
+    setIsDashboardOpen(false);
   }
   return (
     <orgContext.Provider
       value={{
         events,
+        isDashboardOpen,
+        setIsDashboardOpen,
         setIsActive,
         isActive,
         revenue,

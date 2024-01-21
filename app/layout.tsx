@@ -26,7 +26,7 @@ export default function RootLayout({
           href="/ReUsableComponentData/nav-logo.png"
           sizes="any"
         />
-        {/* <NavBar /> */}
+        <NavBar />
         <AuthProvider>{children}</AuthProvider>
         <ToastContainer />
       </body>

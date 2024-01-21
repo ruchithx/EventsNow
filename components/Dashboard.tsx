@@ -9,7 +9,7 @@ interface Event_navbar {
 export default function Dashboard({ children }: Event_navbar) {
   return (
     <div className=" w-full flex flex-col justify-center items-center  bg-dashboard  py- text-center  ">
-      <div className="grid-rows-8">{children}</div>
+      <div className="grid-rows-8 mt-5">{children}</div>
     </div>
   );
 }

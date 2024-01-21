@@ -6,7 +6,7 @@ import { useOrg } from "../OrgContext";
 export default function MyEvents() {
   const { events } = useOrg();
   return (
-    <div className="flex ml-2 bg-[#E9E9E9] pt-8 md:pl-12 flex-col justify-start items-start gap-12">
+    <div className="flex md:ml-2 pl-2 bg-[#E9E9E9] pt-8 md:pl-12 flex-col justify-start items-start gap-12">
       <div className="flex flex-col gap-3 justify-start items-start">
         <div className="text-3xl font-semibold text-[#304151]	font-IBM">
           MY EVENTS
@@ -19,7 +19,7 @@ export default function MyEvents() {
         <HasData message="You have not create events" /> */}
       {/* )  */}
       {/* : ( */}
-      <div className=" flex h-80 overflow-auto  gap-5 flex-col">
+      <div className=" items-start flex h-80 overflow-auto  gap-5 flex-col">
         <EventCardOrgDash
           img="bestevent.png"
           location="Matara"

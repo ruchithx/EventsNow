@@ -8,5 +8,5 @@ import ProfileSideNavBar from "@/components/ProfileSideNavBar";
 import LinearIndeterminate from "@/components/Spinner";
 
 export default function Home() {
-  return <div>{<NavBar />}</div>;
+  return <div>{}</div>;
 }
