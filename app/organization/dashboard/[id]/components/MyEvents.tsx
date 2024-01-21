@@ -2,6 +2,7 @@ import EventCardOrgDash from "@/components/EventCardOrgDash";
 import React from "react";
 import HasData from "./HasData";
 import { useOrg } from "../OrgContext";
+import EmptyStateComponent from "@/components/EmptyStateComponent";
 
 export default function MyEvents() {
   const { events } = useOrg();
@@ -16,24 +17,16 @@ export default function MyEvents() {
         </div>
       </div>
       {/* {events.length === 0 ? (
-        <HasData message="You have not create events" /> */}
-      {/* )  */}
-      {/* : ( */}
-      <div className=" items-start flex h-80 overflow-auto  gap-5 flex-col">
-        <EventCardOrgDash
-          img="bestevent.png"
-          location="Matara"
-          time="9.00"
-          name="Nadagama"
-          date="2024/01/6"
-        />
-        <EventCardOrgDash
-          img="bestevent.png"
-          location="Matara"
-          time="9.00"
-          name="Nadagama"
-          date="2024/01/6"
-        />
+        <EmptyStateComponent message="No event found" />
+      ) : ( */}
+      <div className=" items-start flex h-80   gap-5 flex-col">
+        {/* <Carousel orientation="vertical | horizontal">
+          <CarouselContent>
+            <CarouselItem>...</CarouselItem>
+            <CarouselItem>...</CarouselItem>
+            <CarouselItem>...</CarouselItem>
+          </CarouselContent>
+        </Carousel> */}
         <EventCardOrgDash
           img="bestevent.png"
           location="Matara"

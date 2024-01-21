@@ -13,6 +13,8 @@ import { MdSpaceDashboard } from "react-icons/md";
 import Link from "next/link";
 import { Item } from "@/components/NavBar";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import EmptyStateComponent from "@/components/EmptyStateComponent";
+import OrganizationRequestPending from "@/components/OrganizationRequestPending";
 
 export default function CheckActive() {
   const params = useParams();
@@ -63,7 +65,7 @@ export default function CheckActive() {
               <SideBar />
             </div>
 
-            <div className="md:col-span-3">
+            <div className="md:col-span-3 ">
               <Content />
             </div>
           </div>
@@ -102,15 +104,7 @@ export default function CheckActive() {
           </div>
         </div>
       ) : (
-        <div className="flex justify-center items-center mt-20">
-          <Image
-            src="/ReUsableComponentData/Bean Eater-1s-200px.svg"
-            alt="Loader"
-            width={50}
-            height={50}
-          />
-          <div>Your requst is pending</div>
-        </div>
+        <OrganizationRequestPending message="decision pending " />
       )}
     </div>
   );
