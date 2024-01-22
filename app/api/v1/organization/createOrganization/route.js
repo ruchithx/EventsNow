@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-import connectMongoDB from "../../../../lib/mongo/mongodb";
-
-import Organization from "../../../../models/organizationModel";
+import connectMongoDB from "../../../../../lib/mongo/mongodb";
+import Organization from "../../../../../models/organizationModel";
 export async function POST(req) {
   const {
     fullName,
@@ -10,18 +9,20 @@ export async function POST(req) {
     companyName,
     address,
     phoneNumber,
-    email
+    email,
   } = await req.json();
 
-   connectMongoDB();
-  await Organization.create({
+  connectMongoDB();
+  const res = await Organization.create({
     fullName,
     numberType,
     number,
     companyName,
     address,
     phoneNumber,
-    email
+    email,
+    isActive: false,
   });
-  return NextResponse.json({ message: "success" }, { status: 201 });
+
+  return NextResponse.json({ id: res._id }, { status: 201 });
 }

@@ -2,28 +2,23 @@ import React from "react";
 interface PresonDetailsBar {
   name: string;
   email: string;
-  color: String;
-  hovercolor: String;
-  title: String;
 }
 
-export default function PersonDetailsBar({
-  name,
-  email,
-  color,
-  hovercolor,
-  title,
-}: PresonDetailsBar) {
+export default function PersonDetailsBar({ name, email }: PresonDetailsBar) {
   function editDetails() {}
   return (
     //parent div eken 3n 2k kiyala gaththe meka.wenas krla gann onnm.mn dila tynne meke mulu loku div ekatam col-span-2 kiyala-ashan
-    <div className="my-4 item-center  bg-[#D9D9D9] w-full col-span-2 grid grid-cols-12 items-center  rounded-[5px]">
-      <div className="text-base font-light col-span-5	pl-10">{name}</div>
-      <div className="text-base font-light col-span-6	">{email}</div>
-      <div className="col-span-1 grid ">
+    <div className=" item-center flex-wrap  bg-[#D9D9D9] w-full flex justify-between  xl:grid xl:grid-cols-12 items-center  rounded-[5px]">
+      <div className="text-base font-light md:ml-2 ml-0  md:mb-0 mb-1 xl:col-span-5	">
+        {name}
+      </div>
+      <div className="text-base font-light   xl:col-span-6	mr-2 md:mb-0 mb-1">
+        {email}
+      </div>
+      <div className="xl:col-span-1  grid ">
         <button
           onClick={editDetails}
-          className={`bg-${color} hover:bg-${hovercolor} h-[34px] justify-self-end rounded-[5px] w-[114px]`}
+          className={`bg-custom-orange    justify-self-end rounded-[5px] `}
         >
           <div className="flex justify-around pl-1">
             <svg
@@ -44,7 +39,7 @@ export default function PersonDetailsBar({
               </svg>
             </svg>
             <div className="text-white font-mono self-center text-center text-base font-medium mr-2">
-              {title}
+              Edit
             </div>
           </div>
         </button>

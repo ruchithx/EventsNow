@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 interface NavBarButton {
-  name: string;
+  name?: string;
   picture: string;
 }
 
@@ -17,9 +17,9 @@ export default function Profile({ name, picture }: NavBarButton) {
           height={10}
           className="rounded-full"
         />
-        <div>
+        {/* <div>
           <div className="text-profileName text-18  font-Inter">{name}</div>
-        </div>
+        </div> */}
       </button>
     </div>
   );
