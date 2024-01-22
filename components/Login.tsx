@@ -8,7 +8,7 @@ interface log {
 
 export default function Login({ image, titleOfbutton, fn }: log) {
   return (
-    <button onClick={fn} className={`bg-custom-orange   h-8 rounded-2xl`}>
+    <button onClick={fn} className={`bg-custom-orange button  h-8 rounded-2xl`}>
       <div className="flex  flex-row ml-2 mr-2  gap-2 p-0 items-center justify-center">
         <Image
           src={`/ReUsableComponentData/${image}`}

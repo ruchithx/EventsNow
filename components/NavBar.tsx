@@ -101,18 +101,20 @@ export default function NavBar() {
           <div className="2xl:px-16 flex flex-wrap items-center justify-between mx-auto p-4">
             {/* Events now logo and name */}
             <Link href="/">
-              <div className="flex items-center gap-3">
-                <Image
-                  src="/ReUsableComponentData/nav-logo.png"
-                  alt="EventNow Logo"
-                  width={30}
-                  height={20}
-                />
+              <button className="button">
+                <div className="flex items-center gap-3">
+                  <Image
+                    src="/ReUsableComponentData/nav-logo.png"
+                    alt="EventNow Logo"
+                    width={30}
+                    height={20}
+                  />
 
-                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-eventBrown    ">
-                  EventNow
-                </span>
-              </div>
+                  <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-eventBrown    ">
+                    EventNow
+                  </span>
+                </div>
+              </button>
             </Link>
 
             <div
@@ -124,7 +126,7 @@ export default function NavBar() {
                 <li>
                   <Link href={"/"}>
                     <button
-                      className=" block py-2 px-3 text-white  rounded md:bg-transparent md:text-eventBrown-700 md:p-0 dark:text-eventBrown md:dark:text-eventBrown"
+                      className=" block button py-2 px-3 text-white  rounded md:bg-transparent md:text-eventBrown-700 md:p-0 dark:text-eventBrown md:dark:text-eventBrown"
                       aria-current="page"
                     >
                       Home
@@ -148,7 +150,10 @@ export default function NavBar() {
 
                     {/* my profile part */}
                     <div className="relative   group transition-all">
-                      <button onClick={() => setShowProfile(true)}>
+                      <button
+                        className="button"
+                        onClick={() => setShowProfile(true)}
+                      >
                         <Profile name={userName} picture="User_cicrle" />
                       </button>
                       {/* <div className="absolute  hidden  group-hover:flex group-hover:justify-center	group-hover:gap-2	  transition-all">

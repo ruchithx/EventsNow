@@ -209,7 +209,7 @@ export default function CreateOrganizationFormBasic() {
 
         <button
           type="submit"
-          className="flex text-center mt-10 mb-10 xl:mb-20 py-2 px-4 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono "
+          className="flex button text-center mt-10 mb-10 xl:mb-20 py-2 px-4 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono "
         >
           SEND TO APPROVAL
         </button>
