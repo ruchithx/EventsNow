@@ -5,25 +5,22 @@ import HasData from "./HasData";
 import EmptyStateComponent from "@/components/EmptyStateComponent";
 
 export default function Report() {
-  const { events, isSlideBar } = useOrg();
+  const { isSlideBar } = useOrg();
   return (
-    <div className="flex md:ml-2 pl-2 bg-[#E9E9E9] pt-8 md:pl-12 flex-col justify-start items-start gap-12">
+    <div className="flex md:ml-2 rounded-lg font-custom-orange shadow-3xl pl-2 bg-[#fff] pt-8 md:pl-12 flex-col justify-start items-start gap-12">
       <div className="flex flex-col gap-3 justify-start items-start">
-        <div className="text-3xl font-semibold text-[#304151]	font-IBM">
+        <div className="text-3xl font-semibold text-custom-orange	font-IBM">
           REPORTS
         </div>
         <div className="text-base text-[#848484] font-normal">
           Select the event, Get the report and Evaluate the performance
         </div>
       </div>
-      {/* {events.length === 0 ? (
-        <EmptyStateComponent message="No event found" />
-      ) : (
-        <> */}
+
       <div
         className={`bg-white p-1 ${
           isSlideBar ? "lg:md:w-3/4 md:w-11/12" : "md:w-3/4"
-        } w-11/12  flex flex-col gap-3 justify-start items-start md:px-5 md:py-3 xl:px-10 xl:py-5 rounded-xl`}
+        } w-11/12  flex flex-col gap-3 2xl:w-1/2  justify-start items-start md:px-5 md:py-3 xl:px-10 xl:py-5 rounded-xl`}
       >
         <div className="text-[#666] text-xl">Select the event</div>
         <div className="w-full md:w-3/4">
@@ -45,7 +42,11 @@ export default function Report() {
           img="Chart_alt_fill.svg"
           discription1="ATTENDANCE REPORT"
         />
-        <View_Report img="Chart_alt_fill.svg" discription1="REVENUE REPORT" />
+        <View_Report
+          isSlideBar={isSlideBar}
+          img="Chart_alt_fill.svg"
+          discription1="REVENUE REPORT"
+        />
       </div>
       {/* </>
       )} */}

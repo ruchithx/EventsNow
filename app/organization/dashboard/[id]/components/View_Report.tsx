@@ -15,7 +15,11 @@ export default function View_Report({
   img,
 }: View_Report) {
   return (
-    <div className="md:grid flex items-center gap-3 w-11/12  md:grid-cols-12 md:w-3/4 md:h-32 rounded-[10px] bg-[#F8F8F8]  border divide-[#848484]">
+    <div
+      className={`md:grid ${
+        isSlideBar ? " md:w-11/12" : " md:w-11/12"
+      } flex items-center justify-between shadow-normalComponent 2xl:w-1/2 gap-3 w-11/12  md:grid-cols-12 md:h-32 rounded-[10px] bg-[#F8F8F8] border-t-[1px]  border-custom-orange divide-[#848484]`}
+    >
       <div className="md:col-span-4 my-3 md:ml-5 lg:ml-14 overflow-hidden">
         <Image
           src={`/ReusableComponentData/${img}`}
@@ -34,10 +38,10 @@ export default function View_Report({
         </div>
       </div>
 
-      <div className="md:col-span-3 lg:my-10 md:my-5 md:mr-2">
+      <div className="md:col-span-3 lg:my-10 md:my-5  ">
         <button
           onClick={() => print()}
-          className="lg:w-[116px] lg:p-2 md:p-1 rounded-md bg-custom-orange"
+          className="lg:w-[116px] lg:p-1 md:p-1 md:mr-2 rounded-md bg-custom-orange"
         >
           <div className="flex gap-2 justify-center items-center">
             <div className="lg:block hidden ">

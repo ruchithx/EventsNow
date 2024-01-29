@@ -16,17 +16,8 @@ export default function MyEvents() {
           You can view all your created events here
         </div>
       </div>
-      {/* {events.length === 0 ? (
-        <EmptyStateComponent message="No event found" />
-      ) : ( */}
+
       <div className="ml-10 md:ml-0 items-start overflow-auto w-full flex h-80    gap-5 flex-col">
-        {/* <Carousel orientation="vertical | horizontal">
-          <CarouselContent>
-            <CarouselItem>...</CarouselItem>
-            <CarouselItem>...</CarouselItem>
-            <CarouselItem>...</CarouselItem>
-          </CarouselContent>
-        </Carousel> */}
         <EventCardOrgDash
           isSlideBar={isSlideBar}
           img="bestevent.png"

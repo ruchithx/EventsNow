@@ -28,8 +28,8 @@ function EventCardOrgDash({
       }   flex-col items-start h-fit  gap-2 md:gap-0 md:grid md:grid-cols-12 mr-3  rounded-[10px] bg-[#D9D9D9]`}
     >
       <div
-        className={`md:col-span-4 md:h-60 sm:h-20   overflow-hidden rounded-l-lg 
-        ${isSlideBar ? "lg:block md:hidden " : "block"}
+        className={`md:col-span-4  sm:h-20   overflow-hidden rounded-l-lg 
+        ${isSlideBar ? "lg:block md:hidden md:h-60" : "lg:h-60 md:h-fit block "}
            `}
       >
         <Image

@@ -6,7 +6,7 @@ export default function Dashboard() {
   const { revenue, ticketSold, isSlideBar } = useOrg();
 
   return (
-    <div className="flex rounded-lg pl-5 shadow-3xl md:pl-10 md:ml-2 bg-[#fff] pt-8 lg:pl-12 flex-col justify-start items-start gap-12">
+    <div className="flex rounded-lg  shadow-3xl md:pl-10 md:ml-2 pl-5 bg-[#fff] pt-8 lg:pl-12 flex-col justify-start items-start gap-12">
       <div className="w-full flex flex-col justify-end">
         <div className="text-3xl font-semibold text-custom-orange	font-IBM">
           Dashboard
