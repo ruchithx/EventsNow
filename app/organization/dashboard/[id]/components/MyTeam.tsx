@@ -8,7 +8,7 @@ import EmptyStateComponent from "@/components/EmptyStateComponent";
 export default function MyTeam() {
   const { team } = useOrg();
   return (
-    <div className="flex pl-5 rounded-lg  shadow-3xl  md:ml-2 bg-[#E9E9E9] pt-8 md:pl-12 flex-col justify-start items-start gap-12">
+    <div className="flex pl-5 rounded-lg  shadow-3xl  md:ml-2 bg-[#fff] pt-8 md:pl-12 flex-col justify-start items-start gap-12">
       <div className="flex flex-col gap-3 justify-start items-start">
         <div className="text-3xl font-semibold text-custom-orange	font-IBM">
           MY TEAM
