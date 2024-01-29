@@ -98,7 +98,7 @@ export default function NavBar() {
         </nav>
       ) : (
         <nav className="dark:bg-navWhite ">
-          <div className="2xl:px-16 flex flex-wrap items-center justify-between mx-auto p-4">
+          <div className="2xl:px-16 flex flex-wrap items-center justify-between mx-auto p-3">
             {/* Events now logo and name */}
             <Link href="/">
               <button className="button">
@@ -249,7 +249,7 @@ export default function NavBar() {
                   </div>
                 )}
 
-                {userActive && (
+                {/* {userActive && (
                   <div className="flex flex-col  text-black">
                     <Link href={"/createorganization"}>
                       <Item fn={toggleMenu} text="Host Event">
@@ -271,7 +271,7 @@ export default function NavBar() {
                       </button>
                     </Item>
                   </div>
-                )}
+                )} */}
               </ul>
             </div>
           </div>
@@ -355,10 +355,12 @@ export default function NavBar() {
                         </div>
                       </a>
                     </div>
-                    <div className="items-center gap-2 text-xl flex px-4 py-2 font-medium  text-gray-700 rounded-t-lg bg-gray-50 dark:bg-gray-800 dark:text-white">
-                      <MdOutlineLogout />
-                      logout
-                    </div>
+                    <button onClick={clickLogoutBtn}>
+                      <div className="items-center gap-2 text-xl flex px-4 py-2 font-medium  text-gray-700 rounded-t-lg bg-gray-50 dark:bg-gray-800 dark:text-white">
+                        <MdOutlineLogout />
+                        logout
+                      </div>
+                    </button>
                   </div>
                 </div>
               </div>

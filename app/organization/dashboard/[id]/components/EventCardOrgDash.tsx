@@ -7,22 +7,31 @@ interface EventCardOrgDash {
   location: string;
   date: string;
   time: string;
+  isSlideBar: boolean;
 }
 
 function eventDashboardHandler() {}
-
 function EventCardOrgDash({
   img,
   name,
   location,
   date,
   time,
+  isSlideBar,
 }: EventCardOrgDash) {
   const values1 = name.length > 21 ? "md:mb-4 mb-0" : "md:mb-10 mb-0";
   const values2 = name.length > 21 ? "" : "mb:mt-4 mt-0";
   return (
-    <div className=" flex flex-col items-start  gap-2 md:gap-0 md:grid md:grid-cols-12 mr-3  rounded-[10px] bg-[#D9D9D9]">
-      <div className="md:col-span-4 h-60 overflow-hidden rounded-l-lg">
+    <div
+      className={` flex ${
+        isSlideBar ? "2xl:w-1/2 md:w-11/12 md:h-60 sm:h-20   " : ""
+      }   flex-col items-start h-fit  gap-2 md:gap-0 md:grid md:grid-cols-12 mr-3  rounded-[10px] bg-[#D9D9D9]`}
+    >
+      <div
+        className={`md:col-span-4 md:h-60 sm:h-20   overflow-hidden rounded-l-lg 
+        ${isSlideBar ? "lg:block md:hidden " : "block"}
+           `}
+      >
         <Image
           className="object-center rounded-[10px]"
           src={`/${img}`}
@@ -33,7 +42,10 @@ function EventCardOrgDash({
       </div>
 
       <div
-        className={` md:col-span-5 ${values1} md:grid md:grid-rows-9  md:ml-5 ml-2`}
+        className={`  ${values1} md:grid ${
+          isSlideBar ? "lg:col-span-5 md:col-span-8" : "md:col-span-5"
+        }
+        md:grid-rows-9  md:ml-5 ml-2`}
       >
         <div
           className={` ml-2  ${values2} font-mono text-[#353535] text-2xl font-bold	row-span-3`}
@@ -78,10 +90,14 @@ function EventCardOrgDash({
         </div>
       </div>
 
-      <div className="md:col-span-3  md:ml-0 ml-2 md:mb-0 mb-2">
+      <div
+        className={` ${
+          isSlideBar ? "lg:col-span-3 md:col-span-4" : "md:col-span-3"
+        }  md:ml-0 ml-2 md:mb-0 mb-2`}
+      >
         <button
           onClick={() => eventDashboardHandler()}
-          className=" hover:bg-[#D47165] font-mono bg-custom-orange w-30 lg:p-2 p-1 rounded-[29px] text-white bg-custom text-[13px] font-medium md:mt-4 mt-0"
+          className=" hover:bg-[#D47165] font-mono bg-custom-orange w-30 lg:p-2 md:px-2 p-1 rounded-[29px] text-white bg-custom text-[13px] font-medium md:mt-4 mt-0"
         >
           <div className="justify-center flex gap-3">
             <svg
@@ -164,7 +180,7 @@ function EventCardOrgDash({
                 />
               </g>
             </svg>
-            Event Dashboard
+            Dashboard
           </div>
         </button>
       </div>

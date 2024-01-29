@@ -22,36 +22,36 @@ export default function MyTeam() {
       </div>
       <div className="w-full border-[1px] border-black"></div>
       <div className=" mb-5 w-full 2xl:w-2/5 xl:w-3/4 flex flex-col gap-4 justify-start md:px-6 px-0 items-start  rounded-xl">
-        {team.length === 0 ? (
+        {/* {team.length === 0 ? (
           <EmptyStateComponent message="No user in the organization" />
         ) : (
-          <>
-            <PersonDetailsBar
-              name="ruchith"
-              email="ruchithsamarawickrama.sg@gmail.com"
-            />
-            <PersonDetailsBar
-              name="ruchith"
-              email="ruchithsamarawickrama.sg@gmail.com"
-            />{" "}
-            <PersonDetailsBar
-              name="ruchith"
-              email="ruchithsamarawickrama.sg@gmail.com"
-            />
-            <PersonDetailsBar
-              name="ruchith"
-              email="ruchithsamarawickrama.sg@gmail.com"
-            />{" "}
-            <PersonDetailsBar
-              name="ruchith"
-              email="ruchithsamarawickrama.sg@gmail.com"
-            />
-            <PersonDetailsBar
-              name="ruchith"
-              email="ruchithsamarawickrama.sg@gmail.com"
-            />
-          </>
-        )}
+          <> */}
+        <PersonDetailsBar
+          name="ruchith"
+          email="ruchithsamarawickrama.sg@gmail.com"
+        />
+        <PersonDetailsBar
+          name="ruchith"
+          email="ruchithsamarawickrama.sg@gmail.com"
+        />{" "}
+        <PersonDetailsBar
+          name="ruchith"
+          email="ruchithsamarawickrama.sg@gmail.com"
+        />
+        <PersonDetailsBar
+          name="ruchith"
+          email="ruchithsamarawickrama.sg@gmail.com"
+        />{" "}
+        <PersonDetailsBar
+          name="ruchith"
+          email="ruchithsamarawickrama.sg@gmail.com"
+        />
+        <PersonDetailsBar
+          name="ruchith"
+          email="ruchithsamarawickrama.sg@gmail.com"
+        />
+        {/* </>
+        )} */}
       </div>
     </div>
   );
