@@ -21,19 +21,8 @@ export default function LogIn() {
 
           <CreatAccountText />
         </div>
-        {/* <div className=" invisible md:visible col-span-1 overflow-hidden h-auto	">
-          <Image src={"/login.jpg"} alt={"event-img"} width={1000} height={1} />
-        </div> */}
 
-        <div className="md:w-1/2 ">
-          <Image
-            src="/ReUsableComponentData/login.jpg"
-            alt="Man"
-            width={700}
-            height={1}
-            className=" h-screen w-screen  hidden md:sm:block"
-          />
-        </div>
+        <div className="md:w-1/2 max-md:hidden  md:col-span-1  overflow-hidden	bg-[url('/login.jpg')] bg-no-repeat bg-cover  bg-center"></div>
       </div>
       <Footer />
     </>

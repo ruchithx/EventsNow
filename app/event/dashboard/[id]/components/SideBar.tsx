@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import Dashboard from "@/components/Dashboard";
-import Dashboard_Btn from "@/components/Dashboard_Btn";
+import Dashboard from "@/app/organization/dashboard/[id]/components/DashboardSide";
+import Dashboard_Btn from "@/app/organization/dashboard/[id]/components/Dashboard_Btn";
 import { useEvent } from "../EventDashContext";
 
 export default function SideBar() {
