@@ -2,11 +2,13 @@ import NavBar from "@/components/NavBar";
 import React from "react";
 import Footer from "@/components/Footer";
 import Image from "next/image";
-import BestEvent from "@/components/BestEvent";
+// import BestEvent from "@/components/BestEvent";
 
 export default function page() {
   return (
     <div>
+      <NavBar />
+
       <div className="xl:h-[600px] md:h-[400px] w-full bg-[url('/mainphoto.png')] bg-no-repeat bg-cover bg-center">
         <div className="flex-auto w-full h-[213px] flex-col shrink-0 text-white text-center xl:text-6xl md:text-4xl sm:text-2xl md:py-40 xl:pt-56 py-20 px-20 font-['Khand'] font-semibold">
           "Creating memorable moments through expert event management."
@@ -58,7 +60,7 @@ export default function page() {
         </div>
       </div>
 
-      <div className='mt-6 text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:text-2xl md:mt-12 font-semibold sm:mt-12'>
+      <div className='xl:-mt-52 mt-6 text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:text-2xl md:mt-12 font-semibold sm:mt-12'>
         OUR STORY
       </div>
 
