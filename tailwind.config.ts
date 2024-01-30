@@ -24,8 +24,8 @@ const config: Config = {
         initial: "#F9EBE9",
         myBrown: "#AC736D",
         "custom-orange": "#D47151",
-        "custom-green": "#70B891",
-        "custom-darkgreen": "#547345",
+        "custom-admin": "#70B891",
+        "custom-green": "#4e8171",
         "custom-blue": "#455273",
         "custom-lightorange": "#F9EBE9",
         profileName: "#505050",
@@ -33,10 +33,12 @@ const config: Config = {
         eventBrown: "#764C35",
         navWhite: "#D7CFC7",
         "custom-gray": "#F8F8F8",
+        dashboard: "#E9E9E9",
       },
       fontFamily: {
         Inter: ["Inter", "sans - serif"],
         khand: ["Khand", "sans-serif"],
+        IBM: ["IBM Plex Mono", "monospace"],
       },
       height: {
         "394": "394px",

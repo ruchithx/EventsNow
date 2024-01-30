@@ -8,13 +8,17 @@ export default function PersonDetailsBar({ name, email }: PresonDetailsBar) {
   function editDetails() {}
   return (
     //parent div eken 3n 2k kiyala gaththe meka.wenas krla gann onnm.mn dila tynne meke mulu loku div ekatam col-span-2 kiyala-ashan
-    <div className=" mx-10 my-4 item-center  bg-[#D9D9D9] w-full col-span-2 grid grid-cols-12 items-center  rounded-[5px]">
-      <div className="text-base font-light col-span-5	pl-10">{name}</div>
-      <div className="text-base font-light col-span-6	">{email}</div>
-      <div className="col-span-1 grid ">
+    <div className=" item-center flex-wrap  bg-[#D9D9D9] w-full flex justify-between  xl:grid xl:grid-cols-12 items-center  rounded-[5px]">
+      <div className="text-base font-light md:ml-2 ml-0  md:mb-0 mb-1 xl:col-span-5	">
+        {name}
+      </div>
+      <div className="text-base font-light   xl:col-span-6	mr-2 md:mb-0 mb-1">
+        {email}
+      </div>
+      <div className="xl:col-span-1  grid ">
         <button
           onClick={editDetails}
-          className="bg-[#4E5381] hover:bg-[#5E659F] h-[34px] justify-self-end rounded-[5px] w-[116px]"
+          className={`bg-custom-orange    justify-self-end rounded-[5px] `}
         >
           <div className="flex justify-around pl-1">
             <svg
@@ -34,7 +38,7 @@ export default function PersonDetailsBar({ name, email }: PresonDetailsBar) {
                 />
               </svg>
             </svg>
-            <div className="text-white font-mono self-center text-center text-base font-medium mr-5">
+            <div className="text-white font-mono self-center text-center text-base font-medium mr-2">
               Edit
             </div>
           </div>

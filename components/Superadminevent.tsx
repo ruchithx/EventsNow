@@ -29,7 +29,7 @@ export default function Superadminevents({
   const margin = EventName.length > 14 ? "mt-4" : " mt-0";
 
   return (
-    <div className="grid grid-cols-3 m-4 w-[1192px] h-[12.15rem] rounded-lg bg-[#D9D9D9]">
+    <div className="grid grid-cols-3 m-4 w-[960px] h-[12.15rem] rounded-lg bg-[#D9D9D9]">
       <div className="overflow-hidden rounded-lg">
         <Image src={`/${image}`} alt="hay" width={410} height={200} />
       </div>
@@ -40,15 +40,15 @@ export default function Superadminevents({
             {EventName}
           </div>
 
-          <div className="pt-2">
+          <div className="pt-1">
             <button
               onClick={() => info()}
-              className="w-20 h-7 rounded-3xl bg-[#D47151] shrink-0 flex"
+              className="w-60 h-10 rounded-3xl bg-custom-green shrink-0 flex"
             >
               <div className="py-0.5 pl-1.5 pt-1">
-                <Image src={"Sendfill.svg"} alt="info" width={80} height={80} />
+                <Image src="/Sendfill.svg" alt="info" width={40} height={36} />
               </div>
-              <div className="w-40 h-4 text-white text-xs font-medium py-1.5 pl-0 mr-2 ">
+              <div className="w-40 h-4 text-white text-lg font-medium py-1.5 pl-0 mr-2 ">
                 {buttonDesc}
               </div>
             </button>
@@ -57,7 +57,7 @@ export default function Superadminevents({
 
         <div className={`flex items-center h-auto ${margin}`}>
           <div className="w-8 h-8">
-            <Image src="pinfill.svg" alt="print" width={32} height={32} />
+            <Image src="/pinfill.svg" alt="print" width={32} height={32} />
           </div>
           <div className="text-[#353C4E] text-center text-base font-normal leading-4 pl-4 ">
             {Location}
@@ -66,7 +66,7 @@ export default function Superadminevents({
 
         <div className={`flex ${margin}`}>
           <div className="w-8 h-8">
-            <Image src="Datelight.svg" alt="print" width={32} height={32} />
+            <Image src="/Datelight.svg" alt="print" width={32} height={32} />
           </div>
           <div className="text-[#353C4E] text-center text-base font-normal leading-4 pl-4 pt-2 ">
             {Date}
@@ -79,7 +79,7 @@ export default function Superadminevents({
 
         <div className={`flex items-center ${margin}`}>
           <div className="w-8 h-8">
-            <Image src="Clockfill.svg" alt="print" width={32} height={32} />
+            <Image src="/Clockfill.svg" alt="print" width={32} height={32} />
           </div>
           <div className="text-[#353C4E] text-center text-base font-normal leading-4 pl-4 ">
             {Time}
@@ -88,7 +88,7 @@ export default function Superadminevents({
 
         <div className={`flex ${margin}`}>
           <div className="w-8 h-8">
-            <Image src="Lineup.svg" alt="print" width={32} height={32} />
+            <Image src="/Lineup.svg" alt="print" width={32} height={32} />
           </div>
           <div className="text-[#353C4E] text-center text-base font-normal leading-4 pl-4 pt-2">
             {Ratings}

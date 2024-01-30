@@ -2,10 +2,7 @@ const mongoose = require("mongoose");
 
 const validator = require("validator");
 
-
-
 const organizationSchema = new mongoose.Schema({
-
   fullName: {
     type: String,
     required: [true, "Please enter your full name"],
@@ -14,30 +11,31 @@ const organizationSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please select number type"],
   },
-  number:{
-    type:String,
-    required:[true,"please enter id number"],
+  number: {
+    type: String,
+    required: [true, "please enter id number"],
   },
-  companyName:{
-    type:String,
-    required:[true,"please enter company name"],
+  companyName: {
+    type: String,
+    required: [true, "please enter company name"],
   },
-  address:{
-    type:String,
-    required:[true,"please enter address"],
+  address: {
+    type: String,
+    required: [true, "please enter address"],
   },
   phoneNumber: {
     type: String,
-    required:[true,"please enter phone number"],
+    required: [true, "please enter phone number"],
   },
   email: {
     type: String,
-    unique: true,
     required: [true, "Please provide your email"],
     lowercase: true,
     validate: [validator.isEmail, "Please provide valid email"],
-  }
-  
+  },
+  isActive: {
+    type: Boolean,
+  },
 });
 
 // userSchema.pre("save", async function (next) {
@@ -52,5 +50,7 @@ const organizationSchema = new mongoose.Schema({
 //   next();
 // });
 
-const Organization = mongoose.models.Organization || mongoose.model("Organization", organizationSchema);
+const Organization =
+  mongoose.models.Organization ||
+  mongoose.model("Organization", organizationSchema);
 export default Organization;
