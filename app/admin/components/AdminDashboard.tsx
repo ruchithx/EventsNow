@@ -3,7 +3,7 @@ import { useState } from "react";
 import React from "react";
 import SuperadminButton from "@/components/SuperadminButton";
 import SuperadminPages from "@/components/SuperadminPages";
-import Org_RequestHandle from "@/components/Org_RequestHandle";
+import Org_RequestHandle from "@/app/profile/components/Org_RequestHandle";
 import Available_Orgs from "@/components/Available_Orgs";
 import PersonDetailsBar from "@/components/PersonDetailsBar";
 import Superadminevents from "@/components/Superadminevent";

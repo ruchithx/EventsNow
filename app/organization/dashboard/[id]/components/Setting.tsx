@@ -1,6 +1,6 @@
 import React from "react";
 import { useOrg } from "../OrgContext";
-import ProfileSettings from "@/components/ProfileSettings";
+import ProfileSettings from "@/app/profile/components/ProfileSettings";
 
 export default function Setting() {
   const { isSlideBar } = useOrg();
