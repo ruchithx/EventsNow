@@ -1,12 +1,15 @@
 import React from "react";
 
 import Image from "next/image";
+
 interface superadminpages {
-  text: String;
   title: String;
   description: String;
   customComponent: React.ReactNode;
+  text: String;
 }
+
+const handleClick = () => {};
 
 export default function SuperadminPages({
   text,
@@ -17,31 +20,38 @@ export default function SuperadminPages({
   const showSearchBar = title !== "All organization requests";
 
   return (
-    <div className="flex flex-col ms-12 md:ms-24 lg:ms-24">
-      <div className="flex flex-col md:flex-row lg:flex-row justify-center md:justify-between lg:justify-between">
-        <div className="flex flex-col p-4 justify-start ">
-          <div className="text-custom-darkgreen text-4xl font-bold mb-8">
+    <div
+      className="flex flex-col ms-0 sm:ms-2 cursor-pointer "
+      onClick={handleClick}
+    >
+      <div className="flex flex-col md:flex-row lg:flex-row sm:justify-center md:justify-between lg:justify-between mt-8">
+        <div className="flex flex-col p-4 sm:justify-center md:justify-start  lg:justify-start xl:ms-12 ">
+          <div className="text-profileName text-4xl font-semibold mb-8 ">
             {title}
           </div>
-          <div className="text-normal font-normal">{description}</div>
+          <div className="text-normal font-normal text-gray-600 italic ">
+            {description}
+          </div>
         </div>
 
         {showSearchBar && (
-          <div className="w-72 bg-gray-100  flex-col flex justify-start p-2 rounded-lg border-2 border-gray-400 max-h-20 mt-8">
-            <div className="ms-4 mb-4">
-              <div className="font-normal text-gray-500 mb-2">{text}</div>
-              <div className="flex flex-row border-2 border-gray-400 bg-white rounded-lg w-52  h-6">
+          <div className="sm:w-64 md:w-80 lg:w-80 bg-gray-100  flex-col flex  p-1 rounded-lg border-2 border-gray-400   max-h-32 mt-0 sm:mt-8 lg:shadow-md md:shadow-none sm:shadow-none ms-6 sm:ms-0 mr-4">
+            <div className="ms-4 mb-4 mt-0 sm:mt-2 ">
+              <div className="sm:hidden md:flex lg:flex font-normal text-gray-500 mb-4">
+                {text}
+              </div>
+              <div className="flex flex-row border-2 border-gray-400 bg-white rounded-lg sm:w-36 md:w-64 lg:w-64 h-10 md:h-8">
+                <input
+                  type="text"
+                  placeholder={"Search....."}
+                  className="flex-1 focus:outline-none rounded-lg text-xs ms-2 "
+                />
                 <Image
                   src="/ReUsableComponentData/Search (1).svg"
                   width={20}
                   height={14}
                   alt="search"
-                  className="bg-white ms-2"
-                />
-                <input
-                  type="text"
-                  placeholder={"type and search"}
-                  className="flex-1 focus:outline-none rounded-lg text-xs ms-2 "
+                  className="bg-white mr-2"
                 />
               </div>
             </div>
@@ -49,7 +59,9 @@ export default function SuperadminPages({
         )}
       </div>
 
-      <div className="w-12 md:w-3/4 lg:w-3/4 ms-0">{customComponent}</div>
+      <div className="w-12 md:w-3/4 lg:w-3/4 ms-4 mt-6 xl:ms-12 ">
+        {customComponent}
+      </div>
     </div>
   );
 }

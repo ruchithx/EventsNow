@@ -1,20 +1,23 @@
 "use client";
 import React from "react";
 
-interface superadminbutton {
-  onClick: () => void;
+interface Dashboard_Btn {
+  onClick?: () => void;
   text: string;
+  icon: JSX.Element;
 }
 
-export default function SuperadminButton({ onClick, text }: superadminbutton) {
+export default function Dashboard_Btn({ onClick, text, icon }: Dashboard_Btn) {
   return (
-    <button
+    <div
+      className="flex flex-row w-52 mb-12 sm:ms-12 md:ms-20 lg:ms-12  "
       onClick={onClick}
-      className=" w-full px-[70px] hover:opacity-80  flex justify-center items-center  h-12   rounded-lg bg-custom-admin my-12 mt-4"
     >
-      <div className=" font-sans text-center	text-base font-semibold text-custom-gray  leading-normal">
+      <div className="mt-1">{icon}</div>
+
+      <div className="sm:flex font-sans lg:text-base md:text-sm text-sm font-semibold text-gray-600 leading-normal ml-2 hover:text-black">
         {text}
       </div>
-    </button>
+    </div>
   );
 }

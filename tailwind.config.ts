@@ -47,6 +47,11 @@ const config: Config = {
         "63": "63px",
         "761": "761px",
       },
+      boxShadow: {
+        "3xl": " 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset",
+        normalComponent:
+          "0px 4px 4px 0px rgba(212, 113, 81, 0.25) inset, 0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+      },
     },
   },
   plugins: [],
