@@ -51,13 +51,13 @@ export default function SideBar() {
             isSlideBar={isSlideBar}
             img="myevents.svg"
             text="My Events"
-            onClick={() => handleReport()}
+            onClick={() => handleMyTeam()}
           />
           <Dashboard_Btn
             isSlideBar={isSlideBar}
             img="mytickets.svg"
             text="My Tickets"
-            onClick={() => handleMyTeam()}
+            onClick={() => handleReport()}
           />
           <Dashboard_Btn
             isSlideBar={isSlideBar}
