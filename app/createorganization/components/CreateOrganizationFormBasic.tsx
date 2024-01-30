@@ -1,8 +1,9 @@
+"use client";
 import React, { useState } from "react";
-// import 'react-phone-number-input/style.css'
-import PhoneInput from "react-phone-number-input";
-
-import { error } from "../../../util/Toastify";
+import "react-phone-number-input/style.css";
+import { z } from "zod";
+import { useRouter } from "next/navigation";
+import { error, success } from "../../../util/Toastify";
 import {
   Dropdown,
   DropdownTrigger,
@@ -18,42 +19,39 @@ export default function CreateOrganizationFormBasic() {
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
+  const router = useRouter();
+  const validateOrganization = z.object({
+    fullName: z
+      .string()
+      .min(1, "Enter your full name ")
+      .regex(/^[a-zA-Z ]*$/, {
+        message: "Cannot enter number or symbol for name",
+      }),
+    numberType: z.string().min(1, { message: "select ID number type" }),
+    number: z
+      .string()
+      .min(1, { message: "Enter your indentification card number  " }),
+    companyName: z.string().min(1, { message: "Enter your company name" }),
+    address: z.string().min(1, { message: "Enter your address" }),
+    phoneNumber: z.string().min(1, { message: "Enter your phone number " }),
+    email: z.string().email({ message: "Invalid email" }),
+  });
 
   async function sendOrganizationData() {
-    try {
-      const data = {
-        fullName,
-        numberType,
-        number,
-        companyName,
-        address,
-        phoneNumber,
-        email,
-      };
+    const data = {
+      fullName,
+      numberType,
+      number,
+      companyName,
+      address,
+      phoneNumber,
+      email,
+    };
 
-      // if (!firstName || !lastName || !email || !password || !passwordConfirm) {
-      //   error("Please fill the form");
-      //   return;
-      // }
-
-      const organization = await fetch(
-        "http://localhost:3000/api/v1/createOrganization/exist",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email }),
-        }
-      );
-      // console.log(organization.ok);
-      if (organization.ok) {
-        error("Already exist a organization for this email");
-        return;
-      }
-
+    const result = validateOrganization.safeParse(data);
+    if (result.success) {
       const res = await fetch(
-        "http://localhost:3000/api/v1/createOrganization",
+        "http://localhost:3000/api/v1/organization/createOrganization",
         {
           method: "POST",
           mode: "cors",
@@ -62,9 +60,11 @@ export default function CreateOrganizationFormBasic() {
       );
 
       if (!res.ok) {
-        error("There is a error for registartion");
+        error("There is an error for registration");
         return;
       }
+      const id = await res.json();
+      success("registration data sent succesfully");
 
       setFullName("");
       setNumberType("");
@@ -73,8 +73,25 @@ export default function CreateOrganizationFormBasic() {
       setAddress("");
       setPhoneNumber("");
       setEmail("");
-    } catch (e) {
-      console.log(e);
+      router.push(`/organization/dashboard/${id.id}`, { scroll: false });
+    } else {
+      const formattedError = result.error.format();
+
+      if (formattedError.fullName?._errors) {
+        error(String(formattedError.fullName?._errors));
+      } else if (formattedError.numberType) {
+        error(String(formattedError.numberType?._errors));
+      } else if (formattedError.number) {
+        error(String(formattedError.number?._errors));
+      } else if (formattedError.companyName) {
+        error(String(formattedError.companyName?._errors));
+      } else if (formattedError.address) {
+        error(String(formattedError.address?._errors));
+      } else if (formattedError.phoneNumber) {
+        error(String(formattedError.phoneNumber?._errors));
+      } else if (formattedError.email) {
+        error(String(formattedError.email._errors));
+      } else error("an unknown error occur in validation process");
     }
   }
 
@@ -171,8 +188,8 @@ export default function CreateOrganizationFormBasic() {
         <input
           required
           type="text"
-          name="address"
-          id="address"
+          name="phoneNumber"
+          id="phoneNumber"
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
           className=" my-5 w-full h-8 block flex-1  bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:outline-custom-orange sm:text-sm sm:leading-6 border-2 rounded-[12px] pl-4"
@@ -192,7 +209,7 @@ export default function CreateOrganizationFormBasic() {
 
         <button
           type="submit"
-          className="flex text-center mt-10 mb-10 xl:mb-20 py-2 px-4 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono "
+          className="flex button text-center mt-10 mb-10 xl:mb-20 py-2 px-4 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono "
         >
           SEND TO APPROVAL
         </button>

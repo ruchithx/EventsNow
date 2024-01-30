@@ -16,7 +16,10 @@ export default function SignupSocial() {
         <div className="h-[1px] bg-black self-center col-span-5"></div>
       </div>
       <div className="grid grid-cols-2 justify-items-center">
-        <button className="mx-3 mb-3 mt-4 justify-self-end hover:bg-custom-lightorange rounded-[10px] border-solid border-[#D7CFC7] border-[1px]">
+        <button
+          onClick={() => signIn("facebook")}
+          className="mx-3 mb-3 mt-4 justify-self-end hover:bg-custom-lightorange rounded-[10px] border-solid border-[#D7CFC7] border-[1px]"
+        >
           <div className="flex">
             <svg
               className="self-center my-1 ml-4 mr-3"

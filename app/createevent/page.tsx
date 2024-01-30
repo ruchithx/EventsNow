@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 export default function page() {
   return (
     <div>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className="grid lg:grid-cols-2">
         <div className="lg:h-screen lg:overflow-scroll"><EventRegisterFormBasic /></div>
         
