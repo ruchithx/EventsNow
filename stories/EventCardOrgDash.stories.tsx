@@ -1,5 +1,5 @@
 import type { ComponentStory, Meta, StoryObj } from "@storybook/react";
-import EventCardOrgDash from "./../components/EventCardOrgDash";
+import EventCardOrgDash from "../app/organization/dashboard/[id]/components/EventCardOrgDash";
 
 const meta: Meta<typeof EventCardOrgDash> = {
   title: "Components/EventCardOrgDash",

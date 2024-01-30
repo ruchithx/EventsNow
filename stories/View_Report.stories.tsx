@@ -1,6 +1,6 @@
 import type { ComponentStory, Meta, StoryObj } from "@storybook/react";
 
-import View_Report from "../components/View_Report";
+import View_Report from "../app/organization/dashboard/[id]/components/View_Report";
 
 const meta: Meta<typeof View_Report> = {
   title: "Components/Button/View_Report",

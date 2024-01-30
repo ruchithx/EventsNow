@@ -22,6 +22,7 @@ import { AiOutlineDownCircle } from "react-icons/ai";
 import { AiOutlineUpCircle } from "react-icons/ai";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { MdOutlineLogout } from "react-icons/md";
+import { IoMdClose } from "react-icons/io";
 
 import { AiFillHome } from "react-icons/ai";
 import { usePathname } from "next/navigation";
@@ -98,7 +99,7 @@ export default function NavBar() {
         </nav>
       ) : (
         <nav className="dark:bg-navWhite ">
-          <div className="2xl:px-16 flex flex-wrap items-center justify-between mx-auto p-4">
+          <div className="2xl:px-16 flex flex-wrap items-center justify-between mx-auto p-3">
             {/* Events now logo and name */}
             <Link href="/">
               <button className="button">
@@ -201,17 +202,21 @@ export default function NavBar() {
           <div
             className={
               isMenuOpen
-                ? "fixed shadow-2xl  left-0 top-0 w-[65%] sm:hidden h-screen bg-[#ecf0fc] p-5 ease-in duration-50"
+                ? "fixed shadow-2xl  right-0 top-0 w-[65%] sm:hidden h-screen bg-[#ecf0fc] p-5 ease-in duration-50"
                 : "fixed left-[100%] top-0 p-10 ease-in duration-50"
             }
           >
-            <div className="w-full flex items-center justify-end ">
+            <div
+              className={`w-full ${
+                userActive ? "hidden" : "block"
+              } flex items-center justify-end `}
+            >
               <div onClick={() => toggleMenu()} className="cursor-pointer ">
-                <AiOutlineCloseCircle size={25} />
+                <IoMdClose size={25} />
               </div>
             </div>
             {userActive && (
-              <div className="flex justify-center mt-5">
+              <div className="flex justify-between items-center mt-5">
                 <Image
                   src={`/ReUsableComponentData/profilpic.jpg`}
                   alt="profile picture"
@@ -219,6 +224,9 @@ export default function NavBar() {
                   height={20}
                   className="rounded-full"
                 />
+                <div onClick={() => toggleMenu()} className="cursor-pointer ">
+                  <IoMdClose size={30} />
+                </div>
               </div>
             )}
 
@@ -261,18 +269,25 @@ export default function NavBar() {
                         <FaUser />
                       </Item>
                     </Link>
-                    <Item fn={toggleMenu}>
-                      <button
-                        onClick={clickLogoutBtn}
-                        className="flex gap-3 items-center"
-                      >
-                        <RiLogoutCircleFill />
-                        <div>Logout</div>
-                      </button>
-                    </Item>
                   </div>
                 )}
               </ul>
+              {userActive && (
+                <div className="mt-5 flex justify-center w-full">
+                  <Login
+                    image="Sign_in.svg"
+                    titleOfbutton="LOGOUT"
+                    fn={clickLogoutBtn}
+                  />
+                </div>
+              )}
+              {/* <button
+                onClick={clickLogoutBtn}
+                className="flex gap-3 items-center"
+              >
+                <RiLogoutCircleFill />
+                <div>Logout</div>
+              </button> */}
             </div>
           </div>
           <div className="relative">
@@ -355,10 +370,12 @@ export default function NavBar() {
                         </div>
                       </a>
                     </div>
-                    <div className="items-center gap-2 text-xl flex px-4 py-2 font-medium  text-gray-700 rounded-t-lg bg-gray-50 dark:bg-gray-800 dark:text-white">
-                      <MdOutlineLogout />
-                      logout
-                    </div>
+                    <button onClick={clickLogoutBtn}>
+                      <div className="items-center gap-2 text-xl flex px-4 py-2 font-medium  text-gray-700 rounded-t-lg bg-gray-50 dark:bg-gray-800 dark:text-white">
+                        <MdOutlineLogout />
+                        logout
+                      </div>
+                    </button>
                   </div>
                 </div>
               </div>
