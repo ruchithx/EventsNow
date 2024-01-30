@@ -4,8 +4,8 @@ import React from "react";
 export default function DashboardDetails() {
   return (
     <div>
-      <div className="bg-[#D9D9D9] rounded-lg items-center h-full p-3 flex flex-col gap-3 ">
-        <div>
+      <div className="bg-[#D9D9D9] rounded-lg items-center  h-full py-3 px-4 flex flex-col  ">
+        <div className="flex flex-col items-start gap-3 justify-start">
           <Image
             src="/bestevent.png"
             alt="organization dp"
@@ -13,19 +13,27 @@ export default function DashboardDetails() {
             className="rounded-lg"
             height={300}
           />
-        </div>
-        <div className="flex gap-2  flex-col items-start">
-          <div className="md:text-lg lg:text-xl rounded-full gap-2 px-2  items-center bg-custom-orange flex text-[#353535]">
-            <Image
-              src="/Send_fill.svg"
-              alt="organization name"
-              width={24}
-              height={24}
-            />
+          <div className="md:text-lg lg:text-2xl  gap-2   items-center  flex text-[#353535]">
             Stein Studios
           </div>
-          <div className="md:text-base lg:text-lg font-medium">Event=5</div>
-          <div className="md:text-base lg:text-lg font-medium">Member=5</div>
+          <div className="md:text-base lg:text-base flex justify-center items-center  gap-2">
+            <Image
+              src="/Group_light.svg"
+              alt="user count"
+              width={30}
+              height={30}
+            />
+            User Count - 8
+          </div>
+          <div className="md:text-base lg:text-base flex justify-center items-center gap-3">
+            <Image
+              src="/Bookmark_light.svg"
+              alt="user count"
+              width={26}
+              height={26}
+            />
+            Event Count - 2
+          </div>
         </div>
       </div>
     </div>

@@ -29,10 +29,16 @@ function OrgContextProvider({ children }) {
     setStatus("report");
     setIsDashboardOpen(false);
   }
+  function handleSetting() {
+    setStatus("setting");
+    setIsDashboardOpen(false);
+  }
+
   return (
     <orgContext.Provider
       value={{
         events,
+        handleSetting,
         isSlideBar,
         setIsSlideBar,
         isDashboardOpen,

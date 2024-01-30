@@ -14,6 +14,7 @@ export default function SideBar() {
     handleMyEvent,
     handleReport,
     handleMyTeam,
+    handleSetting,
   } = useOrg();
   return (
     <div>
@@ -56,6 +57,12 @@ export default function SideBar() {
             img="Team.svg"
             text="Team"
             onClick={() => handleMyTeam()}
+          />
+          <Dashboard_Btn
+            isSlideBar={isSlideBar}
+            img="Setting_alt_line.svg"
+            text="Setting"
+            onClick={() => handleSetting()}
           />
         </div>
       </Dashboard>
