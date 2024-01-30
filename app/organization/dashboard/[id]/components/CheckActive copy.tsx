@@ -11,7 +11,7 @@ import { HiOutlineGlobeAlt } from "react-icons/hi";
 
 import { MdSpaceDashboard } from "react-icons/md";
 import Link from "next/link";
-import { Item } from "@/components/NavBar";
+import { Item } from "@/components/Navbar/NavBar";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import EmptyStateComponent from "@/components/EmptyStateComponent";
 import OrganizationRequestPending from "@/components/OrganizationRequestPending";

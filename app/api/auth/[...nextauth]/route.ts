@@ -57,23 +57,23 @@ export const authOptions: NextAuthOptions = {
       console.log("user", user);
       console.log("account", account);
 
-      // if (account?.provider === "google") {
-      //   const email = user?.email;
-      //   console.log("yes");
-      //   const data = await fetch("http://localhost:3000/api/v1/user/exist", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({ email }),
-      //   }).then((res) => res.json());
-      //   console.log(data);
+      if (account?.provider === "google") {
+        const email = user?.email;
+        console.log("yes");
+        const data = await fetch("http://localhost:3000/api/v1/user/exist", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }).then((res) => res.json());
+        console.log(data);
 
-      //   if (data.ok) {
-      //     error("Already exist this email");
-      //     return false;
-      //   }
-      // }
+        if (data.ok) {
+          error("Already exist this email");
+          return false;
+        }
+      }
 
       // if (account?.provider === "google") {
       //   console.log("google");

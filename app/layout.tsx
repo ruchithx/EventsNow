@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 import { ToastContainer } from "react-toastify";
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/Navbar/NavBar";
 
 export const metadata: Metadata = {
   title: "EventsNow",

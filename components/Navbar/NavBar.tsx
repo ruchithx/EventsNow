@@ -5,27 +5,27 @@ import NavBarButton from "./NavBarButton";
 import { getSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Login from "./Login";
 import Profile from "@/components/Profile";
 import Link from "next/link";
-import Spinner from "./Spinner";
+import Spinner from "../Spinner";
 import { AiOutlineMenu } from "react-icons/ai";
-import { AiOutlineCloseCircle } from "react-icons/ai";
+import { IoMdClose } from "react-icons/io";
+import Login from "../Login";
 import { MdContactless } from "react-icons/md";
+import { AiFillHome } from "react-icons/ai";
 import { RiLoginCircleFill } from "react-icons/ri";
 import { FaLock } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
 import { IoIosAddCircle } from "react-icons/io";
+
 import { RiLogoutCircleFill } from "react-icons/ri";
 import { AiOutlineClose } from "react-icons/ai";
 import { AiOutlineDownCircle } from "react-icons/ai";
 import { AiOutlineUpCircle } from "react-icons/ai";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { MdOutlineLogout } from "react-icons/md";
-import { IoMdClose } from "react-icons/io";
 
-import { AiFillHome } from "react-icons/ai";
-import { usePathname } from "next/navigation";
+import ResponsiveNavbar from "./ResponsiveNavbar";
 
 export default function NavBar() {
   const [userActive, setUserActive] = useState(false);
@@ -37,7 +37,6 @@ export default function NavBar() {
   const [showProfile, setShowProfile] = useState(false);
 
   function toggleMenu() {
-    console.log(!isMenuOpen);
     setIsMenuOpen(!isMenuOpen);
   }
 
@@ -290,6 +289,12 @@ export default function NavBar() {
               </button> */}
             </div>
           </div>
+          <ResponsiveNavbar
+            userActive={userActive}
+            isMenuOpen={isMenuOpen}
+            toggleMenu={toggleMenu}
+            clickLogoutBtn={clickLogoutBtn}
+          />
           <div className="relative">
             <div
               className={`absolute ${
