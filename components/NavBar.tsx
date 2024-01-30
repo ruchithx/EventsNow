@@ -22,6 +22,7 @@ import { AiOutlineDownCircle } from "react-icons/ai";
 import { AiOutlineUpCircle } from "react-icons/ai";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { MdOutlineLogout } from "react-icons/md";
+import { IoMdClose } from "react-icons/io";
 
 import { AiFillHome } from "react-icons/ai";
 import { usePathname } from "next/navigation";
@@ -201,17 +202,21 @@ export default function NavBar() {
           <div
             className={
               isMenuOpen
-                ? "fixed shadow-2xl  left-0 top-0 w-[65%] sm:hidden h-screen bg-[#ecf0fc] p-5 ease-in duration-50"
+                ? "fixed shadow-2xl  right-0 top-0 w-[65%] sm:hidden h-screen bg-[#ecf0fc] p-5 ease-in duration-50"
                 : "fixed left-[100%] top-0 p-10 ease-in duration-50"
             }
           >
-            <div className="w-full flex items-center justify-end ">
+            <div
+              className={`w-full ${
+                userActive ? "hidden" : "block"
+              } flex items-center justify-end `}
+            >
               <div onClick={() => toggleMenu()} className="cursor-pointer ">
-                <AiOutlineCloseCircle size={25} />
+                <IoMdClose size={25} />
               </div>
             </div>
             {userActive && (
-              <div className="flex justify-center mt-5">
+              <div className="flex justify-between items-center mt-5">
                 <Image
                   src={`/ReUsableComponentData/profilpic.jpg`}
                   alt="profile picture"
@@ -219,6 +224,9 @@ export default function NavBar() {
                   height={20}
                   className="rounded-full"
                 />
+                <div onClick={() => toggleMenu()} className="cursor-pointer ">
+                  <IoMdClose size={30} />
+                </div>
               </div>
             )}
 
@@ -249,7 +257,7 @@ export default function NavBar() {
                   </div>
                 )}
 
-                {/* {userActive && (
+                {userActive && (
                   <div className="flex flex-col  text-black">
                     <Link href={"/createorganization"}>
                       <Item fn={toggleMenu} text="Host Event">
@@ -261,18 +269,25 @@ export default function NavBar() {
                         <FaUser />
                       </Item>
                     </Link>
-                    <Item fn={toggleMenu}>
-                      <button
-                        onClick={clickLogoutBtn}
-                        className="flex gap-3 items-center"
-                      >
-                        <RiLogoutCircleFill />
-                        <div>Logout</div>
-                      </button>
-                    </Item>
                   </div>
-                )} */}
+                )}
               </ul>
+              {userActive && (
+                <div className="mt-5 flex justify-center w-full">
+                  <Login
+                    image="Sign_in.svg"
+                    titleOfbutton="LOGOUT"
+                    fn={clickLogoutBtn}
+                  />
+                </div>
+              )}
+              {/* <button
+                onClick={clickLogoutBtn}
+                className="flex gap-3 items-center"
+              >
+                <RiLogoutCircleFill />
+                <div>Logout</div>
+              </button> */}
             </div>
           </div>
           <div className="relative">

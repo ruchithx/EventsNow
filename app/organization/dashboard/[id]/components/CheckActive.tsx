@@ -11,6 +11,8 @@ import { HiOutlineGlobeAlt } from "react-icons/hi";
 import { AiOutlineRightCircle } from "react-icons/ai";
 import { BiArrowFromLeft } from "react-icons/bi";
 import { BiArrowFromRight } from "react-icons/bi";
+import { CgCloseR } from "react-icons/cg";
+import { MdClose } from "react-icons/md";
 
 import { MdSpaceDashboard } from "react-icons/md";
 import Link from "next/link";
@@ -34,6 +36,7 @@ export default function CheckActive() {
     handleReport,
     isDashboardOpen,
     setIsDashboardOpen,
+    handleSetting,
   } = useOrg();
 
   useEffect(function () {
@@ -102,19 +105,32 @@ export default function CheckActive() {
               <DashboardDetails />
             </div>
           </div>
+          {/* ${
+              isDashboardOpen ? "left-[65%]" : "left-0"
+            }   */}
 
           <div
-            className={`fixed ${
-              isDashboardOpen ? "left-[65%]" : "left-0"
-            }  top-40`}
+            className={`fixed 
+            -left-14
+            top-40`}
           >
             <button onClick={() => setIsDashboardOpen(!isDashboardOpen)}>
-              <div className="mr-5 h-10  md:hidden  flex justify-center items-center rounded-full   ">
-                {isDashboardOpen ? (
+              <div className="  mr-5 h-10  md:hidden  flex justify-center items-center rounded-full   ">
+                {/* {isDashboardOpen ? (
                   <BiArrowFromRight size={25} />
                 ) : (
                   <BiArrowFromLeft size={25} />
-                )}
+                )} */}
+                <div className="bg-myBrown w-[100px] h-[55px] flex items-center   rounded-full">
+                  <div className="bg-custom-orange w-[95px] h-[46px] flex justify-end pr-3 rounded-full">
+                    <Image
+                      src="/responsiveMenuBar.svg"
+                      alt="menu bar"
+                      width={20}
+                      height={20}
+                    />
+                  </div>
+                </div>
               </div>
             </button>
           </div>
@@ -122,34 +138,51 @@ export default function CheckActive() {
             <div
               className={
                 isDashboardOpen
-                  ? "absolute shadow-2xl flex flex-col  left-0 top-20 w-[65%] sm:hidden h-screen bg-[#ecf0fc] p-5 ease-in duration-50"
+                  ? "absolute shadow-2xl flex flex-col  left-0 top-20 w-[65%] sm:hidden h-fit bg-[#ecf0fc]  ease-in duration-50"
                   : "fixed left-[100%] top-0 p-10 ease-in duration-50"
               }
             >
-              <Dashboard_Btn
-                isSlideBar={isSlideBar}
-                img="Dashboard.svg"
-                text="Dashboard"
-                onClick={() => handleDashboard()}
-              />
-              <Dashboard_Btn
-                isSlideBar={isSlideBar}
-                img="event.svg"
-                text="Events"
-                onClick={() => handleMyEvent()}
-              />
-              <Dashboard_Btn
-                isSlideBar={isSlideBar}
-                img="report.svg"
-                text="Report"
-                onClick={() => handleReport()}
-              />
-              <Dashboard_Btn
-                isSlideBar={isSlideBar}
-                img="Team.svg"
-                text="Team"
-                onClick={() => handleMyTeam()}
-              />
+              {/* <div className="border-2 border-custom-orange w-fit p-1 rounded-lg ">
+                <MdClose size={20} />
+              </div> */}
+              <button onClick={() => setIsDashboardOpen(false)}>
+                <div className="mx-2 my-2 w-fit p-1 mb-3 ">
+                  {/* <MdClose size={20} /> */}
+                  <Image src="/close.svg" alt="close" width={29} height={29} />
+                </div>
+              </button>
+              <div className=" flex flex-col mx-5">
+                <Dashboard_Btn
+                  isSlideBar={isSlideBar}
+                  img="Dashboard.svg"
+                  text="Dashboard"
+                  onClick={() => handleDashboard()}
+                />
+                <Dashboard_Btn
+                  isSlideBar={isSlideBar}
+                  img="event.svg"
+                  text="Events"
+                  onClick={() => handleMyEvent()}
+                />
+                <Dashboard_Btn
+                  isSlideBar={isSlideBar}
+                  img="report.svg"
+                  text="Report"
+                  onClick={() => handleReport()}
+                />
+                <Dashboard_Btn
+                  isSlideBar={isSlideBar}
+                  img="Team.svg"
+                  text="Team"
+                  onClick={() => handleMyTeam()}
+                />
+                <Dashboard_Btn
+                  isSlideBar={isSlideBar}
+                  img="Setting_alt_line.svg"
+                  text="Setting"
+                  onClick={() => handleSetting()}
+                />
+              </div>
               {/* <div className="flex flex-col py-6 text-black">
                 <ul>
                   <Item fn={handleDashboard} text="Dashboard"></Item>
