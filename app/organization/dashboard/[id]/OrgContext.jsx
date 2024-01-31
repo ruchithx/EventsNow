@@ -1,6 +1,6 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
-
+import { useRouter } from "next/navigation";
 const orgContext = createContext();
 
 function OrgContextProvider({ children }) {
@@ -12,6 +12,7 @@ function OrgContextProvider({ children }) {
   const [isActive, setIsActive] = useState(true);
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isSlideBar, setIsSlideBar] = useState(true);
+  const router = useRouter();
 
   function handleDashboard() {
     setStatus("dashboard");
@@ -21,17 +22,22 @@ function OrgContextProvider({ children }) {
     setStatus("myEvents");
     setIsDashboardOpen(false);
   }
+
   function handleMyTeam() {
     setStatus("myTeam");
     setIsDashboardOpen(false);
   }
+
   function handleReport() {
     setStatus("report");
     setIsDashboardOpen(false);
   }
+
   function handleSetting() {
-    setStatus("setting");
-    setIsDashboardOpen(false);
+    router.refresh();
+    console.log("hello");
+    // setStatus("setting");
+    // setIsDashboardOpen(false);
   }
 
   return (

@@ -7,12 +7,14 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { error } from "@/util/Toastify";
+import { useAuth } from "@/app/AuthContext";
 
 export default function LoginForm() {
   const usernameInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { setEmail }: any = useAuth();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -41,7 +43,10 @@ export default function LoginForm() {
       });
 
       if (!result?.error && result) {
-        router.push("/");
+        localStorage.setItem("email", enteredUsername);
+        setEmail(enteredUsername);
+        setUsername("");
+        setPassword("");
       } else {
         error("Invalid username or password");
       }
@@ -77,7 +82,7 @@ export default function LoginForm() {
         type="submit"
         className="w-full py-2 uppercase bg-custom-orange text-white rounded-md hover:bg-custom-orange focus:outline-none focus:bg-custom-orange"
       >
-        Login to account
+        c Login to account
       </button>
     </form>
   );

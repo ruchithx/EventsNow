@@ -26,68 +26,76 @@ import { MdOutlineManageAccounts } from "react-icons/md";
 import { MdOutlineLogout } from "react-icons/md";
 
 import ResponsiveNavbar from "./ResponsiveNavbar";
+import { useAuth } from "@/app/AuthContext";
 
 export default function NavBar() {
   const [userActive, setUserActive] = useState(false);
   const [userName, setUserName] = useState("");
+  const [user, setUser]: any = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOrganizationShowButton, setIsOrganizationShowButton] =
     useState(false);
   const [showProfile, setShowProfile] = useState(false);
 
+  const { emailAuth, setEmail }: any = useAuth();
+
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
   }
 
   const router = useRouter();
-  // const pathname = usePathname();
-  // console.log(pathname);
 
   function clickLogoutBtn() {
     signOut();
-    router.push("/");
+    setEmail("");
+    localStorage.removeItem("email");
   }
 
   // get data from api
-  useEffect(function () {
-    async function session() {
-      setIsLoading(true);
-      const session = await getSession();
+  useEffect(
+    function () {
+      async function session() {
+        setIsLoading(true);
+        const session = await getSession();
 
-      if (session) {
-        const name = session?.user?.name ? session?.user?.name : "";
-        if (name !== "") {
-          setUserActive(true);
-          setUserName(name);
-        } else {
-          const email = session?.user?.email;
-          console.log(email);
-          const user = await fetch(
-            "http://localhost:3000/api/v1/user/getOneUser",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ email }),
-            }
-          );
-
-          const { data } = await user.json();
-          if (data) {
+        if (session) {
+          const name = session?.user?.name ? session?.user?.name : "";
+          if (name !== "") {
             setUserActive(true);
-
-            setUserName(data.firstName);
+            setUserName(name);
           } else {
-            setUserActive(false);
+            const email = emailAuth;
+
+            const user = await fetch(
+              "http://localhost:3000/api/v1/user/getOneUser",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email }),
+              }
+            );
+
+            const { data } = await user.json();
+
+            if (data) {
+              setUserActive(true);
+              console.log(data);
+              setUser(data);
+              setUserName(data.firstName);
+            } else {
+              setUserActive(false);
+            }
           }
         }
+        setIsLoading(false);
       }
-      setIsLoading(false);
-    }
-    session();
-  }, []);
+      session();
+    },
+    [emailAuth]
+  );
 
   return (
     <div>
@@ -305,9 +313,7 @@ export default function NavBar() {
             >
               <div className="">
                 <div className="flex m-3 items-center justify-between">
-                  <div className="font-medium	">
-                    ruchithsamarawickrama.sg@gmail.com
-                  </div>
+                  <div className="font-medium	">{user?.email}</div>
                   <button onClick={() => setShowProfile(false)}>
                     <AiOutlineClose />
                   </button>
