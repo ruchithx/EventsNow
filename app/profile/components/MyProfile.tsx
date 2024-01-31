@@ -8,7 +8,7 @@ export default function MyProfile() {
         <div className="text-3xl font-semibold text-custom-orange font-IBM ml-[75px]">
           My Profile
         </div>
-        <div className="bg-white col-span-1 sm:col-span-2 lg:col-span-7 sm:block hidden mx-auto w-4/5">
+        <div className="bg-white col-span-1 sm:col-span-2 lg:col-span-7 sm:block  mx-auto w-4/5">
           <ProfileDetails key="First Name" name="First Name" />
           <ProfileDetails key="Last Name" name="Last Name" />
           <ProfileDetails key="Email address" name="Email address" />
