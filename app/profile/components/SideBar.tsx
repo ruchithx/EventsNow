@@ -9,12 +9,12 @@ import { CgProfile } from "react-icons/cg";
 
 export default function SideBar() {
   const {
-    handleDashboard,
+    handleProfile,
     isSlideBar,
     setIsSlideBar,
-    handleMyEvent,
-    handleReport,
-    handleMyTeam,
+    handleWishList,
+    handleMyEvents,
+    handleyTickets,
     handleSetting,
   } = useProf();
   return (
@@ -39,25 +39,25 @@ export default function SideBar() {
             isSlideBar={isSlideBar}
             img="profile.svg"
             text="My Profile"
-            onClick={() => handleDashboard()}
+            onClick={() => handleProfile()}
           />
           <Dashboard_Btn
             isSlideBar={isSlideBar}
             img="wishlist.svg"
             text="Wish List"
-            onClick={() => handleMyEvent()}
+            onClick={() => handleWishList()}
           />
           <Dashboard_Btn
             isSlideBar={isSlideBar}
             img="myevents.svg"
             text="My Events"
-            onClick={() => handleMyTeam()}
+            onClick={() => handleMyEvents()}
           />
           <Dashboard_Btn
             isSlideBar={isSlideBar}
             img="mytickets.svg"
             text="My Tickets"
-            onClick={() => handleReport()}
+            onClick={() => handleyTickets()}
           />
           <Dashboard_Btn
             isSlideBar={isSlideBar}

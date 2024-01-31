@@ -202,7 +202,7 @@ export default function NavBar() {
           <div
             className={
               isMenuOpen
-                ? "fixed shadow-2xl  right-0 top-0 w-[65%] sm:hidden h-screen bg-[#ecf0fc] p-5 ease-in duration-50"
+                ? "fixed shadow-2xl  right-0 top-0 w-[65%] sm:hidden h-screen bg-[#ecf0fc] p-5 ease-in duration-50 z-50"
                 : "fixed left-[100%] top-0 p-10 ease-in duration-50"
             }
           >

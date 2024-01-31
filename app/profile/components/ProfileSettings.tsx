@@ -21,37 +21,34 @@ export default function ProfileSettings({ name }: Details) {
   };
 
   return (
-    <div className="border-gray border-2 w-full p-4 rounded-lg bg-custom-gray mt-5 relative">
+    <div className="border-gray border-2 w-full p-4 rounded-lg bg-custom-gray mt-5  z-10">
       <label htmlFor="fname">{name}</label>
-      <div className="flex flex-col md:flex-row justify-between items-center">
+      <div className="flex flex-col sm:flex-row md:flex-row justify-between items-center z-0">
         {isEditing ? (
           <input
             type="text"
             value={editedName}
             onChange={handleInputChange}
-            className="border-gray border-2 w-full p-2 rounded-lg bg-white my-2 md:mr-2 md:my-0"
+            className="border-gray border-2 w-full p-2 rounded-lg bg-white my-2"
           />
         ) : (
           <label
-            className="border-gray border-2 w-full p-2 rounded-lg bg-white my-2 md:mr-2 md:my-0"
+            className="border-gray border-2 w-full p-2 rounded-lg bg-white my-2"
             htmlFor="fname"
           >
             {editedName}
           </label>
         )}
-        <div className="flex space-x-4 absolute top-0 right-0 mb-5 my-2 mr-2">
+        <div className="flex space-x-4 absolute top-0 right-0 mb-5 my-1 mr-2">
           {isEditing ? (
             <button
               onClick={handleSave}
-              className="bg-custom-orange text-white px-4 py-1 mb-3 rounded-lg"
+              className="bg-custom-orange text-white px-4 py-1 rounded-lg w-full"
             >
               Save
             </button>
           ) : (
-            <button
-              onClick={handleEdit}
-              className=" text-white px-4 py-2 rounded-lg"
-            >
+            <button onClick={handleEdit} className="text-white rounded-lg">
               <svg
                 width="24"
                 height="24"

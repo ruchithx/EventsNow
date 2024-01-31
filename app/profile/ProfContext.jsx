@@ -13,19 +13,19 @@ function ProfContextProvider({ children }) {
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isSlideBar, setIsSlideBar] = useState(true);
 
-  function handleDashboard() {
+  function handleProfile() {
     setStatus("myProfile");
-    setIsDashboardOpen(false);
+    setIsOpen(false);
   }
-  function handleMyEvent() {
+  function handleWishList() {
     setStatus("wishList");
     setIsDashboardOpen(false);
   }
-  function handleMyTeam() {
+  function handleMyEvents() {
     setStatus("myEvents");
     setIsDashboardOpen(false);
   }
-  function handleReport() {
+  function handleyTickets() {
     setStatus("myTickets");
     setIsDashboardOpen(false);
   }
@@ -49,10 +49,10 @@ function ProfContextProvider({ children }) {
         team,
         ticketSold,
         status,
-        handleDashboard,
-        handleMyEvent,
-        handleMyTeam,
-        handleReport,
+        handleProfile,
+        handleWishList,
+        handleMyEvents,
+        handleyTickets,
       }}
     >
       {children}

@@ -15,7 +15,7 @@ export default function ToggleButtons({ btn1, btn2 }: btn) {
 
   return (
     <>
-      <div className="bg-initial m-4 auto h-15 p-2 font-semibold font-khand rounded-2xl flex text-center whitespace-nowrap ">
+      <div className="bg-initial m-4 h-16 p-2 font-semibold font-IBM rounded-2xl flex text-center whitespace-nowrap">
         <div
           className={`${
             btnState === 1 ? "bg-custom-orange" : "bg-transparent"
@@ -24,9 +24,9 @@ export default function ToggleButtons({ btn1, btn2 }: btn) {
           <button
             className={`${
               btnState === 1
-                ? "bg-custom-orange text-white "
+                ? "bg-custom-orange text-white"
                 : "bg-transparent text-custom-orange"
-            }  rounded-2xl  text-center  uppercase w-full whitespace-nowrap`}
+            } rounded-2xl text-center uppercase w-full h-full`}
             onClick={() => handleToggle(1)}
           >
             {btn1}
@@ -35,33 +35,31 @@ export default function ToggleButtons({ btn1, btn2 }: btn) {
         <div
           className={`${
             btnState === 2 ? "bg-custom-orange" : "bg-transparent"
-          } text-custom-orange p-2 rounded-2xl flex-1 whitespace-nowrap`}
+          } p-2 rounded-2xl flex-1 whitespace-nowrap`}
         >
           <button
             className={`${
               btnState === 2
-                ? " bg-custom-orange  text-white "
-                : "bg-transparent text-custom-orange  "
-            }  rounded-2xl  text-center  uppercase w-full whitespace-nowrap`}
+                ? "bg-custom-orange text-white"
+                : "bg-transparent text-custom-orange"
+            } rounded-2xl text-center uppercase w-full h-full`}
             onClick={() => handleToggle(2)}
           >
             {btn2}
           </button>
         </div>
       </div>
-      <div className="bg-white mt-7 w-full p-2 font-khand rounded-2xl items-center flex flex-col md:flex-row">
+      <div className="m-4 p-2 font-IBM rounded-2xl flex flex-col md:flex-row text-center wrap whitespace-nowrap grid grid-cols-5">
         {btnState === 1 && (
           <Org_RequestHandle OrgName={"Amna"} image={"././image 1.png"} />
         )}
 
         {btnState === 2 && (
-          <h2>
-            Hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii Lorem
-            ipsum dolor sit, amet consectetur adipisicing elit. Sed nisi eaque
-            maxime fuga perferendis esse distinctio deleniti mollitia, neque
-            pariatur enim illum! Eveniet, suscipit corrupti tempore velit
-            officiis repellendus labore! hhhh
-          </h2>
+          <>
+            <Org_RequestHandle OrgName={"Amna"} image={"././image 1.png"} />
+
+            <h1>Hiiiii</h1>
+          </>
         )}
       </div>
     </>

@@ -32,40 +32,15 @@ export default function CheckActive() {
     isActive,
     setIsActive,
     isSlideBar,
-    handleDashboard,
-    handleMyEvent,
-    handleMyTeam,
-    handleReport,
+    handleProfile,
+    handleMyTickets,
+    handleMyEvents,
+    handleWishList,
+
     isDashboardOpen,
     setIsDashboardOpen,
     handleSetting,
   } = useProf();
-
-  useEffect(function () {
-    async function getData() {
-      const res = await fetch(
-        `http://localhost:3000/api/v1/organization/getOrganization`,
-        {
-          method: "POST",
-          mode: "cors",
-          body: JSON.stringify(params.id),
-        }
-      );
-
-      if (!res.ok) {
-        console.log("error of fetch function");
-        return;
-      }
-
-      const { organization } = await res.json();
-
-      if (!organization) {
-        return;
-      }
-      setIsActive(organization.isActive);
-    }
-    getData();
-  }, []);
 
   return (
     <div>
@@ -135,25 +110,25 @@ export default function CheckActive() {
                   isSlideBar={isSlideBar}
                   img="profile.svg"
                   text="My Profile"
-                  onClick={() => handleDashboard()}
+                  onClick={() => handleProfile()}
                 />
                 <Dashboard_Btn
                   isSlideBar={isSlideBar}
                   img="wishlist.svg"
                   text="Wish List"
-                  onClick={() => handleMyEvent()}
+                  onClick={() => handleWishList()}
                 />
                 <Dashboard_Btn
                   isSlideBar={isSlideBar}
                   img="myevents.svg"
                   text="My Events"
-                  onClick={() => handleReport()}
+                  onClick={() => handleMyEvents()}
                 />
                 <Dashboard_Btn
                   isSlideBar={isSlideBar}
                   img="mytickets.svg"
                   text="My Tickets"
-                  onClick={() => handleMyTeam()}
+                  onClick={() => handleMyTickets()}
                 />
                 <Dashboard_Btn
                   isSlideBar={isSlideBar}
