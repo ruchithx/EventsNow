@@ -15,18 +15,18 @@ export default function ToggleButtons({ btn1, btn2 }: btn) {
 
   return (
     <>
-      <div className="bg-initial  w-full mt-7 font-semibold font-khand rounded-2xl items-center flex flex-col md:flex-row">
+      <div className="bg-initial m-4 auto h-15 p-2 font-semibold font-khand rounded-2xl flex text-center whitespace-nowrap ">
         <div
           className={`${
             btnState === 1 ? "bg-custom-orange" : "bg-transparent"
-          } mb-3 md:mb-0 md:mr-3 p-2 rounded-2xl flex-1 w-full`}
+          } mr-3 p-2 rounded-2xl flex-1 whitespace-nowrap`}
         >
           <button
             className={`${
               btnState === 1
-                ? "bg-custom-orange text-white"
+                ? "bg-custom-orange text-white "
                 : "bg-transparent text-custom-orange"
-            } rounded-2xl w-full uppercase`}
+            }  rounded-2xl  text-center  uppercase w-full whitespace-nowrap`}
             onClick={() => handleToggle(1)}
           >
             {btn1}
@@ -35,21 +35,21 @@ export default function ToggleButtons({ btn1, btn2 }: btn) {
         <div
           className={`${
             btnState === 2 ? "bg-custom-orange" : "bg-transparent"
-          } p-2 rounded-2xl flex-1 w-full`}
+          } text-custom-orange p-2 rounded-2xl flex-1 whitespace-nowrap`}
         >
           <button
             className={`${
               btnState === 2
-                ? "bg-custom-orange text-white"
-                : "bg-transparent text-custom-orange"
-            } rounded-2xl w-full uppercase`}
+                ? " bg-custom-orange  text-white "
+                : "bg-transparent text-custom-orange  "
+            }  rounded-2xl  text-center  uppercase w-full whitespace-nowrap`}
             onClick={() => handleToggle(2)}
           >
             {btn2}
           </button>
         </div>
       </div>
-      <div className="bg-white  mt-7   w-full p-2  font-khand rounded-2xl items-center flex flex-col md:flex-row">
+      <div className="bg-white mt-7 w-full p-2 font-khand rounded-2xl items-center flex flex-col md:flex-row">
         {btnState === 1 && (
           <Org_RequestHandle OrgName={"Amna"} image={"././image 1.png"} />
         )}
