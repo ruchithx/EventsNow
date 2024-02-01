@@ -7,7 +7,7 @@ export default function CreatAccountText() {
       <div className=" mt-[100px] justify-center self-end font-sans">
         <div className="text-center ">If you do not have an account</div>
         <div className="text-center">
-          <Link className="text-[#0151FC]" href="/user/signup">
+          <Link className="text-[#0151FC]" href="/auth/signup">
             create account
           </Link>
         </div>

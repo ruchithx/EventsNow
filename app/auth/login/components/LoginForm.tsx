@@ -80,9 +80,9 @@ export default function LoginForm() {
       </div>
       <button
         type="submit"
-        className="w-full py-2 uppercase bg-custom-orange text-white rounded-md hover:bg-custom-orange focus:outline-none focus:bg-custom-orange"
+        className="button w-full py-2 uppercase bg-custom-orange text-white rounded-md hover:bg-custom-orange focus:outline-none focus:bg-custom-orange"
       >
-        c Login to account
+        Login to account
       </button>
     </form>
   );

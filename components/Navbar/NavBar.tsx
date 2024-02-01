@@ -25,8 +25,10 @@ import { AiOutlineUpCircle } from "react-icons/ai";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { MdOutlineLogout } from "react-icons/md";
 
-import ResponsiveNavbar from "./ResponsiveNavbar";
 import { useAuth } from "@/app/AuthContext";
+
+import { boolean } from "zod";
+import dynamic from "next/dynamic";
 
 export default function NavBar() {
   const [userActive, setUserActive] = useState(false);
@@ -37,8 +39,10 @@ export default function NavBar() {
   const [isOrganizationShowButton, setIsOrganizationShowButton] =
     useState(false);
   const [showProfile, setShowProfile] = useState(false);
-
   const { emailAuth, setEmail }: any = useAuth();
+
+  const ResponsiveMenuBar = dynamic(() => import("./ResponsiveMenuBar"));
+  const NavbarProfile = dynamic(() => import("./NavbarProfile"));
 
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
@@ -61,6 +65,8 @@ export default function NavBar() {
 
         if (session) {
           const name = session?.user?.name ? session?.user?.name : "";
+          console.log(session?.user);
+          setUser(session?.user);
           if (name !== "") {
             setUserActive(true);
             setUserName(name);
@@ -206,191 +212,22 @@ export default function NavBar() {
               <AiOutlineMenu size={25} />
             </div>
           </div>
-          <div
-            className={
-              isMenuOpen
-                ? "fixed shadow-2xl  right-0 top-0 w-[65%] sm:hidden h-screen bg-[#ecf0fc] p-5 ease-in duration-50"
-                : "fixed left-[100%] top-0 p-10 ease-in duration-50"
-            }
-          >
-            <div
-              className={`w-full ${
-                userActive ? "hidden" : "block"
-              } flex items-center justify-end `}
-            >
-              <div onClick={() => toggleMenu()} className="cursor-pointer ">
-                <IoMdClose size={25} />
-              </div>
-            </div>
-            {userActive && (
-              <div className="flex justify-between items-center mt-5">
-                <Image
-                  src={`/ReUsableComponentData/profilpic.jpg`}
-                  alt="profile picture"
-                  width={60}
-                  height={20}
-                  className="rounded-full"
-                />
-                <div onClick={() => toggleMenu()} className="cursor-pointer ">
-                  <IoMdClose size={30} />
-                </div>
-              </div>
-            )}
 
-            <div className="flex flex-col py-6 text-black">
-              <ul>
-                <Link href="/">
-                  <Item fn={toggleMenu} text="Home">
-                    <AiFillHome />
-                  </Item>
-                </Link>
-                <Link href="/about">
-                  <Item fn={toggleMenu} text="About">
-                    <MdContactless />
-                  </Item>
-                </Link>
-                {!userActive && (
-                  <div className="flex flex-col  text-black">
-                    <Link href="/auth/login">
-                      <Item fn={toggleMenu} text="Login">
-                        <RiLoginCircleFill />
-                      </Item>
-                    </Link>
-                    <Link href="/auth/signup">
-                      <Item fn={toggleMenu} text="Signup">
-                        <FaLock />
-                      </Item>
-                    </Link>
-                  </div>
-                )}
-
-                {userActive && (
-                  <div className="flex flex-col  text-black">
-                    <Link href={"/createorganization"}>
-                      <Item fn={toggleMenu} text="Host Event">
-                        <IoIosAddCircle />
-                      </Item>
-                    </Link>
-                    <Link href="/profile">
-                      <Item fn={toggleMenu} text="Profile">
-                        <FaUser />
-                      </Item>
-                    </Link>
-                  </div>
-                )}
-              </ul>
-              {userActive && (
-                <div className="mt-5 flex justify-center w-full">
-                  <Login
-                    image="Sign_in.svg"
-                    titleOfbutton="LOGOUT"
-                    fn={clickLogoutBtn}
-                  />
-                </div>
-              )}
-              {/* <button
-                onClick={clickLogoutBtn}
-                className="flex gap-3 items-center"
-              >
-                <RiLogoutCircleFill />
-                <div>Logout</div>
-              </button> */}
-            </div>
-          </div>
-          <ResponsiveNavbar
+          <ResponsiveMenuBar
             userActive={userActive}
             isMenuOpen={isMenuOpen}
             toggleMenu={toggleMenu}
             clickLogoutBtn={clickLogoutBtn}
           />
           <div className="relative">
-            <div
-              className={`absolute ${
-                !showProfile
-                  ? "hidden"
-                  : "lg:w-1/3 md:w-1/2 2xl:w-1/5 sm:block hidden"
-              } rounded-2xl top-13 right-0   bg-gray-700 text-white`}
-            >
-              <div className="">
-                <div className="flex m-3 items-center justify-between">
-                  <div className="font-medium	">{user?.email}</div>
-                  <button onClick={() => setShowProfile(false)}>
-                    <AiOutlineClose />
-                  </button>
-                </div>
-                <div className="flex justify-center items-center flex-col gap-2">
-                  <div>
-                    <Image
-                      src={`/ReUsableComponentData/profilpic.jpg`}
-                      alt="profile picture"
-                      width={60}
-                      height={20}
-                      className="rounded-full"
-                    />
-                  </div>
-                  <div className="font-medium	">{`hi ${userName} !`}</div>
-                  <div>
-                    <button className="rounded-full py-2 px-4 bg-blue-500 text-white font-semibold  shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-                      Manage your account
-                    </button>
-                  </div>
-                </div>
-                <div className=" mt-5 mb-5 md:p-3 lg:p-0 w-full flex xl:w-full  justify-center">
-                  <div className="z-20  w-full max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-800 dark:divide-gray-700">
-                    <div className="  px-4 py-2 font-medium items-center flex justify-between text-gray-700 rounded-full bg-gray-50 dark:bg-gray-800 dark:text-white">
-                      <div className="flex gap-2  items-center">
-                        <MdOutlineManageAccounts size={25} />
-                        <div className="text-xl">organization accounts</div>
-                      </div>
-                      {isOrganizationShowButton ? (
-                        <button
-                          onClick={() => setIsOrganizationShowButton(false)}
-                        >
-                          <AiOutlineUpCircle size={20} />
-                        </button>
-                      ) : (
-                        <button
-                          onClick={() => setIsOrganizationShowButton(true)}
-                        >
-                          <AiOutlineDownCircle size={20} />
-                        </button>
-                      )}
-                    </div>
-                    <div
-                      className={`divide-y ${
-                        isOrganizationShowButton ? "hidden" : ""
-                      } divide-gray-100 dark:divide-gray-700`}
-                    >
-                      <a
-                        href="#"
-                        className="flex px-4 flex justify-center items-center py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-                      >
-                        <div className="flex-shrink-0">
-                          <Image
-                            src={`/ReUsableComponentData/profilpic.jpg`}
-                            alt="profile picture"
-                            width={40}
-                            height={20}
-                            className="rounded-full"
-                          />
-                        </div>
-                        <div className="w-full ps-3">
-                          <div className="text-gray-500 font-medium text-md mb-1.5 dark:text-gray-400">
-                            Organization 1
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                    <button onClick={clickLogoutBtn}>
-                      <div className="items-center gap-2 text-xl flex px-4 py-2 font-medium  text-gray-700 rounded-t-lg bg-gray-50 dark:bg-gray-800 dark:text-white">
-                        <MdOutlineLogout />
-                        logout
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <NavbarProfile
+              setShowProfile={setShowProfile}
+              showProfile={showProfile}
+              clickLogoutBtn={clickLogoutBtn}
+              user={user}
+              isOrganizationShowButton={isOrganizationShowButton}
+              setIsOrganizationShowButton={setIsOrganizationShowButton}
+            />
           </div>
         </nav>
       )}
@@ -408,7 +245,7 @@ export function Item({
   fn?: () => void;
 }) {
   return (
-    <li className="p-2 	w-full  hover:bg-[#12342112] cursor-pointer font-medium  border-amber-400	text-xl ">
+    <li className="p-2 	w-full  hover:bg-[#12342112] cursor-pointer   border-amber-400	text-xl ">
       <button onClick={fn} className="flex gap-3 items-center">
         <div>{children}</div>
         <div>{text}</div>

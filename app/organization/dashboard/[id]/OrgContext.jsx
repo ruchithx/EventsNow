@@ -34,10 +34,8 @@ function OrgContextProvider({ children }) {
   }
 
   function handleSetting() {
-    router.refresh();
-    console.log("hello");
-    // setStatus("setting");
-    // setIsDashboardOpen(false);
+    setStatus("setting");
+    setIsDashboardOpen(false);
   }
 
   return (

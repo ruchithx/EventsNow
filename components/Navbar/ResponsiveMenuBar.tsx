@@ -18,7 +18,7 @@ interface props {
   clickLogoutBtn: () => void;
 }
 
-export default function ResponsiveNavbar({
+export default function ResponsiveMenuBar({
   isMenuOpen,
   toggleMenu,
   clickLogoutBtn,
@@ -46,7 +46,7 @@ export default function ResponsiveNavbar({
           <Image
             src={`/ReUsableComponentData/profilpic.jpg`}
             alt="profile picture"
-            width={60}
+            width={50}
             height={20}
             className="rounded-full"
           />
@@ -60,24 +60,24 @@ export default function ResponsiveNavbar({
         <ul>
           <Link href="/">
             <Item fn={toggleMenu} text="Home">
-              <AiFillHome />
+              {/* <AiFillHome /> */}
             </Item>
           </Link>
           <Link href="/about">
             <Item fn={toggleMenu} text="About">
-              <MdContactless />
+              {/* <MdContactless /> */}
             </Item>
           </Link>
           {!userActive && (
             <div className="flex flex-col  text-black">
               <Link href="/auth/login">
                 <Item fn={toggleMenu} text="Login">
-                  <RiLoginCircleFill />
+                  {/* <RiLoginCircleFill /> */}
                 </Item>
               </Link>
               <Link href="/auth/signup">
                 <Item fn={toggleMenu} text="Signup">
-                  <FaLock />
+                  {/* <FaLock /> */}
                 </Item>
               </Link>
             </div>
@@ -87,19 +87,19 @@ export default function ResponsiveNavbar({
             <div className="flex flex-col  text-black">
               <Link href={"/createorganization"}>
                 <Item fn={toggleMenu} text="Host Event">
-                  <IoIosAddCircle />
+                  {/* <IoIosAddCircle /> */}
                 </Item>
               </Link>
               <Link href="/profile">
                 <Item fn={toggleMenu} text="Profile">
-                  <FaUser />
+                  {/* <FaUser /> */}
                 </Item>
               </Link>
             </div>
           )}
         </ul>
         {userActive && (
-          <div className="mt-5 flex justify-center w-full">
+          <div className="mt-10 flex justify-center w-full">
             <Login
               image="Sign_in.svg"
               titleOfbutton="LOGOUT"
