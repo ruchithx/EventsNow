@@ -8,28 +8,20 @@ import { useRouter } from "next/navigation";
 import Profile from "@/components/Profile";
 import Link from "next/link";
 import Spinner from "../Spinner";
-import { AiOutlineMenu } from "react-icons/ai";
-import { IoMdClose } from "react-icons/io";
-import Login from "../Login";
-import { MdContactless } from "react-icons/md";
-import { AiFillHome } from "react-icons/ai";
-import { RiLoginCircleFill } from "react-icons/ri";
-import { FaLock } from "react-icons/fa6";
-import { FaUser } from "react-icons/fa";
-import { IoIosAddCircle } from "react-icons/io";
+import {
+  AiOutlineClose,
+  AiOutlineDownCircle,
+  AiOutlineMenu,
+  AiOutlineUpCircle,
+} from "react-icons/ai";
 
-import { RiLogoutCircleFill } from "react-icons/ri";
-import { AiOutlineClose } from "react-icons/ai";
-import { AiOutlineDownCircle } from "react-icons/ai";
-import { AiOutlineUpCircle } from "react-icons/ai";
-import { MdOutlineManageAccounts } from "react-icons/md";
-import { MdOutlineLogout } from "react-icons/md";
+import Login from "../Login";
 
 import { useAuth } from "@/app/AuthContext";
 
-import { boolean } from "zod";
 import dynamic from "next/dynamic";
-
+import { MdOutlineLogout, MdOutlineManageAccounts } from "react-icons/md";
+import { usePathname } from "next/navigation";
 export default function NavBar() {
   const [userActive, setUserActive] = useState(false);
   const [userName, setUserName] = useState("");
@@ -40,10 +32,15 @@ export default function NavBar() {
     useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const { emailAuth, setEmail }: any = useAuth();
-
   const ResponsiveMenuBar = dynamic(() => import("./ResponsiveMenuBar"));
   const NavbarProfile = dynamic(() => import("./NavbarProfile"));
+  const pathname = usePathname();
 
+  if (pathname === "/organization/dashboard/:id") {
+    console.log("hi");
+  }
+
+  // console.log(pathname);
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
   }
@@ -65,7 +62,6 @@ export default function NavBar() {
 
         if (session) {
           const name = session?.user?.name ? session?.user?.name : "";
-          console.log(session?.user);
           setUser(session?.user);
           if (name !== "") {
             setUserActive(true);
@@ -112,7 +108,7 @@ export default function NavBar() {
         </nav>
       ) : (
         <nav className="dark:bg-navWhite ">
-          <div className="2xl:px-16 flex flex-wrap items-center justify-between mx-auto p-3">
+          <div className="2xl:px-16 flex flex-wrap items-center justify-between mx-auto p-2">
             {/* Events now logo and name */}
             <Link href="/">
               <button className="button">
@@ -220,14 +216,93 @@ export default function NavBar() {
             clickLogoutBtn={clickLogoutBtn}
           />
           <div className="relative">
-            <NavbarProfile
-              setShowProfile={setShowProfile}
-              showProfile={showProfile}
-              clickLogoutBtn={clickLogoutBtn}
-              user={user}
-              isOrganizationShowButton={isOrganizationShowButton}
-              setIsOrganizationShowButton={setIsOrganizationShowButton}
-            />
+            <div
+              className={`absolute ${
+                !showProfile
+                  ? "hidden"
+                  : "lg:w-1/3 md:w-1/2 2xl:w-1/5 sm:block hidden"
+              } rounded-2xl top-13 right-0   bg-gray-700 text-white`}
+            >
+              <div className="">
+                <div className="flex m-3 items-center justify-between">
+                  <div className="font-medium	">{user?.email}</div>
+                  <button onClick={() => setShowProfile(false)}>
+                    <AiOutlineClose />
+                  </button>
+                </div>
+                <div className="flex justify-center items-center flex-col gap-2">
+                  <div>
+                    <Image
+                      src={`/ReUsableComponentData/profilpic.jpg`}
+                      alt="profile picture"
+                      width={60}
+                      height={20}
+                      className="rounded-full"
+                    />
+                  </div>
+                  <div className="font-medium	">{`hi ${user?.name} !`}</div>
+                  <div>
+                    <button className="rounded-full py-2 px-4 bg-blue-500 text-white font-semibold  shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+                      Manage your account
+                    </button>
+                  </div>
+                </div>
+                <div className=" mt-5 mb-5 md:p-3 lg:p-0 w-full flex xl:w-full  justify-center">
+                  <div className="z-20  w-full max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-800 dark:divide-gray-700">
+                    <div className="  px-4 py-2 font-medium items-center flex justify-between text-gray-700 rounded-full bg-gray-50 dark:bg-gray-800 dark:text-white">
+                      <div className="flex gap-2  items-center">
+                        <MdOutlineManageAccounts size={25} />
+                        <div className="text-xl">organization accounts</div>
+                      </div>
+                      {isOrganizationShowButton ? (
+                        <button
+                          onClick={() => setIsOrganizationShowButton(false)}
+                        >
+                          <AiOutlineUpCircle size={20} />
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => setIsOrganizationShowButton(true)}
+                        >
+                          <AiOutlineDownCircle size={20} />
+                        </button>
+                      )}
+                    </div>
+                    <div
+                      className={`divide-y ${
+                        isOrganizationShowButton ? "hidden" : ""
+                      } divide-gray-100 dark:divide-gray-700`}
+                    >
+                      <a
+                        href="#"
+                        className="flex px-4  justify-center items-center py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      >
+                        <div className="flex-shrink-0">
+                          <Image
+                            src={`/ReUsableComponentData/profilpic.jpg`}
+                            alt="profile picture"
+                            width={40}
+                            height={20}
+                            className="rounded-full"
+                          />
+                        </div>
+                        <div className="w-full ps-3">
+                          <div className="text-gray-500 font-medium text-md mb-1.5 dark:text-gray-400">
+                            Organization 1
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                    <button onClick={clickLogoutBtn}>
+                      <div className="items-center gap-2 text-xl flex px-4 py-2 font-medium  text-gray-700 rounded-t-lg bg-gray-50 dark:bg-gray-800 dark:text-white">
+                        <MdOutlineLogout />
+                        logout
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </nav>
       )}
