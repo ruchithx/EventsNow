@@ -21,6 +21,7 @@ import { useAuth } from "@/app/AuthContext";
 import dynamic from "next/dynamic";
 import { MdOutlineLogout, MdOutlineManageAccounts } from "react-icons/md";
 import { usePathname } from "next/navigation";
+import { IoMdClose } from "react-icons/io";
 
 export default function NavBar() {
   const [userActive, setUserActive] = useState(false);
@@ -243,7 +244,37 @@ export default function NavBar() {
               <AiOutlineMenu size={25} />
             </div>
           </div>
-
+          <div
+            className={
+              isMenuOpen
+                ? "fixed shadow-2xl  right-0 top-0 w-[65%] sm:hidden h-screen bg-[#ecf0fc] p-5 ease-in duration-50 z-50"
+                : "fixed left-[100%] top-0 p-10 ease-in duration-50"
+            }
+          >
+            <div
+              className={`w-full ${
+                userActive ? "hidden" : "block"
+              } flex items-center justify-end `}
+            >
+              <div onClick={() => toggleMenu()} className="cursor-pointer ">
+                <IoMdClose size={25} />
+              </div>
+            </div>
+            {userActive && (
+              <div className="flex justify-between items-center mt-5">
+                <Image
+                  src={`/ReUsableComponentData/profilpic.jpg`}
+                  alt="profile picture"
+                  width={60}
+                  height={20}
+                  className="rounded-full"
+                />
+                <div onClick={() => toggleMenu()} className="cursor-pointer ">
+                  <IoMdClose size={30} />
+                </div>
+              </div>
+            )}
+          </div>
           <ResponsiveMenuBar
             userActive={userActive}
             isMenuOpen={isMenuOpen}

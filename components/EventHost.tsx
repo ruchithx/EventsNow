@@ -1,48 +1,67 @@
+import Org_RequestHandle from "@/app/profile/components/Org_RequestHandle";
 import React, { useState } from "react";
 
-export default function ToggleButtons() {
-  const [btnState, setBtnState] = useState(true);
+interface btn {
+  btn1: string;
+  btn2: string;
+}
 
-  const handleToggle = () => {
-    setBtnState((prevState) => !prevState);
+export default function ToggleButtons({ btn1, btn2 }: btn) {
+  const [btnState, setBtnState] = useState(1);
+
+  const handleToggle = (selectedBtn: number) => {
+    setBtnState(selectedBtn);
   };
 
   return (
-
-    <div className="bg-initial m-4 w-1/4 h-15 p-2 font-semibold font-khand rounded-2xl flex text-center">
-      <div
-        className={`${
-          btnState ? "bg-custom-orange" : "bg-transparent"
-        } mr-3 p-2 rounded-2xl w-1/2`}
-      >
-        <button
+    <>
+      <div className="bg-initial m-4 h-16 p-2 font-semibold font-IBM rounded-2xl flex text-center whitespace-nowrap">
+        <div
           className={`${
-            btnState
-              ? "bg-custom-orange text-white "
-              : "bg-transparent text-custom-orange"
-          }  rounded-2xl  text-center  uppercase `}
-          onClick={handleToggle}
+            btnState === 1 ? "bg-custom-orange" : "bg-transparent"
+          } mr-3 p-2 rounded-2xl flex-1 whitespace-nowrap`}
         >
-          Event Host
-        </button>
-      </div>
-      <div
-        className={`${
-          !btnState ? "bg-custom-orange" : "bg-transparent"
-        } text-custom-orange p-2 w-1/2 rounded-2xl`}
-      >
-        <button
+          <button
+            className={`${
+              btnState === 1
+                ? "bg-custom-orange text-white"
+                : "bg-transparent text-custom-orange"
+            } rounded-2xl text-center uppercase w-full h-full`}
+            onClick={() => handleToggle(1)}
+          >
+            {btn1}
+          </button>
+        </div>
+        <div
           className={`${
-            btnState
-              ? "bg-transparent text-custom-orange  "
-              : " bg-custom-orange  text-white "
-          }  rounded-2xl  text-center  uppercase `}
-          onClick={handleToggle}
+            btnState === 2 ? "bg-custom-orange" : "bg-transparent"
+          } p-2 rounded-2xl flex-1 whitespace-nowrap`}
         >
-          Community
-        </button>
-
+          <button
+            className={`${
+              btnState === 2
+                ? "bg-custom-orange text-white"
+                : "bg-transparent text-custom-orange"
+            } rounded-2xl text-center uppercase w-full h-full`}
+            onClick={() => handleToggle(2)}
+          >
+            {btn2}
+          </button>
+        </div>
       </div>
-    </div>
+      <div className="m-4 p-2 font-IBM rounded-2xl flex flex-col md:flex-row text-center wrap whitespace-nowrap grid grid-cols-5">
+        {btnState === 1 && (
+          <Org_RequestHandle OrgName={"Amna"} image={"././image 1.png"} />
+        )}
+
+        {btnState === 2 && (
+          <>
+            <Org_RequestHandle OrgName={"Amna"} image={"././image 1.png"} />
+
+            <h1>Hiiiii</h1>
+          </>
+        )}
+      </div>
+    </>
   );
 }
