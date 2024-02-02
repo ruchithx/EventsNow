@@ -27,7 +27,7 @@ export default function NavBar() {
   const [userActive, setUserActive] = useState(false);
   const [userName, setUserName] = useState("");
   const [user, setUser]: any = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOrganizationShowButton, setIsOrganizationShowButton] =
     useState(false);
@@ -136,7 +136,12 @@ export default function NavBar() {
                 {/* home button */}
 
                 {pathname.startsWith("/organization/dashboard") ? (
-                  ""
+                  <Link href={"/createevent"}>
+                    <Login
+                      titleOfbutton={"HOST EVENT"}
+                      image={"createevent.svg"}
+                    />
+                  </Link>
                 ) : (
                   <>
                     <li>
@@ -175,26 +180,11 @@ export default function NavBar() {
                 {userActive && (
                   <>
                     {/* crete event button */}
-                    <Link href={"/createorganization"}>
-                      <Login
-                        titleOfbutton={"HOST EVENT"}
-                        image={"createevent.svg"}
-                      />
-                    </Link>
-
-                    {/* my profile part */}
-                    <div className="relative   group transition-all">
-                      <button
-                        className="button"
-                        onClick={() => setShowProfile(true)}
-                      >
-                        <Profile name={userName} picture="User_cicrle" />
-                      </button>
-                    </div>
-
                     <button
                       type="button"
-                      className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      className={`${
+                        pathname.startsWith("/admin") ? "hidden" : "flex"
+                      } button relative h-8 inline-flex items-center p-2 text-sm font-medium text-center text-white bg-custom-orange rounded-lg `}
                     >
                       <svg
                         className="w-5 h-5"
@@ -207,10 +197,35 @@ export default function NavBar() {
                         <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
                       </svg>
                       <span className="sr-only">Notifications</span>
-                      <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
-                        20
+                      <div className="absolute inline-flex items-center justify-center w-6 h-4 text-xs font-bold text-white bg-red-600  rounded-full -top-2 -end-3 ">
+                        2
                       </div>
                     </button>
+                    <div
+                      className={`${
+                        pathname.startsWith("/organization/dashboard") ||
+                        pathname.startsWith("/admin") ||
+                        pathname.startsWith("/event/dashboard")
+                          ? "hidden"
+                          : "flex"
+                      } `}
+                    >
+                      <Link href={"/createorganization"}>
+                        <Login
+                          titleOfbutton={"HOST EVENT"}
+                          image={"createevent.svg"}
+                        />
+                      </Link>
+                    </div>
+                    {/* my profile part */}
+                    <div className="relative   group transition-all">
+                      <button
+                        className="button"
+                        onClick={() => setShowProfile(true)}
+                      >
+                        <Profile name={userName} picture="User_cicrle" />
+                      </button>
+                    </div>
                   </>
                 )}
 
