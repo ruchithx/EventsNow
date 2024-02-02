@@ -7,7 +7,6 @@ export default function Organization({
 }: {
   params: { id: string };
 }) {
-  console.log(id);
   return (
     <div className="py-5 ">
       <OrgContextProvider>
