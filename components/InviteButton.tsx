@@ -17,8 +17,8 @@ export default function InviteButton() {
           className="flex-1 focus:outline-none rounded-lg text-xs ms-2 "
         />
       </div>
-      <button className={`bg-custom-green p-1 w-20 rounded`}>
-        <div className="flex text-white text-sm font-bold justify-center">
+      <button className={`bg-custom-orange  p-1 w-24 rounded-full`}>
+        <div className="flex text-white text-md font-bold justify-center">
           Invite
         </div>
       </button>
