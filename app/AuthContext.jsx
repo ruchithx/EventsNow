@@ -8,7 +8,6 @@ function AuthContextProvider({ children }) {
 
   useEffect(() => {
     setEmail(localStorage.getItem("email"));
-    console.log(localStorage.getItem("email"));
   }, []);
 
   return (

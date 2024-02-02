@@ -54,7 +54,6 @@ export default function LoginFormBasic() {
       });
 
       const dat = await user.json();
-      console.log(dat.user);
 
       if (dat.user !== null) {
         error("Already exist this email");

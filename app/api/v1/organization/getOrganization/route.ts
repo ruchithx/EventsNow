@@ -4,7 +4,7 @@ import connectMongoDB from "@/lib/mongo/mongodb";
 
 export async function POST(req: Request) {
   const id = await req.json();
-  console.log(id);
+
   connectMongoDB();
   const organization = await Organization.findOne({ _id: id });
 

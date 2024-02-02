@@ -6,7 +6,7 @@ export async function PUT(request, { params }) {
   const id = params.id;
 
   const body = await request.json();
-  console.log(body, id);
+
   await connectMongoDB();
 
   await Organization.findByIdAndUpdate(

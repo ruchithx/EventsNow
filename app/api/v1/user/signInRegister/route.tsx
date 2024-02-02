@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     connectMongoDB();
 
     const { email, name } = await req.json();
-    console.log(name.split(" "));
+
     const user = await User.findOne({ email });
 
     if (!user) {

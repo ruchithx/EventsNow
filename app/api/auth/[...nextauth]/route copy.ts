@@ -43,8 +43,6 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user, account }): Promise<boolean> {
-      console.log("user", user);
-      console.log("account", account);
       // if (account?.provider === "google") {
       //   const userdata = await User.findOne({ email: user.email });
       //   if (userdata) {

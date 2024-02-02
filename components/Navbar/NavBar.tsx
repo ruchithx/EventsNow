@@ -36,10 +36,6 @@ export default function NavBar() {
   // const NavbarProfile = dynamic(() => import("./NavbarProfile"));
   const pathname = usePathname();
 
-  if (pathname === "/organization/dashboard/:id") {
-    console.log("hi");
-  }
-
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
   }
@@ -81,7 +77,7 @@ export default function NavBar() {
 
             if (data) {
               setUserActive(true);
-              console.log(data);
+
               setUser(data);
               setUserName(data.firstName);
             } else {

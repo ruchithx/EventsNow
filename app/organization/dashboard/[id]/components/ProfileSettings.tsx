@@ -12,8 +12,6 @@ const ProfileSettings = memo(
     const [editedName, setEditedName] = useState(organizationName || "");
     const [isEditing, setIsEditing] = useState(false);
 
-    console.log(organizationName);
-
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setEditedName(e.target.value);
     };

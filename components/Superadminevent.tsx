@@ -1,9 +1,7 @@
 "use client";
 import Image from "next/image";
 
-function info() {
-  console.log("Direct to the info page");
-}
+function info() {}
 
 import React from "react";
 

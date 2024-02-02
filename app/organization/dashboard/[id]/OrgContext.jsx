@@ -35,7 +35,7 @@ function OrgContextProvider({ children }) {
         }
 
         const { organization } = await res.json();
-        console.log(organization);
+
         if (!organization) {
           return;
         }
