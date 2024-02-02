@@ -1,12 +1,21 @@
+import { error, success } from "@/util/Toastify";
 import React, { useState } from "react";
 
 interface Details {
   name: string;
+  organizationName: string;
+  organizationID: string;
 }
 
-export default function ProfileSettings({ name }: Details) {
-  const [editedName, setEditedName] = useState("");
+export default function ProfileSettings({
+  name,
+  organizationName,
+  organizationID,
+}: Details) {
+  const [editedName, setEditedName] = useState(organizationName || "");
   const [isEditing, setIsEditing] = useState(false);
+
+  console.log(organizationName);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditedName(e.target.value);
@@ -16,8 +25,32 @@ export default function ProfileSettings({ name }: Details) {
     setIsEditing(true);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
+    if (!organizationID || !organizationName) {
+      return;
+    }
+
+    if (editedName !== organizationName) {
+      const res = await fetch(
+        `/api/v1/organization/updateOrganization/${organizationID}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ fullName: editedName }),
+        }
+      );
+
+      if (!res.ok) {
+        error("Failed to update organization name");
+        return;
+      }
+
+      // success("Organization name updated successfully");
+    }
     setIsEditing(false);
+    organizationName = editedName;
   };
 
   return (
