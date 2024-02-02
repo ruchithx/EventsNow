@@ -11,7 +11,7 @@ export default function AdminPersonDetailsBar({
   function editDetails() {}
   return (
     //parent div eken 3n 2k kiyala gaththe meka.wenas krla gann onnm.mn dila tynne meke mulu loku div ekatam col-span-2 kiyala-ashan
-    <div className="my-2 sm:my-4 justify-between ms-2 sm:ms-0 mt-6 bg-[#D9D9D9] sm:w-full w-64  col-span-2 grid grid-cols-12  rounded-[5px] mb-2 ">
+    <div className="my-2 sm:my-4 justify-between ms-2 sm:ms-0 mt-6 bg-[#D9D9D9] w-64 md:w-[380px] lg:w-[720px]  col-span-2 grid grid-cols-12  rounded-[5px] mb-2 ">
       <div className="text-base font-light col-span-5 hidden md:hidden lg:flex ms-2">
         {name}
       </div>
@@ -21,7 +21,7 @@ export default function AdminPersonDetailsBar({
       <div className="xl:col-span-1  grid ">
         <button
           onClick={editDetails}
-          className={`bg-custom-green h-[34px]  rounded-[5px] w-8 lg:w-[210px] md:w-12 ms-28 md:ms-[200px] lg:ms-0`}
+          className={`bg-custom-green h-[34px]  rounded-[5px] w-8 lg:w-[210px] md:w-12 ms-28 md:ms-[180px] lg:ms-0`}
         >
           <div className="flex justify-around pl-1">
             <svg

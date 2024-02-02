@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import SuperadminPages from "@/components/SuperadminPages";
+import SuperadminPages from "@/app/admin/dashboard/[id]/components/SuperadminPages";
 import Available_Orgs from "@/components/Available_Orgs";
 interface UserData {
   _id: string;

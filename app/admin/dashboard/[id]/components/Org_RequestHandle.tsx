@@ -2,6 +2,8 @@
 import React from "react";
 import Image from "next/image";
 
+function Allow() {}
+
 function deny() {}
 
 function details() {}
@@ -9,23 +11,21 @@ function details() {}
 interface org_requesthandle {
   image: String;
   OrgName: String;
-  allow: () => void;
 }
 
 export default function Org_RequestHandle({
   image,
   OrgName,
-  allow,
 }: org_requesthandle) {
   return (
-    <div className="grid grid-cols-12  m-6 sm:w-[250px] md:w-[540px] lg:w-[679px] h-96 sm:h-32 rounded-lg bg-[#D9D9D9] ">
+    <div className="grid grid-cols-12  m-4 w-[250px] md:w-[500px] lg:w-[679px] h-96 sm:h-32 rounded-lg bg-[#D9D9D9] ">
       <div className="sm:col-span-5 col-span-full overflow-hidden rounded-lg">
         <Image
           src={`/${image}`}
           alt="image2"
           width={249.64}
           height={126}
-          className="shadow-xl lg:w-[249.65px] sm:w-full md:w-[200px]"
+          className="shadow-xl  w-[300px] lg:w-[249.65px] md:w-[200px]"
         />
       </div>
 
@@ -36,7 +36,7 @@ export default function Org_RequestHandle({
           </div>
           <button
             onClick={() => details()}
-            className="w-20 h-[30px] rounded-3xl bg-[#4E8171] sm:ml-24 lg:ml-20 md:ml-8"
+            className="w-20 h-[30px] rounded-3xl bg-[#4E8171] ml-24 lg:ml-20 md:ml-3"
           >
             <div className="justify-center  text-white text-sans font-medium">
               Details
@@ -46,7 +46,7 @@ export default function Org_RequestHandle({
 
         <div className="flex flex-row mt-4 sm:mt-2 sm:ms-0 md:ms-4 lg:ms-0 xl:ms-0">
           <button
-            onClick={allow}
+            onClick={() => Allow()}
             className="w-20 h-[30px] rounded-3xl bg-[#3C9313] ms-2 sm:ms-0"
           >
             <div className="justify-center text-white text-sans font-medium">
@@ -55,7 +55,7 @@ export default function Org_RequestHandle({
           </button>
           <button
             onClick={() => deny()}
-            className="w-20 h-[30px] rounded-3xl bg-[#B63535] ml-8 sm:ml-10 "
+            className="w-20 h-[30px] rounded-3xl bg-[#B63535] ml-12 sm:ml-10 "
           >
             <div className="justify-center text-white text-sans font-medium ">
               Deny

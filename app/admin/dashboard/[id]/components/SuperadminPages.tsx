@@ -35,7 +35,7 @@ export default function SuperadminPages({
         </div>
 
         {showSearchBar && (
-          <div className="sm:w-64 md:w-80 lg:w-80 bg-gray-100  flex-col flex  p-1 rounded-lg border-2 border-gray-400   max-h-32 mt-0 sm:mt-8 lg:shadow-md md:shadow-none sm:shadow-none ms-6 sm:ms-0 mr-4">
+          <div className="sm:w-64 md:w-80 lg:w-80 bg-gray-100  flex-col flex  p-1 rounded-lg border-2 border-gray-400   max-h-32 mt-0 sm:mt-8 lg:shadow-md md:shadow-none sm:shadow-none ms-6 md:ms-2 lg:ms-0 mr-4">
             <div className="ms-4 mb-4 mt-0 sm:mt-2 ">
               <div className="sm:hidden md:flex lg:flex font-normal text-gray-500 mb-4">
                 {text}
@@ -49,9 +49,9 @@ export default function SuperadminPages({
                 <Image
                   src="/ReUsableComponentData/Search (1).svg"
                   width={20}
-                  height={14}
+                  height={20}
                   alt="search"
-                  className="bg-white mr-2"
+                  className="bg-white mr-2 w-auto h-auto"
                 />
               </div>
             </div>
@@ -59,7 +59,7 @@ export default function SuperadminPages({
         )}
       </div>
 
-      <div className="w-12 md:w-3/4 lg:w-3/4 ms-4 mt-6 xl:ms-12 ">
+      <div className="w-[320px] md:w-[520px] lg:w-[920px] ms-4 mt-6 xl:ms-12 h-80 overflow-y-auto">
         {customComponent}
       </div>
     </div>
