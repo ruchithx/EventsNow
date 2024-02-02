@@ -5,90 +5,96 @@ import NavBarButton from "./NavBarButton";
 import { getSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Login from "./Login";
 import Profile from "@/components/Profile";
 import Link from "next/link";
-import Spinner from "./Spinner";
-import { AiOutlineMenu } from "react-icons/ai";
-import { AiOutlineCloseCircle } from "react-icons/ai";
-import { MdContactless } from "react-icons/md";
-import { RiLoginCircleFill } from "react-icons/ri";
-import { FaLock } from "react-icons/fa6";
-import { FaUser } from "react-icons/fa";
-import { IoIosAddCircle } from "react-icons/io";
-import { RiLogoutCircleFill } from "react-icons/ri";
-import { AiOutlineClose } from "react-icons/ai";
-import { AiOutlineDownCircle } from "react-icons/ai";
-import { AiOutlineUpCircle } from "react-icons/ai";
-import { MdOutlineManageAccounts } from "react-icons/md";
-import { MdOutlineLogout } from "react-icons/md";
-import { IoMdClose } from "react-icons/io";
+import Spinner from "../Spinner";
+import {
+  AiOutlineClose,
+  AiOutlineDownCircle,
+  AiOutlineMenu,
+  AiOutlineUpCircle,
+} from "react-icons/ai";
 
-import { AiFillHome } from "react-icons/ai";
+import Login from "../Login";
+import { useAuth } from "@/app/AuthContext";
+
+import dynamic from "next/dynamic";
+import { MdOutlineLogout, MdOutlineManageAccounts } from "react-icons/md";
 import { usePathname } from "next/navigation";
 
 export default function NavBar() {
   const [userActive, setUserActive] = useState(false);
   const [userName, setUserName] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser]: any = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOrganizationShowButton, setIsOrganizationShowButton] =
     useState(false);
   const [showProfile, setShowProfile] = useState(false);
+  const { emailAuth, setEmail }: any = useAuth();
+  const ResponsiveMenuBar = dynamic(() => import("./ResponsiveMenuBar"));
+  // const NavbarProfile = dynamic(() => import("./NavbarProfile"));
+  const pathname = usePathname();
+
+  if (pathname === "/organization/dashboard/:id") {
+    console.log("hi");
+  }
 
   function toggleMenu() {
-    console.log(!isMenuOpen);
     setIsMenuOpen(!isMenuOpen);
   }
 
-  const router = useRouter();
-  // const pathname = usePathname();
-  // console.log(pathname);
-
   function clickLogoutBtn() {
     signOut();
-    router.push("/");
+    setEmail("");
+    localStorage.removeItem("email");
   }
 
   // get data from api
-  useEffect(function () {
-    async function session() {
-      setIsLoading(true);
-      const session = await getSession();
+  useEffect(
+    function () {
+      async function session() {
+        setIsLoading(true);
+        const session = await getSession();
 
-      if (session) {
-        const name = session?.user?.name ? session?.user?.name : "";
-        if (name !== "") {
-          setUserActive(true);
-          setUserName(name);
-        } else {
-          const email = session?.user?.email;
-          console.log(email);
-          const user = await fetch(
-            "http://localhost:3000/api/v1/user/getOneUser",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ email }),
-            }
-          );
-
-          const { data } = await user.json();
-          if (data) {
+        if (session) {
+          const name = session?.user?.name ? session?.user?.name : "";
+          setUser(session?.user);
+          if (name !== "") {
             setUserActive(true);
-
-            setUserName(data.firstName);
+            setUserName(name);
           } else {
-            setUserActive(false);
+            const email = emailAuth;
+
+            const user = await fetch(
+              "http://localhost:3000/api/v1/user/getOneUser",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email }),
+              }
+            );
+
+            const { data } = await user.json();
+
+            if (data) {
+              setUserActive(true);
+              console.log(data);
+              setUser(data);
+              setUserName(data.firstName);
+            } else {
+              setUserActive(false);
+            }
           }
         }
+        setIsLoading(false);
       }
-      setIsLoading(false);
-    }
-    session();
-  }, []);
+      session();
+    },
+    [emailAuth]
+  );
 
   return (
     <div>
@@ -99,7 +105,7 @@ export default function NavBar() {
         </nav>
       ) : (
         <nav className="dark:bg-navWhite ">
-          <div className="2xl:px-16 flex flex-wrap items-center justify-between mx-auto p-3">
+          <div className="2xl:px-16 flex flex-wrap items-center justify-between mx-auto p-2">
             {/* Events now logo and name */}
             <Link href="/">
               <button className="button">
@@ -122,9 +128,36 @@ export default function NavBar() {
               className="hidden w-full md:flex md:w-auto  items-end"
               id="navbar-default"
             >
-              <ul className="text-xl font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white  md:dark:bg-navWhite dark:border-gray-700">
+              <ul className=" justify-center items-center text-xl font-medium flex   p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white  md:dark:bg-navWhite dark:border-gray-700">
                 {/* home button */}
-                <li>
+
+                {pathname.startsWith("/organization/dashboard") ? (
+                  <Link href={"/createevent"}>
+                    <Login
+                      titleOfbutton={"HOST EVENT"}
+                      image={"createevent.svg"}
+                    />
+                  </Link>
+                ) : (
+                  <>
+                    <li>
+                      <Link href={"/"}>
+                        <button
+                          className=" block button py-2 px-3 text-white  rounded md:bg-transparent md:text-eventBrown-700 md:p-0 dark:text-eventBrown md:dark:text-eventBrown"
+                          aria-current="page"
+                        >
+                          Home
+                        </button>
+                      </Link>
+                    </li>
+
+                    <Link href={"/about"}>
+                      <NavBarButton text={"About"} />
+                    </Link>
+                  </>
+                )}
+
+                {/* <li>
                   <Link href={"/"}>
                     <button
                       className=" block button py-2 px-3 text-white  rounded md:bg-transparent md:text-eventBrown-700 md:p-0 dark:text-eventBrown md:dark:text-eventBrown"
@@ -134,48 +167,63 @@ export default function NavBar() {
                     </button>
                   </Link>
                 </li>
+
                 <Link href={"/about"}>
                   <NavBarButton text={"About"} />
-                </Link>
+                </Link> */}
 
                 {/* when user exist */}
                 {userActive && (
                   <>
                     {/* crete event button */}
-                    <Link href={"/createorganization"}>
-                      <Login
-                        titleOfbutton={"HOST EVENT"}
-                        image={"createevent.svg"}
-                      />
-                    </Link>
-
-                    {/* my profile part */}
-                    <div className="relative   group transition-all">
-                      <button
-                        className="button"
-                        onClick={() => setShowProfile(true)}
+                    <button
+                      type="button"
+                      className={`${
+                        pathname.startsWith("/admin") ? "hidden" : "flex"
+                      } button relative h-8 inline-flex items-center p-2 text-sm font-medium text-center text-white bg-custom-orange rounded-lg `}
+                    >
+                      <svg
+                        className="w-5 h-5"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 20 16"
                       >
-                        <Profile name={userName} picture="User_cicrle" />
-                      </button>
-                      {/* <div className="absolute  hidden  group-hover:flex group-hover:justify-center	group-hover:gap-2	  transition-all">
-                        <div className="mt-4 ">
-                          <Login
-                            fn={clickLogoutBtn}
-                            titleOfbutton={"LOGOUT"}
-                            image={"Subtract.svg"}
-                          />
-                        </div>
-                        <Link href={"/profile"} className="mt-4">
-                          <Login
-                            fn={clickLogoutBtn}
-                            titleOfbutton={"PROFILE"}
-                            image={"pprofile.svg"}
-                          />
-                        </Link>
-                      </div> */}
+                        <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z" />
+                        <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
+                      </svg>
+                      <span className="sr-only">Notifications</span>
+                      <div className="absolute inline-flex items-center justify-center w-6 h-4 text-xs font-bold text-white bg-red-600  rounded-full -top-2 -end-3 ">
+                        2
+                      </div>
+                    </button>
+                    <div
+                      className={`${
+                        pathname.startsWith("/organization/dashboard") ||
+                        pathname.startsWith("/admin") ||
+                        pathname.startsWith("/event/dashboard")
+                          ? "hidden"
+                          : "flex"
+                      } `}
+                    >
+                      <Link href={"/createorganization"}>
+                        <Login
+                          titleOfbutton={"HOST EVENT"}
+                          image={"createevent.svg"}
+                        />
+                      </Link>
                     </div>
+                    {/* my profile part */}
+
+                    <button
+                      className="button"
+                      onClick={() => setShowProfile(true)}
+                    >
+                      <Profile name={userName} picture="User_cicrle" />
+                    </button>
                   </>
                 )}
+
                 {/* there is no user exist */}
                 {!userActive && (
                   <>
@@ -199,97 +247,13 @@ export default function NavBar() {
               <AiOutlineMenu size={25} />
             </div>
           </div>
-          <div
-            className={
-              isMenuOpen
-                ? "fixed shadow-2xl  right-0 top-0 w-[65%] sm:hidden h-screen bg-[#ecf0fc] p-5 ease-in duration-50"
-                : "fixed left-[100%] top-0 p-10 ease-in duration-50"
-            }
-          >
-            <div
-              className={`w-full ${
-                userActive ? "hidden" : "block"
-              } flex items-center justify-end `}
-            >
-              <div onClick={() => toggleMenu()} className="cursor-pointer ">
-                <IoMdClose size={25} />
-              </div>
-            </div>
-            {userActive && (
-              <div className="flex justify-between items-center mt-5">
-                <Image
-                  src={`/ReUsableComponentData/profilpic.jpg`}
-                  alt="profile picture"
-                  width={60}
-                  height={20}
-                  className="rounded-full"
-                />
-                <div onClick={() => toggleMenu()} className="cursor-pointer ">
-                  <IoMdClose size={30} />
-                </div>
-              </div>
-            )}
 
-            <div className="flex flex-col py-6 text-black">
-              <ul>
-                <Link href="/">
-                  <Item fn={toggleMenu} text="Home">
-                    <AiFillHome />
-                  </Item>
-                </Link>
-                <Link href="/about">
-                  <Item fn={toggleMenu} text="About">
-                    <MdContactless />
-                  </Item>
-                </Link>
-                {!userActive && (
-                  <div className="flex flex-col  text-black">
-                    <Link href="/auth/login">
-                      <Item fn={toggleMenu} text="Login">
-                        <RiLoginCircleFill />
-                      </Item>
-                    </Link>
-                    <Link href="/auth/signup">
-                      <Item fn={toggleMenu} text="Signup">
-                        <FaLock />
-                      </Item>
-                    </Link>
-                  </div>
-                )}
-
-                {userActive && (
-                  <div className="flex flex-col  text-black">
-                    <Link href={"/createorganization"}>
-                      <Item fn={toggleMenu} text="Host Event">
-                        <IoIosAddCircle />
-                      </Item>
-                    </Link>
-                    <Link href="/profile">
-                      <Item fn={toggleMenu} text="Profile">
-                        <FaUser />
-                      </Item>
-                    </Link>
-                  </div>
-                )}
-              </ul>
-              {userActive && (
-                <div className="mt-5 flex justify-center w-full">
-                  <Login
-                    image="Sign_in.svg"
-                    titleOfbutton="LOGOUT"
-                    fn={clickLogoutBtn}
-                  />
-                </div>
-              )}
-              {/* <button
-                onClick={clickLogoutBtn}
-                className="flex gap-3 items-center"
-              >
-                <RiLogoutCircleFill />
-                <div>Logout</div>
-              </button> */}
-            </div>
-          </div>
+          <ResponsiveMenuBar
+            userActive={userActive}
+            isMenuOpen={isMenuOpen}
+            toggleMenu={toggleMenu}
+            clickLogoutBtn={clickLogoutBtn}
+          />
           <div className="relative">
             <div
               className={`absolute ${
@@ -300,9 +264,7 @@ export default function NavBar() {
             >
               <div className="">
                 <div className="flex m-3 items-center justify-between">
-                  <div className="font-medium	">
-                    ruchithsamarawickrama.sg@gmail.com
-                  </div>
+                  <div className="font-medium	">{user?.email}</div>
                   <button onClick={() => setShowProfile(false)}>
                     <AiOutlineClose />
                   </button>
@@ -317,7 +279,7 @@ export default function NavBar() {
                       className="rounded-full"
                     />
                   </div>
-                  <div className="font-medium	">{`hi ${userName} !`}</div>
+                  <div className="font-medium	">{`hi ${user?.name} !`}</div>
                   <div>
                     <button className="rounded-full py-2 px-4 bg-blue-500 text-white font-semibold  shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
                       Manage your account
@@ -352,7 +314,7 @@ export default function NavBar() {
                     >
                       <a
                         href="#"
-                        className="flex px-4 flex justify-center items-center py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        className="flex px-4  justify-center items-center py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
                       >
                         <div className="flex-shrink-0">
                           <Image
@@ -397,7 +359,7 @@ export function Item({
   fn?: () => void;
 }) {
   return (
-    <li className="p-2 	w-full  hover:bg-[#12342112] cursor-pointer font-medium  border-amber-400	text-xl ">
+    <li className="p-2 	w-full  hover:bg-[#12342112] cursor-pointer   border-amber-400	text-xl ">
       <button onClick={fn} className="flex gap-3 items-center">
         <div>{children}</div>
         <div>{text}</div>

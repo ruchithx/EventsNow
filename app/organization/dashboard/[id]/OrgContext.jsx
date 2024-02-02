@@ -1,6 +1,6 @@
 "use client";
-import React, { createContext, useContext, useState } from "react";
-
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { useRouter, useParams } from "next/navigation";
 const orgContext = createContext();
 
 function OrgContextProvider({ children }) {
@@ -9,9 +9,47 @@ function OrgContextProvider({ children }) {
   const [ticketSold, setTicketSold] = useState(0);
   const [events, setEvents] = useState([]);
   const [team, setTeam] = useState([]);
-  const [isActive, setIsActive] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isActive, setIsActive] = useState(false);
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isSlideBar, setIsSlideBar] = useState(true);
+  const [organization, setOrganization] = useState({});
+  const params = useParams();
+
+  useEffect(
+    function () {
+      async function getData() {
+        setIsLoading(true);
+        const res = await fetch(
+          `http://localhost:3000/api/v1/organization/getOrganization`,
+          {
+            method: "POST",
+            mode: "cors",
+            body: JSON.stringify(params.id),
+          }
+        );
+
+        if (!res.ok) {
+          router.push("/404");
+          return;
+        }
+
+        const { organization } = await res.json();
+        console.log(organization);
+        if (!organization) {
+          return;
+        }
+        setOrganization(organization);
+        setIsLoading(false);
+
+        setIsActive(organization.isActive);
+      }
+      getData();
+    },
+    [params.id]
+  );
+
+  const router = useRouter();
 
   function handleDashboard() {
     setStatus("dashboard");
@@ -21,14 +59,17 @@ function OrgContextProvider({ children }) {
     setStatus("myEvents");
     setIsDashboardOpen(false);
   }
+
   function handleMyTeam() {
     setStatus("myTeam");
     setIsDashboardOpen(false);
   }
+
   function handleReport() {
     setStatus("report");
     setIsDashboardOpen(false);
   }
+
   function handleSetting() {
     setStatus("setting");
     setIsDashboardOpen(false);
@@ -43,7 +84,7 @@ function OrgContextProvider({ children }) {
         setIsSlideBar,
         isDashboardOpen,
         setIsDashboardOpen,
-        setIsActive,
+        isLoading,
         isActive,
         revenue,
         team,
@@ -53,6 +94,7 @@ function OrgContextProvider({ children }) {
         handleMyEvent,
         handleMyTeam,
         handleReport,
+        organization,
       }}
     >
       {children}

@@ -153,7 +153,7 @@ export default function LoginFormBasic() {
 
           <button
             type="submit"
-            className="flex text-center p-1 justify-center w-full bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono"
+            className="button flex text-center p-1 justify-center w-full bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono"
           >
             {spinner ? <Spinner /> : "CREAT ACCOUNT"}
           </button>
