@@ -352,7 +352,7 @@ export default function NavBar() {
                     >
                       <a
                         href="#"
-                        className="flex px-4 flex justify-center items-center py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        className=" px-4 flex justify-center items-center py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
                       >
                         <div className="flex-shrink-0">
                           <Image

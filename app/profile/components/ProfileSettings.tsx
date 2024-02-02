@@ -8,7 +8,7 @@ export default function ProfileSettings({ name }: Details) {
   const [editedName, setEditedName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: any) => {
     setEditedName(e.target.value);
   };
 
@@ -21,7 +21,7 @@ export default function ProfileSettings({ name }: Details) {
   };
 
   return (
-    <div className="border-gray border-2 w-full p-4 rounded-lg bg-custom-gray mt-5  z-10">
+    <div className="border-gray border-2 w-full p-4 rounded-lg bg-custom-gray mt-5 relative  z-0">
       <label htmlFor="fname">{name}</label>
       <div className="flex flex-col sm:flex-row md:flex-row justify-between items-center z-0">
         {isEditing ? (

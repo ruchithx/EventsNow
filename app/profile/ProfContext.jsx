@@ -15,7 +15,7 @@ function ProfContextProvider({ children }) {
 
   function handleProfile() {
     setStatus("myProfile");
-    setIsOpen(false);
+    setIsDashboardOpen(false);
   }
   function handleWishList() {
     setStatus("wishList");
