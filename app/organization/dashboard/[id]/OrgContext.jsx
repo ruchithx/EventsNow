@@ -13,6 +13,7 @@ function OrgContextProvider({ children }) {
   const [isActive, setIsActive] = useState(false);
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isSlideBar, setIsSlideBar] = useState(true);
+  const [organization, setOrganization] = useState({});
   const params = useParams();
 
   useEffect(
@@ -38,6 +39,7 @@ function OrgContextProvider({ children }) {
         if (!organization) {
           return;
         }
+        setOrganization(organization);
         setIsLoading(false);
 
         setIsActive(organization.isActive);
@@ -92,6 +94,7 @@ function OrgContextProvider({ children }) {
         handleMyEvent,
         handleMyTeam,
         handleReport,
+        organization,
       }}
     >
       {children}

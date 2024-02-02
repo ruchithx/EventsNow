@@ -1,9 +1,10 @@
 import React from "react";
 import { useOrg } from "../OrgContext";
-import ProfileSettings from "@/components/ProfileSettings";
+import ProfileSettings from "@/app/organization/dashboard/[id]/components/ProfileSettings";
+import AdvanceDetails from "./AdvanceDetails";
 
 export default function Setting() {
-  const { isSlideBar } = useOrg();
+  const { isSlideBar, organization } = useOrg();
 
   return (
     <div className="flex rounded-lg  shadow-3xl md:pl-10 md:ml-2 pl-5 bg-[#fff] pt-8 lg:pl-12 flex-col justify-start items-start gap-12">
@@ -12,7 +13,7 @@ export default function Setting() {
           ACCOUNT DETAILS
         </div>
         <div className="md:w-full lg:w-3/4 text-[#666666]">
-          <ProfileSettings name={"name"} />
+          <ProfileSettings name={"Organization name"} />
         </div>
       </div>
       <div className="w-11/12 lg:w-full ">
@@ -21,6 +22,7 @@ export default function Setting() {
         </div>
 
         <div className="w-full  lg:w-3/4">
+          {/* <AdvanceDetails /> */}
           <input
             required
             type="text"
@@ -73,6 +75,14 @@ export default function Setting() {
             className=" my-5 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
             placeholder="payout frequency  "
           />
+          <div className="w-full  flex justify-end">
+            <button
+              // onClick={handleSave}
+              className="bg-custom-orange  text-white px-4 py-1 rounded-lg"
+            >
+              save
+            </button>
+          </div>
         </div>
       </div>
     </div>
