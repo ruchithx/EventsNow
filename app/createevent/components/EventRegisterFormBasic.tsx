@@ -166,7 +166,7 @@ export default function EventRegisterFormBasic() {
               Date <div className="text-red-500 font-">*</div>
             </label>
             
-              <DatePicker className="my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-xl  xl:pr-24 lg:pr-10 md:pr-40 md:max-lg:mr-20 sm:max-md:mr-40 mr-24 lg:mr-0 focus:outline-custom-orange" selected={eventStartDate} onChange= 
+              <DatePicker className="my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-xl  xl:pr-20 lg:pr-10 md:pr-40 md:max-lg:mr-20 sm:max-md:mr-40 mr-24 lg:mr-0 focus:outline-custom-orange" selected={eventStartDate} onChange= 
               {(date) => setEventStartDate(date || new Date())} /> 
             
           </div>
