@@ -16,7 +16,6 @@ import {
 } from "react-icons/ai";
 
 import Login from "../Login";
-
 import { useAuth } from "@/app/AuthContext";
 
 import dynamic from "next/dynamic";
@@ -34,19 +33,16 @@ export default function NavBar() {
   const [showProfile, setShowProfile] = useState(false);
   const { emailAuth, setEmail }: any = useAuth();
   const ResponsiveMenuBar = dynamic(() => import("./ResponsiveMenuBar"));
-  const NavbarProfile = dynamic(() => import("./NavbarProfile"));
+  // const NavbarProfile = dynamic(() => import("./NavbarProfile"));
   const pathname = usePathname();
 
   if (pathname === "/organization/dashboard/:id") {
     console.log("hi");
   }
 
-  // console.log(pathname);
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
   }
-
-  const router = useRouter();
 
   function clickLogoutBtn() {
     signOut();
@@ -132,7 +128,7 @@ export default function NavBar() {
               className="hidden w-full md:flex md:w-auto  items-end"
               id="navbar-default"
             >
-              <ul className="text-xl font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white  md:dark:bg-navWhite dark:border-gray-700">
+              <ul className=" justify-center items-center text-xl font-medium flex   p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white  md:dark:bg-navWhite dark:border-gray-700">
                 {/* home button */}
 
                 {pathname.startsWith("/organization/dashboard") ? (
@@ -218,14 +214,13 @@ export default function NavBar() {
                       </Link>
                     </div>
                     {/* my profile part */}
-                    <div className="relative   group transition-all">
-                      <button
-                        className="button"
-                        onClick={() => setShowProfile(true)}
-                      >
-                        <Profile name={userName} picture="User_cicrle" />
-                      </button>
-                    </div>
+
+                    <button
+                      className="button"
+                      onClick={() => setShowProfile(true)}
+                    >
+                      <Profile name={userName} picture="User_cicrle" />
+                    </button>
                   </>
                 )}
 
