@@ -2,7 +2,7 @@ import InviteButton from "@/components/InviteButton";
 import PersonDetailsBar from "@/components/PersonDetailsBar";
 import React from "react";
 import { useOrg } from "../OrgContext";
-import HasData from "./HasData";
+
 import EmptyStateComponent from "@/components/EmptyStateComponent";
 
 export default function MyTeam() {

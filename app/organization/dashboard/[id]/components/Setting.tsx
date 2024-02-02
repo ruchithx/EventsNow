@@ -5,6 +5,7 @@ import AdvanceDetails from "./AdvanceDetails";
 import { error } from "@/util/Toastify";
 import { success } from "@/util/Toastify";
 import dynamic from "next/dynamic";
+import { clearLine } from "readline";
 
 const ProfileSettings = dynamic(
   () => import("@/app/organization/dashboard/[id]/components/ProfileSettings")
@@ -12,22 +13,35 @@ const ProfileSettings = dynamic(
 
 export default function Setting() {
   const { organization } = useOrg();
-  const [bank, setBank] = useState("");
-  const [branch, setBranch] = useState("");
-  const [payout, setPayout] = useState("");
-  const [accountName, setAccountName] = useState("");
-  const [accountNumber, setAccountNumber] = useState("");
+  const [bank, setBank] = useState(organization.bank || "");
+  const [branch, setBranch] = useState(organization.branch || "");
+  const [payout, setPayout] = useState(organization.payout || "");
+  const [accountName, setAccountName] = useState(
+    organization.accountName || ""
+  );
+  const [accountNumber, setAccountNumber] = useState(
+    organization.accountNumber || ""
+  );
 
   async function handleSave() {
+    if (!bank || !branch || !payout || !accountName || !accountNumber) {
+      error("Please fill all the fields");
+      return;
+    }
+
+    if (
+      bank === organization.bank &&
+      branch === organization.branch &&
+      payout === organization.payout &&
+      accountName === organization.accountName &&
+      accountNumber === organization.accountNumber
+    ) {
+      error("No changes detected");
+      return;
+    }
+
     const data = { bank, branch, payout, accountName, accountNumber };
-    console.log(
-      bank,
-      branch,
-      payout,
-      accountName,
-      accountNumber,
-      organization._id
-    );
+
     const res = await fetch(
       `/api/v1/organization/updateOrganization/${organization._id}`,
       {

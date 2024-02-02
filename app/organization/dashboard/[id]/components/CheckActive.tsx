@@ -4,8 +4,6 @@ import SideBar from "./SideBar";
 import Content from "./Content";
 import { useOrg } from "../OrgContext";
 import Image from "next/image";
-import { useParams } from "next/navigation";
-import { useRouter } from "next/navigation";
 
 import OrganizationRequestPending from "@/components/OrganizationRequestPending";
 import DashboardDetails from "@/app/organization/dashboard/[id]/components/DashboardDetails";
@@ -13,8 +11,6 @@ import Dashboard_Btn from "@/app/organization/dashboard/[id]/components/Dashboar
 import Spinner from "@/components/Spinner";
 
 export default function CheckActive() {
-  const params = useParams();
-  const router = useRouter();
   const {
     isSlideBar,
     handleDashboard,

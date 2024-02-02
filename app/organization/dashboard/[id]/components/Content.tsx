@@ -9,6 +9,7 @@ import Setting from "./Setting";
 
 export default function Content() {
   const { status } = useOrg();
+
   return (
     <div>
       {status === "dashboard" && <Dashboard />}
