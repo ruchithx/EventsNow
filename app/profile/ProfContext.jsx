@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState } from "react";
 const ProfContext = createContext();
 
 function ProfContextProvider({ children }) {
-  const [status, setStatus] = useState("dashboard");
+  const [status, setStatus] = useState("myProfile");
   const [revenue, setRevenue] = useState(0);
   const [ticketSold, setTicketSold] = useState(0);
   const [events, setEvents] = useState([]);

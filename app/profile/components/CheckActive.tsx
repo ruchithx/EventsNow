@@ -4,29 +4,16 @@ import SideBar from "./SideBar";
 import Content from "./Content";
 import { useProf } from "../ProfContext";
 import Image from "next/image";
-import { useParams } from "next/navigation";
-import { FiArrowRight } from "react-icons/fi";
-import { HiAdjustments } from "react-icons/hi";
-import { HiOutlineGlobeAlt } from "react-icons/hi";
-import { AiOutlineRightCircle } from "react-icons/ai";
-import { BiArrowFromLeft } from "react-icons/bi";
-import { BiArrowFromRight } from "react-icons/bi";
-import { CgCloseR } from "react-icons/cg";
-import { MdClose } from "react-icons/md";
-import { CgProfile } from "react-icons/cg";
 
-import { MdSpaceDashboard } from "react-icons/md";
-import Link from "next/link";
-import { Item } from "@/components/NavBar";
-import { AiOutlineCloseCircle } from "react-icons/ai";
-import EmptyStateComponent from "@/components/EmptyStateComponent";
+
+
 import OrganizationRequestPending from "@/components/OrganizationRequestPending";
-import DashboardDetails from "@/app/organization/dashboard/[id]/components/DashboardDetails";
+
 import Dashboard_Btn from "@/app/organization/dashboard/[id]/components/Dashboard_Btn";
 import Profile from "./profile";
 
 export default function CheckActive() {
-  const params = useParams();
+  
 
   const {
     isActive,
