@@ -27,6 +27,8 @@
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.3.1",
+    "flowbite": "^2.2.1",
+    "flowbite-react": "^0.7.2",
     "framer-motion": "^10.17.6",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.4",
