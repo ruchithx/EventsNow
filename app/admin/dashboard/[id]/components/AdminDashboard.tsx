@@ -29,7 +29,7 @@ export default function AdminDashboard() {
   const { status } = useAdmin();
   return (
     <div>
-      <div className=" md:flex lg:flex flex flex-col md:flex-row lg:flex-row h-[500px] mt-4 md:mt-8 lg:mt-12">
+      <div className=" md:flex lg:flex flex flex-col md:flex-row lg:flex-row h-[500px] mt-12">
         <div className="sm:hidden sm:flex-col md:flex lg:flex sm:w-full md:w-1/5 lg:w-1/6  ms-4 h-[500px] rounded-lg">
           <div className="flex flex-col   shadow-3xl items-center rounded-lg ">
             <div className=" flex flex-row mt-2 h-[500px] rounded-lg ">
