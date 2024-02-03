@@ -22,6 +22,9 @@ function AdminContextProvider({ children }) {
   function handleUser() {
     setStatus("User");
   }
+  function handlePayments() {
+    setStatus("Payments");
+  }
   return (
     <adminContext.Provider
       value={{
@@ -30,6 +33,7 @@ function AdminContextProvider({ children }) {
         handleOrganization,
         handleEvent,
         handleUser,
+        handlePayments,
       }}
     >
       {children}

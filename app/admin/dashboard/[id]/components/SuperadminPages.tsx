@@ -24,7 +24,7 @@ export default function SuperadminPages({
       className="flex flex-col ms-0 sm:ms-2 cursor-pointer "
       onClick={handleClick}
     >
-      <div className="flex flex-col md:flex-row lg:flex-row sm:justify-center md:justify-between lg:justify-between mt-8">
+      <div className="flex flex-col md:flex-row lg:flex-row sm:justify-center md:justify-between lg:justify-between ">
         <div className="flex flex-col p-4 sm:justify-center md:justify-start  lg:justify-start xl:ms-12 ">
           <div className="text-profileName text-4xl font-semibold mb-8 ">
             {title}
