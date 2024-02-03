@@ -43,6 +43,7 @@ export const authOptions: NextAuthOptions = {
         "585040141563-5qq76qfjfl60d267mblh6voih0gj7uhh.apps.googleusercontent.com",
       clientSecret: "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",
     }),
+
     FacebookProvider({
       clientId: "683671997269456",
       clientSecret: "9220a35f2ce17bc3a56a99d34c7e1d00",
@@ -54,29 +55,26 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user, account }): Promise<boolean> {
-      console.log("user", user);
-      console.log("account", account);
-      // if (account?.provider === "google") {
-      //   const email = user?.email;
-      //   console.log("yes");
-      //   const data = await fetch("http://localhost:3000/api/v1/user/exist", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
+      if (account?.provider === "google") {
+        const email = user?.email;
+        const name = user?.name;
 
-      //     body: JSON.stringify({ email }),
-      //   }).then((res) => res.json());
-      //   console.log(data);
-
-      //   if (data.ok) {
-      //     error("Already exist this email");
-      //     return false;
-      //   }
-      // }
+        const data = await fetch(
+          "http://localhost:3000/api/v1/user/signInRegister",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, name }),
+          }
+        ).then((res) => res.json());
+      }
 
       // if (account?.provider === "google") {
+      //   console.log("google");
       //   const userdata = await User.findOne({ email: user.email });
+      //   console.log(userdata);
       //   if (userdata) {
       //     return true;
       //   } else {

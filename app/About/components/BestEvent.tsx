@@ -10,12 +10,7 @@ interface Best_Event {
   description: String;
 }
 
-export default function BestEvent({
-  img,
-  eventname,
-  year,
-  description,
-}: Best_Event) {
+export default function ({ img, eventname, year, description }: Best_Event) {
   return (
     <div className="w-[20rem]  bg-[#F9EBE9] ml-12 mt-12 shadow-xl">
       <div className="mt-8 ml-8">

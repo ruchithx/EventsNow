@@ -11,10 +11,10 @@ export async function POST(req: Request) {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return;
+      return NextResponse.json({ user: null });
+    } else {
+      return NextResponse.json({ user });
     }
-
-    return NextResponse.json({ user });
   } catch (e) {
     console.log(e);
   }

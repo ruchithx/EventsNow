@@ -1,3 +1,5 @@
+import { string } from "zod";
+
 const mongoose = require("mongoose");
 
 const validator = require("validator");
@@ -27,19 +29,19 @@ const organizationSchema = new mongoose.Schema({
     type: String,
     required: [true, "please enter phone number"],
   },
+  bank: String,
+  branch: String,
+  accountNumber: String,
+  accountName: String,
+  payout: String,
   email: {
     type: String,
-    unique: true,
     required: [true, "Please provide your email"],
     lowercase: true,
     validate: [validator.isEmail, "Please provide valid email"],
   },
-  __v: {
-    type: Number,
-  },
   isActive: {
     type: Boolean,
-    required: [true, false],
   },
 });
 

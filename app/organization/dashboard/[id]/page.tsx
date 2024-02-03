@@ -1,20 +1,17 @@
 import React from "react";
-import SideBar from "./components/SideBar";
-
-import Content from "./components/Content";
+import CheckActive from "./components/CheckActive";
 import { OrgContextProvider } from "./OrgContext";
 
-export default function page() {
+export default function Organization({
+  params: { id },
+}: {
+  params: { id: string };
+}) {
   return (
-    <>
+    <div className="py-5 ">
       <OrgContextProvider>
-        <div className="grid grid-cols-4">
-          <div className="col-span-1">
-            <SideBar />
-          </div>
-          <div className="col-span-3">{<Content />} </div>
-        </div>
+        <CheckActive />
       </OrgContextProvider>
-    </>
+    </div>
   );
 }
