@@ -18,7 +18,7 @@ export default function PersonDetailsBar({ name, email }: PresonDetailsBar) {
       <div className="xl:col-span-1  grid ">
         <button
           onClick={editDetails}
-          className={`bg-custom-orange    justify-self-end rounded-[5px] `}
+          className={`bg-custom-orange h-[34px] justify-self-end rounded-[5px] w-[114px]`}
         >
           <div className="flex justify-around pl-1">
             <svg

@@ -7,8 +7,9 @@ import Event_Dashboard_Nav_bar from "../app/organization/dashboard/[id]/componen
 import Event_Dashboard_Btn from "../app/organization/dashboard/[id]/components/Dashboard_Btn";
 import { text } from "stream/consumers";
 import Upcoming_Events from "./Upcoming_Events";
-import ProfileSettings from "../app/profile/components/ProfileSettings";
-import Org_RequestHandle from "../app/profile/components/Org_RequestHandle";
+// import ProfileSettings from "./ProfileSettings";
+import Org_RequestHandle from "../app/admin/dashboard/[id]/components/Org_RequestHandle";
+import ProfileSettings from "@/app/profile/components/ProfileSettings";
 
 export default function ProfileSideNavBar() {
   const [content, setContent] = useState("My profile");
