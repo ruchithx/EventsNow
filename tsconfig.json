@@ -34,7 +34,7 @@
     "app/auth/login/page.tsx",
     "app/organization/dashboard/[id]/components/DashboardSide.tsx",
     "app/api/v1/organization/createOrganization/route.js",
-    "app/organization/dashboard/[id]/OrgContext.jsx"
+    "app/organization/dashboard/[id]/OrgContext.jsx",
   ],
   "exclude": ["node_modules"]
 }

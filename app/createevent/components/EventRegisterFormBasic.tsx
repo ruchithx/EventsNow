@@ -1,39 +1,54 @@
 "use client";
-import React from "react";
-import { useState,useRef } from "react";
+import React, { SetStateAction } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 
 import { z } from "zod";
 import { error, success } from "../../../util/Toastify";
-import DatePicker from "react-datepicker"; 
-import "react-datepicker/dist/react-datepicker.css"; 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+import firebase from "firebase/compat/app";
+import { firebaseConfig} from "../../../services/FirebaseConfig";
+import "firebase/compat/storage";
+
+firebase.initializeApp(firebaseConfig);
 
 export default function EventRegisterFormBasic() {
   const [eventName, setEventName] = useState("");
   const [selectedTab, setSelectedTab] = useState("Onsite");
-  const [eventStartDate, setEventStartDate] = useState(new Date()); 
-  const [startTime,setStartTime] = useState("");
-  const [duration,setDuration] = useState("");
-  const [eventTimeZone,setEventTimeZone] = useState("");
+  const [eventStartDate, setEventStartDate] = useState(new Date());
+  const [startTime, setStartTime] = useState("");
+  const [duration, setDuration] = useState("s");
+  const [eventTimeZone, setEventTimeZone] = useState("");
   const [description, setDescription] = useState("");
-  const [postImage, setPostImage] = useState("");
+  const [postImage, setPostImage] = useState([File] as any);
 
   const [previewImage, setPreviewImage] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const validateEvent = z.object({
     eventName: z.string().min(1, "Enter event name "),
-    selectedTab: z.string().min(1,{message:"select the event type"}),
-    eventStartDate: z.date(),  
-    startTime: z.string().min(1,{message:"Enter event start time "}),
+    selectedTab: z.string().min(1, { message: "select the event type" }),
+    eventStartDate: z.date(),
+    startTime: z.string().min(1, { message: "Enter event start time " }),
     duration: z.string(),
-    eventTimeZone: z.string().min(1,{message:"Enter event time zone"}),
+    eventTimeZone: z.string().min(1, { message: "Enter event time zone" }),
     description: z.string(),
-    postImage: z.string().min(1,{message:"Enter event cover photo "}),
-   
+    postImage: z.any(),
+    postImageLink: z.string().min(1, { message: "Enter event cover" }),
   });
 
   async function sendEventData() {
+    const storageRef = firebase.storage().ref();
+    const fileRef = storageRef.child(`eventCover-${eventName}`);
+    const postImageLink = await fileRef
+      .put(postImage)
+      .then((snapshot) =>
+        snapshot.ref.getDownloadURL().then((downloadURL) => downloadURL)
+      );
+
+   
     const data = {
       eventName,
       selectedTab,
@@ -42,18 +57,16 @@ export default function EventRegisterFormBasic() {
       duration,
       eventTimeZone,
       description,
-      postImage,
+      postImageLink,
     };
+
     const result = validateEvent.safeParse(data);
     if (result.success) {
-      const res = await fetch(
-        "http://localhost:3000/api/v1/createEvent",
-        {
-          method: "POST",
-          mode: "cors",
-          body: JSON.stringify(data),
-        }
-      );
+      const res = await fetch("http://localhost:3000/api/v1/createEvent", {
+        method: "POST",
+        mode: "cors",
+        body: JSON.stringify(data),
+      });
 
       if (!res.ok) {
         error("There is an error for create event");
@@ -61,35 +74,21 @@ export default function EventRegisterFormBasic() {
       }
       success("registration data sent succesfully");
 
-      setEventName("");
-      setSelectedTab("Onsite");
       setEventStartDate(new Date());
       setStartTime("");
       setDuration("");
       setEventTimeZone("");
       setDescription("");
       setPreviewImage("");
-      setPostImage("");
+      setEventName("");
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
     } else {
       error(result.error.errors[0].message);
     }
+  }
 
-  }
-  function convertTobase64(file: File) {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  }
   return (
     <div className=" lg:pb-10 2xl:px-40 - sm:px-20 justify-center">
       <div className=" mt-8 leading-none text-center text-[#455273] font-khand text-[40px] sm:text-[64px] font-semibold mx-2">
@@ -165,10 +164,14 @@ export default function EventRegisterFormBasic() {
             >
               Date <div className="text-red-500 font-">*</div>
             </label>
-            
-              <DatePicker className="my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-xl  xl:pr-20 lg:pr-10 md:pr-40 md:max-lg:mr-20 sm:max-md:mr-40 mr-24 lg:mr-0 focus:outline-custom-orange" selected={eventStartDate} onChange= 
-              {(date) => setEventStartDate(date || new Date())} /> 
-            
+
+            <DatePicker
+              className="my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-xl  xl:pr-20 lg:pr-10 md:pr-40 md:max-lg:mr-20 sm:max-md:mr-40 mr-24 lg:mr-0 focus:outline-custom-orange"
+              selected={eventStartDate}
+              onChange={(date: Date | null) =>
+                setEventStartDate(date || new Date())
+              }
+            />
           </div>
 
           <div>
@@ -252,9 +255,7 @@ export default function EventRegisterFormBasic() {
             onChange={async (e) => {
               if (e.target.files && e.target.files.length > 0) {
                 setPreviewImage(URL.createObjectURL(e.target.files[0]));
-                const file = e.target.files[0];
-                const base64 = await convertTobase64(file);
-                setPostImage(base64 as string);
+                setPostImage(e.target.files[0]);
               }
             }}
             className="block  text-sm text-slate-500

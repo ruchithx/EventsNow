@@ -11,7 +11,7 @@ export async function POST(req){
       duration,
       eventTimeZone,
       description,
-      postImage
+      postImageLink
 
     }=await req.json();
 
@@ -24,7 +24,7 @@ export async function POST(req){
       duration,
       eventTimeZone,
       description,
-      postImage,
+      postImageLink,
 });
 return NextResponse.json({message:"Event Created Successfully"},{status:201});
 }
