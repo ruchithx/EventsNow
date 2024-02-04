@@ -19,16 +19,14 @@ import {
 } from "@nextui-org/dropdown";
 
 export default function CreateOrganizationFormBasic() {
-  const [fullName, setFullName] = useState("ashan");
-  const [number, setNumber] = useState("asas");
-  const [numberType, setNumberType] = useState("NIC");
-  const [companyName, setCompanyName] = useState("my company ");
-  const [address, setAddress] = useState("matara");
-  const [phoneNumber, setPhoneNumber] = useState("0763359357");
-  const [email, setEmail] = useState("ashandilsara8@gmail.com");
-  const [organizationName, setOrganizationName] = useState(
-    "my new organiazation"
-  );
+  const [fullName, setFullName] = useState("");
+  const [number, setNumber] = useState("");
+  const [numberType, setNumberType] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [address, setAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [organizationName, setOrganizationName] = useState("");
   const [previewImage, setPreviewImage] = useState("");
   const isActive = false;
   const [postImage, setPostImage] = useState([File] as any);
@@ -250,10 +248,13 @@ export default function CreateOrganizationFormBasic() {
           className=" my-5 w-full h-8 block flex-1  bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:outline-custom-orange sm:text-sm sm:leading-6 border-2 rounded-[12px] pl-4"
           placeholder="Enter email address "
         ></input>
-        <div className=" border-2 w-auto border-solId rounded-xl  ">
+        <div className=" border-2 w-auto border-solId rounded-xl   ">
+        <label htmlFor="fileReader" className="   py-1.5 text-gray-400  sm:text-sm sm:leading-6 pl-4">Enter cover photo for organization </label>
           <input
             required
             type="file"
+            id="fileReader"
+            
             ref={fileInputRef}
             accept="image/*"
             onChange={(e) => {
@@ -271,11 +272,11 @@ export default function CreateOrganizationFormBasic() {
           />
           {previewImage.length > 0 && (
             <Image
-              className=""
+              className=" p-4"
               src={previewImage}
-              width={100}
-              height={100}
-              alt="Picture of the author"
+              width={500}
+              height={500}
+              alt="organization cover image"
             />
           )}
         </div>

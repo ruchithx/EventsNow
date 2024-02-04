@@ -19,7 +19,7 @@ export default function EventRegisterFormBasic() {
   const [selectedTab, setSelectedTab] = useState("Onsite");
   const [eventStartDate, setEventStartDate] = useState(new Date());
   const [startTime, setStartTime] = useState("");
-  const [duration, setDuration] = useState("s");
+  const [duration, setDuration] = useState("");
   const [eventTimeZone, setEventTimeZone] = useState("");
   const [description, setDescription] = useState("");
   const [postImage, setPostImage] = useState([File] as any);
