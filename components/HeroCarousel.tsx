@@ -1,16 +1,29 @@
 import React from "react";
 import { Carousel } from "flowbite-react";
 import Image from "next/image";
+import type { CustomFlowbiteTheme } from 'flowbite-react';
+import { Flowbite } from 'flowbite-react';
 
 function info() {
   console.log("Direct to the info page");
 }
 
+const customTheme: CustomFlowbiteTheme = {
+  carousel:{
+    scrollContainer:{
+      base: "flex h-full snap-mandatory overflow-y-hidden overflow-x-scroll scroll-smooth"
+    }
+  }
+}
+
 export default function HeroCarousel() {
   return (
+    
+
+
     <div className="grid xl:grid-cols-2">
       <div>
-        <div className="w-full bg-[#D7CFC7] xl:h-screen rounded-lg">
+        <div className="w-full bg-[#D7CFC7] xl:h-screen ">
           <div className='text-[#906953] text-center font-["Khand"] text-3xl md:py-16 sm:text-5xl md:text-7xl  xl:px-12 font-semibold py-6 md:px-6'>
             “Where Moments Become Memories”
           </div>
@@ -54,16 +67,14 @@ export default function HeroCarousel() {
 
       <div className="grid ">
         <div className="h-56 sm:h-64 xl:h-screen hidden xl:block rounded-none">
-          <Carousel >
+        <Flowbite theme={{ theme: customTheme }}>
+          <Carousel scrollContainer="base">
             <Image className="w-full h-full object-cover object-center" sizes='100vw' width={80} height={80} alt="ima" src={'/slider1.png'}/>
             <Image className="w-full h-full object-cover object-center" sizes='100vw' width={80} height={80} alt="ima" src={'/slider2.png'}/>
             <Image className="w-full h-full object-cover object-center" sizes='100vw' width={80} height={80} alt="ima" src={'/slider3.png'}/>
             <Image className="w-full h-full object-cover object-center" sizes='100vw' width={80} height={80} alt="ima" src={'/slider4.png'}/>
-            {/* <img src="/slider1.png" alt="..." />
-            <img src="/slider2.png" alt="..." />
-            <img src="/slider3.png" alt="..." />
-            <img src="/slider4.png" alt="..." /> */}
           </Carousel>
+        </Flowbite>
         </div>
       </div>
     </div>
