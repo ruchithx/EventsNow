@@ -126,7 +126,7 @@ export default function page() {
 
       <div className="mt-52"></div>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
