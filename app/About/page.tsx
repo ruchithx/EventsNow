@@ -2,12 +2,12 @@ import NavBar from "@/components/NavBar";
 import React from "react";
 import Footer from "@/components/Footer";
 import Image from "next/image";
-// import BestEvent from "@/components/BestEvent";
+import BestEvent from "./components/BestEvent";
 
 export default function page() {
   return (
     <div>
-      <NavBar />
+      {/* <NavBar /> */}
 
       <div className="xl:h-[600px] md:h-[400px] w-full bg-[url('/mainphoto.png')] bg-no-repeat bg-cover bg-center">
         <div className="flex-auto w-full h-[213px] flex-col shrink-0 text-white text-center xl:text-6xl md:text-4xl sm:text-2xl md:py-40 xl:pt-56 py-20 px-20 font-['Khand'] font-semibold">
@@ -15,12 +15,12 @@ export default function page() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 xl:mx-40 xl:my-14 md:my-14 md:place-items-center place-items-center ">
+      <div className="grid md:grid-cols-2 md:mx-16 xl:mx-40 xl:my-14 md:my-12 md:place-items-center place-items-center ">
         <div>
-          <div className='mt-6 xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] text-center flex-col shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:mt-8 font-semibold'>
+          <div className='mt-2 py-4 xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] flex-col text-center justify-center shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl  sm:mt-10  font-semibold'>
             OUR MISSION
           </div>
-          <div className='xl:text-left flex-auto w-full h-[13rem] text-center flex-col shrink-0 text-black font-["Khand"] md:text-base  font-medium tracking-wider '>
+          <div className='sm:px-6 sm:-mb-16 md:px-0 px-4 md:mb-4 xl:text-left flex-auto w-full h-[13rem] text-center flex-col shrink-0 text-black font-["Khand"] md:text-base  font-medium tracking-wider '>
             At EventNow our mission is to connect people through exceptional
             event experiences. We are committed to providing a seamless and
             user-friendly platform that empowers event organizers to create,
@@ -31,18 +31,18 @@ export default function page() {
           </div>
         </div>
 
-        <div className="mt-6 xl:ml-40 md:ml-12 place-items-center flex justify-center items-center xl:w-[23rem] md:w-[22rem] sm:-mt-12">
-          <Image src={"/mission.png"} width={350} height={200} alt="mission" />
+        <div className="md:mt-4 px-8 mb-4 mt-12 xl:ml-40 md:ml-12 md:px-4 place-items-center flex justify-center items-center w-full  xl:px-0 xl:w-[23rem] md:w-[22rem] ">
+          <Image src={"/mission.png"} width={360} height={200} alt="mission" />
           {/* <img src="/mission.png" className="justify-center" alt="mission"  /> */}
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 xl:mx-40 xl:my-14 md:my-14 md:place-items-center place-items-center">
+      <div className="grid md:grid-cols-2 md:mx-16 xl:mx-40 xl:my-14 md:-mt-4 md:place-items-center place-items-center">
         <div>
-          <div className='mt-6 xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] flex-col text-center justify-center shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl md:mt-8 sm:mt-8  font-semibold'>
+          <div className='py-4 xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] flex-col text-center justify-center shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl  sm:mt-8  font-semibold'>
             OUR VISION
           </div>
-          <div className=' xl:text-left flex-auto w-full h-[13rem] flex-col text-center shrink-0 text-black font-["Khand"] md:text-base font-medium tracking-wider'>
+          <div className='sm:px-6 md:px-0  px-4 mb-12 xl:text-left flex-auto w-full h-[13rem] flex-col text-center shrink-0 text-black font-["Khand"] md:text-base font-medium tracking-wider'>
             Our vision is to be the go-to platform for event planning and
             participation, setting the standard for excellence in the digital
             events landscape. We envision a future where individuals and
@@ -54,24 +54,24 @@ export default function page() {
           </div>
         </div>
 
-        <div className="mt-6 xl:ml-40  md:ml-12 flex justify-center items-center xl:w-[23rem] md:w-[22rem]  sm:-mt-6 ">
-          <Image src={"/vision.png"} width={350} height={200} alt="vision" />
+        <div className="md:mt-4 px-8 mt-6  xl:ml-40  md:ml-12 flex justify-center items-center xl:w-[23rem] xl:px-0 md:px-4 md:w-[22rem]  sm:-mt-16 md:-mt-0 ">
+          <Image src={"/vision.png"} width={360} height={200} alt="vision" />
           {/* <img src='/vision.png' className='justify-center' alt='visionn'/> */}
         </div>
       </div>
 
-      <div className='xl:-mt-52 mt-6 text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:text-2xl md:mt-12 font-semibold sm:mt-12'>
+      <div className='sm:my-2  mt-6 text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:text-2xl md:mt-12 font-semibold sm:mt-12'>
         OUR STORY
       </div>
 
       <div className="grid md:grid-cols-2 ">
-        <div className=" -mt-8 xl:ml-40 xl:-mt-16 flex justify-center items-center">
-          <Image src={"/story.png"} width={675} height={394} alt="story" />
+        <div className="w-full flex justify-center items-center md:px-8 xl:-mt-12 px-6 sm:px-0">
+          <Image src={"/story.png"} width={500} height={300} alt="story" />
           {/* <img src='/story.png' className='justify-center' alt='story'/> */}
         </div>
 
-        <div className=" xl:ml-24 sm:mt-8  ">
-          <div className='flex-auto w-full xl:h-[28rem] xl:w-[34rem] flex-col text-center shrink-0 text-black font-["Khand"] md:text-base font-medium xl:tracking-wider '>
+        <div className=" sm:mt-8 xl:mx-12 md:mt-0 ">
+          <div className='sm:px-10 sm:text-center px-4 md:px-14 xl:px-0 mt-6 flex-auto xl:h-[28rem] xl:w-[34rem] flex-col md:text-left shrink-0 text-black font-["Khand"] md:text-base font-medium xl:tracking-wider '>
             As aspiring event organizers immersed in the dynamic landscape of IT
             in 2023, Team OneZero observed a seismic shift in how individuals
             engage with experiences. The traditional methods of marketing and
@@ -91,11 +91,11 @@ export default function page() {
         </div>
       </div>
 
-      <div className='mt-6 text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:text-2xl md:mt-12 font-semibold sm:mt-8 '>
+      <div className='mt-6 text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:text-2xl md:mt-12 font-semibold sm:my-10 '>
         BEST EVENTS
       </div>
 
-      <div className="grid xl:grid-cols-3 md:grid-cols-2  place-items-center -ml-12 flex justify-center items-center -mt-20 xl:mt-1">
+      <div className="ml-1 grid xl:grid-cols-3 md:grid-cols-2 -ml-12 flex justify-center items-center place-items-center -mt-20 xl:mt-1">
         <BestEvent
           img="bestevent.png"
           eventname={"MEGA"}
@@ -126,7 +126,7 @@ export default function page() {
 
       <div className="mt-52"></div>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
