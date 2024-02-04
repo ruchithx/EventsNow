@@ -10,7 +10,7 @@ export default function HeroCarousel() {
   return (
     <div className="grid xl:grid-cols-2">
       <div>
-        <div className="w-full bg-[#D7CFC7] xl:h-screen">
+        <div className="w-full bg-[#D7CFC7] xl:h-screen rounded-lg">
           <div className='text-[#906953] text-center font-["Khand"] text-3xl md:py-16 sm:text-5xl md:text-7xl  xl:px-12 font-semibold py-6 md:px-6'>
             “Where Moments Become Memories”
           </div>
@@ -35,7 +35,7 @@ export default function HeroCarousel() {
                 <Image src={"/Frame.svg"} alt="info" width={80} height={80} />
               </div>
 
-              <div className="hidden md:block md:w-56 md:h-4 md:text-white md:text-sm md:text-xl md:py-1.5 md:text-left flex font-['Roboto Mono']">
+              <div className="hidden md:block md:w-56 md:h-4 md:text-white md:text-xl md:py-1.5 md:text-left flex font-['Roboto Mono']">
                 search events
               </div>
             </button>
@@ -53,17 +53,16 @@ export default function HeroCarousel() {
       </div>
 
       <div className="grid ">
-        <div className="h-56 sm:h-64 xl:h-screen hidden xl:block">
-          <Carousel>
-            {/* <Image src="/slider1.png" alt="info" width={80} height={80}/>
-        <Image src="/slider2.png" alt="info" width={80} height={80}/>
-        <Image src="/slider3.png" alt="info" width={80} height={80}/>
-        <Image src="/slider4.png" alt="info" width={80} height={80}/> */}
-
-            <img src="/slider1.png" alt="..." />
+        <div className="h-56 sm:h-64 xl:h-screen hidden xl:block rounded-none">
+          <Carousel >
+            <Image className="w-full h-full object-cover object-center" sizes='100vw' width={80} height={80} alt="ima" src={'/slider1.png'}/>
+            <Image className="w-full h-full object-cover object-center" sizes='100vw' width={80} height={80} alt="ima" src={'/slider2.png'}/>
+            <Image className="w-full h-full object-cover object-center" sizes='100vw' width={80} height={80} alt="ima" src={'/slider3.png'}/>
+            <Image className="w-full h-full object-cover object-center" sizes='100vw' width={80} height={80} alt="ima" src={'/slider4.png'}/>
+            {/* <img src="/slider1.png" alt="..." />
             <img src="/slider2.png" alt="..." />
             <img src="/slider3.png" alt="..." />
-            <img src="/slider4.png" alt="..." />
+            <img src="/slider4.png" alt="..." /> */}
           </Carousel>
         </div>
       </div>
