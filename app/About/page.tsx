@@ -55,8 +55,7 @@ export default function page() {
         </div>
 
         <div className="md:mt-36 xl:mt-0 md:mt-4 px-8 mt-6  xl:ml-40  md:ml-12 flex justify-center items-center xl:w-[23rem] xl:px-0 md:px-6 md:w-[22rem]  sm:-mt-16 md:-mt-0 ">
-          <Image src={"/vision.png"} width={360} height={200} alt="vision" />
-          {/* <img src='/vision.png' className='justify-center' alt='visionn'/> */}
+          <Image src={"/vision.png"} width={360} height={200} alt="vision" /> 
         </div>
       </div>
 
@@ -65,9 +64,8 @@ export default function page() {
       </div>
 
       <div className="grid xl:grid-cols-2 ">
-        <div className="w-full flex justify-center items-center md:px-8 xl:-mt-12 px-6 sm:px-0">
+        <div className="w-full flex justify-center items-center md:px-8 xl:-mt-24 px-6 sm:px-0">
           <Image src={"/story.png"} width={500} height={300} alt="story" />
-          {/* <img src='/story.png' className='justify-center' alt='story'/> */}
         </div>
 
 
