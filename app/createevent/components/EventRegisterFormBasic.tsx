@@ -9,7 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import firebase from "firebase/compat/app";
-import { firebaseConfig} from "../../../services/FirebaseConfig";
+import { firebaseConfig } from "../../../services/FirebaseConfig";
 import "firebase/compat/storage";
 
 firebase.initializeApp(firebaseConfig);
@@ -48,7 +48,6 @@ export default function EventRegisterFormBasic() {
         snapshot.ref.getDownloadURL().then((downloadURL) => downloadURL)
       );
 
-   
     const data = {
       eventName,
       selectedTab,
@@ -267,7 +266,7 @@ export default function EventRegisterFormBasic() {
           />
           {previewImage.length > 0 && (
             <Image
-              className=""
+              className="p-4"
               src={previewImage}
               width={500}
               height={500}
