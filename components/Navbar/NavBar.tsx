@@ -57,6 +57,7 @@ export default function NavBar() {
         if (session) {
           const name = session?.user?.name ? session?.user?.name : "";
           setUser(session?.user);
+
           if (name !== "") {
             setUserActive(true);
             setUserName(name);

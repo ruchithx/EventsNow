@@ -10,7 +10,7 @@ export default function Terms() {
         </div>
         <div className="text-center">
           <Link className="text-[#0151FC]" href="/">
-            Terms{" "}
+            Terms
           </Link>
           and{" "}
           <Link className="text-[#0151FC]" href="/">

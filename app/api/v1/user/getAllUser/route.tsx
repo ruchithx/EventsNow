@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
-import connectMongoDB from "./../../../lib/mongo/mongodb";
-import User from "@/models/userModel";
 
-export const GET = async (req) => {
+import User from "@/models/userModel";
+import connectMongoDB from "@/lib/mongo/mongodb";
+
+export const GET = async (req: Request) => {
   try {
     connectMongoDB();
     const user = await User.find();

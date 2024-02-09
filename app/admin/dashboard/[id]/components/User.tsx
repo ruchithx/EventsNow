@@ -8,7 +8,7 @@ interface UserData {
 }
 
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/Users", {
+  const res = await fetch("http://localhost:3000/api/v1/user/getAllUser", {
     next: {
       revalidate: 30,
     },

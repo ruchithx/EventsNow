@@ -6,11 +6,14 @@ interface UserData {
   fullName: string;
 }
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/Organizations/requested", {
-    next: {
-      revalidate: 30,
-    },
-  });
+  const res = await fetch(
+    "http://localhost:3000/api/v1/organization/requestOrganization",
+    {
+      next: {
+        revalidate: 30,
+      },
+    }
+  );
   return res.json();
 }
 
