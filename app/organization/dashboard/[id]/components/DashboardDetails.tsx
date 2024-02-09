@@ -4,19 +4,20 @@ import { useOrg } from "../OrgContext";
 
 const DashboardDetails = memo(() => {
   const { organization } = useOrg();
+  console.log(organization);
   return (
     <div>
       <div className="bg-[#D9D9D9] rounded-lg items-center  h-full py-3 px-4 flex flex-col  ">
         <div className="flex flex-col items-start gap-3 justify-start">
           <Image
-            src="/bestevent.png"
+            src={`${organization.postImageLink}`}
             alt="organization dp"
             width={226}
             className="rounded-lg"
             height={300}
           />
           <div className="md:text-lg lg:text-2xl  gap-2   items-center  flex text-[#353535]">
-            {organization.fullName}
+            {organization.organizationName}
           </div>
           <div className="md:text-base lg:text-base flex justify-center items-center  gap-2">
             <Image

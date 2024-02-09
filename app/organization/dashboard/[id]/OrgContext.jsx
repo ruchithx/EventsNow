@@ -29,20 +29,20 @@ function OrgContextProvider({ children }) {
           }
         );
 
-        if (!res.ok) {
+        const finalResponse = await res.json();
+
+        if (!res.ok || finalResponse.message === "No organization") {
           router.push("/404");
           return;
         }
 
-        const { organization } = await res.json();
-
-        if (!organization) {
+        if (!finalResponse.organization) {
           return;
         }
-        setOrganization(organization);
+        setOrganization(finalResponse.organization);
         setIsLoading(false);
 
-        setIsActive(organization.isActive);
+        setIsActive(finalResponse.organization.isActive);
       }
       getData();
     },

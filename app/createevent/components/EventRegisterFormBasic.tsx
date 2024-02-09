@@ -23,7 +23,7 @@ export default function EventRegisterFormBasic() {
   const [eventTimeZone, setEventTimeZone] = useState("");
   const [description, setDescription] = useState("");
   const [postImage, setPostImage] = useState([File] as any);
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -39,7 +39,9 @@ export default function EventRegisterFormBasic() {
     postImageLink: z.string().min(1, { message: "Enter event cover" }),
   });
 
-  async function sendEventData() {
+  async function sendEventData(e: any) {
+    e.preventDefault();
+    setIsSubmitting(true);
     const storageRef = firebase.storage().ref();
     const fileRef = storageRef.child(`eventCover-${eventName}`);
     const postImageLink = await fileRef
@@ -61,14 +63,18 @@ export default function EventRegisterFormBasic() {
 
     const result = validateEvent.safeParse(data);
     if (result.success) {
-      const res = await fetch("http://localhost:3000/api/v1/createEvent", {
-        method: "POST",
-        mode: "cors",
-        body: JSON.stringify(data),
-      });
+      const res = await fetch(
+        "http://localhost:3000/api/v1/event/createEvent",
+        {
+          method: "POST",
+          mode: "cors",
+          body: JSON.stringify(data),
+        }
+      );
 
       if (!res.ok) {
         error("There is an error for create event");
+        setIsSubmitting(false);
         return;
       }
       success("registration data sent succesfully");
@@ -86,6 +92,7 @@ export default function EventRegisterFormBasic() {
     } else {
       error(result.error.errors[0].message);
     }
+    setIsSubmitting(false);
   }
 
   return (
@@ -94,8 +101,8 @@ export default function EventRegisterFormBasic() {
         Create Event
       </div>
       <form
-        action={sendEventData}
-        onSubmit={() => sendEventData}
+        onSubmit={(e: any) => sendEventData(e)}
+        // onSubmit={() => sendEventData()}
         className="px-8"
       >
         <label
@@ -275,12 +282,34 @@ export default function EventRegisterFormBasic() {
           )}
         </div>
 
-        <button
+        {/* <button
           type="submit"
           className="flex text-center mt-5 mb-10 p-2 justify-center w-full bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono "
         >
           CREATE EVENT
-        </button>
+        </button> */}
+
+        {isSubmitting ? (
+          <button className="button flex text-center mt-10 mb-10 xl:mb-20  px-2 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono ">
+            <div className="flex gap-2 justify-center items-center">
+              <div> Creating</div>
+              <Image
+                src="/LoadingBtnIcon.svg"
+                alt="loading btn"
+                width={40}
+                height={40}
+              />
+            </div>
+          </button>
+        ) : (
+          <button
+            // onSubmit={(e: any) => sendEventData(e)}
+            type="submit"
+            className="button flex text-center mt-10 mb-10 xl:mb-20 py-2 px-4 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono "
+          >
+            CREATE EVENT
+          </button>
+        )}
       </form>
     </div>
   );

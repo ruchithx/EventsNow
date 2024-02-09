@@ -14,8 +14,6 @@ export async function POST(req) {
     postImageLink,
   } = await req.json();
 
-
-
   connectMongoDB();
   const res = await Organization.create({
     fullName,
@@ -27,8 +25,15 @@ export async function POST(req) {
     phoneNumber,
     email,
     postImageLink,
-    isActive:false,
+    isActive: false,
   });
+
+  if (!res) {
+    return NextResponse.json(
+      { message: "Failed to create organization" },
+      { status: 500 }
+    );
+  }
 
   return NextResponse.json({ id: res._id }, { status: 201 });
 }

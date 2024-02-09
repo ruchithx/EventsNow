@@ -44,17 +44,15 @@ const organizationSchema = new mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, "Please provide valid email"],
   },
-  
-  postImageLink:{
+
+  postImageLink: {
     type: String,
     required: [true, "Please provide a post image link"],
   },
   isActive: {
     type: Boolean,
   },
-  
 });
-
 
 const Organization =
   mongoose.models.Organization ||

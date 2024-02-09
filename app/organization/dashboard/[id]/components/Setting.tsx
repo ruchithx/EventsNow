@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { useOrg } from "../OrgContext";
-// import ProfileSettings from "@/app/organization/dashboard/[id]/components/ProfileSettings";
-import AdvanceDetails from "./AdvanceDetails";
 import { error } from "@/util/Toastify";
 import { success } from "@/util/Toastify";
 import dynamic from "next/dynamic";
-import { clearLine } from "readline";
 
 const ProfileSettings = dynamic(
   () => import("@/app/organization/dashboard/[id]/components/ProfileSettings")
@@ -68,7 +65,7 @@ export default function Setting() {
         </div>
         <div className="md:w-full lg:w-3/4 text-[#666666]">
           <ProfileSettings
-            organizationName={organization.fullName}
+            organizationName={organization.organizationName}
             organizationID={organization._id}
             name={"Organization name"}
           />

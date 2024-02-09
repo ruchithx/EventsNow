@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 import "react-phone-number-input/style.css";
 import { z } from "zod";
 import Image from "next/image";
-
+import { useRouter } from "next/navigation";
 import firebase from "firebase/compat/app";
 import { firebaseConfig } from "../../../services/FirebaseConfig";
 import "firebase/compat/storage";
@@ -31,6 +31,8 @@ export default function CreateOrganizationFormBasic() {
   const isActive = false;
   const [postImage, setPostImage] = useState([File] as any);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validateOrganization = z.object({
     fullName: z
@@ -53,7 +55,10 @@ export default function CreateOrganizationFormBasic() {
     postImageLink: z.string().min(1, { message: "Upload a cover image" }),
   });
 
-  async function sendOrganizationData() {
+  async function sendOrganizationData(e: any) {
+    e.preventDefault();
+    setIsSubmitting(true);
+
     const storageRef = firebase.storage().ref();
     const fileRef = storageRef.child(`eventCover-${organizationName}`);
     const postImageLink = await fileRef
@@ -61,6 +66,7 @@ export default function CreateOrganizationFormBasic() {
       .then((snapshot) =>
         snapshot.ref.getDownloadURL().then((downloadURL) => downloadURL)
       );
+
     const data = {
       fullName,
       numberType,
@@ -85,10 +91,15 @@ export default function CreateOrganizationFormBasic() {
         }
       );
 
+      console.log(`res`, res);
       if (!res.ok) {
         error("There is an error for registration");
-        return;
+        setIsSubmitting(false);
+        return null;
       }
+
+      const id = await res.json();
+
       success("registration data sent succesfully");
 
       setFullName("");
@@ -100,9 +111,13 @@ export default function CreateOrganizationFormBasic() {
       setEmail("");
       setOrganizationName("");
       setPreviewImage("");
+
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
+
+      router.push(`/organization/dashboard/${id.id}`);
+      return;
     } else {
       const formattedError = result.error.format();
 
@@ -126,6 +141,8 @@ export default function CreateOrganizationFormBasic() {
         error(String(formattedError.postImageLink._errors));
       } else error("an unknown error occur in validation process");
     }
+
+    setIsSubmitting(false);
   }
 
   return (
@@ -135,8 +152,8 @@ export default function CreateOrganizationFormBasic() {
       </div>
       <form
         className=" flex-column "
-        action={sendOrganizationData}
-        onSubmit={() => sendOrganizationData}
+        // action={sendOrganizationData}
+        // onSubmit={() => sendOrganizationData()}
       >
         <input
           required
@@ -285,12 +302,27 @@ export default function CreateOrganizationFormBasic() {
           )}
         </div>
 
-        <button
-          type="submit"
-          className="button flex text-center mt-10 mb-10 xl:mb-20 py-2 px-4 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono "
-        >
-          SEND TO APPROVAL
-        </button>
+        {isSubmitting ? (
+          <button className="button flex text-center mt-10 mb-10 xl:mb-20  px-2 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono ">
+            <div className="flex gap-2 justify-center items-center">
+              <div> Creating</div>
+              <Image
+                src="/LoadingBtnIcon.svg"
+                alt="loading btn"
+                width={40}
+                height={40}
+              />
+            </div>
+          </button>
+        ) : (
+          <button
+            onClick={(e: any) => sendOrganizationData(e)}
+            type="submit"
+            className="button flex text-center mt-10 mb-10 xl:mb-20 py-2 px-4 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono "
+          >
+            SEND TO APPROVAL
+          </button>
+        )}
       </form>
     </div>
   );

@@ -33,7 +33,7 @@ const ProfileSettings = memo(
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ fullName: editedName }),
+            body: JSON.stringify({ organizationName: editedName }),
           }
         );
 
