@@ -1,14 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import ProfileCard from "./ProfileCard";
+import ProfileCard from "../app/profile/components/ProfileCard";
 import ProfileBar from "./ProfileBar";
-import ProfileDetails from "./ProfileDetails";
+import ProfileDetails from "../app/profile/components/ProfileDetails";
 import Event_Dashboard_Nav_bar from "../app/organization/dashboard/[id]/components/DashboardSide";
 import Event_Dashboard_Btn from "../app/organization/dashboard/[id]/components/Dashboard_Btn";
 import { text } from "stream/consumers";
 import Upcoming_Events from "./Upcoming_Events";
-import ProfileSettings from "./ProfileSettings";
-import Org_RequestHandle from "./Org_RequestHandle";
+// import ProfileSettings from "./ProfileSettings";
+import Org_RequestHandle from "../app/admin/dashboard/[id]/components/Org_RequestHandle";
+import ProfileSettings from "@/app/profile/components/ProfileSettings";
 
 export default function ProfileSideNavBar() {
   const [content, setContent] = useState("My profile");
@@ -35,7 +36,7 @@ export default function ProfileSideNavBar() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 font-khand h-screen    ">
         <div className="hidden sm:block bg-custom-blue p-4 col-span-1 sm:col-span-2 lg:col-span-2  h-screen">
           <div className="grid grid-rows-5 grid-flow-col gap-4 justify-center items-center  ">
-            <Event_Dashboard_Nav_bar>
+            {/* <Event_Dashboard_Nav_bar>
               {btn.map((buttonText, index) => (
                 <Event_Dashboard_Btn
                   key={index}
@@ -43,7 +44,7 @@ export default function ProfileSideNavBar() {
                   text={buttonText}
                 />
               ))}
-            </Event_Dashboard_Nav_bar>
+            </Event_Dashboard_Nav_bar> */}
           </div>
         </div>
 

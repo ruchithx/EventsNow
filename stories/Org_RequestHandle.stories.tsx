@@ -1,6 +1,6 @@
 import type { ComponentStory, Meta, StoryObj } from "@storybook/react";
 
-import Org_RequestHandle from "../components/Org_RequestHandle";
+import Org_RequestHandle from "../app/admin/dashboard/[id]/components/Org_RequestHandle";
 
 const meta: Meta<typeof Org_RequestHandle> = {
   title: "Components/Org_RequestHandle",

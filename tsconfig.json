@@ -32,9 +32,15 @@
     "util/UserCheck.js",
     "app/api/v1/user/exist/route.ts",
     "app/auth/login/page.tsx",
+    "components/Dashboard.tsx",
+    "app/api/v1/createOrganization/route.js",
+    "app/organization/dashboard/[id]/OrgContext.jsx",
+    "app/admin/dashboard/[id]/AdminContext.jsx",
+    "app/admin/dashboard/[id]/components/Notification.jsx",
     "app/organization/dashboard/[id]/components/DashboardSide.tsx",
     "app/api/v1/organization/createOrganization/route.js",
     "app/organization/dashboard/[id]/OrgContext.jsx",
+    "app/api/v1/organization/updateOrganization/[...id]/route.jsx"
   ],
   "exclude": ["node_modules"]
 }

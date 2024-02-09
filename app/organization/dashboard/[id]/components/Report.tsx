@@ -1,8 +1,6 @@
 import View_Report from "@/app/organization/dashboard/[id]/components/View_Report";
 import React from "react";
 import { useOrg } from "../OrgContext";
-import HasData from "./HasData";
-import EmptyStateComponent from "@/components/EmptyStateComponent";
 
 export default function Report() {
   const { isSlideBar } = useOrg();

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 interface Details {
-  name: string;
+  name?: string;
 }
 
-export default function ProfileSettings({ name }: Details) {
+export default function AdvanceDetails({ name }: Details) {
   const [editedName, setEditedName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
@@ -21,29 +21,16 @@ export default function ProfileSettings({ name }: Details) {
   };
 
   return (
-    <div className="border-gray border-2  w-full p-4 rounded-lg bg-custom-gray mt-5 relative">
-      <label htmlFor="fname">{name}</label>
-      <div className="flex justify-between items-center">
-        {isEditing ? (
-          <input
-            type="text"
-            value={editedName}
-            onChange={handleInputChange}
-            className="border-gray border-2 w-full p-2 rounded-lg bg-white my-2"
-          />
-        ) : (
-          <label
-            className="border-gray border-2 w-full p-2 rounded-lg bg-white my-2"
-            htmlFor="fname"
-          >
-            {editedName}
-          </label>
-        )}
-        <div className="flex space-x-4 absolute top-0 right-0 mb-5 my-2 mr-2">
+    <div className="border-gray border-2  w-full p-4 rounded-lg bg-custom-gray mt-5 ">
+      <div className="flex justify-between items-end">
+        <label className="" htmlFor="fname">
+          {name}
+        </label>
+        <div className="flex     mr-2">
           {isEditing ? (
             <button
               onClick={handleSave}
-              className="bg-custom-orange text-white px-4 py-1 mb-3 rounded-lg"
+              className="bg-custom-orange text-white px-4 py-1 rounded-lg"
             >
               save
             </button>
@@ -69,6 +56,46 @@ export default function ProfileSettings({ name }: Details) {
             </button>
           )}
         </div>
+      </div>
+      <div className="flex flex-col justify-between items-center">
+        {isEditing ? (
+          <input
+            required
+            type="text"
+            name="firstName"
+            id="firstName"
+            // value={firstName}
+            // onChange={(e) => setFristName(e.target.value)}
+            className=" my-5 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
+            placeholder=" Bank  "
+          />
+        ) : (
+          <label
+            className="border-gray border-2 w-full p-2 rounded-lg bg-white my-2"
+            htmlFor="fname"
+          >
+            {/* {editedName} */}
+          </label>
+        )}
+        {isEditing ? (
+          <input
+            required
+            type="text"
+            name="firstName"
+            id="firstName"
+            // value={firstName}
+            // onChange={(e) => setFristName(e.target.value)}
+            className=" my-5 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
+            placeholder=" Bank  "
+          />
+        ) : (
+          <label
+            className="border-gray border-2 w-full p-2 rounded-lg bg-white my-2"
+            htmlFor="fname"
+          >
+            {/* {editedName} */}
+          </label>
+        )}
       </div>
     </div>
   );

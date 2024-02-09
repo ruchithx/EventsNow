@@ -1,11 +1,12 @@
 import EventCardOrgDash from "@/app/organization/dashboard/[id]/components/EventCardOrgDash";
 import React from "react";
-import HasData from "./HasData";
+
 import { useOrg } from "../OrgContext";
 import EmptyStateComponent from "@/components/EmptyStateComponent";
 
 export default function MyEvents() {
   const { events, isSlideBar } = useOrg();
+
   return (
     <div className="flex rounded-lg  md:ml-2 pl-2 shadow-3xl bg-[#fff] pt-8 md:pl-12 flex-col justify-start items-start gap-12">
       <div className="flex flex-col gap-3 justify-start items-start">

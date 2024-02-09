@@ -4,7 +4,7 @@ import Image from "next/image";
 import Terms from "@/components/Terms";
 import LoginFormBasic from "@/components/Loginform";
 import Footer from "@/components/Footer";
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/Navbar/NavBar";
 
 function page() {
   return (

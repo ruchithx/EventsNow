@@ -1,7 +1,9 @@
 import Image from "next/image";
-import React from "react";
+import React, { memo } from "react";
+import { useOrg } from "../OrgContext";
 
-export default function DashboardDetails() {
+const DashboardDetails = memo(() => {
+  const { organization } = useOrg();
   return (
     <div>
       <div className="bg-[#D9D9D9] rounded-lg items-center  h-full py-3 px-4 flex flex-col  ">
@@ -14,7 +16,7 @@ export default function DashboardDetails() {
             height={300}
           />
           <div className="md:text-lg lg:text-2xl  gap-2   items-center  flex text-[#353535]">
-            Stein Studios
+            {organization.fullName}
           </div>
           <div className="md:text-base lg:text-base flex justify-center items-center  gap-2">
             <Image
@@ -38,4 +40,7 @@ export default function DashboardDetails() {
       </div>
     </div>
   );
-}
+});
+
+// export default function DashboardDetails() {}
+export default DashboardDetails;
