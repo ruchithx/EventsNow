@@ -84,7 +84,7 @@ export default function Setting() {
             id="countries"
             value={bank}
             onChange={(e) => setBank(e.target.value)}
-            className="mt-3  w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6 border-2 rounded-[12px]"
+            className="mt-3 focus:outline-custom-orange w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6 border-2 rounded-[12px]"
           >
             <option selected>Bank</option>
             <option value="Sampath">Sampath</option>
@@ -96,7 +96,7 @@ export default function Setting() {
             id="countries"
             value={branch}
             onChange={(e) => setBranch(e.target.value)}
-            className=" mt-3 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6 border-2 rounded-[12px]"
+            className=" mt-3 focus:outline-custom-orange w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6 border-2 rounded-[12px]"
           >
             <option selected>Branch</option>
             <option value="matara">matara</option>
@@ -113,7 +113,7 @@ export default function Setting() {
               id="firstName"
               value={accountName}
               onChange={(e) => setAccountName(e.target.value)}
-              className="  w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
+              className=" focus:outline-custom-orange w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
               placeholder=" Account Name  "
             />
             <input
@@ -123,7 +123,7 @@ export default function Setting() {
               id="firstName"
               value={accountNumber}
               onChange={(e) => setAccountNumber(e.target.value)}
-              className="  w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
+              className="focus:outline-custom-orange  w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
               placeholder="Account Number "
             />
           </div>
@@ -132,7 +132,7 @@ export default function Setting() {
             id="countries"
             value={payout}
             onChange={(e) => setPayout(e.target.value)}
-            className="  w-full  block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6 border-2 rounded-[12px]"
+            className="focus:outline-custom-orange  w-full  block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6 border-2 rounded-[12px]"
           >
             <option selected>payout frequency</option>
             <option value="1 week">1 week</option>

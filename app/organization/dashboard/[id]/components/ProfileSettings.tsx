@@ -91,7 +91,7 @@ const ProfileSettings = memo(
               type="text"
               value={editedName}
               onChange={handleInputChange}
-              className="border-gray border-2 w-full p-2 rounded-lg bg-white my-2"
+              className="focus:outline-custom-orange border-gray border-2 w-full p-2 rounded-lg bg-white my-2"
             />
           ) : (
             <label

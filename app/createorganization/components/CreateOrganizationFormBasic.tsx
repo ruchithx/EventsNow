@@ -74,7 +74,7 @@ export default function CreateOrganizationFormBasic() {
     };
 
     const result = validateOrganization.safeParse(data);
-  
+
     if (result.success) {
       const res = await fetch(
         "http://localhost:3000/api/v1/organization/createOrganization",
@@ -122,7 +122,7 @@ export default function CreateOrganizationFormBasic() {
         error(String(formattedError.phoneNumber?._errors));
       } else if (formattedError.email) {
         error(String(formattedError.email._errors));
-      }else if (formattedError.postImageLink) {
+      } else if (formattedError.postImageLink) {
         error(String(formattedError.postImageLink._errors));
       } else error("an unknown error occur in validation process");
     }
@@ -249,12 +249,16 @@ export default function CreateOrganizationFormBasic() {
           placeholder="Enter email address "
         ></input>
         <div className=" border-2 w-auto border-solId rounded-xl   ">
-        <label htmlFor="fileReader" className="   py-1.5 text-gray-400  sm:text-sm sm:leading-6 pl-4">Enter cover photo for organization </label>
+          <label
+            htmlFor="fileReader"
+            className="   py-1.5 text-gray-400  sm:text-sm sm:leading-6 pl-4"
+          >
+            Enter cover photo for organization{" "}
+          </label>
           <input
             required
             type="file"
             id="fileReader"
-            
             ref={fileInputRef}
             accept="image/*"
             onChange={(e) => {
@@ -283,7 +287,7 @@ export default function CreateOrganizationFormBasic() {
 
         <button
           type="submit"
-          className="flex text-center mt-10 mb-10 xl:mb-20 py-2 px-4 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono "
+          className="button flex text-center mt-10 mb-10 xl:mb-20 py-2 px-4 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono "
         >
           SEND TO APPROVAL
         </button>
