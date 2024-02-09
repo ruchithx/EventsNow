@@ -34,7 +34,7 @@ const eventSchema = new mongoose.Schema({
     description:{
         type:String
     },
-    postImage:{
+    postImageLink:{
         type:String,
         required:[true,"Please upload the event cover photo"],
     },

@@ -7,10 +7,14 @@ export async function POST(req) {
     numberType,
     number,
     companyName,
+    organizationName,
     address,
     phoneNumber,
     email,
+    postImageLink,
   } = await req.json();
+
+
 
   connectMongoDB();
   const res = await Organization.create({
@@ -18,10 +22,12 @@ export async function POST(req) {
     numberType,
     number,
     companyName,
+    organizationName,
     address,
     phoneNumber,
     email,
-    isActive: false,
+    postImageLink,
+    isActive:false,
   });
 
   return NextResponse.json({ id: res._id }, { status: 201 });
