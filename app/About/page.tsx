@@ -17,10 +17,10 @@ export default function page() {
 
       <div className="grid md:grid-cols-2 md:mx-16 xl:mx-40 xl:my-14 md:place-items-center place-items-center ">
         <div>
-          <div className='mt-2 md:mt-8 py-4 xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] flex-col text-center justify-center shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl  sm:mt-10  font-semibold'>
+          <div className='mt-2 md:mt-8 py-4 md:text-left xl:mb-4 sm:text-3xl flex-auto w-full md:h-[5rem] flex-col text-center justify-center shrink-0 text-[#906953] font-["Khand"] md:text-5xl  sm:mt-10  font-semibold'>
             OUR MISSION
           </div>
-          <div className='sm:px-6 sm:-mb-16 md:px-4 px-4 md:mb-4 md:text-left flex-auto w-full h-[13rem] text-center flex-col shrink-0 text-black font-["Khand"] md:text-base  font-medium tracking-wider '>
+          <div className='sm:px-6 sm:-mb-20 md:px-0 px-4 xl:mb-4  md:text-left flex-auto w-full h-[13rem] text-center flex-col shrink-0 text-black font-["Khand"] md:text-base  font-medium tracking-wider '>
             At EventNow our mission is to connect people through exceptional
             event experiences. We are committed to providing a seamless and
             user-friendly platform that empowers event organizers to create,
@@ -31,7 +31,7 @@ export default function page() {
           </div>
         </div>
 
-        <div className="md:mt-28 xl:mt-0 px-8 mb-4 mt-12  xl:ml-40 md:ml-12 md:px-6 place-items-center flex justify-center items-center w-full  xl:px-0 xl:w-[23rem] md:w-[22rem] ">
+        <div className=" xl:mt-8 md:mt-36 px-8 mb-4 mt-12  xl:ml-40 md:ml-12 md:px-6 place-items-center flex justify-center items-center w-full  xl:px-0 xl:w-[23rem] md:w-[22rem] ">
           <Image src={"/mission.png"} width={360} height={200} alt="mission" />
           {/* <img src="/mission.png" className="justify-center" alt="mission"  /> */}
         </div>
@@ -39,10 +39,10 @@ export default function page() {
 
       <div className="grid md:grid-cols-2 md:mx-16 xl:mx-40 xl:my-14 md:-mt-4 md:place-items-center place-items-center">
         <div>
-          <div className='md:mt-24 xl:-mt-8 py-4 xl:text-left xl:mb-4 sm:text-2xl flex-auto w-full md:h-[5rem] flex-col text-center justify-center shrink-0 text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl  sm:mt-8  font-semibold'>
+          <div className='md:mt-28 xl:-mt-2 py-4 md:text-left xl:mb-4 sm:text-3xl flex-auto w-full md:h-[5rem] flex-col text-center justify-center shrink-0 text-[#906953] font-["Khand"]  md:text-5xl  sm:mt-8  font-semibold'>
             OUR VISION
           </div>
-          <div className='sm:px-6 md:px-4  px-4 mb-12 md:text-left flex-auto w-full h-[13rem] flex-col text-center shrink-0 text-black font-["Khand"] md:text-base font-medium tracking-wider'>
+          <div className='sm:px-6 md:px-0  px-4 mb-12 md:text-left flex-auto w-full h-[13rem] flex-col text-center shrink-0 text-black font-["Khand"] md:text-base font-medium tracking-wider'>
             Our vision is to be the go-to platform for event planning and
             participation, setting the standard for excellence in the digital
             events landscape. We envision a future where individuals and
@@ -54,17 +54,17 @@ export default function page() {
           </div>
         </div>
 
-        <div className="md:mt-36 xl:mt-0 md:mt-4 px-8 mt-6  xl:ml-40  md:ml-12 flex justify-center items-center xl:w-[23rem] xl:px-0 md:px-6 md:w-[22rem]  sm:-mt-16 md:-mt-0 ">
+        <div className=" xl:mt-0 md:mt-24 px-8 mt-6  xl:ml-40  md:ml-12 flex justify-center items-center xl:w-[23rem] xl:px-0 md:px-6 md:w-[22rem]  sm:-mt-16 ">
           <Image src={"/vision.png"} width={360} height={200} alt="vision" /> 
         </div>
       </div>
 
-      <div className='sm:my-2  mt-6 text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:text-2xl md:mt-12 font-semibold sm:mt-12'>
+      <div className='sm:my-2  mt-6 text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] md:text-5xl sm:text-3xl md:mt-12 font-semibold sm:mt-12'>
         OUR STORY
       </div>
 
-      <div className="grid xl:grid-cols-2 ">
-        <div className="w-full flex justify-center items-center md:px-8 xl:-mt-24 px-6 sm:px-0">
+      <div className="grid md:grid-cols-2 ">
+        <div className="w-full flex justify-center items-center md:px-4 md:ml-4 xl:-mt-24 px-6 sm:px-0">
           <Image src={"/story.png"} width={500} height={300} alt="story" />
         </div>
 
@@ -91,7 +91,7 @@ export default function page() {
       </div>
 
 
-      <div className='mt-6 text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] xl:text-5xl md:text-3xl sm:text-2xl md:mt-12 font-semibold sm:my-10 '>
+      <div className='mt-6 text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] md:text-5xl sm:text-3xl md:mt-12 font-semibold sm:my-10 '>
         BEST EVENTS
       </div>
 
