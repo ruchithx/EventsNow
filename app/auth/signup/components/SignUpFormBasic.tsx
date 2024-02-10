@@ -166,7 +166,7 @@ export default function LoginFormBasic() {
               <div className="flex gap-2 justify-center items-center">
                 <div> Creating</div>
                 <Image
-                  src="/LoadingBtnIcon.svg"
+                  src="/images/reusableComponents/Loading.svg"
                   alt="loading btn"
                   width={40}
                   height={40}

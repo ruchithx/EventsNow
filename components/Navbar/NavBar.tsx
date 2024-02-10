@@ -261,7 +261,7 @@ export default function NavBar() {
             {userActive && (
               <div className="flex justify-between items-center mt-5">
                 <Image
-                  src={`/images/Profile/profile.jpg`}
+                  src={`/images/profile/profile.jpg`}
                   alt="profile picture"
                   width={60}
                   height={20}
