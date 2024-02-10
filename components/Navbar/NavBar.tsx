@@ -1,5 +1,5 @@
 "use client";
-import React, { use } from "react";
+import React from "react";
 import Image from "next/image";
 import NavBarButton from "./NavBarButton";
 import { getSession, signOut } from "next-auth/react";
@@ -8,18 +8,13 @@ import { useEffect, useState } from "react";
 import Profile from "@/components/Profile";
 import Link from "next/link";
 import Spinner from "../Spinner";
-import {
-  AiOutlineClose,
-  AiOutlineDownCircle,
-  AiOutlineMenu,
-  AiOutlineUpCircle,
-} from "react-icons/ai";
+import { AiOutlineMenu } from "react-icons/ai";
 
 import Login from "../Login";
 import { useAuth } from "@/app/AuthContext";
 
 import dynamic from "next/dynamic";
-import { MdOutlineLogout, MdOutlineManageAccounts } from "react-icons/md";
+
 import { usePathname } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import NavBarProfile from "./NavBarProfile";
@@ -53,20 +48,20 @@ export default function NavBar() {
       async function session() {
         setIsLoading(true);
         const session = await getSession();
-        console.log("session");
+
         if (session) {
           const name = session?.user?.name ? session?.user?.name : "";
           setUser(session?.user);
 
           if (name !== "") {
             const data = await getUser({ email: session?.user?.email });
-            console.log(data);
+
             setUserActive(true);
             setUser(data);
           } else {
             const email = emailAuth;
             const data = await getUser({ email });
-            console.log(data);
+
             if (data) {
               setUserActive(true);
               setUser(data);
@@ -114,6 +109,7 @@ export default function NavBar() {
                     alt="EventNow Logo"
                     width={30}
                     height={20}
+                    className="w-auto h-auto"
                   />
 
                   <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-eventBrown    ">
@@ -269,7 +265,7 @@ export default function NavBar() {
                   alt="profile picture"
                   width={60}
                   height={20}
-                  className="rounded-full"
+                  className="rounded-full w-auto h-auto"
                 />
                 <div onClick={() => toggleMenu()} className="cursor-pointer ">
                   <IoMdClose size={30} />

@@ -39,7 +39,7 @@ const NavBarProfile = memo(function NavBarProfile({
             alt="profile picture"
             width={60}
             height={20}
-            className="rounded-full"
+            className="rounded-full w-auto h-auto"
           />
         </div>
         <div className="font-medium	">{`hi ${user?.firstName} !`}</div>
