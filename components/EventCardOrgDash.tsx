@@ -25,7 +25,7 @@ function EventCardOrgDash({
       <div className="md:col-span-4 h-60 overflow-hidden rounded-l-lg">
         <Image
           className="object-center rounded-[10px]"
-          src={`/${img}`}
+          src={`/images/Organization/${img}`}
           width={256}
           height={301}
           alt="event picture"
@@ -43,7 +43,7 @@ function EventCardOrgDash({
 
         <div className="flex row-span-2">
           <Image
-            src="/Pin_fill1.svg"
+            src="/images/Organization/location1.svg"
             width={32}
             height={32}
             alt="event picture"
@@ -55,7 +55,7 @@ function EventCardOrgDash({
 
         <div className="flex row-span-2">
           <Image
-            src="/Date_range_light1.svg"
+            src="/images/Organization/Calander.svg"
             width={32}
             height={32}
             alt="event picture"
@@ -67,7 +67,7 @@ function EventCardOrgDash({
 
         <div className="flex row-span-2">
           <Image
-            src="/Clock_fill.svg"
+            src="/images/Organization/Time.svg"
             width={32}
             height={32}
             alt="event picture"

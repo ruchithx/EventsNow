@@ -49,7 +49,7 @@ export default function Post({ profilePic, name, caption, post }: Post) {
       <div className="p-5">
         <div className="flex gap-7">
           <Image
-            src={`/ReUsableComponentData/${profilePic}.jpg`}
+            src={`/images/ReusableComponents/${profilePic}.jpg`}
             alt="profile picture"
             width={60}
             height={10}
@@ -66,7 +66,7 @@ export default function Post({ profilePic, name, caption, post }: Post) {
       </div>
       <button>
         <Image
-          src={`/ReUsableComponentData/${post}.jpg`}
+          src={`/images/ReusableComponents/${post}.jpg`}
           alt="post"
           width={661}
           height={363}
@@ -77,7 +77,7 @@ export default function Post({ profilePic, name, caption, post }: Post) {
         <div className="flex gap-4">
           <button onClick={() => handleClickLikeButton()}>
             <Image
-              src={"/ReUsableComponentData/image 1.svg"}
+              src={"/images/ReusableComponents/React.svg"}
               alt="like"
               width={40}
               height={34}
@@ -86,7 +86,7 @@ export default function Post({ profilePic, name, caption, post }: Post) {
           </button>
           <button onClick={() => handleClickCommentButton()}>
             <Image
-              src={"/ReUsableComponentData/image 2.svg"}
+              src={"/images/ReusableComponents/Comment.svg"}
               alt="comment"
               width={40}
               height={34}
@@ -95,7 +95,7 @@ export default function Post({ profilePic, name, caption, post }: Post) {
           </button>
           <button onClick={() => handleClickShareButton()}>
             <Image
-              src={"/ReUsableComponentData/image 3.svg"}
+              src={"/images/ReusableComponents/Share.svg"}
               alt="share"
               width={40}
               height={34}
@@ -124,28 +124,28 @@ export default function Post({ profilePic, name, caption, post }: Post) {
         {isShare && (
           <div className="flex gap-3 mb-3 mt-3 mx-6">
             <Image
-              src={"/ReUsableComponentData/icons8-facebook.svg"}
+              src={"./../public/images/"}
               alt="facebook"
               width={40}
               height={34}
               className={styles.zoom}
             />
             <Image
-              src={"/ReUsableComponentData/icons8-instagram.svg"}
+              src={"/images/ReusableComponents/TwitterIconPost.svg"}
               alt="facebook"
               width={40}
               height={34}
               className={styles.zoom}
             />
             <Image
-              src={"/ReUsableComponentData/icons8-twitterx.svg"}
+              src={"/images/ReusableComponents/InstagramIconPost.svg"}
               alt="facebook"
               width={40}
               height={34}
               className={styles.zoom}
             />
             <Image
-              src={"/ReUsableComponentData/threads-app-icon.svg"}
+              src={"/images/ReusableComponents/threads-app-icon.svg"}
               alt="facebook"
               width={31}
               height={28}

@@ -13,7 +13,9 @@ const Profile = ({ name, picture }: NavBarButton) => {
       <div className="flex items-center justify-end">
 
         <Image
+
           src={picture}
+
           alt="profile picture"
           width={40}
           height={10}

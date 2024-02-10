@@ -294,7 +294,7 @@ export default function EventRegisterFormBasic() {
             <div className="flex gap-2 justify-center items-center">
               <div> Creating</div>
               <Image
-                src="/LoadingBtnIcon.svg"
+                src="/images/createEvent/LoadingBtnIcon.svg"
                 alt="loading btn"
                 width={40}
                 height={40}

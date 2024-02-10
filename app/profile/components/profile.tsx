@@ -26,7 +26,7 @@ export default function profile() {
         </p>
       </div>
       <ProfileCard
-        profilePic="./image 3.png"
+        profilePic="ProfilePicture.png"
         name="Ashan Dilsara"
         accountType="Organization Account "
         email="ashandilsara8@gmail.com"

@@ -8,7 +8,7 @@ import BestEvent from "./components/BestEvent";
 export default function page() {
   return (
     <div>
-      <div className="xl:h-[600px] md:h-[400px] w-full bg-[url('/mainphoto.png')] bg-no-repeat bg-cover bg-center">
+      <div className="xl:h-[600px] md:h-[400px] w-full bg-[url('/images/About/mainphoto.png')] bg-no-repeat bg-cover bg-center">
         <div className="flex-auto w-full h-[213px] flex-col shrink-0 text-white text-center xl:text-6xl md:text-4xl sm:text-2xl md:py-40 xl:pt-56 py-20 px-20 font-['Khand'] font-semibold">
           "Creating memorable moments through expert event management."
         </div>
@@ -31,7 +31,12 @@ export default function page() {
         </div>
 
         <div className="mt-6 xl:ml-40 md:ml-12 place-items-center flex justify-center items-center xl:w-[23rem] md:w-[22rem] sm:-mt-12">
-          <Image src={"/mission.png"} width={350} height={200} alt="mission" />
+          <Image
+            src={"/images/About/mission.png"}
+            width={350}
+            height={200}
+            alt="mission"
+          />
           {/* <img src="/mission.png" className="justify-center" alt="mission"  /> */}
         </div>
       </div>
@@ -54,7 +59,12 @@ export default function page() {
         </div>
 
         <div className="mt-6 xl:ml-40  md:ml-12 flex justify-center items-center xl:w-[23rem] md:w-[22rem]  sm:-mt-6 ">
-          <Image src={"/vision.png"} width={350} height={200} alt="vision" />
+          <Image
+            src={"/images/About/vision.png"}
+            width={350}
+            height={200}
+            alt="vision"
+          />
           {/* <img src='/vision.png' className='justify-center' alt='visionn'/> */}
         </div>
       </div>
@@ -65,7 +75,12 @@ export default function page() {
 
       <div className="grid md:grid-cols-2 ">
         <div className=" -mt-8 xl:ml-40 xl:-mt-16 flex justify-center items-center">
-          <Image src={"/story.png"} width={675} height={394} alt="story" />
+          <Image
+            src={"/images/About/story.png"}
+            width={675}
+            height={394}
+            alt="story"
+          />
           {/* <img src='/story.png' className='justify-center' alt='story'/> */}
         </div>
 

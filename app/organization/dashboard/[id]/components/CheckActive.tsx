@@ -146,7 +146,7 @@ export default function CheckActive() {
                     />
                     <Dashboard_Btn
                       isSlideBar={isSlideBar}
-                      img="Setting_alt_line.svg"
+                      img="Setting.svg"
                       text="Setting"
                       onClick={() => handleSetting()}
                     />

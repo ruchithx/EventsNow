@@ -41,7 +41,7 @@ export default function Dashboard() {
       >
         <div className="block md:ml-0 ml-2 ">
           <Image
-            src="/ReusableComponentData/Chart_alt_fill.svg"
+            src="/images/Organization/cloudWithThreeDotssvg"
             alt="revenue"
             width={100}
             height={100}
@@ -69,7 +69,7 @@ export default function Dashboard() {
         {" "}
         <div className="block md:ml-0 ml-2">
           <Image
-            src="/ReusableComponentData/Chart_alt_fill.svg"
+            src="/images/Organization/cloudWithThreeDots.svg"
             alt="revenue"
             width={100}
             height={100}

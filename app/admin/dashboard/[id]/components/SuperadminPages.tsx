@@ -47,7 +47,7 @@ export default function SuperadminPages({
                   className="flex-1 focus:outline-none rounded-lg text-xs ms-2 "
                 />
                 <Image
-                  src="/ReUsableComponentData/Search (1).svg"
+                  src="/images/ReusableComponents/Search (1).svg"
                   width={20}
                   height={20}
                   alt="search"

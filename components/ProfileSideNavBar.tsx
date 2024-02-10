@@ -66,7 +66,7 @@ export default function ProfileSideNavBar() {
                 Time={"10.00"}
                 Date={"02/04/2024"}
                 Ratings={"4.5"}
-                image={"././profile.jpg"}
+                image={"UpcomingEvent.png"}
                 buttonDesc={"Arka"}
               />
             </>
@@ -82,7 +82,10 @@ export default function ProfileSideNavBar() {
           )}
           {content === "My events" && (
             <>
-              <Org_RequestHandle OrgName={"Amna"} image={"././image 1.png"} />
+              <Org_RequestHandle
+                OrgName={"Amna"}
+                image={"PictureOfaSinger.png"}
+              />
             </>
           )}
         </div>
@@ -109,7 +112,7 @@ export default function ProfileSideNavBar() {
             </p>
           </div>
           <ProfileCard
-            profilePic="./image 3.png"
+            profilePic="ProfilePicture.png"
             name="Ashan Dilsara"
             accountType="Organization Account "
             email="ashandilsara8@gmail.com"

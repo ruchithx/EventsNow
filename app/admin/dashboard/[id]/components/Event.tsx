@@ -13,7 +13,7 @@ export default function Event() {
           <>
             <Superadminevents
               EventName="Nadagama"
-              image={"image 3.png"}
+              image={"PictureOfGitarist.png"}
               Location="Matara"
               Date="12.05.2024"
               Time="23.00"
@@ -21,7 +21,7 @@ export default function Event() {
             />
             <Superadminevents
               EventName="Nadagama"
-              image={"image 3.png"}
+              image={"PictureOfGitarist.png"}
               Location="Matara"
               Date="12.05.2024"
               Time="23.00"

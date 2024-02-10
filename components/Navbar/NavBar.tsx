@@ -105,7 +105,7 @@ export default function NavBar() {
               <button className="button">
                 <div className="flex items-center gap-3">
                   <Image
-                    src="/ReUsableComponentData/nav-logo.png"
+                    src="/images/ReusableComponents/nav-logo.svg"
                     alt="EventNow Logo"
                     width={30}
                     height={20}
@@ -261,7 +261,7 @@ export default function NavBar() {
             {userActive && (
               <div className="flex justify-between items-center mt-5">
                 <Image
-                  src={`/ReUsableComponentData/profilpic.jpg`}
+                  src={`/images/Profile/profile.jpg`}
                   alt="profile picture"
                   width={60}
                   height={20}
@@ -297,7 +297,9 @@ export default function NavBar() {
                 <div className="flex justify-center items-center flex-col gap-2">
                   <div>
                     <Image
+
                       src={user?.image}
+
                       alt="profile picture"
                       width={60}
                       height={20}
@@ -343,7 +345,7 @@ export default function NavBar() {
                       >
                         <div className="flex-shrink-0">
                           <Image
-                            src={`/ReUsableComponentData/profilpic.jpg`}
+                            src={`/images/ReusableComponents/profilpic.jpg`}
                             alt="profile picture"
                             width={40}
                             height={20}

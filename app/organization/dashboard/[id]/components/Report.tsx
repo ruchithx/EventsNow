@@ -37,12 +37,12 @@ export default function Report() {
       <div className="flex h-56 w-full overflow-auto flex-col gap-5 mb-5">
         <View_Report
           isSlideBar={isSlideBar}
-          img="Chart_alt_fill.svg"
+          img="cloudWithThreeDots.svg"
           discription1="ATTENDANCE REPORT"
         />
         <View_Report
           isSlideBar={isSlideBar}
-          img="Chart_alt_fill.svg"
+          img="cloudWithThreeDots.svg"
           discription1="REVENUE REPORT"
         />
       </div>
