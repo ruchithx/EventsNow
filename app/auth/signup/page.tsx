@@ -27,7 +27,7 @@ function page() {
           </div>
           <div className="col-span-1"></div>
         </div>
-        <div className=" max-md:hidden  md:col-span-1  overflow-hidden	bg-[url('/login.jpg')] bg-no-repeat bg-cover  bg-center">
+        <div className=" max-md:hidden  md:col-span-1  overflow-hidden	bg-[url('/images/login/login.jpg')] bg-no-repeat bg-cover  bg-center">
           {/* <Image src={'/login.jpg'} alt={"event-img"} height={1} width={10000} /> */}
         </div>
       </div>

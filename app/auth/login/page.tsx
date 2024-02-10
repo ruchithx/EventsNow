@@ -22,7 +22,7 @@ export default function LogIn() {
           <CreatAccountText />
         </div>
 
-        <div className="md:w-1/2 max-md:hidden  md:col-span-1  overflow-hidden	bg-[url('/login.jpg')] bg-no-repeat bg-cover  bg-center"></div>
+        <div className="md:w-1/2 max-md:hidden  md:col-span-1  overflow-hidden	bg-[url('/images/login/login.jpg')] bg-no-repeat bg-cover  bg-center"></div>
       </div>
       <Footer />
     </>
