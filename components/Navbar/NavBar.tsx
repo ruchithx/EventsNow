@@ -53,7 +53,7 @@ export default function NavBar() {
       async function session() {
         setIsLoading(true);
         const session = await getSession();
-
+        console.log("session");
         if (session) {
           const name = session?.user?.name ? session?.user?.name : "";
           setUser(session?.user);
