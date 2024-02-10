@@ -91,7 +91,6 @@ export default function CreateOrganizationFormBasic() {
         }
       );
 
-      console.log(`res`, res);
       if (!res.ok) {
         error("There is an error for registration");
         setIsSubmitting(false);
