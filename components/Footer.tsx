@@ -20,40 +20,45 @@ export default function Footer() {
               <Image
                 src={`/images/Footer/facebook.svg`}
                 alt="Picture of the button"
-                width={30}
-                height={30}
+                width={0}
+                height={0}
+                className="w-8 h-8"
               />
             </button>
             <button>
               <Image
                 src={`/images/Footer/instergram.svg`}
                 alt="Picture of the button"
-                width={30}
-                height={30}
+                width={0}
+                height={0}
+                className="w-8 h-8"
               />
             </button>
             <button>
               <Image
                 src={`/images/Footer/google.svg`}
                 alt="Picture of the button"
-                width={30}
-                height={30}
+                width={0}
+                height={0}
+                className="w-8 h-8"
               />
             </button>
             <button>
               <Image
                 src={`/images/Footer/youtube.svg`}
                 alt="Picture of the button"
-                width={30}
-                height={30}
+                width={0}
+                height={0}
+                className="w-8 h-8"
               />
             </button>
             <button>
               <Image
                 src={`/images/Footer/messenger.svg`}
                 alt="Picture of the button"
-                width={30}
-                height={30}
+                width={0}
+                height={0}
+                className="w-8 h-8"
               />
             </button>
           </div>
@@ -61,8 +66,9 @@ export default function Footer() {
             <Image
               src={`/images/ReusableComponents/nav-logo.svg`}
               alt="Picture of the button"
-              width={60}
-              height={60}
+              width={0}
+              height={0}
+              className="w-20 h-20"
             />
           </div>
 
