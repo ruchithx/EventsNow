@@ -11,7 +11,7 @@ export default function Profile({ name, picture }: NavBarButton) {
     <div>
       <button className="flex   items-center justify-end">
         <Image
-          src={`/ReUsableComponentData/${picture}.svg`}
+          src={`/images/Profile/${picture}.svg`}
           alt="profile picture"
           width={40}
           height={10}

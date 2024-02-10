@@ -5,16 +5,12 @@ import Content from "./Content";
 import { useProf } from "../ProfContext";
 import Image from "next/image";
 
-
-
 import OrganizationRequestPending from "@/components/OrganizationRequestPending";
 
 import Dashboard_Btn from "@/app/organization/dashboard/[id]/components/Dashboard_Btn";
 import Profile from "./profile";
 
 export default function CheckActive() {
-  
-
   const {
     isActive,
     setIsActive,
@@ -69,7 +65,7 @@ export default function CheckActive() {
                 <div className="bg-myBrown w-[100px] h-[55px] flex items-center   rounded-full">
                   <div className="bg-custom-orange w-[95px] h-[46px] flex justify-end pr-3 rounded-full">
                     <Image
-                      src="/responsiveMenuBar.svg"
+                      src="/images/Profile/responsiveMenuBar.svg"
                       alt="menu bar"
                       width={20}
                       height={20}
@@ -89,7 +85,12 @@ export default function CheckActive() {
             >
               <button onClick={() => setIsDashboardOpen(false)}>
                 <div className="mx-2 my-2 w-fit p-1 mb-3 ">
-                  <Image src="/close.svg" alt="close" width={29} height={29} />
+                  <Image
+                    src="/images/Profile/close.svg"
+                    alt="close"
+                    width={29}
+                    height={29}
+                  />
                 </div>
               </button>
               <div className=" flex flex-col mx-5">
@@ -119,7 +120,7 @@ export default function CheckActive() {
                 />
                 <Dashboard_Btn
                   isSlideBar={isSlideBar}
-                  img="Setting_alt_line.svg"
+                  img="Setting.svg"
                   text="Settings"
                   onClick={() => handleSetting()}
                 />

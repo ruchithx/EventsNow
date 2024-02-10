@@ -21,7 +21,7 @@ export default function Org_RequestHandle({
     <div className="grid grid-cols-12  m-4 w-[250px] md:w-[500px] lg:w-[679px] h-96 sm:h-32 rounded-lg bg-[#D9D9D9] ">
       <div className="sm:col-span-5 col-span-full overflow-hidden rounded-lg">
         <Image
-          src={`/${image}`}
+          src={`/public/images/Profile/${image}`}
           alt="image2"
           width={249.64}
           height={126}

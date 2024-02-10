@@ -21,11 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <link
-          rel="icon"
-          href="/ReUsableComponentData/nav-logo.png"
-          sizes="any"
-        />
+        <link rel="icon" href="/ReusableComponents/nav-logo.png" sizes="any" />
         <AuthProvider>
           <AuthContextProvider>
             <NavBar />

@@ -9,7 +9,7 @@ export default function ViewDetailsButton({ image, Description }: viewdetails) {
     <div className="w-48 rounded-md bg-white p-4">
       <div className="flex justify-center">
         <Image
-          src={`/ReUsableComponentData/Filter.svg`}
+          src={`/images/ReusableComponents/viewDetails.svg`}
           alt="Picture of the button"
           width={50}
           height={50}

@@ -18,7 +18,7 @@ export default function Footer() {
           <div className="flex sm:flex-row sm:justify-evenly justify-between text-center mt-2">
             <button>
               <Image
-                src={`/ReUsableComponentData/facebook.svg`}
+                src={`/images/Footer/facebook.svg`}
                 alt="Picture of the button"
                 width={30}
                 height={30}
@@ -26,7 +26,7 @@ export default function Footer() {
             </button>
             <button>
               <Image
-                src={`/ReUsableComponentData/instergram.svg`}
+                src={`/images/Footer/instergram.svg`}
                 alt="Picture of the button"
                 width={30}
                 height={30}
@@ -34,7 +34,7 @@ export default function Footer() {
             </button>
             <button>
               <Image
-                src={`/ReUsableComponentData/google.svg`}
+                src={`/images/Footer/google.svg`}
                 alt="Picture of the button"
                 width={30}
                 height={30}
@@ -42,7 +42,7 @@ export default function Footer() {
             </button>
             <button>
               <Image
-                src={`/ReUsableComponentData/youtube.svg`}
+                src={`/images/Footer/youtube.svg`}
                 alt="Picture of the button"
                 width={30}
                 height={30}
@@ -50,7 +50,7 @@ export default function Footer() {
             </button>
             <button>
               <Image
-                src={`/ReUsableComponentData/messenger.svg`}
+                src={`/images/Footer/messenger.svg`}
                 alt="Picture of the button"
                 width={30}
                 height={30}
@@ -59,7 +59,7 @@ export default function Footer() {
           </div>
           <div className="sm:flex justify-center hidden   mt-2  sm:justify-center">
             <Image
-              src={`/ReUsableComponentData/nav-logo.svg`}
+              src={`/images/ReusableComponents/nav-logo.svg`}
               alt="Picture of the button"
               width={60}
               height={60}

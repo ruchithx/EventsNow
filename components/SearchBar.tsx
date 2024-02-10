@@ -12,7 +12,7 @@ export default function SearchBar({ text }: searchbar) {
           <div className="font-normal text-gray-500 mb-2">{text}</div>
           <div className="flex flex-row border-2 border-gray-400 bg-white rounded-lg w-52  h-6">
             <Image
-              src="/ReUsableComponentData/Search (1).svg"
+              src="/images/ReusableComponents/Search (1).svg"
               width={20}
               height={14}
               alt="search"

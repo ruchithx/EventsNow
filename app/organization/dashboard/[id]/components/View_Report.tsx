@@ -22,7 +22,7 @@ export default function View_Report({
     >
       <div className="md:col-span-4 my-3 md:ml-5 lg:ml-14 overflow-hidden">
         <Image
-          src={`/ReusableComponentData/${img}`}
+          src={`/images/Organization/${img}`}
           alt="compo5"
           width={100}
           height={100}
@@ -45,7 +45,12 @@ export default function View_Report({
         >
           <div className="flex gap-2 justify-center items-center">
             <div className="lg:block hidden ">
-              <Image src="/print.svg" alt="print" width={24} height={24} />
+              <Image
+                src="/images/Organization/print.svg"
+                alt="print"
+                width={24}
+                height={24}
+              />
             </div>
 
             <div className=" md:p-0 p-1 judtify-center text-white font-sans text-base font-medium mr-3 ">
