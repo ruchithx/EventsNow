@@ -3,6 +3,7 @@ import ProfileDetails from "./ProfileDetails";
 import Upcoming_Events from "@/components/Upcoming_Events";
 import Org_RequestHandle from "./Org_RequestHandle";
 import EventHost from "@/components/EventHost";
+
 export default function MyEvents() {
   const [manageEventsContent, setManageEventsContent] =
     useState("MANAGE EVENTS");
@@ -27,7 +28,7 @@ export default function MyEvents() {
         </div>
         {/* {manage && (
           <>
-            <Org_RequestHandle OrgName={"Amna"} image={"././image 1.png"} />
+            <Org_RequestHandle OrgName={"Amna"} image="PictureOfaSinger.png"/>
           </>
         )}
         {!manage && <></>} */}

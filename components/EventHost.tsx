@@ -51,12 +51,12 @@ export default function ToggleButtons({ btn1, btn2 }: btn) {
       </div>
       <div className="m-4 p-2 font-IBM rounded-2xl flex flex-col md:flex-row text-center wrap whitespace-nowrap grid grid-cols-5">
         {btnState === 1 && (
-          <Org_RequestHandle OrgName={"Amna"} image={"././image 1.png"} />
+          <Org_RequestHandle OrgName={"Amna"} image="PictureOfaSinger.png" />
         )}
 
         {btnState === 2 && (
           <>
-            <Org_RequestHandle OrgName={"Amna"} image={"././image 1.png"} />
+            <Org_RequestHandle OrgName={"Amna"} image="PictureOfaSinger.png" />
 
             <h1>Hiiiii</h1>
           </>
