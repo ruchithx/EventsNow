@@ -17,7 +17,7 @@ export default function page() {
 
       <div className="grid md:grid-cols-2 md:mx-16 xl:mx-40 xl:my-14 md:place-items-center place-items-center ">
         <div>
-          <div className='mt-2 md:mt-8 py-4 md:text-left xl:mb-4 sm:text-3xl flex-auto w-full md:h-[5rem] flex-col text-center justify-center shrink-0 text-[#906953] font-["Khand"] md:text-5xl  sm:mt-10  font-semibold'>
+          <div className='mt-2 md:mt-8 py-4 md:text-left xl:mb-4 sm:text-3xl flex-auto w-full md:h-[5rem] flex-col text-center justify-center shrink-0 text-[#906953] font-["Khand"] md:text-4xl xl:text-5xl  sm:mt-10  font-semibold'>
             OUR MISSION
           </div>
           <div className='sm:px-6 sm:-mb-20 md:px-0 px-4 xl:mb-4  md:text-left flex-auto w-full h-[13rem] text-center flex-col shrink-0 text-black font-["Khand"] md:text-base  font-medium tracking-wider '>
@@ -39,7 +39,7 @@ export default function page() {
 
       <div className="grid md:grid-cols-2 md:mx-16 xl:mx-40 xl:my-14 md:-mt-4 md:place-items-center place-items-center">
         <div>
-          <div className='md:mt-28 xl:-mt-2 py-4 md:text-left xl:mb-4 sm:text-3xl flex-auto w-full md:h-[5rem] flex-col text-center justify-center shrink-0 text-[#906953] font-["Khand"]  md:text-5xl  sm:mt-8  font-semibold'>
+          <div className='md:mt-28 xl:-mt-2 py-4 md:text-left xl:mb-4 sm:text-3xl flex-auto w-full md:h-[5rem] flex-col text-center justify-center shrink-0 text-[#906953] font-["Khand"]  md:text-4xl xl:text-5xl  sm:mt-8  font-semibold'>
             OUR VISION
           </div>
           <div className='sm:px-6 md:px-0  px-4 mb-12 md:text-left flex-auto w-full h-[13rem] flex-col text-center shrink-0 text-black font-["Khand"] md:text-base font-medium tracking-wider'>
@@ -59,7 +59,7 @@ export default function page() {
         </div>
       </div>
 
-      <div className='sm:my-2  mt-6 text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] md:text-5xl sm:text-3xl md:mt-12 font-semibold sm:mt-12'>
+      <div className='sm:my-2  mt-6 text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] md:text-4xl xl:text-5xl sm:text-3xl md:mt-12 font-semibold sm:mt-12'>
         OUR STORY
       </div>
 
@@ -91,7 +91,7 @@ export default function page() {
       </div>
 
 
-      <div className='mt-6 text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] md:text-5xl sm:text-3xl md:mt-12 font-semibold sm:my-10 '>
+      <div className='mt-6 text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] md:text-4xl xl:text-5xl sm:text-3xl md:mt-12 font-semibold sm:my-10 '>
         BEST EVENTS
       </div>
 
