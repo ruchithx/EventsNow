@@ -10,7 +10,8 @@ export default function page() {
     <div>
       <div className="xl:h-[600px] md:h-[400px] w-full bg-[url('/images/About/mainphoto.png')] bg-no-repeat bg-cover bg-center">
         <div className="flex-auto w-full h-[213px] flex-col shrink-0 text-white text-center xl:text-6xl md:text-4xl sm:text-2xl md:py-40 xl:pt-56 py-20 px-20 font-['Khand'] font-semibold">
-          "Creating memorable moments through expert event management."
+          &ldquo;Creating memorable moments through expert event
+          management.&rdquo;
         </div>
       </div>
 
@@ -92,15 +93,16 @@ export default function page() {
             sales pitches were losing their effectiveness, drowned out by a
             discerning audience that had mastered the art of ignoring
             interruptions. Inspired by this shift, the vision for EventNow
-            emerged—a platform founded on the principles of "inbound" for the
-            event space. The fundamental belief that people no longer desired
-            interruptions but sought genuine assistance in their event journeys
-            became the cornerstone of EventNow. In the spirit of the inbound
-            movement, EventNow empowers event organizers to cease interruption,
-            embrace assistance, and refocus on the attendee. Through our
-            platform, we aim to catalyze a movement where events become
-            authentic, enriching experiences rather than interruptions in
-            people's lives. EventNow—Empowering Events, Enhancing Experiences.
+            emerged—a platform founded on the principles of &quot;inbound&quot;
+            for the event space. The fundamental belief that people no longer
+            desired interruptions but sought genuine assistance in their event
+            journeys became the cornerstone of EventNow. In the spirit of the
+            inbound movement, EventNow empowers event organizers to cease
+            interruption, embrace assistance, and refocus on the attendee.
+            Through our platform, we aim to catalyze a movement where events
+            become authentic, enriching experiences rather than interruptions in
+            people&rdquo;s lives. EventNow—Empowering Events, Enhancing
+            Experiences.
           </div>
         </div>
       </div>

@@ -15,6 +15,7 @@ function OrgContextProvider({ children }) {
   const [isSlideBar, setIsSlideBar] = useState(true);
   const [organization, setOrganization] = useState({});
   const params = useParams();
+  const router = useRouter();
 
   useEffect(
     function () {
@@ -48,8 +49,6 @@ function OrgContextProvider({ children }) {
     },
     [params.id]
   );
-
-  const router = useRouter();
 
   function handleDashboard() {
     setStatus("dashboard");

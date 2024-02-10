@@ -48,8 +48,10 @@ export default function NavBar() {
       async function session() {
         setIsLoading(true);
         const session = await getSession();
+        console.log("session", session);
 
         if (session) {
+          console.log("jelo");
           const name = session?.user?.name ? session?.user?.name : "";
           setUser(session?.user);
 
@@ -261,7 +263,7 @@ export default function NavBar() {
             {userActive && (
               <div className="flex justify-between items-center mt-5">
                 <Image
-                  src={`/images/Profile/profile.jpg`}
+                  src={`/images/profile/profile.jpg`}
                   alt="profile picture"
                   width={60}
                   height={20}

@@ -18,101 +18,104 @@ interface props {
   clickLogoutBtn: () => void;
 }
 
-const ResponsiveMenuBar = memo(
-  ({ isMenuOpen, toggleMenu, clickLogoutBtn, userActive }: props) => {
-    return (
+const ResponsiveMenuBar = memo(function ResponsiveMenuBar({
+  isMenuOpen,
+  toggleMenu,
+  clickLogoutBtn,
+  userActive,
+}: props) {
+  return (
+    <div
+      className={
+        isMenuOpen
+          ? "fixed shadow-2xl  right-0 top-0 w-[65%] sm:hidden h-screen bg-[#ecf0fc] p-5 ease-in duration-50"
+          : "fixed left-[100%] top-0 p-10 ease-in duration-50"
+      }
+    >
       <div
-        className={
-          isMenuOpen
-            ? "fixed shadow-2xl  right-0 top-0 w-[65%] sm:hidden h-screen bg-[#ecf0fc] p-5 ease-in duration-50"
-            : "fixed left-[100%] top-0 p-10 ease-in duration-50"
-        }
+        className={`w-full ${
+          userActive ? "hidden" : "block"
+        } flex items-center justify-end `}
       >
-        <div
-          className={`w-full ${
-            userActive ? "hidden" : "block"
-          } flex items-center justify-end `}
-        >
+        <div onClick={() => toggleMenu()} className="cursor-pointer ">
+          <IoMdClose size={25} />
+        </div>
+      </div>
+      {userActive && (
+        <div className="flex justify-between items-center mt-5">
+          <Image
+            src={`/images/ReusableComponents/profilpic.jpg`}
+            alt="profile picture"
+            width={50}
+            height={20}
+            className="rounded-full"
+          />
           <div onClick={() => toggleMenu()} className="cursor-pointer ">
-            <IoMdClose size={25} />
+            <IoMdClose size={30} />
           </div>
         </div>
-        {userActive && (
-          <div className="flex justify-between items-center mt-5">
-            <Image
-              src={`/images/ReusableComponents/profilpic.jpg`}
-              alt="profile picture"
-              width={50}
-              height={20}
-              className="rounded-full"
-            />
-            <div onClick={() => toggleMenu()} className="cursor-pointer ">
-              <IoMdClose size={30} />
-            </div>
-          </div>
-        )}
+      )}
 
-        <div className="flex flex-col py-6 text-black">
-          <ul>
-            <Link href="/">
-              <Item fn={toggleMenu} text="Home">
-                {/* <AiFillHome /> */}
-              </Item>
-            </Link>
-            <Link href="/about">
-              <Item fn={toggleMenu} text="About">
-                {/* <MdContactless /> */}
-              </Item>
-            </Link>
-            {!userActive && (
-              <div className="flex flex-col  text-black">
-                <Link href="/auth/login">
-                  <Item fn={toggleMenu} text="Login">
-                    {/* <RiLoginCircleFill /> */}
-                  </Item>
-                </Link>
-                <Link href="/auth/signup">
-                  <Item fn={toggleMenu} text="Signup">
-                    {/* <FaLock /> */}
-                  </Item>
-                </Link>
-              </div>
-            )}
-
-            {userActive && (
-              <div className="flex flex-col  text-black">
-                <Link href={"/createorganization"}>
-                  <Item fn={toggleMenu} text="Host Event">
-                    {/* <IoIosAddCircle /> */}
-                  </Item>
-                </Link>
-                <Link href="/profile">
-                  <Item fn={toggleMenu} text="Profile">
-                    {/* <FaUser /> */}
-                  </Item>
-                </Link>
-              </div>
-            )}
-          </ul>
-          {userActive && (
-            <div className="mt-10 flex justify-center w-full">
-              <Login
-                image="Sign_in.svg"
-                titleOfbutton="LOGOUT"
-                fn={clickLogoutBtn}
-              />
+      <div className="flex flex-col py-6 text-black">
+        <ul>
+          <Link href="/">
+            <Item fn={toggleMenu} text="Home">
+              {/* <AiFillHome /> */}
+            </Item>
+          </Link>
+          <Link href="/about">
+            <Item fn={toggleMenu} text="About">
+              {/* <MdContactless /> */}
+            </Item>
+          </Link>
+          {!userActive && (
+            <div className="flex flex-col  text-black">
+              <Link href="/auth/login">
+                <Item fn={toggleMenu} text="Login">
+                  {/* <RiLoginCircleFill /> */}
+                </Item>
+              </Link>
+              <Link href="/auth/signup">
+                <Item fn={toggleMenu} text="Signup">
+                  {/* <FaLock /> */}
+                </Item>
+              </Link>
             </div>
           )}
-          {/* <button
+
+          {userActive && (
+            <div className="flex flex-col  text-black">
+              <Link href={"/createorganization"}>
+                <Item fn={toggleMenu} text="Host Event">
+                  {/* <IoIosAddCircle /> */}
+                </Item>
+              </Link>
+              <Link href="/profile">
+                <Item fn={toggleMenu} text="Profile">
+                  {/* <FaUser /> */}
+                </Item>
+              </Link>
+            </div>
+          )}
+        </ul>
+        {userActive && (
+          <div className="mt-10 flex justify-center w-full">
+            <Login
+              image="Sign_in.svg"
+              titleOfbutton="LOGOUT"
+              fn={clickLogoutBtn}
+            />
+          </div>
+        )}
+        {/* <button
         onClick={clickLogoutBtn}
         className="flex gap-3 items-center"
       >
         <RiLogoutCircleFill />
         <div>Logout</div>
       </button> */}
-        </div>
       </div>
-    );
-  }
-);
+    </div>
+  );
+});
 export default ResponsiveMenuBar;

@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { memo } from "react";
 import { useOrg } from "../OrgContext";
 
-const DashboardDetails = memo(() => {
+const DashboardDetails = memo(function DashboardDetails() {
   const { organization } = useOrg();
   console.log(organization);
   return (
