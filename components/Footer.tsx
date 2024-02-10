@@ -20,40 +20,45 @@ export default function Footer() {
               <Image
                 src={`/ReUsableComponentData/facebook.svg`}
                 alt="Picture of the button"
-                width={30}
-                height={30}
+                width={0}
+                height={0}
+                className="w-8 h-8"
               />
             </button>
             <button>
               <Image
                 src={`/ReUsableComponentData/instergram.svg`}
                 alt="Picture of the button"
-                width={30}
-                height={30}
+                width={0}
+                height={0}
+                className="w-8 h-8"
               />
             </button>
             <button>
               <Image
                 src={`/ReUsableComponentData/google.svg`}
                 alt="Picture of the button"
-                width={30}
-                height={30}
+                width={0}
+                height={0}
+                className="w-8 h-8"
               />
             </button>
             <button>
               <Image
                 src={`/ReUsableComponentData/youtube.svg`}
                 alt="Picture of the button"
-                width={30}
-                height={30}
+                width={0}
+                height={0}
+                className="w-8 h-8"
               />
             </button>
             <button>
               <Image
                 src={`/ReUsableComponentData/messenger.svg`}
                 alt="Picture of the button"
-                width={30}
-                height={30}
+                width={0}
+                height={0}
+                className="w-8 h-8"
               />
             </button>
           </div>
@@ -61,8 +66,9 @@ export default function Footer() {
             <Image
               src={`/ReUsableComponentData/nav-logo.svg`}
               alt="Picture of the button"
-              width={60}
-              height={60}
+              width={0}
+              height={0}
+              className="w-20 h-20"
             />
           </div>
 
