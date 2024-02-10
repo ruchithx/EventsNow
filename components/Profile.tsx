@@ -9,7 +9,7 @@ interface NavBarButton {
 export default function Profile({ name, picture }: NavBarButton) {
   return (
     <div>
-      <button className="flex   items-center justify-end">
+      <div className="flex   items-center justify-end">
         <Image
           src={`/ReUsableComponentData/${picture}.svg`}
           alt="profile picture"
@@ -17,7 +17,7 @@ export default function Profile({ name, picture }: NavBarButton) {
           height={10}
           className="rounded-full"
         />
-      </button>
+      </div>
     </div>
   );
 }
