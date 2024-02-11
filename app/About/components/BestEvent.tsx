@@ -22,7 +22,7 @@ export default function BestEvent({
         <div className="h-[365px] w-[260px] bg-[#AC736D]  bg-cover bg-center">
           <div className="ml-2.5  overflow-hidden  h-[350px] w-[350px] ">
             <Image
-              src={`/images/About/${img}`}
+              src={`/images/about/${img}`}
               height={300}
               width={250}
               alt="bestevent"

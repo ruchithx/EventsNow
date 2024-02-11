@@ -18,7 +18,7 @@ export default function Footer() {
           <div className="flex sm:flex-row sm:justify-evenly justify-between text-center mt-2">
             <button>
               <Image
-                src={`/images/Footer/facebook.svg`}
+                src={`/images/footer/facebook.svg`}
                 alt="Picture of the button"
                 width={0}
                 height={0}
@@ -27,7 +27,7 @@ export default function Footer() {
             </button>
             <button>
               <Image
-                src={`/images/Footer/instergram.svg`}
+                src={`/images/footer/instergram.svg`}
                 alt="Picture of the button"
                 width={0}
                 height={0}
@@ -36,7 +36,7 @@ export default function Footer() {
             </button>
             <button>
               <Image
-                src={`/images/Footer/google.svg`}
+                src={`/images/footer/google.svg`}
                 alt="Picture of the button"
                 width={0}
                 height={0}
@@ -45,7 +45,7 @@ export default function Footer() {
             </button>
             <button>
               <Image
-                src={`/images/Footer/youtube.svg`}
+                src={`/images/footer/youtube.svg`}
                 alt="Picture of the button"
                 width={0}
                 height={0}
@@ -54,7 +54,7 @@ export default function Footer() {
             </button>
             <button>
               <Image
-                src={`/images/Footer/messenger.svg`}
+                src={`/images/footer/messenger.svg`}
                 alt="Picture of the button"
                 width={0}
                 height={0}
@@ -64,7 +64,7 @@ export default function Footer() {
           </div>
           <div className="sm:flex justify-center hidden   mt-2  sm:justify-center">
             <Image
-              src={`/images/ReusableComponents/nav-logo.svg`}
+              src={`/images/reusableComponents/nav-logo.svg`}
               alt="Picture of the button"
               width={0}
               height={0}

@@ -8,7 +8,7 @@ import BestEvent from "./components/BestEvent";
 export default function page() {
   return (
     <div>
-      <div className="xl:h-[600px] md:h-[400px] w-full bg-[url('/images/About/mainphoto.png')] bg-no-repeat bg-cover bg-center">
+      <div className="xl:h-[600px] md:h-[400px] w-full bg-[url('/images/about/mainphoto.png')] bg-no-repeat bg-cover bg-center">
         <div className="flex-auto w-full h-[213px] flex-col shrink-0 text-white text-center xl:text-6xl md:text-4xl sm:text-2xl md:py-40 xl:pt-56 py-20 px-20 font-['Khand'] font-semibold">
           &ldquo;Creating memorable moments through expert event
           management.&rdquo;
@@ -33,7 +33,7 @@ export default function page() {
 
         <div className="mt-6 xl:ml-40 md:ml-12 place-items-center flex justify-center items-center xl:w-[23rem] md:w-[22rem] sm:-mt-12">
           <Image
-            src={"/images/About/mission.png"}
+            src={"/images/about/mission.png"}
             width={350}
             height={200}
             alt="mission"
@@ -61,7 +61,7 @@ export default function page() {
 
         <div className="mt-6 xl:ml-40  md:ml-12 flex justify-center items-center xl:w-[23rem] md:w-[22rem]  sm:-mt-6 ">
           <Image
-            src={"/images/About/vision.png"}
+            src={"/images/about/vision.png"}
             width={350}
             height={200}
             alt="vision"
@@ -77,7 +77,7 @@ export default function page() {
       <div className="grid md:grid-cols-2 ">
         <div className=" -mt-8 xl:ml-40 xl:-mt-16 flex justify-center items-center">
           <Image
-            src={"/images/About/story.png"}
+            src={"/images/about/story.png"}
             width={675}
             height={394}
             alt="story"

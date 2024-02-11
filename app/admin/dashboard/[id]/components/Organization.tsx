@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SuperadminPages from "@/app/admin/dashboard/[id]/components/SuperadminPages";
 import Available_Orgs from "@/components/Available_Orgs";
+
 interface UserData {
   _id: string;
   fullName: string;
@@ -28,6 +29,9 @@ export default function Notification() {
 
     fetchData();
   }, []);
+
+  const handleDetails = () => {};
+
   return (
     <div>
       <SuperadminPages
@@ -43,9 +47,17 @@ export default function Notification() {
                   image={"image 1.png"}
                   noOfEvents={"34"}
                   noOfMembers={"12"}
+                  handleClick={() => handleDetails()}
                 />
               </div>
             ))}
+            <Available_Orgs
+              OrgName={"University Of Moratuwa"}
+              image={"image 1.png"}
+              noOfEvents={"34"}
+              noOfMembers={"12"}
+              handleClick={() => handleDetails()}
+            />
           </>
         }
       />

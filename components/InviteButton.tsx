@@ -9,7 +9,7 @@ export default function InviteButton({ handleclick }: invitebutton) {
     <div className="flex gap-10 p-10">
       <div className="flex flex-row border-2 border-gray-400 bg-white rounded-lg w-72 h-10">
         <Image
-          src="/images/ReusableComponents/Search (1).svg"
+          src="/images/reusableComponents/Search (1).svg"
           width={20}
           height={14}
           alt="search"

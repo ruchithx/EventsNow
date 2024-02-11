@@ -107,7 +107,7 @@ export default function NavBar() {
               <button className="button">
                 <div className="flex items-center gap-3">
                   <Image
-                    src="/images/ReusableComponents/nav-logo.svg"
+                    src="/images/reusableComponents/nav-logo.svg"
                     alt="EventNow Logo"
                     width={30}
                     height={20}
@@ -347,7 +347,7 @@ export default function NavBar() {
                       >
                         <div className="flex-shrink-0">
                           <Image
-                            src={`/images/ReusableComponents/profilpic.jpg`}
+                            src={`/images/reusableComponents/profilpic.jpg`}
                             alt="profile picture"
                             width={40}
                             height={20}

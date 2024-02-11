@@ -44,7 +44,7 @@ const ResponsiveMenuBar = memo(function ResponsiveMenuBar({
       {userActive && (
         <div className="flex justify-between items-center mt-5">
           <Image
-            src={`/images/ReusableComponents/profilpic.jpg`}
+            src={`/images/reusableComponents/profilpic.jpg`}
             alt="profile picture"
             width={50}
             height={20}

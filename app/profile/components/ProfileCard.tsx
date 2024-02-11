@@ -19,7 +19,7 @@ export default function ProfileCard({
       <div className="bg-[#D9D9D9] h-[150px] md:h-[200px] lg:h-[258px] text-center font-mono font-medium ">
         <Image
           className=" rounded-full w-[200px] h-[200px] sm:w-[180px] sm:h-[180px] md:w-[200px] md:h-[200px] lg:h-[258px] lg:w-[258px] object-cover object-center border-[6px] border-white mx-auto relative z-40 top-[-160px] "
-          src={`/images/Profile/${profilePic}`}
+          src={`/images/profile/${profilePic}`}
           width={258}
           height={258}
           alt="profile picture"

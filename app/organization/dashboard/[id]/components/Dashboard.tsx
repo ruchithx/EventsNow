@@ -47,7 +47,7 @@ export default function Dashboard() {
       >
         <div className="block md:ml-0 ml-2 ">
           <Image
-            src="/images/Organization/couldWithThreeDots.svg"
+            src="/images/organizaton/couldWithThreeDots.svg"
             alt="revenue"
             width={100}
             height={100}
@@ -75,7 +75,7 @@ export default function Dashboard() {
         {" "}
         <div className="block md:ml-0 ml-2">
           <Image
-            src="/images/Organization/couldWithThreeDots.svg"
+            src="/images/organizaton/couldWithThreeDots.svg"
             alt="revenue"
             width={100}
             height={100}

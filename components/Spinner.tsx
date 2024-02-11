@@ -7,7 +7,7 @@ export default function Spinner() {
   return (
     <div className="w-full flex justify-center opacity-50">
       <Image
-        src={`/images/ReusableComponents/PendingSpinner.svg`}
+        src={`/images/reusableComponents/PendingSpinner.svg`}
         alt={"spinner"}
         width={60}
         height={60}

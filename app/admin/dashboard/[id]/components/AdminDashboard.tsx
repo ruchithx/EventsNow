@@ -14,6 +14,7 @@ import { LiaBookSolid } from "react-icons/lia";
 import { GoPeople } from "react-icons/go";
 import { FiFileText } from "react-icons/fi";
 
+
 export default function AdminDashboard() {
   const {
     handleNotification,
@@ -29,12 +30,13 @@ export default function AdminDashboard() {
   const { status } = useAdmin();
   return (
     <div>
+     
       <div className=" md:flex lg:flex flex flex-col md:flex-row lg:flex-row h-[500px] mt-12">
-        <div className="sm:hidden sm:flex-col md:flex lg:flex sm:w-full md:w-1/5 lg:w-1/6  ms-4 h-[500px] rounded-lg">
-          <div className="flex flex-col   shadow-3xl items-center rounded-lg ">
+        <div className="hidden sm:flex-col md:flex lg:flex sm:w-full md:w-1/5 lg:w-1/6  ms-8 h-[500px] rounded-lg shadow-3xl">
+          <div className="flex flex-col  items-center rounded-lg ">
             <div className=" flex flex-row mt-2 h-[500px] rounded-lg ">
-              <div className="sm:w-full md:w-1/4 lg:w-1/4 xl:w-1/4 sm:hidden md:flex lg:flex justify-center rounded-lg ">
-                <div className="sm:hidden md:flex md:flex-col lg:flex lg:flex-col md:w-3/4 lg:w-3/4 sm:w-full mt-8 sm:ms-8 md:ms-8 lg:ms-8 rounded-lg bg-gray-50">
+              <div className="sm:w-full md:w-1/4 lg:w-1/4 xl:w-1/4 flex justify-center rounded-lg ">
+                <div className="flex flex-col md:w-3/4 lg:w-3/4 sm:w-full mt-8 sm:ms-8 md:ms-8 lg:ms-8 rounded-lg">
                   <SuperadminButton
                     text="Notification"
                     onClick={() => handleNotification()}
