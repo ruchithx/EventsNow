@@ -24,6 +24,7 @@ const NavBarProfile = memo(function NavBarProfile({
 }: NavBarProfileProps) {
   const [isOrganizationShowButton, setIsOrganizationShowButton] =
     useState(false);
+
   return (
     <div className="">
       <div className="flex m-3 items-center justify-between">

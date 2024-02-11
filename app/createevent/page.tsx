@@ -13,7 +13,7 @@ export default function page() {
           <EventRegisterFormBasic />
         </div>
 
-        <div className=" max-lg:hidden  md:col-span-1  overflow-hidden	bg-[url('/images/createEvent/eventRegFormImg.png')] bg-no-repeat bg-cover  bg-center"></div>
+        <div className=" max-lg:hidden  md:col-span-1  overflow-hidden 	bg-[url('/images/CreateEvent/eventRegFormImg.png')] bg-no-repeat bg-cover  bg-center"></div>
       </div>
       <Footer />
     </div>
