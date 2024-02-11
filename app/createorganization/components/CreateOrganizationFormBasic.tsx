@@ -17,6 +17,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "@nextui-org/dropdown";
+import { getSession } from "next-auth/react";
 
 export default function CreateOrganizationFormBasic() {
   const [fullName, setFullName] = useState("");
@@ -33,6 +34,23 @@ export default function CreateOrganizationFormBasic() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const getUserId = async () => {
+    const session = await getSession();
+    if (!session) {
+      return null;
+    }
+    const email: string | null | undefined = session.user?.email;
+
+    const res = fetch("http://localhost:3000/api/v1/user/getUserId", {
+      method: "POST",
+      mode: "cors",
+      body: JSON.stringify({ email }),
+    });
+
+    const { id } = await res.then((res) => res.json());
+    return id;
+  };
 
   const validateOrganization = z.object({
     fullName: z
@@ -57,91 +75,94 @@ export default function CreateOrganizationFormBasic() {
 
   async function sendOrganizationData(e: any) {
     e.preventDefault();
-    setIsSubmitting(true);
 
-    const storageRef = firebase.storage().ref();
-    const fileRef = storageRef.child(`eventCover-${organizationName}`);
-    const postImageLink = await fileRef
-      .put(postImage)
-      .then((snapshot) =>
-        snapshot.ref.getDownloadURL().then((downloadURL) => downloadURL)
-      );
+    const id = getUserId();
 
-    const data = {
-      fullName,
-      numberType,
-      number,
-      companyName,
-      organizationName,
-      address,
-      phoneNumber,
-      email,
-      postImageLink,
-    };
+    // setIsSubmitting(true);
 
-    const result = validateOrganization.safeParse(data);
+    // const storageRef = firebase.storage().ref();
+    // const fileRef = storageRef.child(`eventCover-${organizationName}`);
+    // const postImageLink = await fileRef
+    //   .put(postImage)
+    //   .then((snapshot) =>
+    //     snapshot.ref.getDownloadURL().then((downloadURL) => downloadURL)
+    //   );
 
-    if (result.success) {
-      const res = await fetch(
-        "http://localhost:3000/api/v1/organization/createOrganization",
-        {
-          method: "POST",
-          mode: "cors",
-          body: JSON.stringify(data),
-        }
-      );
+    // const data = {
+    //   fullName,
+    //   numberType,
+    //   number,
+    //   companyName,
+    //   organizationName,
+    //   address,
+    //   phoneNumber,
+    //   email,
+    //   postImageLink,
+    // };
 
-      if (!res.ok) {
-        error("There is an error for registration");
-        setIsSubmitting(false);
-        return null;
-      }
+    // const result = validateOrganization.safeParse(data);
 
-      const id = await res.json();
+    // if (result.success) {
+    //   const res = await fetch(
+    //     "http://localhost:3000/api/v1/organization/createOrganization",
+    //     {
+    //       method: "POST",
+    //       mode: "cors",
+    //       body: JSON.stringify(data),
+    //     }
+    //   );
 
-      success("registration data sent succesfully");
+    //   if (!res.ok) {
+    //     error("There is an error for registration");
+    //     setIsSubmitting(false);
+    //     return null;
+    //   }
 
-      setFullName("");
-      setNumberType("");
-      setNumber("");
-      setCompanyName("");
-      setAddress("");
-      setPhoneNumber("");
-      setEmail("");
-      setOrganizationName("");
-      setPreviewImage("");
+    //   const id = await res.json();
 
-      if (fileInputRef.current) {
-        fileInputRef.current.value = "";
-      }
+    //   success("registration data sent succesfully");
 
-      router.push(`/organization/dashboard/${id.id}`);
-      return;
-    } else {
-      const formattedError = result.error.format();
+    //   setFullName("");
+    //   setNumberType("");
+    //   setNumber("");
+    //   setCompanyName("");
+    //   setAddress("");
+    //   setPhoneNumber("");
+    //   setEmail("");
+    //   setOrganizationName("");
+    //   setPreviewImage("");
 
-      if (formattedError.fullName?._errors) {
-        error(String(formattedError.fullName?._errors));
-      } else if (formattedError.numberType) {
-        error(String(formattedError.numberType?._errors));
-      } else if (formattedError.number) {
-        error(String(formattedError.number?._errors));
-      } else if (formattedError.companyName) {
-        error(String(formattedError.companyName?._errors));
-      } else if (formattedError.organizationName) {
-        error(String(formattedError.organizationName?._errors));
-      } else if (formattedError.address) {
-        error(String(formattedError.address?._errors));
-      } else if (formattedError.phoneNumber) {
-        error(String(formattedError.phoneNumber?._errors));
-      } else if (formattedError.email) {
-        error(String(formattedError.email._errors));
-      } else if (formattedError.postImageLink) {
-        error(String(formattedError.postImageLink._errors));
-      } else error("an unknown error occur in validation process");
-    }
+    //   if (fileInputRef.current) {
+    //     fileInputRef.current.value = "";
+    //   }
 
-    setIsSubmitting(false);
+    //   router.push(`/organization/dashboard/${id.id}`);
+    //   return;
+    // } else {
+    //   const formattedError = result.error.format();
+
+    //   if (formattedError.fullName?._errors) {
+    //     error(String(formattedError.fullName?._errors));
+    //   } else if (formattedError.numberType) {
+    //     error(String(formattedError.numberType?._errors));
+    //   } else if (formattedError.number) {
+    //     error(String(formattedError.number?._errors));
+    //   } else if (formattedError.companyName) {
+    //     error(String(formattedError.companyName?._errors));
+    //   } else if (formattedError.organizationName) {
+    //     error(String(formattedError.organizationName?._errors));
+    //   } else if (formattedError.address) {
+    //     error(String(formattedError.address?._errors));
+    //   } else if (formattedError.phoneNumber) {
+    //     error(String(formattedError.phoneNumber?._errors));
+    //   } else if (formattedError.email) {
+    //     error(String(formattedError.email._errors));
+    //   } else if (formattedError.postImageLink) {
+    //     error(String(formattedError.postImageLink._errors));
+    //   } else error("an unknown error occur in validation process");
+    // }
+
+    // setIsSubmitting(false);
   }
 
   return (
