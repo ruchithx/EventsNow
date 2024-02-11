@@ -2,19 +2,19 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import Spinner from "../../../../components/Spinner";
+
 import { error, success } from "../../../../util/Toastify";
 import Image from "next/image";
 
 export default function LoginFormBasic() {
-  const [firstName, setFristName] = useState("");
-  const [spinner, setSpinner] = useState(false);
+  const [firstName, setFristName] = useState<string>("");
+  const [spinner, setSpinner] = useState<boolean>(false);
 
-  const [lastName, setLastName] = useState("");
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
-  const [passwordConfirm, setCPassword] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [lastName, setLastName] = useState<string>("");
+  const [email, setemail] = useState<string>("");
+  const [password, setpassword] = useState<string>("");
+  const [passwordConfirm, setCPassword] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const router = useRouter();
 
   async function sendLoginData(e: any) {

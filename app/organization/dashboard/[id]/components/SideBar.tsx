@@ -5,6 +5,17 @@ import Dashboard_Btn from "@/app/organization/dashboard/[id]/components/Dashboar
 import { useOrg } from "../OrgContext";
 import { HiArrowCircleRight } from "react-icons/hi";
 import { HiArrowCircleLeft } from "react-icons/hi";
+import { voidFunc } from "../Type";
+
+interface contextProps {
+  handleDashboard: voidFunc;
+  isSlideBar: boolean;
+  setIsSlideBar: (value: boolean) => void;
+  handleMyEvent: voidFunc;
+  handleReport: voidFunc;
+  handleMyTeam: voidFunc;
+  handleSetting: voidFunc;
+}
 
 export default function SideBar() {
   const {
@@ -15,7 +26,8 @@ export default function SideBar() {
     handleReport,
     handleMyTeam,
     handleSetting,
-  } = useOrg();
+  } = useOrg() as contextProps;
+
   return (
     <div>
       <Dashboard>

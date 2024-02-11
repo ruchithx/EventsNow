@@ -1,22 +1,24 @@
 "use client";
 import React, { useState, useRef } from "react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { error } from "@/util/Toastify";
-import { useAuth } from "@/app/AuthContext";
+
 import Image from "next/image";
+import { useAuth } from "@/app/AuthContext";
+
+interface contextProps {
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+}
 
 export default function LoginForm() {
   const usernameInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { setEmail }: any = useAuth();
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const { setEmail }: any = useAuth() as contextProps;
 
   const [showPassword, setShowPassword] = useState(false);
 

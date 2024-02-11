@@ -1,13 +1,23 @@
 "use client";
 import { useContext, createContext, useState, useEffect } from "react";
 
-const authContext = createContext();
+interface AuthContext {
+  emailAuth: string | null;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+}
 
-function AuthContextProvider({ children }) {
-  const [emailAuth, setEmail] = useState("");
+interface AuthContextProviderProps {
+  children: React.ReactNode;
+}
+
+const authContext = createContext<AuthContext | null>(null);
+
+function AuthContextProvider({ children }: AuthContextProviderProps) {
+  const [emailAuth, setEmail] = useState<string>("");
 
   useEffect(() => {
-    setEmail(localStorage.getItem("email"));
+    const email: any = localStorage.getItem("email");
+    setEmail(email);
   }, []);
 
   return (

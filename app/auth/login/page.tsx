@@ -1,9 +1,9 @@
 import SignupSocial from "@/components/SignupSocial";
-import Image from "next/image";
+
 import Footer from "@/components/Footer";
-// import CreatAccountText from "./CreatAccountText";
+
 import LoginForm from "./components/LoginForm";
-import NavBar from "@/components/Navbar/NavBar";
+
 import CreatAccountText from "./components/CreatAccountText";
 
 export default function LogIn() {

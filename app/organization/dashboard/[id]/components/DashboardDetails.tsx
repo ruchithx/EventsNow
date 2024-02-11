@@ -1,10 +1,15 @@
 import Image from "next/image";
 import React, { memo } from "react";
 import { useOrg } from "../OrgContext";
+import { Organization } from "../Type";
+
+interface contextProps {
+  organization: Organization;
+}
 
 const DashboardDetails = memo(function DashboardDetails() {
-  const { organization } = useOrg();
-  console.log(organization);
+  const { organization } = useOrg() as contextProps;
+
   return (
     <div>
       <div className="bg-[#D9D9D9] rounded-lg items-center  h-full py-3 px-4 flex flex-col  ">

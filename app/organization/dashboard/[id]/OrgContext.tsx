@@ -1,19 +1,26 @@
 "use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-const orgContext = createContext();
+import { OrgContext, OrgStatus, Organization, voidFunc } from "./Type";
 
-function OrgContextProvider({ children }) {
-  const [status, setStatus] = useState("dashboard");
-  const [revenue, setRevenue] = useState(0);
-  const [ticketSold, setTicketSold] = useState(0);
+interface OrgContextProviderProps {
+  children: React.ReactNode;
+}
+
+const orgContext = createContext<OrgContext | string>("");
+
+function OrgContextProvider({ children }: OrgContextProviderProps) {
+  
+  const [status, setStatus] = useState<OrgStatus>("dashboard");
+  const [revenue, setRevenue] = useState<number>(0);
+  const [ticketSold, setTicketSold] = useState<number>(0);
   const [events, setEvents] = useState([]);
   const [team, setTeam] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isActive, setIsActive] = useState(false);
-  const [isDashboardOpen, setIsDashboardOpen] = useState(false);
-  const [isSlideBar, setIsSlideBar] = useState(true);
-  const [organization, setOrganization] = useState({});
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isActive, setIsActive] = useState<boolean>(false);
+  const [isDashboardOpen, setIsDashboardOpen] = useState<boolean>(false);
+  const [isSlideBar, setIsSlideBar] = useState<boolean>(true);
+  const [organization, setOrganization] = useState<Organization | null>(null);
   const params = useParams();
   const router = useRouter();
 
@@ -40,6 +47,7 @@ function OrgContextProvider({ children }) {
         if (!finalResponse.organization) {
           return;
         }
+
         setOrganization(finalResponse.organization);
         setIsLoading(false);
 
@@ -50,29 +58,30 @@ function OrgContextProvider({ children }) {
     [params.id]
   );
 
-  function handleDashboard() {
+  const handleDashboard: voidFunc = () => {
     setStatus("dashboard");
     setIsDashboardOpen(false);
-  }
-  function handleMyEvent() {
+  };
+
+  const handleMyEvent: voidFunc = () => {
     setStatus("myEvents");
     setIsDashboardOpen(false);
-  }
+  };
 
-  function handleMyTeam() {
+  const handleMyTeam: voidFunc = () => {
     setStatus("myTeam");
     setIsDashboardOpen(false);
-  }
+  };
 
-  function handleReport() {
+  const handleReport: voidFunc = () => {
     setStatus("report");
     setIsDashboardOpen(false);
-  }
+  };
 
-  function handleSetting() {
+  const handleSetting: voidFunc = () => {
     setStatus("setting");
     setIsDashboardOpen(false);
-  }
+  };
 
   return (
     <orgContext.Provider

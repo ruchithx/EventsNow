@@ -5,8 +5,8 @@ interface Details {
 }
 
 export default function AdvanceDetails({ name }: Details) {
-  const [editedName, setEditedName] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
+  const [editedName, setEditedName] = useState<string>("");
+  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditedName(e.target.value);

@@ -3,10 +3,10 @@ import Image from "next/image";
 import React from "react";
 
 interface Dashboard_Btn {
-  onClick?: () => void;
-  text?: string;
+  onClick: () => void;
+  text: string;
   img: string;
-  isSlideBar?: boolean;
+  isSlideBar: boolean;
 }
 
 export default function Dashboard_Btn({

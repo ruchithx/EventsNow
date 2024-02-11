@@ -12,14 +12,14 @@ const ProfileSettings = memo(function ProfileSettings({
   organizationName,
   organizationID,
 }: Details) {
-  const [editedName, setEditedName] = useState(organizationName || "");
-  const [isEditing, setIsEditing] = useState(false);
+  const [editedName, setEditedName] = useState<string>(organizationName || "");
+  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditedName(e.target.value);
   };
 
-  const handleEdit = () => {
+  const handleEdit = (): void => {
     setIsEditing(true);
   };
 

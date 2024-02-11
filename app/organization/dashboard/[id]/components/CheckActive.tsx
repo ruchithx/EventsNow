@@ -9,6 +9,20 @@ import OrganizationRequestPending from "@/components/OrganizationRequestPending"
 import DashboardDetails from "@/app/organization/dashboard/[id]/components/DashboardDetails";
 import Dashboard_Btn from "@/app/organization/dashboard/[id]/components/Dashboard_Btn";
 import Spinner from "@/components/Spinner";
+import { OrgContext, voidFunc } from "../Type";
+
+interface ItemProps {
+  isSlideBar: boolean;
+  handleDashboard: voidFunc;
+  handleMyEvent: voidFunc;
+  handleMyTeam: voidFunc;
+  handleReport: voidFunc;
+  isDashboardOpen: boolean;
+  setIsDashboardOpen: (value: boolean) => void;
+  handleSetting: voidFunc;
+  isLoading: boolean;
+  isActive: boolean;
+}
 
 export default function CheckActive() {
   const {
@@ -22,7 +36,7 @@ export default function CheckActive() {
     handleSetting,
     isLoading,
     isActive,
-  } = useOrg();
+  } = useOrg() as ItemProps;
 
   return (
     <div>
@@ -41,17 +55,6 @@ export default function CheckActive() {
                   }`}
                 >
                   <SideBar />
-                  {/* <div className="flex h-screen items-center gap-10 flex-col py-5 w-12 bg-black">
-                <Image
-                  src={`/Dashboard.svg`}
-                  alt="team"
-                  width={24}
-                  height={24}
-                />
-                <Image src={`/event.svg`} alt="team" width={24} height={24} />
-                <Image src={`/report.svg`} alt="team" width={24} height={24} />
-                <Image src={`/Team.svg`} alt="team" width={24} height={24} />
-              </div> */}
                 </div>
 
                 <div
@@ -105,9 +108,6 @@ export default function CheckActive() {
                       : "fixed left-[100%] top-0 p-10 ease-in duration-50"
                   }
                 >
-                  {/* <div className="border-2 border-custom-orange w-fit p-1 rounded-lg ">
-                <MdClose size={20} />
-              </div> */}
                   <button onClick={() => setIsDashboardOpen(false)}>
                     <div className="mx-2 my-2 w-fit p-1 mb-3 ">
                       {/* <MdClose size={20} /> */}
@@ -151,14 +151,6 @@ export default function CheckActive() {
                       onClick={() => handleSetting()}
                     />
                   </div>
-                  {/* <div className="flex flex-col py-6 text-black">
-                <ul>
-                  <Item fn={handleDashboard} text="Dashboard"></Item>
-                  <Item fn={handleMyEvent} text="My event"></Item>
-                  <Item fn={handleMyTeam} text="My team"></Item>
-                  <Item fn={handleReport} text="Reports"></Item>
-                </ul>
-              </div> */}
                 </div>
               </div>
             </div>
