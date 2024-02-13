@@ -1,5 +1,12 @@
 import Image from "next/image";
-import React, { memo, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  memo,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   AiOutlineClose,
   AiOutlineDownCircle,
@@ -13,8 +20,8 @@ import { useAuth } from "@/app/AuthContext";
 
 interface NavBarProfileProps {
   user: User;
-
-  setShowProfile: (value: boolean) => void;
+  showProfile: boolean;
+  setShowProfile: Dispatch<SetStateAction<boolean>>;
   clickLogoutBtn: () => void;
 }
 type Organization = {
@@ -23,23 +30,48 @@ type Organization = {
 
 const NavBarProfile = memo(function NavBarProfile({
   user,
-
+  showProfile,
   setShowProfile,
   clickLogoutBtn,
 }: NavBarProfileProps) {
   const [isOrganizationShowButton, setIsOrganizationShowButton] =
-    useState(false);
+    useState<boolean>(false);
 
   const { organization } = useAuth() as unknown as Organization;
-  console.log(organization, "organization");
+  const profileRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        profileRef.current &&
+        !profileRef.current.contains(event.target as Node)
+      ) {
+        // Clicked outside of modal, so close it
+        setShowProfile(false);
+      }
+    };
+
+    // Add event listener when the modal is open
+    if (showProfile) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      // Remove event listener when the modal is closed
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    // Cleanup function to remove event listener
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showProfile]);
 
   return (
-    <div className="">
+    <div ref={profileRef} className=".modal-content">
       <div className="z-10 flex m-3 items-center justify-between">
         <div className="2xl:text-xl xl:text-base lg:text-xs text-xs	 font-medium	">
           {user?.email}
         </div>
-        <button onClick={() => setShowProfile((value: boolean) => !value)}>
+        <button onClick={() => setShowProfile(false)}>
           <AiOutlineClose />
         </button>
       </div>
@@ -93,6 +125,8 @@ const NavBarProfile = memo(function NavBarProfile({
             ) : (
               organization.map((org: OrganizationProps) => (
                 <Link
+                  onClick={() => setShowProfile(false)}
+                  key={org.id}
                   href={`/organization/dashboard/${org.id}`}
                   className="flex px-4  justify-center items-center py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
