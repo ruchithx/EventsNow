@@ -19,15 +19,48 @@ import { usePathname } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import NavBarProfile from "./NavBarProfile";
 
-export default function NavBar() {
-  const [userActive, setUserActive] = useState(false);
-  const [userName, setUserName] = useState("");
-  const [user, setUser]: any = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+export type OrganizationProps = {
+  map: any;
+  name: string;
+  image: string;
+  id: string;
+};
 
-  const [showProfile, setShowProfile] = useState(false);
-  const { emailAuth, setEmail }: any = useAuth();
+type ID = {
+  id: string;
+};
+
+export type User = {
+  _id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  image: string;
+};
+
+export interface AuthContext {
+  emailAuth: string | null;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  organization: OrganizationProps[];
+  setOrganization: React.Dispatch<React.SetStateAction<OrganizationProps[]>>;
+}
+
+export default function NavBar() {
+  const [userActive, setUserActive] = useState<boolean>(false);
+  // const [organization, setOrganization] = useState<OrganizationProps[]>([]);
+  const [user, setUser] = useState<User>({
+    _id: "",
+    email: "",
+    firstName: "",
+    lastName: "",
+    image: "",
+  });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+
+  const [showProfile, setShowProfile] = useState<boolean>(false);
+  const { emailAuth, setEmail, organization, setOrganization } =
+    useAuth() as AuthContext;
 
   const ResponsiveMenuBar = dynamic(() => import("./ResponsiveMenuBar"));
   const pathname = usePathname();
@@ -42,43 +75,6 @@ export default function NavBar() {
     localStorage.removeItem("email");
   }
 
-  // get data from api
-  useEffect(
-    function () {
-      async function session() {
-        setIsLoading(true);
-        const session = await getSession();
-        console.log("session", session);
-
-        if (session) {
-          console.log("jelo");
-          const name = session?.user?.name ? session?.user?.name : "";
-          setUser(session?.user);
-
-          if (name !== "") {
-            const data = await getUser({ email: session?.user?.email });
-
-            setUserActive(true);
-            setUser(data);
-          } else {
-            const email = emailAuth;
-            const data = await getUser({ email });
-
-            if (data) {
-              setUserActive(true);
-              setUser(data);
-            } else {
-              setUserActive(false);
-            }
-          }
-        }
-        setIsLoading(false);
-      }
-      session();
-    },
-    [emailAuth]
-  );
-
   const getUser = async ({ email }: any) => {
     const user = await fetch("http://localhost:3000/api/v1/user/getOneUser", {
       method: "POST",
@@ -91,6 +87,67 @@ export default function NavBar() {
     const { data } = await user.json();
     return data;
   };
+
+  const getUserOrganization = async ({ id }: ID) => {
+    const organization = await fetch(
+      "http://localhost:3000/api/v1/user/userOrganization",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      }
+    );
+
+    if (!organization.ok) {
+      setIsLoading(false);
+      return;
+    }
+
+    const organizationData = await organization.json();
+
+    setOrganization(organizationData);
+    console.log(organizationData);
+  };
+
+  // get data from api
+  useEffect(
+    function () {
+      async function session() {
+        // setIsLoading(true);
+        const session = await getSession();
+
+        if (session) {
+          const name = session?.user?.name ? session?.user?.name : "";
+          console.log(session);
+          if (name !== "") {
+            const data = await getUser({ email: session?.user?.email });
+
+            if (data) {
+              setUserActive(true);
+              setUser(data);
+              getUserOrganization({ id: data._id });
+            } else {
+              setUserActive(false);
+            }
+          } else {
+            const email = emailAuth;
+            const data = await getUser({ email });
+
+            if (data) {
+              setUserActive(true);
+              setUser(data);
+              getUserOrganization({ id: data._id });
+            } else {
+              setUserActive(false);
+            }
+          }
+        }
+        setIsLoading(false);
+      }
+      session();
+    },
+    [emailAuth]
+  );
 
   return (
     <div>
@@ -216,7 +273,7 @@ export default function NavBar() {
                       className="button"
                       onClick={() => setShowProfile(true)}
                     >
-                      <Profile name={user.firstName} picture={user?.image} />
+                      <Profile picture={user?.image} />
                     </button>
                   </>
                 )}
@@ -286,7 +343,7 @@ export default function NavBar() {
               className={`absolute ${
                 !showProfile
                   ? "hidden"
-                  : "lg:w-1/3 md:w-1/2 2xl:w-1/5 sm:block hidden"
+                  : "xl:w-3/12 lg:w-3/12 md:w-1/3 2xl:w-1/5 sm:block hidden"
               } rounded-2xl top-13 right-0   bg-gray-700 text-white`}
             >
               {/* <div className="">

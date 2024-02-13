@@ -41,7 +41,8 @@
     "app/api/v1/organization/createOrganization/route.js",
     "app/organization/dashboard/[id]/OrgContext.tsx",
     "app/api/v1/organization/updateOrganization/[...id]/route.jsx",
-    "components/List.jsx"
+    "components/List.jsx",
+    "models/userModel.js"
   ],
   "exclude": ["node_modules"]
 }

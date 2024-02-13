@@ -18,6 +18,8 @@ import {
   DropdownItem,
 } from "@nextui-org/dropdown";
 import { getSession } from "next-auth/react";
+import { OrganizationProps } from "@/components/Navbar/NavBar";
+import { useAuth } from "@/app/AuthContext";
 
 export default function CreateOrganizationFormBasic() {
   const [fullName, setFullName] = useState("");
@@ -29,11 +31,12 @@ export default function CreateOrganizationFormBasic() {
   const [email, setEmail] = useState("");
   const [organizationName, setOrganizationName] = useState("");
   const [previewImage, setPreviewImage] = useState("");
-  const isActive = false;
+
   const [postImage, setPostImage] = useState([File] as any);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { organization, setOrganization }: any = useAuth();
 
   const getUserId = async () => {
     const session = await getSession();
@@ -76,93 +79,124 @@ export default function CreateOrganizationFormBasic() {
   async function sendOrganizationData(e: any) {
     e.preventDefault();
 
-    const id = getUserId();
+    const userId = await getUserId();
+    console.log(userId);
 
-    // setIsSubmitting(true);
+    setIsSubmitting(true);
 
-    // const storageRef = firebase.storage().ref();
-    // const fileRef = storageRef.child(`eventCover-${organizationName}`);
-    // const postImageLink = await fileRef
-    //   .put(postImage)
-    //   .then((snapshot) =>
-    //     snapshot.ref.getDownloadURL().then((downloadURL) => downloadURL)
-    //   );
+    const storageRef = firebase.storage().ref();
+    const fileRef = storageRef.child(`eventCover-${organizationName}`);
+    const postImageLink = await fileRef
+      .put(postImage)
+      .then((snapshot) =>
+        snapshot.ref.getDownloadURL().then((downloadURL) => downloadURL)
+      );
 
-    // const data = {
-    //   fullName,
-    //   numberType,
-    //   number,
-    //   companyName,
-    //   organizationName,
-    //   address,
-    //   phoneNumber,
-    //   email,
-    //   postImageLink,
-    // };
+    const data = {
+      fullName,
+      numberType,
+      number,
+      companyName,
+      organizationName,
+      address,
+      phoneNumber,
+      email,
+      postImageLink,
+    };
 
-    // const result = validateOrganization.safeParse(data);
+    const result = validateOrganization.safeParse(data);
 
-    // if (result.success) {
-    //   const res = await fetch(
-    //     "http://localhost:3000/api/v1/organization/createOrganization",
-    //     {
-    //       method: "POST",
-    //       mode: "cors",
-    //       body: JSON.stringify(data),
-    //     }
-    //   );
+    if (result.success) {
+      const res = await fetch(
+        "http://localhost:3000/api/v1/organization/createOrganization",
+        {
+          method: "POST",
+          mode: "cors",
+          body: JSON.stringify(data),
+        }
+      );
 
-    //   if (!res.ok) {
-    //     error("There is an error for registration");
-    //     setIsSubmitting(false);
-    //     return null;
-    //   }
+      if (!res.ok) {
+        error("There is an error for registration");
+        setIsSubmitting(false);
+        return null;
+      }
 
-    //   const id = await res.json();
+      const id = await res.json();
+      console.log(id.id);
 
-    //   success("registration data sent succesfully");
+      const oraganizationDataForNavBarProfile = {
+        id: id.id,
+        name: organizationName,
+        image: postImageLink,
+      } as OrganizationProps;
 
-    //   setFullName("");
-    //   setNumberType("");
-    //   setNumber("");
-    //   setCompanyName("");
-    //   setAddress("");
-    //   setPhoneNumber("");
-    //   setEmail("");
-    //   setOrganizationName("");
-    //   setPreviewImage("");
+      setOrganization((data: OrganizationProps[]) => [
+        ...data,
+        oraganizationDataForNavBarProfile,
+      ]);
 
-    //   if (fileInputRef.current) {
-    //     fileInputRef.current.value = "";
-    //   }
+      // setOrganization(oraganizationDataForNavBarProfile);
+      console.log(oraganizationDataForNavBarProfile);
+      console.log([...organization, oraganizationDataForNavBarProfile]);
+      const organizerRes = await fetch(
+        "http://localhost:3000/api/v1/permission/createOrganizer",
+        {
+          method: "POST",
+          mode: "cors",
+          body: JSON.stringify({ organizationId: id.id, userId }),
+        }
+      );
 
-    //   router.push(`/organization/dashboard/${id.id}`);
-    //   return;
-    // } else {
-    //   const formattedError = result.error.format();
+      if (!organizerRes.ok) {
+        error("There is an error for registration");
+        setIsSubmitting(false);
+        return null;
+      }
 
-    //   if (formattedError.fullName?._errors) {
-    //     error(String(formattedError.fullName?._errors));
-    //   } else if (formattedError.numberType) {
-    //     error(String(formattedError.numberType?._errors));
-    //   } else if (formattedError.number) {
-    //     error(String(formattedError.number?._errors));
-    //   } else if (formattedError.companyName) {
-    //     error(String(formattedError.companyName?._errors));
-    //   } else if (formattedError.organizationName) {
-    //     error(String(formattedError.organizationName?._errors));
-    //   } else if (formattedError.address) {
-    //     error(String(formattedError.address?._errors));
-    //   } else if (formattedError.phoneNumber) {
-    //     error(String(formattedError.phoneNumber?._errors));
-    //   } else if (formattedError.email) {
-    //     error(String(formattedError.email._errors));
-    //   } else if (formattedError.postImageLink) {
-    //     error(String(formattedError.postImageLink._errors));
-    //   } else error("an unknown error occur in validation process");
-    // }
+      success("registration data sent succesfully");
 
-    // setIsSubmitting(false);
+      setFullName("");
+      setNumberType("");
+      setNumber("");
+      setCompanyName("");
+      setAddress("");
+      setPhoneNumber("");
+      setEmail("");
+      setOrganizationName("");
+      setPreviewImage("");
+
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+
+      router.push(`/organization/dashboard/${id.id}`);
+      return;
+    } else {
+      const formattedError = result.error.format();
+
+      if (formattedError.fullName?._errors) {
+        error(String(formattedError.fullName?._errors));
+      } else if (formattedError.numberType) {
+        error(String(formattedError.numberType?._errors));
+      } else if (formattedError.number) {
+        error(String(formattedError.number?._errors));
+      } else if (formattedError.companyName) {
+        error(String(formattedError.companyName?._errors));
+      } else if (formattedError.organizationName) {
+        error(String(formattedError.organizationName?._errors));
+      } else if (formattedError.address) {
+        error(String(formattedError.address?._errors));
+      } else if (formattedError.phoneNumber) {
+        error(String(formattedError.phoneNumber?._errors));
+      } else if (formattedError.email) {
+        error(String(formattedError.email._errors));
+      } else if (formattedError.postImageLink) {
+        error(String(formattedError.postImageLink._errors));
+      } else error("an unknown error occur in validation process");
+    }
+
+    setIsSubmitting(false);
   }
 
   return (

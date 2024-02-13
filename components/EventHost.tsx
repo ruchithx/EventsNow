@@ -1,4 +1,4 @@
-import Org_RequestHandle from "@/app/profile/components/Org_RequestHandle";
+import Org_RequestHandle from "@/app/profile/[...id]/components/Org_RequestHandle";
 import React, { useState } from "react";
 
 interface btn {

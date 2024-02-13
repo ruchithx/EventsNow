@@ -9,15 +9,11 @@ interface NavBarButton {
 const Profile = ({ name, picture }: NavBarButton) => {
   return (
     <div>
-
       <div className="flex items-center justify-end">
-
         <Image
-
           src={picture}
-
           alt="profile picture"
-          width={40}
+          width={32}
           height={10}
           className="rounded-full w-auto h-auto"
         />
