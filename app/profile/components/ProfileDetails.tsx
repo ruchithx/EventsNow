@@ -13,8 +13,8 @@ export default function ProfileDetails({ name }: Details) {
       >
         {name} :-
       </label>
-      <div className="w-full rounded-lg bg-custom-gray my-1 sm:ml-0 sm:my-auto md:ml-0 md:my-2 lg:ml-5 lg:my-auto">
-        <p className="text-sm md:text-base lg:text-sm xl:text-lg">
+      <div className="w-full rounded-lg   my-1 sm:ml-0 sm:my-auto md:ml-0 md:my-2 lg:ml-5 lg:my-auto">
+        <p className="text-sm md:text-base   lg:text-sm xl:text-lg">
           hkhhhhhhhhhhhhhhhhhAhhhhhhhhh
         </p>
       </div>
