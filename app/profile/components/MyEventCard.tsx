@@ -4,11 +4,12 @@ import React from "react";
 interface MyEventCard {
   image: string;
   OrgName: string;
+  btn: string;
 }
 
-function MyEventCard({ image, OrgName }: MyEventCard) {
+function MyEventCard({ image, OrgName, btn }: MyEventCard) {
   return (
-    <div className="max-w-lg w-full lg:max-w-full lg:flex  ">
+    <div className="max-w-lg w-fit lg:max-w-full lg:flex  ">
       <div
         className="h-48 lg:h-auto lg:w-60 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
         style={{ backgroundImage: `url('/${image}')` }}
@@ -22,7 +23,7 @@ function MyEventCard({ image, OrgName }: MyEventCard) {
         <div className="flex items-center">
           <div className="text-sm">
             <button className="text-white font-semibold p-2 rounded-xl bg-custom-orange leading-none">
-              Show Details
+              {btn}
             </button>
           </div>
         </div>

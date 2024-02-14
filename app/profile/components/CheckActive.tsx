@@ -5,16 +5,12 @@ import Content from "./Content";
 import { useProf } from "../ProfContext";
 import Image from "next/image";
 
-
-
 import OrganizationRequestPending from "@/components/OrganizationRequestPending";
 
 import Dashboard_Btn from "@/app/organization/dashboard/[id]/components/Dashboard_Btn";
 import Profile from "./profile";
 
 export default function CheckActive() {
-  
-
   const {
     isActive,
     setIsActive,
@@ -35,7 +31,7 @@ export default function CheckActive() {
         <div>
           <div className="grid grid-cols-12 gap-5 md:gap-2 lg:gap-2 xl:gap-5">
             <div
-              className={`lg:col-span-2  md:block hidden ${
+              className={`lg:col-span-2  md:block hidden  ${
                 isSlideBar
                   ? "md:col-span-3 md:ml-2  col-span-4"
                   : "md:col-span-1  col-span-2"

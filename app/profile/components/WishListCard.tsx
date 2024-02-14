@@ -15,7 +15,7 @@ interface Upcoming_Events {
   buttonDesc: String;
 }
 
-export default function Upcoming_Events({
+export default function WishListCArd({
   EventName,
   Location,
   Time,
@@ -27,8 +27,8 @@ export default function Upcoming_Events({
   const margin = EventName.length > 14 ? "mt-4" : " mt-0";
 
   return (
-    <div className="bg-[#D9D9D9] h-[450px] my-6 mx-4 rounded-lg md:grid md:grid-cols-2 sm:grid-cols-2 w-[340px] md:w-[800px] md:h-[13.5rem] xl:grid-cols-12 xl:h-[13.5rem]">
-      <div className="pt-4 mx-4 my-4 md:mx-0 md:my-0 md:pt-0 rounded-lg overflow-hidden h-[12.15rem] md:h-[13.5rem] xl:col-span-5">
+    <div className="bg-[#D9D9D9] h-fit my-6 mx-4 rounded-lg md:grid md:grid-cols-2 sm:grid-cols-2 w-[340px] md:w-[800px] md:h-fit xl:grid-cols-12 xl:h-fit">
+      <div className="pt-4 mx-4 my-4 md:mx-0 md:my-0 md:pt-0 rounded-lg overflow-hidden h-fit md:h-[13.5rem] xl:col-span-5">
         <Image src={`/${image}`} alt="hay" width={410} height={200} />
       </div>
 
@@ -38,17 +38,31 @@ export default function Upcoming_Events({
             {EventName}
           </div>
 
-          <div className="flex justify-end">
+          <div className="flex justify-end whitespace-nowrap h-fit">
             <button
               onClick={() => info()}
-              className="w-20 h-7 rounded-3xl bg-[#D47151] shrink-0 flex"
+              className="flex items-center bg-[#4E8171] text-white rounded-3xl py-1 px-3"
             >
-              <div className="py-0.5 pl-1.5 pt-1">
-                <Image src={"Sendfill.svg"} alt="info" width={80} height={80} />
+              <div className="mr-2">
+                <svg
+                  width="23"
+                  height="23"
+                  viewBox="0 0 23 23"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="Send_fill">
+                    <path
+                      id="Subtract"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M9.48116 12.1048L7.60892 11.4807C5.25571 10.6963 4.0791 10.3041 4.0791 9.58335C4.0791 8.86259 5.25571 8.47039 7.60892 7.68598L15.3721 5.09826C17.0279 4.54633 17.8558 4.27036 18.2928 4.70738C18.7298 5.14439 18.4538 5.97228 17.9019 7.62805L17.9019 7.62807L17.9019 7.62808L15.3142 15.3913L15.3142 15.3913L15.3142 15.3913C14.5298 17.7445 14.1376 18.9211 13.4168 18.9211C12.6961 18.9211 12.3039 17.7445 11.5195 15.3912L10.8954 13.519L15.0823 9.33212C15.4728 8.9416 15.4728 8.30843 15.0823 7.91791C14.6917 7.52738 14.0586 7.52738 13.6681 7.91791L9.48116 12.1048Z"
+                      fill="white"
+                    />
+                  </g>
+                </svg>
               </div>
-              <div className="w-40 h-4 text-white text-xs font-medium py-1.5 pl-0 mr-2 ">
-                {buttonDesc}
-              </div>
+              <div className="text-xs font-medium">{buttonDesc}</div>
             </button>
           </div>
         </div>

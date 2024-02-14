@@ -38,12 +38,17 @@ function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
             <MyEventCard
               OrgName={"EvetnNow Studios "}
               image={"././image 1.png"}
+              btn="Show Details"
             />
           </>
         )}
         {btnState === 2 && (
           <>
-            <MyEventCard OrgName={"Stein Studios "} image={"././image 1.png"} />
+            <MyEventCard
+              OrgName={"Stein Studios "}
+              image={"././image 1.png"}
+              btn="Show Details"
+            />
           </>
         )}
       </div>

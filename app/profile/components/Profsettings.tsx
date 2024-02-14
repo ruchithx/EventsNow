@@ -7,7 +7,7 @@ interface Details {
 
 function Profsetti({ name, type }: Details) {
   return (
-    <div className="sm:col-span-4 capitalize">
+    <div className="sm:col-span-4 capitalize mt-2">
       <label
         htmlFor={type}
         className="block text-sm font-medium leading-6 text-gray-900"
