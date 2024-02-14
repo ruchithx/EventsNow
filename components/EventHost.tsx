@@ -10,13 +10,13 @@ function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
 
   return (
     <div className="flex flex-col items-center font-IBM pr-4">
-      <div className="bg-initial rounded-2xl m-4 w-full flex items-center justify-center">
+      <div className="bg-initial rounded-2xl m-4  md:w-2/2 flex items-center justify-center ">
         <button
           className={`${
             btnState === 1
               ? "bg-custom-orange text-white"
               : "bg-transparent text-custom-orange"
-          } rounded-2xl text-center whitespace-nowrap uppercase w-full md:w-1/2 p-1`}
+          } rounded-2xl text-center whitespace-nowrap uppercase w-full md:w-2/3 p-1 `}
           onClick={() => handleToggle(1)}
         >
           {btn1}
@@ -26,7 +26,7 @@ function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
             btnState === 2
               ? "bg-custom-orange text-white"
               : "bg-transparent text-custom-orange"
-          } rounded-2xl text-center whitespace-nowrap uppercase w-full md:w-1/2 p-1`}
+          } rounded-2xl text-center whitespace-nowrap uppercase w-full md:w-2/3 p-1`}
           onClick={() => handleToggle(2)}
         >
           {btn2}
