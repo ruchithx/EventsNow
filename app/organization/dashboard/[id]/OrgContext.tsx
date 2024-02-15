@@ -2,6 +2,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import {
+  Event,
   OrgContext,
   OrgStatus,
   Organization,
@@ -29,7 +30,7 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
   const [status, setStatus] = useState<OrgStatus>("dashboard");
   const [revenue, setRevenue] = useState<number>(0);
   const [ticketSold, setTicketSold] = useState<number>(0);
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState<Event[]>([]);
   const [team, setTeam] = useState<Team[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -44,6 +45,8 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
   const [permissionID, setPermissionID] = useState<string>("");
   const [globalPermission, setGlobalPermission] = useState<string[]>([]);
   const { setOrganizationId } = useAuth() as AuthContext;
+  const [selectEventForPermission, setSelectEventForPermission] =
+    useState<Event | null>(null);
   useEffect(
     function () {
       async function getData() {
@@ -87,8 +90,21 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
         setTeam(finalResponse2);
         console.log("finalResponse2", finalResponse2);
 
-        setIsLoading(false);   
         setOrganizationId(params.id);
+        // get events in organization
+        const res3 = await fetch(
+          "http://localhost:3000/api/v1/organization/getOrganizationEvent",
+          {
+            method: "POST",
+            mode: "cors",
+            body: JSON.stringify(params.id),
+          }
+        );
+
+        const finalResponse3 = await res3.json();
+        setEvents(finalResponse3);
+
+        setIsLoading(false);
       }
       getData();
     },
@@ -151,6 +167,9 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
         setPermissionID,
         globalPermission,
         setGlobalPermission,
+        setEvents,
+        selectEventForPermission,
+        setSelectEventForPermission,
       }}
     >
       {children}

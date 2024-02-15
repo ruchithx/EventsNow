@@ -1,16 +1,17 @@
 import Image from "next/image";
 import React, { memo } from "react";
 import { useOrg } from "../OrgContext";
-import { Organization, Team, User } from "../Type";
+import { Event, Organization, Team, User } from "../Type";
 
 interface contextProps {
   organization: Organization;
   editedName: string;
   team: Team[];
+  events: Event[];
 }
 
 const DashboardDetails = memo(function DashboardDetails() {
-  const { organization, editedName, team } = useOrg() as contextProps;
+  const { organization, editedName, team, events } = useOrg() as contextProps;
 
   return (
     <div>
@@ -42,7 +43,7 @@ const DashboardDetails = memo(function DashboardDetails() {
               width={26}
               height={26}
             />
-            Event Count - 2
+            Event Count - {events.length}
           </div>
         </div>
       </div>

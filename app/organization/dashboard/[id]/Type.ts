@@ -10,7 +10,6 @@ export type OrgStatus =
   | "setting";
 
 export interface OrgContext {
-  events: any[];
   handleSetting: voidFunc;
   isSlideBar: boolean;
   setIsSlideBar: React.Dispatch<React.SetStateAction<boolean>>;
@@ -38,6 +37,10 @@ export interface OrgContext {
   setPermissionID: React.Dispatch<React.SetStateAction<string>>;
   globalPermission: string[];
   setGlobalPermission: React.Dispatch<React.SetStateAction<string[]>>;
+  events: Event[];
+  setEvents: React.Dispatch<React.SetStateAction<Event[]>>;
+  selectEventForPermission: any;
+  setSelectEventForPermission: any;
 }
 
 export type Organization = {
@@ -71,4 +74,19 @@ export type User = {
 export type Team = {
   userData: User;
   permissionDocumentId: string;
+};
+
+export type Event = {
+  selectedTab: string;
+  duration: string;
+  eventTimeZone: string;
+  eventStartDate: string;
+  startTime: string;
+  _id: string;
+  eventName: string;
+  organizationId: string;
+  description: string;
+  postImageLink: string;
+  isActive?: boolean;
+  __v: number;
 };

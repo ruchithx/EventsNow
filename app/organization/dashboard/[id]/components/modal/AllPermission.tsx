@@ -29,7 +29,8 @@ export default memo(function AllPermission() {
   const [manageMarketingCampaign, setManageMarketingCampaign] =
     useState<boolean>(false);
 
-  const { setModal, permissionID, globalPermission } = useOrg() as orgContext;
+  const { setModal, permissionID, globalPermission, modalUserName } =
+    useOrg() as orgContext;
 
   useEffect(() => {
     setViewOnlyEvent(true);
@@ -93,7 +94,6 @@ export default memo(function AllPermission() {
     <>
       <div
         style={{
-          // backdropFilter: "blur(2px)",
           backgroundColor: "#D9D9D9CC",
         }}
         id="static-modal"
@@ -138,7 +138,7 @@ export default memo(function AllPermission() {
           </div>
           <div className="mb-5    md:p-3 mx-5  items-start w- space-y-4 gap-1 flex flex-col">
             <div className="text-xl	 font-normal">
-              change permissions for ashan dilsara
+              change permissions for {modalUserName}
             </div>
             <div className="flex w-full  justify-center ">
               <button>
@@ -229,7 +229,6 @@ const PermissionName = memo(function PermissionName({
   checked: any;
   setCheck: Dispatch<SetStateAction<boolean>>;
 }) {
-  console.log(checked, "checked");
   return (
     <div className="bg-[#D9D9D9]  flex justify-between w-10/12">
       <div className="ml-2">{name}</div>

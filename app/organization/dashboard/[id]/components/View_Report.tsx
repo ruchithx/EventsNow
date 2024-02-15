@@ -7,12 +7,14 @@ interface View_Report {
   discription1: String;
   img: String;
   isSlideBar: boolean;
+  eventName: String;
 }
 
 export default function View_Report({
   discription1,
   isSlideBar,
   img,
+  eventName,
 }: View_Report) {
   return (
     <div
@@ -31,7 +33,7 @@ export default function View_Report({
 
       <div className="md:col-span-5 mt-4">
         <div className="text-[#666] font-sans md:text-xl text-lg font-normal">
-          EVENT
+          {eventName}
         </div>
         <div className="text-[#353535] font-sans text-sm	 xl:text-2xl lg:text-base   font-bold mt-6">
           {discription1}

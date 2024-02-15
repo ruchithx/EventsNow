@@ -3,6 +3,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { Modal, useOrg } from "../../OrgContext";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { RiAddCircleFill } from "react-icons/ri";
+import { Event } from "../../Type";
 
 export type orgContext = {
   setModal: React.Dispatch<React.SetStateAction<Modal>>;
@@ -12,6 +13,9 @@ export type orgContext = {
   permissionID: string;
   setGlobalPermission: React.Dispatch<React.SetStateAction<string[]>>;
   globalPermission: string[];
+  setSelectEventForPermission: any;
+  events: Event[];
+  selectEventForPermission: Event;
 };
 
 export default memo(function GivenPermission() {

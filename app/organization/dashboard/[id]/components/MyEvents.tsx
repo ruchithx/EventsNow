@@ -3,14 +3,16 @@ import React from "react";
 
 import { useOrg } from "../OrgContext";
 import EmptyStateComponent from "@/components/EmptyStateComponent";
+import { Event } from "../Type";
 
 interface contextProps {
   isSlideBar: boolean;
-  events: any;
+  events: Event[];
 }
 
 export default function MyEvents() {
   const { events, isSlideBar } = useOrg() as contextProps;
+  console.log(events, "events");
 
   return (
     <div className="flex rounded-lg  md:ml-2 pl-2 shadow-3xl bg-[#fff] pt-8 md:pl-12 flex-col justify-start items-start gap-12">
@@ -24,24 +26,22 @@ export default function MyEvents() {
       </div>
 
       <div className="ml-10 md:ml-0 items-start overflow-auto w-full flex h-80    gap-5 flex-col">
-        <EventCardOrgDash
-          isSlideBar={isSlideBar}
-          img="bestevent.png"
-          location="Matara"
-          time="9.00"
-          name="Nadagama"
-          date="2024/01/6"
-        />
-        <EventCardOrgDash
-          isSlideBar={isSlideBar}
-          img="bestevent.png"
-          location="Matara"
-          time="9.00"
-          name="Nadagama"
-          date="2024/01/6"
-        />
+        {events.length === 0 ? (
+          <EmptyStateComponent message="No event in the organization" />
+        ) : (
+          events.map((event) => (
+            <EventCardOrgDash
+              key={event._id}
+              isSlideBar={isSlideBar}
+              img={event.postImageLink}
+              location={event.selectedTab}
+              time={event.startTime}
+              name={event.eventName}
+              date={event.eventStartDate}
+            />
+          ))
+        )}
       </div>
-      {/* )} */}
     </div>
   );
 }
