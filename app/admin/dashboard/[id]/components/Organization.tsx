@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import SuperadminPages from "@/app/admin/dashboard/[id]/components/SuperadminPages";
-import Available_Orgs from "@/components/Available_Orgs";
-interface UserData {
-  _id: string;
-  fullName: string;
-}
+import Available_Orgs from "@/app/admin/dashboard/[id]/components/Available_Orgs";
+import { Organization } from "@/app/organization/dashboard/[id]/Type";
+
 async function getData() {
   const res = await fetch(
     "http://localhost:3000/api/v1/organization/approvedOrganization",
@@ -18,7 +16,7 @@ async function getData() {
 }
 
 export default function Notification() {
-  const [data, setData] = useState<UserData[]>([]);
+  const [data, setData] = useState<Organization[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,12 +36,7 @@ export default function Notification() {
           <>
             {data.map((me) => (
               <div key={me._id}>
-                <Available_Orgs
-                  OrgName={me.fullName}
-                  image={"image 1.png"}
-                  noOfEvents={"34"}
-                  noOfMembers={"12"}
-                />
+                <Available_Orgs organization={me} />
               </div>
             ))}
           </>

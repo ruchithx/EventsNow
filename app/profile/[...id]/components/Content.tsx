@@ -9,13 +9,14 @@ import MyProfile from "./MyProfile";
 import Settings from "./Settings";
 import Wishlist from "./wishlist";
 import MyEvents from "./MyEvents";
+import MyTickets from "./MyTickets";
 
 export default function Content() {
   const { status } = useProf();
   return (
     <div>
       {status === "myProfile" && <MyProfile />}
-      {status === "myTickets"}
+      {status === "myTickets" && <MyTickets />}
       {status === "wishList" && <Wishlist />}
       {status === "myEvents" && <MyEvents />}
       {status === "setting" && <Settings />}

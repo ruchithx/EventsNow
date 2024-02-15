@@ -6,9 +6,18 @@ interface Details {
 
 export default function ProfileDetails({ name }: Details) {
   return (
-    <div className="border-gray border-2  w-full p-4 rounded-lg bg-custom-gray mt-5">
-      <label htmlFor="fname">{name}</label> <br />
-      <div className="border-gray border-2   w-full p-4 rounded-lg bg-white my-2"></div>
+    <div className="border-gray border-2 flex flex-col lg:flex-row w-full p-1 pl-3 rounded-lg bg-white mt-5">
+      <label
+        className="inline-block whitespace-nowrap my-1 capitalize text-sm md:text-base lg:text-lg xl:text-lg sm:my-auto md:my-2 lg:my-auto"
+        htmlFor="fname"
+      >
+        {name} :-
+      </label>
+      <div className="w-full rounded-lg   my-1 sm:ml-0 sm:my-auto md:ml-0 md:my-2 lg:ml-5 lg:my-auto">
+        <p className="text-sm md:text-base   lg:text-sm xl:text-lg">
+          hkhhhhhhhhhhhhhhhhhAhhhhhhhhh
+        </p>
+      </div>
     </div>
   );
 }

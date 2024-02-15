@@ -10,7 +10,7 @@ interface Dashboard_Btn {
 export default function Dashboard_Btn({ onClick, text, icon }: Dashboard_Btn) {
   return (
     <div
-      className="flex flex-row w-52 mb-12 sm:ms-12 md:ms-20 lg:ms-12  "
+      className="flex flex-row w-52 mb-12 sm:ms-12 md:ms-20 lg:ms-12 cursor-pointer "
       onClick={onClick}
     >
       <div className="mt-1">{icon}</div>

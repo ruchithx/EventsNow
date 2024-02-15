@@ -20,10 +20,7 @@ export default function SuperadminPages({
   const showSearchBar = title !== "All organization requests";
 
   return (
-    <div
-      className="flex flex-col ms-0 sm:ms-2 cursor-pointer "
-      onClick={handleClick}
-    >
+    <div className="flex flex-col ms-0 sm:ms-2 " onClick={handleClick}>
       <div className="flex flex-col md:flex-row lg:flex-row sm:justify-center md:justify-between lg:justify-between ">
         <div className="flex flex-col p-4 sm:justify-center md:justify-start  lg:justify-start xl:ms-12 ">
           <div className="text-profileName text-4xl font-semibold mb-8 ">
@@ -35,9 +32,9 @@ export default function SuperadminPages({
         </div>
 
         {showSearchBar && (
-          <div className="sm:w-64 md:w-80 lg:w-80 bg-gray-100  flex-col flex  p-1 rounded-lg border-2 border-gray-400   max-h-32 mt-0 sm:mt-8 lg:shadow-md md:shadow-none sm:shadow-none ms-6 md:ms-2 lg:ms-0 mr-4">
+          <div className="sm:w-64 md:w-80 lg:w-80 bg-white sm:bg-gray-100  flex-col flex  p-1 rounded-lg border-2 sm:border-gray-400  border-white max-h-32 mt-0 sm:mt-8 lg:shadow-md md:shadow-none sm:shadow-none ms-6 md:ms-2 lg:ms-0 mr-4">
             <div className="ms-4 mb-4 mt-0 sm:mt-2 ">
-              <div className="sm:hidden md:flex lg:flex font-normal text-gray-500 mb-4">
+              <div className="hidden md:flex lg:flex font-normal text-gray-500 mb-4">
                 {text}
               </div>
               <div className="flex flex-row border-2 border-gray-400 bg-white rounded-lg sm:w-36 md:w-64 lg:w-64 h-10 md:h-8">
