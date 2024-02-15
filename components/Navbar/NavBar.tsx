@@ -93,7 +93,6 @@ export default function NavBar() {
   };
 
   const getUserOrganization = async ({ id }: ID) => {
-    console.log(id);
     const organization = await fetch(
       "http://localhost:3000/api/v1/user/userOrganization",
       {
@@ -109,7 +108,6 @@ export default function NavBar() {
     }
 
     const organizationData = await organization.json();
-    console.log(organizationData);
 
     setOrganization(organizationData);
   };
@@ -136,7 +134,7 @@ export default function NavBar() {
           } else {
             const email = emailAuth;
             const data = await getUser({ email });
-            console.log(data);
+            
             if (data) {
               setUserActive(true);
               setUser(data);

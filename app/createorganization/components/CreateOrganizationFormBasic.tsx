@@ -80,7 +80,6 @@ export default function CreateOrganizationFormBasic() {
     e.preventDefault();
 
     const userId = await getUserId();
-    console.log(userId);
 
     setIsSubmitting(true);
 
@@ -123,7 +122,6 @@ export default function CreateOrganizationFormBasic() {
       }
 
       const id = await res.json();
-      console.log(id.id);
 
       const oraganizationDataForNavBarProfile = {
         id: id.id,

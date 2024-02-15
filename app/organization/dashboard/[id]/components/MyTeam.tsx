@@ -50,7 +50,7 @@ export default function MyTeam() {
       </div>
       <div className="w-full border-[1px] border-black"></div>
       <div className=" mb-5 w-full 2xl:w-3/5 xl:w-3/4 flex flex-col gap-4 justify-start md:px-6 px-0 items-start  rounded-xl">
-        {/* {team.length === 0 ? (
+        {team.length === 0 ? (
           <EmptyStateComponent message="No user in the organization" />
         ) : (
           team.map((user) => (
@@ -59,11 +59,13 @@ export default function MyTeam() {
               name={user.userData.firstName}
               email={user.userData.email}
               permissionDocumentId={user.permissionDocumentId}
+              globalPermission={user.globalPermission}
+              eventPermission={user.eventPermission}
             />
           ))
-        )} */}
+        )}
 
-        <PersonDetailsBar
+        {/* <PersonDetailsBar
           key="65c9d12e0606616b4bd18384"
           name="Ruchith"
           email="ruchith.sg@gmail.com"
@@ -76,7 +78,15 @@ export default function MyTeam() {
             "Manage Payout Details",
             "Manage Host Page",
           ]}
-        />
+          eventPermission={[
+            { eventId: "Event 1", eventPermission: ["View Only Event"] },
+            { eventId: "Event 2", eventPermission: ["Manage Event"] },
+            {
+              eventId: "65cd9557ff509df8c5e2b23c",
+              eventPermission: ["View Only Event", "Mark Attendance"],
+            },
+          ]}
+        /> */}
 
         {handleModal()}
       </div>

@@ -1,27 +1,35 @@
 import React, { useState } from "react";
 import GivenPermission, { orgContext } from "./modal/GivenPermission";
-import { useOrg } from "../OrgContext";
+import { EventPermission, useOrg } from "../OrgContext";
 interface PresonDetailsBar {
   name: string;
   email: string;
   permissionDocumentId: string;
   globalPermission: string[];
+  eventPermission: EventPermission[];
 }
 
 export default function PersonDetailsBar({
+  eventPermission,
   name,
   email,
   permissionDocumentId,
   globalPermission,
 }: PresonDetailsBar) {
-  const { setModal, setModalUserName, setPermissionID, setGlobalPermission } =
-    useOrg() as orgContext;
+  const {
+    setModal,
+    setModalUserName,
+    setPermissionID,
+    setGlobalPermission,
+    setEventPermission,
+  } = useOrg() as orgContext;
 
   const handleEditButton = () => {
     setModal("givenPermission");
     setModalUserName(name);
     setPermissionID(permissionDocumentId);
     setGlobalPermission(globalPermission);
+    setEventPermission(eventPermission);
   };
   return (
     //parent div eken 3n 2k kiyala gaththe meka.wenas krla gann onnm.mn dila tynne meke mulu loku div ekatam col-span-2 kiyala-ashan

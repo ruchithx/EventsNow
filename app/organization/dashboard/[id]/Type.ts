@@ -1,4 +1,4 @@
-import { Modal } from "./OrgContext";
+import { EventPermission, Modal } from "./OrgContext";
 
 export type voidFunc = () => void;
 
@@ -41,6 +41,8 @@ export interface OrgContext {
   setEvents: React.Dispatch<React.SetStateAction<Event[]>>;
   selectEventForPermission: any;
   setSelectEventForPermission: any;
+  eventPermission: EventPermission[];
+  setEventPermission: React.Dispatch<React.SetStateAction<EventPermission[]>>;
 }
 
 export type Organization = {
@@ -74,6 +76,8 @@ export type User = {
 export type Team = {
   userData: User;
   permissionDocumentId: string;
+  globalPermission: string[];
+  eventPermission: EventPermission[];
 };
 
 export type Event = {

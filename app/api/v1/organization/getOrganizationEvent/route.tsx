@@ -9,7 +9,6 @@ export async function POST(req: Request) {
   const objectId = new mongoose.Types.ObjectId(id);
   connectMongoDB();
   const organization = await Event.find({ organizationId: objectId });
-  // console.log(organization.organization);
 
   if (!organization) {
     return NextResponse.json({ message: "No organization" });

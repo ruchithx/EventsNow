@@ -151,7 +151,7 @@ export default memo(function AllPermission() {
             <form onSubmit={doneButton} className="flex w-full flex-col gap-3">
               <PermissionName
                 name="View Only Event"
-                checked={true}
+                checked={viewOnlyEvent}
                 setCheck={setViewOnlyEvent}
               />
               <PermissionName

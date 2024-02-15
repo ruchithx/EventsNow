@@ -11,7 +11,6 @@ export async function PUT(request: Request, { params }: { params: Params }) {
   const id = params.id;
 
   const body = await request.json();
-  console.log(body);
 
   await connectMongoDB();
 

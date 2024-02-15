@@ -12,7 +12,6 @@ interface contextProps {
 
 export default function MyEvents() {
   const { events, isSlideBar } = useOrg() as contextProps;
-  console.log(events, "events");
 
   return (
     <div className="flex rounded-lg  md:ml-2 pl-2 shadow-3xl bg-[#fff] pt-8 md:pl-12 flex-col justify-start items-start gap-12">

@@ -1,8 +1,15 @@
-import React, { Dispatch, SetStateAction, memo, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  memo,
+  useEffect,
+  useState,
+} from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { RiAddCircleFill } from "react-icons/ri";
 import { orgContext } from "./GivenPermission";
 import { useOrg } from "../../OrgContext";
+import { error, success } from "@/util/Toastify";
 
 export default function PermissionOneEvent() {
   const [viewOnlyEvent, setViewOnlyEvent] = useState<boolean>(false);
@@ -17,10 +24,80 @@ export default function PermissionOneEvent() {
   const [mangeHostPage, setMangeHostPage] = useState<boolean>(false);
   const [manageMarketingCampaign, setManageMarketingCampaign] =
     useState<boolean>(false);
-  const { setModal, selectEventForPermission, modalUserName } =
-    useOrg() as orgContext;
+  const {
+    setModal,
+    permissionID,
+    selectEventForPermission,
+    modalUserName,
+    eventPermission,
+  } = useOrg() as orgContext;
 
-  function doneButton(e: any) {}
+  useEffect(() => {
+    if (!eventPermission) return;
+    const existingDocument = eventPermission.find(
+      (permission) => permission.eventId === selectEventForPermission._id
+    );
+
+    if (existingDocument) {
+      existingDocument.eventPermission.map((permission) => {
+        switch (permission) {
+          case "View Only Event":
+            setViewOnlyEvent(true);
+            break;
+          case "Manage Event":
+            setManageEvent(true);
+            break;
+          case "Register Attendees":
+            setRegisterAttendees(true);
+            break;
+          case "Mark Attendance":
+            setMarkAttendance(true);
+            break;
+          case "Manage Payments":
+            setManagePayments(true);
+            break;
+          case "Manage Profile":
+            setManageProfile(true);
+            break;
+          case "Manage Payout Details":
+            setManagePayoutDetails(true);
+            break;
+          case "Get Reports":
+            setGetReports(true);
+            break;
+          case "Mange Host Page":
+            setMangeHostPage(true);
+            break;
+          case "Manage Marketing Campaign":
+            setManageMarketingCampaign(true);
+            break;
+        }
+      });
+    }
+  }, [selectEventForPermission._id, eventPermission]);
+
+  async function doneButton(e: any) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const formDataKeys = formData.keys();
+    const formDataKeysArray = Array.from(formDataKeys);
+
+    const data = {
+      eventId: selectEventForPermission._id,
+      eventPermission: formDataKeysArray,
+    };
+
+    const res = await fetch(
+      ` http://localhost:3000/api/v1/permission/updateEventPermission/${permissionID}`,
+      { method: "PUT", body: JSON.stringify(data) }
+    );
+    if (!res.ok) {
+      error("error for updating event permission");
+    }
+
+    success("permission updated");
+    setModal("");
+  }
 
   function backButton() {
     setModal("selectOneEvent");
@@ -89,7 +166,7 @@ export default function PermissionOneEvent() {
             <form onSubmit={doneButton} className="flex w-full flex-col gap-3">
               <PermissionName
                 name="View Only Event"
-                checked={true}
+                checked={viewOnlyEvent}
                 setCheck={setViewOnlyEvent}
               />
               <PermissionName
@@ -167,7 +244,6 @@ const PermissionName = memo(function PermissionName({
   checked: any;
   setCheck: Dispatch<SetStateAction<boolean>>;
 }) {
-  console.log(checked, "checked");
   return (
     <div className="bg-[#D9D9D9]  flex justify-between w-10/12">
       <div className="ml-2">{name}</div>

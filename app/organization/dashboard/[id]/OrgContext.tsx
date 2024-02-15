@@ -24,6 +24,11 @@ interface OrgContextProviderProps {
   children: React.ReactNode;
 }
 
+export type EventPermission = {
+  eventId: string;
+  eventPermission: string[];
+};
+
 const orgContext = createContext<OrgContext | string>("");
 
 function OrgContextProvider({ children }: OrgContextProviderProps) {
@@ -47,6 +52,8 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
   const { setOrganizationId } = useAuth() as AuthContext;
   const [selectEventForPermission, setSelectEventForPermission] =
     useState<Event | null>(null);
+
+  const [eventPermission, setEventPermission] = useState<EventPermission[]>([]);
   useEffect(
     function () {
       async function getData() {
@@ -88,7 +95,6 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
 
         const finalResponse2 = await res2.json();
         setTeam(finalResponse2);
-        console.log("finalResponse2", finalResponse2);
 
         setOrganizationId(params.id);
         // get events in organization
@@ -170,6 +176,8 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
         setEvents,
         selectEventForPermission,
         setSelectEventForPermission,
+        eventPermission,
+        setEventPermission,
       }}
     >
       {children}
