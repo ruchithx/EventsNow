@@ -100,7 +100,7 @@ export default function NavBar() {
           <Spinner />
         </nav>
       ) : (
-        <nav className="dark:bg-navWhite ">
+        <nav className="">
           <div className="2xl:px-16 flex flex-wrap items-center justify-between mx-auto p-2">
             {/* Events now logo and name */}
             <Link href="/">

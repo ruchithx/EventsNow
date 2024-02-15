@@ -79,7 +79,20 @@ export default function AdminDashboard() {
             {status === "Notification" && <Notification />}
             {status === "Organization" && <Organization />}
             {status === "Event" && <Event />}
-            {status === "User" && <User />}
+            {status === "User" && (
+              <User
+                user={{
+                  map: function (
+                    arg0: (org: any) => React.JSX.Element
+                  ): React.ReactNode {
+                    throw new Error("Function not implemented.");
+                  },
+                  _id: "",
+                  firstName: "",
+                  email: "",
+                }}
+              />
+            )}
             {status === "Payments" && <Payments />}
           </div>
         </div>

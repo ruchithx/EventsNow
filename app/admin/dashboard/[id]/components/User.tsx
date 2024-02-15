@@ -1,33 +1,12 @@
 import React, { useState, useEffect } from "react";
 import SuperadminPages from "@/app/admin/dashboard/[id]/components/SuperadminPages";
 import AdminPersonDetailsBar from "./AdminPersonalDetailBar";
+import { User } from "@/app/admin/Type";
 interface UserData {
-  _id: string;
-  firstName: string;
-  email: string;
+  user: User;
 }
 
-async function getData() {
-  const res = await fetch("http://localhost:3000/api/v1/user/getAllUser", {
-    next: {
-      revalidate: 30,
-    },
-  });
-  return res.json();
-}
-
-export default function Notification() {
-  const [data, setData] = useState<UserData[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getData();
-      setData(result);
-    };
-
-    fetchData();
-  }, []);
-
+export default function Notification({ user }: UserData) {
   return (
     <>
       <SuperadminPages
@@ -36,17 +15,12 @@ export default function Notification() {
         text="Search Users"
         customComponent={
           <>
-            {data.length > 0 ? (
-              data.map((user) => (
-                <div key={user._id}>
-                  <AdminPersonDetailsBar
-                    name={user.firstName}
-                    email={user.email}
-                  />
-                </div>
-              ))
-            ) : (
-              <p>No users available.</p>
+            {AdminPersonDetailsBar && (
+              <AdminPersonDetailsBar
+                name={user.firstName}
+                email={user.email}
+                user={user}
+              />
             )}
           </>
         }
