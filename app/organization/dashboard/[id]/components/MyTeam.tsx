@@ -2,11 +2,11 @@ import InviteButton from "@/components/InviteButton";
 import PersonDetailsBar from "@/components/PersonDetailsBar";
 import React from "react";
 import { useOrg } from "../OrgContext";
-import HasData from "./HasData";
+
 import EmptyStateComponent from "@/components/EmptyStateComponent";
 
 export default function MyTeam() {
-  const { team } = useOrg();
+  // const { team } = useOrg();
   return (
     <div className="flex pl-5 rounded-lg  shadow-3xl  md:ml-2 bg-[#fff] pt-8 md:pl-12 flex-col justify-start items-start gap-12">
       <div className="flex flex-col gap-3 justify-start items-start">

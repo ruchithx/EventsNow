@@ -6,21 +6,24 @@ interface NavBarButton {
   picture: string;
 }
 
-export default function Profile({ name, picture }: NavBarButton) {
+const Profile = ({ name, picture }: NavBarButton) => {
   return (
     <div>
-      <button className="flex gap-4  items-center justify-end">
+
+      <div className="flex items-center justify-end">
+
         <Image
-          src={`/ReUsableComponentData/${picture}.svg`}
+
+          src={picture}
+
           alt="profile picture"
           width={40}
           height={10}
-          className="rounded-full"
+          className="rounded-full w-auto h-auto"
         />
-        {/* <div>
-          <div className="text-profileName text-18  font-Inter">{name}</div>
-        </div> */}
-      </button>
+      </div>
     </div>
   );
-}
+};
+
+export default Profile;

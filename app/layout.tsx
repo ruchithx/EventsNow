@@ -3,10 +3,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "./AuthProvider";
 import "react-toastify/dist/ReactToastify.css";
-
+import { AuthContextProvider } from "./AuthContext";
 const inter = Inter({ subsets: ["latin"] });
 import { ToastContainer } from "react-toastify";
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/Navbar/NavBar";
 
 export const metadata: Metadata = {
   title: "EventsNow",
@@ -21,13 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <link
-          rel="icon"
-          href="/ReUsableComponentData/nav-logo.png"
-          sizes="any"
-        />
-        <NavBar />
-        <AuthProvider>{children}</AuthProvider>
+        <link rel="icon" href="/ReusableComponents/nav-logo.png" sizes="any" />
+        <AuthProvider>
+          <AuthContextProvider>
+            <NavBar />
+            {children}
+          </AuthContextProvider>
+        </AuthProvider>
         <ToastContainer />
       </body>
     </html>

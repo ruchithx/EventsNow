@@ -1,48 +1,61 @@
 import React, { useState } from "react";
+import MyEventCard from "@/app/profile/components/MyEventCard";
 
-export default function ToggleButtons() {
-  const [btnState, setBtnState] = useState(true);
+function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
+  const [btnState, setBtnState] = useState(1);
 
-  const handleToggle = () => {
-    setBtnState((prevState) => !prevState);
+  const handleToggle = (selectedBtn: number) => {
+    setBtnState(selectedBtn);
   };
 
   return (
-
-    <div className="bg-initial m-4 w-1/4 h-15 p-2 font-semibold font-khand rounded-2xl flex text-center">
-      <div
-        className={`${
-          btnState ? "bg-custom-orange" : "bg-transparent"
-        } mr-3 p-2 rounded-2xl w-1/2`}
-      >
+    <div className="flex flex-col items-center font-IBM pr-4">
+      <div className="bg-initial rounded-2xl m-4  md:w-2/2 flex items-center justify-center ">
         <button
           className={`${
-            btnState
-              ? "bg-custom-orange text-white "
+            btnState === 1
+              ? "bg-custom-orange text-white"
               : "bg-transparent text-custom-orange"
-          }  rounded-2xl  text-center  uppercase `}
-          onClick={handleToggle}
+          } rounded-2xl text-center whitespace-nowrap uppercase w-full md:w-2/3 p-1 `}
+          onClick={() => handleToggle(1)}
         >
-          Event Host
+          {btn1}
+        </button>
+        <button
+          className={`${
+            btnState === 2
+              ? "bg-custom-orange text-white"
+              : "bg-transparent text-custom-orange"
+          } rounded-2xl text-center whitespace-nowrap uppercase w-full md:w-2/3 p-1`}
+          onClick={() => handleToggle(2)}
+        >
+          {btn2}
         </button>
       </div>
-      <div
-        className={`${
-          !btnState ? "bg-custom-orange" : "bg-transparent"
-        } text-custom-orange p-2 w-1/2 rounded-2xl`}
-      >
-        <button
-          className={`${
-            btnState
-              ? "bg-transparent text-custom-orange  "
-              : " bg-custom-orange  text-white "
-          }  rounded-2xl  text-center  uppercase `}
-          onClick={handleToggle}
-        >
-          Community
-        </button>
+      <div className="m-4 p-2 font-IBM rounded-2xl bg-white grid grid-cols-1 gap-4">
+        {btnState === 1 && (
+          <>
+            <MyEventCard
+              OrgName={"EvetnNow Studios "}
+              image={"././image 1.png"}
+              btn="Show Details"
+            />
+          </>
 
+        )}
+        {btnState === 2 && (
+          <>
+            <MyEventCard
+              OrgName={"Stein Studios "}
+              image={"././image 1.png"}
+              btn="Show Details"
+            />
+
+          </>
+        )}
       </div>
     </div>
   );
 }
+
+export default ToggleButtons;

@@ -11,7 +11,7 @@ export default function Login({ image, titleOfbutton, fn }: log) {
     <button onClick={fn} className={`bg-custom-orange button  h-8 rounded-2xl`}>
       <div className="flex  flex-row ml-2 mr-2  gap-2 p-0 items-center justify-center">
         <Image
-          src={`/ReUsableComponentData/${image}`}
+          src={`/images/ReusableComponents/${image}`}
           alt="Picture of the button"
           width={20}
           height={20}

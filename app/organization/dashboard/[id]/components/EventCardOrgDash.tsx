@@ -34,7 +34,7 @@ function EventCardOrgDash({
       >
         <Image
           className="object-center rounded-[10px]"
-          src={`/${img}`}
+          src={`/images/Organization/${img}`}
           width={256}
           height={301}
           alt="event picture"
@@ -55,7 +55,7 @@ function EventCardOrgDash({
 
         <div className="flex row-span-2">
           <Image
-            src="/Pin_fill1.svg"
+            src="/images/Organization/location1.svg"
             width={32}
             height={32}
             alt="event picture"
@@ -67,7 +67,7 @@ function EventCardOrgDash({
 
         <div className="flex row-span-2">
           <Image
-            src="/Date_range_light1.svg"
+            src="/images/Organization/Calander.svg"
             width={32}
             height={32}
             alt="event picture"
@@ -79,7 +79,7 @@ function EventCardOrgDash({
 
         <div className="flex row-span-2">
           <Image
-            src="/Clock_fill.svg"
+            src="/images/Organization/Time.svg"
             width={32}
             height={32}
             alt="event picture"
@@ -113,43 +113,43 @@ function EventCardOrgDash({
                   id="Vector 7"
                   d="M4.16666 10L4.16666 3.33333"
                   stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                 />
                 <path
                   id="Vector 9"
                   d="M15.8333 16.6667L15.8333 15"
                   stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                 />
                 <path
                   id="Vector 8"
                   d="M4.16666 16.6667L4.16666 13.3333"
                   stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                 />
                 <path
                   id="Vector 10"
                   d="M15.8333 10L15.8333 3.33333"
                   stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                 />
                 <path
                   id="Vector 11"
                   d="M10 5.83333L10 3.33333"
                   stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                 />
                 <path
                   id="Vector 12"
                   d="M10 16.6667L10 10"
                   stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                 />
                 <circle
                   id="Ellipse 36"
@@ -157,8 +157,8 @@ function EventCardOrgDash({
                   cy="11.6667"
                   r="1.66667"
                   stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                 />
                 <circle
                   id="Ellipse 37"
@@ -166,8 +166,8 @@ function EventCardOrgDash({
                   cy="7.5"
                   r="1.66667"
                   stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                 />
                 <circle
                   id="Ellipse 38"
@@ -175,8 +175,8 @@ function EventCardOrgDash({
                   cy="12.5"
                   r="1.66667"
                   stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                 />
               </g>
             </svg>

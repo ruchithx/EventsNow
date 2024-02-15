@@ -7,9 +7,11 @@ export async function POST(req) {
     numberType,
     number,
     companyName,
+    organizationName,
     address,
     phoneNumber,
     email,
+    postImageLink,
   } = await req.json();
 
   connectMongoDB();
@@ -18,11 +20,20 @@ export async function POST(req) {
     numberType,
     number,
     companyName,
+    organizationName,
     address,
     phoneNumber,
     email,
+    postImageLink,
     isActive: false,
   });
+
+  if (!res) {
+    return NextResponse.json(
+      { message: "Failed to create organization" },
+      { status: 500 }
+    );
+  }
 
   return NextResponse.json({ id: res._id }, { status: 201 });
 }

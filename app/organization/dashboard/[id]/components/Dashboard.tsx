@@ -2,8 +2,14 @@ import Image from "next/image";
 import React from "react";
 import { useOrg } from "../OrgContext";
 
+interface ContentProps {
+  revenue: number;
+  ticketSold: number;
+  isSlideBar: boolean;
+}
+
 export default function Dashboard() {
-  const { revenue, ticketSold, isSlideBar } = useOrg();
+  const { revenue, ticketSold, isSlideBar } = useOrg() as ContentProps;
 
   return (
     <div className="flex rounded-lg  shadow-3xl md:pl-10 md:ml-2 pl-5 bg-[#fff] pt-8 lg:pl-12 flex-col justify-start items-start gap-12">
@@ -41,7 +47,7 @@ export default function Dashboard() {
       >
         <div className="block md:ml-0 ml-2 ">
           <Image
-            src="/ReusableComponentData/Chart_alt_fill.svg"
+            src="/images/Organization/couldWithThreeDots.svg"
             alt="revenue"
             width={100}
             height={100}
@@ -69,7 +75,7 @@ export default function Dashboard() {
         {" "}
         <div className="block md:ml-0 ml-2">
           <Image
-            src="/ReusableComponentData/Chart_alt_fill.svg"
+            src="/images/Organization/couldWithThreeDots.svg"
             alt="revenue"
             width={100}
             height={100}

@@ -6,9 +6,15 @@ import MyTeam from "./MyTeam";
 import MyEvents from "./MyEvents";
 import { useOrg } from "../OrgContext";
 import Setting from "./Setting";
+import { OrgStatus } from "../Type";
+
+interface ContentProps {
+  status: OrgStatus;
+}
 
 export default function Content() {
-  const { status } = useOrg();
+  const { status } = useOrg() as ContentProps;
+
   return (
     <div>
       {status === "dashboard" && <Dashboard />}

@@ -29,6 +29,8 @@ export async function POST(req) {
     phone_number,
     password,
     passwordConfirm,
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/eventsnow-fb0ee.appspot.com/o/eventCover-Flashback?alt=media&token=6f6021ae-dd93-4d5c-931c-9dc50ae5dd4f",
   });
   return NextResponse.json({ message: "success" }, { status: 201 });
 }

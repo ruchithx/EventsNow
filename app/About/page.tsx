@@ -1,17 +1,19 @@
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/Navbar/NavBar";
 import React from "react";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import BestEvent from "./components/BestEvent";
 
+
 export default function page() {
   return (
     <div>
-      {/* <NavBar /> */}
 
-      <div className="xl:h-[600px] md:h-[400px] w-full bg-[url('/mainphoto.png')] bg-no-repeat bg-cover bg-center">
+      <div className="xl:h-[600px] md:h-[400px] w-full bg-[url('/images/About/mainphoto.png')] bg-no-repeat bg-cover bg-center">
+
         <div className="flex-auto w-full h-[213px] flex-col shrink-0 text-white text-center xl:text-6xl md:text-4xl sm:text-2xl md:py-40 xl:pt-56 py-20 px-20 font-['Khand'] font-semibold">
-          "Creating memorable moments through expert event management."
+          &ldquo;Creating memorable moments through expert event
+          management.&rdquo;
         </div>
       </div>
 
@@ -31,8 +33,16 @@ export default function page() {
           </div>
         </div>
 
+
         <div className=" xl:mt-8 md:mt-36 px-8 mb-4 mt-12  xl:ml-40 md:ml-12 md:px-6 place-items-center flex justify-center items-center w-full  xl:px-0 xl:w-[23rem] md:w-[22rem] ">
-          <Image src={"/mission.png"} width={360} height={200} alt="mission" />
+        
+          <Image
+            src={"/images/About/mission.png"}
+            width={360}
+            height={200}
+            alt="mission"
+          />
+
           {/* <img src="/mission.png" className="justify-center" alt="mission"  /> */}
         </div>
       </div>
@@ -55,7 +65,15 @@ export default function page() {
         </div>
 
         <div className=" xl:mt-0 md:mt-24 px-8 mt-6  xl:ml-40  md:ml-12 flex justify-center items-center xl:w-[23rem] xl:px-0 md:px-6 md:w-[22rem]  sm:-mt-16 ">
-          <Image src={"/vision.png"} width={360} height={200} alt="vision" /> 
+          
+          <Image
+            src={"/images/About/vision.png"}
+            width={360}
+            height={200}
+            alt="vision"
+          />
+          {/* <img src='/vision.png' className='justify-center' alt='visionn'/> */}
+
         </div>
       </div>
 
@@ -64,8 +82,17 @@ export default function page() {
       </div>
 
       <div className="grid md:grid-cols-2 ">
+
         <div className="w-full flex justify-center items-center md:px-4 md:ml-4 xl:-mt-24 px-6 sm:px-0">
-          <Image src={"/story.png"} width={500} height={300} alt="story" />
+        
+          <Image
+            src={"/images/About/story.png"}
+            width={500}
+            height={300}
+            alt="story"
+          />
+        
+
         </div>
 
 
@@ -77,15 +104,16 @@ export default function page() {
             sales pitches were losing their effectiveness, drowned out by a
             discerning audience that had mastered the art of ignoring
             interruptions. Inspired by this shift, the vision for EventNow
-            emerged—a platform founded on the principles of "inbound" for the
-            event space. The fundamental belief that people no longer desired
-            interruptions but sought genuine assistance in their event journeys
-            became the cornerstone of EventNow. In the spirit of the inbound
-            movement, EventNow empowers event organizers to cease interruption,
-            embrace assistance, and refocus on the attendee. Through our
-            platform, we aim to catalyze a movement where events become
-            authentic, enriching experiences rather than interruptions in
-            people's lives. EventNow—Empowering Events, Enhancing Experiences.
+            emerged—a platform founded on the principles of &quot;inbound&quot;
+            for the event space. The fundamental belief that people no longer
+            desired interruptions but sought genuine assistance in their event
+            journeys became the cornerstone of EventNow. In the spirit of the
+            inbound movement, EventNow empowers event organizers to cease
+            interruption, embrace assistance, and refocus on the attendee.
+            Through our platform, we aim to catalyze a movement where events
+            become authentic, enriching experiences rather than interruptions in
+            people&rdquo;s lives. EventNow—Empowering Events, Enhancing
+            Experiences.
           </div>
         </div>
       </div>

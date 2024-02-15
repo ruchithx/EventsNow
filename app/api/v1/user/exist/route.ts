@@ -9,7 +9,6 @@ export async function POST(req: Request) {
     const { email } = await req.json();
 
     const user = await User.findOne({ email });
-    console.log(user);
 
     if (!user) {
       return NextResponse.json({ user: null });

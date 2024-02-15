@@ -2,21 +2,24 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import Spinner from "../../../../components/Spinner";
+
 import { error, success } from "../../../../util/Toastify";
+import Image from "next/image";
 
 export default function LoginFormBasic() {
-  const [firstName, setFristName] = useState("");
-  const [spinner, setSpinner] = useState(false);
+  const [firstName, setFristName] = useState<string>("");
+  const [spinner, setSpinner] = useState<boolean>(false);
 
-  const [lastName, setLastName] = useState("");
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
-  const [passwordConfirm, setCPassword] = useState("");
-
+  const [lastName, setLastName] = useState<string>("");
+  const [email, setemail] = useState<string>("");
+  const [password, setpassword] = useState<string>("");
+  const [passwordConfirm, setCPassword] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const router = useRouter();
 
-  async function sendLoginData() {
+  async function sendLoginData(e: any) {
+    e.preventDefault();
+    setIsSubmitting(true);
     try {
       const data = {
         firstName,
@@ -28,19 +31,23 @@ export default function LoginFormBasic() {
 
       if (!firstName || !lastName || !email || !password || !passwordConfirm) {
         error("Please fill the form");
+        setIsSubmitting(false);
         return;
       }
 
       const email_pattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
       if (!email_pattern.test(email)) {
+        setIsSubmitting(false);
         error("Your Email is not valied");
         return;
       }
       if (!(password.length > 6)) {
+        setIsSubmitting(false);
         error("Password length is short");
         return;
       }
       if (password !== passwordConfirm) {
+        setIsSubmitting(false);
         error("Password and Password confirm is not the same");
         return;
       }
@@ -54,9 +61,9 @@ export default function LoginFormBasic() {
       });
 
       const dat = await user.json();
-      console.log(dat.user);
 
       if (dat.user !== null) {
+        setIsSubmitting(false);
         error("Already exist this email");
         return;
       }
@@ -68,6 +75,7 @@ export default function LoginFormBasic() {
       });
 
       if (!res.ok) {
+        setIsSubmitting(false);
         error("There is a error for registartion");
         return;
       }
@@ -80,7 +88,9 @@ export default function LoginFormBasic() {
       setSpinner(false);
       success("Successfully created your account");
       router.push("/auth/login");
+      setIsSubmitting(false);
     } catch (e) {
+      setIsSubmitting(false);
       console.log(e);
     }
   }
@@ -94,7 +104,7 @@ export default function LoginFormBasic() {
         <form
           className=" flex-column "
           action={sendLoginData}
-          onSubmit={() => sendLoginData}
+          onSubmit={(e) => sendLoginData(e)}
         >
           <input
             required
@@ -103,7 +113,7 @@ export default function LoginFormBasic() {
             id="firstName"
             value={firstName}
             onChange={(e) => setFristName(e.target.value)}
-            className=" my-5 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
+            className="focus:outline-custom-orange my-5 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
             placeholder="Enter your first name  "
           ></input>
 
@@ -114,7 +124,7 @@ export default function LoginFormBasic() {
             id="lastName"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            className=" my-5 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
+            className="focus:outline-custom-orange my-5 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
             placeholder="Enter your last name  "
           ></input>
 
@@ -125,7 +135,7 @@ export default function LoginFormBasic() {
             id="email"
             value={email}
             onChange={(e) => setemail(e.target.value)}
-            className=" my-5 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
+            className="focus:outline-custom-orange my-5 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
             placeholder="Enter your email "
           ></input>
 
@@ -136,7 +146,7 @@ export default function LoginFormBasic() {
             id="password"
             value={password}
             onChange={(e) => setpassword(e.target.value)}
-            className=" my-5 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
+            className="focus:outline-custom-orange my-5 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
             placeholder="Create password  "
           ></input>
 
@@ -147,16 +157,30 @@ export default function LoginFormBasic() {
             id="cPassword"
             value={passwordConfirm}
             onChange={(e) => setCPassword(e.target.value)}
-            className=" my-5 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
+            className="focus:outline-custom-orange my-5 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
             placeholder="Confirm password  "
           ></input>
 
-          <button
-            type="submit"
-            className="flex text-center p-1 justify-center w-full bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono"
-          >
-            {spinner ? <Spinner /> : "CREAT ACCOUNT"}
-          </button>
+          {isSubmitting ? (
+            <button className="button flex text-center mt-10 mb-10 xl:mb-20  px-2 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono ">
+              <div className="flex gap-2 justify-center items-center">
+                <div> Creating</div>
+                <Image
+                  src="/images/reusableComponents/Loading.svg"
+                  alt="loading btn"
+                  width={40}
+                  height={40}
+                />
+              </div>
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="button flex text-center p-1 justify-center w-full bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono"
+            >
+              CREAT ACCOUNT
+            </button>
+          )}
         </form>
         <ToastContainer />
       </div>

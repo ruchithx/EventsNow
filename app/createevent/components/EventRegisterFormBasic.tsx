@@ -1,26 +1,108 @@
 "use client";
-import React from "react";
-import { useState } from "react";
+import React, { SetStateAction } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 
-export default function EventRegisterFormBasic() {
-  const [selectedTab, setSelectedTab] = useState("Onsite");
-  const [previewImage, setPreviewImage] = useState("");
-  const [eventName, setEventName] = useState("");
-  const [numberOfTicketTypes, setNumberOfTicketTypes] = useState(1);
+import { z } from "zod";
+import { error, success } from "../../../util/Toastify";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-  function sendEventData() {
-    console.log("event Data send success");
+import firebase from "firebase/compat/app";
+import { firebaseConfig } from "../../../services/FirebaseConfig";
+import "firebase/compat/storage";
+
+firebase.initializeApp(firebaseConfig);
+
+export default function EventRegisterFormBasic() {
+  const [eventName, setEventName] = useState("");
+  const [selectedTab, setSelectedTab] = useState("Onsite");
+  const [eventStartDate, setEventStartDate] = useState(new Date());
+  const [startTime, setStartTime] = useState("");
+  const [duration, setDuration] = useState("");
+  const [eventTimeZone, setEventTimeZone] = useState("");
+  const [description, setDescription] = useState("");
+  const [postImage, setPostImage] = useState([File] as any);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [previewImage, setPreviewImage] = useState("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const validateEvent = z.object({
+    eventName: z.string().min(1, "Enter event name "),
+    selectedTab: z.string().min(1, { message: "select the event type" }),
+    eventStartDate: z.date(),
+    startTime: z.string().min(1, { message: "Enter event start time " }),
+    duration: z.string(),
+    eventTimeZone: z.string().min(1, { message: "Enter event time zone" }),
+    description: z.string(),
+    postImage: z.any(),
+    postImageLink: z.string().min(1, { message: "Enter event cover" }),
+  });
+
+  async function sendEventData(e: any) {
+    e.preventDefault();
+    setIsSubmitting(true);
+    const storageRef = firebase.storage().ref();
+    const fileRef = storageRef.child(`eventCover-${eventName}`);
+    const postImageLink = await fileRef
+      .put(postImage)
+      .then((snapshot) =>
+        snapshot.ref.getDownloadURL().then((downloadURL) => downloadURL)
+      );
+
+    const data = {
+      eventName,
+      selectedTab,
+      eventStartDate,
+      startTime,
+      duration,
+      eventTimeZone,
+      description,
+      postImageLink,
+    };
+
+    const result = validateEvent.safeParse(data);
+    if (result.success) {
+      const res = await fetch(
+        "http://localhost:3000/api/v1/event/createEvent",
+        {
+          method: "POST",
+          mode: "cors",
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (!res.ok) {
+        error("There is an error for create event");
+        setIsSubmitting(false);
+        return;
+      }
+      success("registration data sent succesfully");
+
+      setEventStartDate(new Date());
+      setStartTime("");
+      setDuration("");
+      setEventTimeZone("");
+      setDescription("");
+      setPreviewImage("");
+      setEventName("");
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    } else {
+      error(result.error.errors[0].message);
+    }
+    setIsSubmitting(false);
   }
 
   return (
-    <div className="  2xl:px-40 - sm:px-20 justify-center">
-      <div className=" mt-8 leading-none	 text-center text-[#455273] font-khand text-[40px] sm:text-[64px] font-semibold mx-2">
+    <div className=" lg:pb-10 2xl:px-40 - sm:px-20 justify-center">
+      <div className=" mt-8 leading-none text-center text-[#455273] font-khand text-[40px] sm:text-[64px] font-semibold mx-2">
         Create Event
       </div>
       <form
-        action={sendEventData}
-        onSubmit={() => sendEventData}
+        onSubmit={(e: any) => sendEventData(e)}
+        // onSubmit={() => sendEventData()}
         className="px-8"
       >
         <label
@@ -78,7 +160,7 @@ export default function EventRegisterFormBasic() {
           </div>
         </div>
         <div className="mt-1 font-khand text-[#455273] flex text-basic font-normal m-0">
-          Event data and time <div className="text-red-500 font-">*</div>
+          Event date and time <div className="text-red-500 font-">*</div>
         </div>
         <div className="border-solid border-2 rounded-xl grid grid-cols-2 gap-2 px-2 pb-4">
           <div>
@@ -88,13 +170,14 @@ export default function EventRegisterFormBasic() {
             >
               Date <div className="text-red-500 font-">*</div>
             </label>
-            <input
-              required
-              type="text"
-              name="eventDate"
-              id="eventDate"
-              className=" my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-xl focus:outline-custom-orange "
-            ></input>
+
+            <DatePicker
+              className="my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-xl  xl:pr-20 lg:pr-10 md:pr-40 md:max-lg:mr-20 sm:max-md:mr-40 mr-24 lg:mr-0 focus:outline-custom-orange"
+              selected={eventStartDate}
+              onChange={(date: Date | null) =>
+                setEventStartDate(date || new Date())
+              }
+            />
           </div>
 
           <div>
@@ -109,6 +192,8 @@ export default function EventRegisterFormBasic() {
               type="text"
               name="eventTime"
               id="eventTime"
+              value={startTime}
+              onChange={(e) => setStartTime(e.target.value)}
               className=" my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-xl focus:outline-custom-orange "
             ></input>
           </div>
@@ -118,12 +203,14 @@ export default function EventRegisterFormBasic() {
               htmlFor="duration"
               className="  font-khand text-[#455273] flex text-basic font-normal m-0"
             >
-              Duration
+              Duration (h)
             </label>
             <input
               type="text"
               name="duration"
               id="duration"
+              value={duration}
+              onChange={(e) => setDuration(e.target.value)}
               className=" my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-xl focus:outline-custom-orange "
             ></input>
           </div>
@@ -140,6 +227,8 @@ export default function EventRegisterFormBasic() {
               type="text"
               name="eventTimezone"
               id="eventTimezone"
+              value={eventTimeZone}
+              onChange={(e) => setEventTimeZone(e.target.value)}
               className=" my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-xl focus:outline-custom-orange "
             ></input>
           </div>
@@ -154,6 +243,8 @@ export default function EventRegisterFormBasic() {
         <textarea
           name="description"
           id="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           className=" mt-1 w-full h-24 bg-transparent  pl-1 text-gray-900focus:ring-0 focus:outline-custom-orange sm:text-sm sm:leading-6 border-2 rounded-xl "
           cols={30}
         ></textarea>
@@ -166,9 +257,11 @@ export default function EventRegisterFormBasic() {
             required
             type="file"
             accept="image/*"
-            onChange={(e) => {
+            ref={fileInputRef}
+            onChange={async (e) => {
               if (e.target.files && e.target.files.length > 0) {
                 setPreviewImage(URL.createObjectURL(e.target.files[0]));
+                setPostImage(e.target.files[0]);
               }
             }}
             className="block  text-sm text-slate-500
@@ -180,7 +273,7 @@ export default function EventRegisterFormBasic() {
           />
           {previewImage.length > 0 && (
             <Image
-              className=""
+              className="p-4"
               src={previewImage}
               width={500}
               height={500}
@@ -189,12 +282,34 @@ export default function EventRegisterFormBasic() {
           )}
         </div>
 
-        <button
+        {/* <button
           type="submit"
           className="flex text-center mt-5 mb-10 p-2 justify-center w-full bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono "
         >
           CREATE EVENT
-        </button>
+        </button> */}
+
+        {isSubmitting ? (
+          <button className="button flex text-center mt-10 mb-10 xl:mb-20  px-2 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono ">
+            <div className="flex gap-2 justify-center items-center">
+              <div> Creating</div>
+              <Image
+                src="/images/createEvent/LoadingBtnIcon.svg"
+                alt="loading btn"
+                width={40}
+                height={40}
+              />
+            </div>
+          </button>
+        ) : (
+          <button
+            // onSubmit={(e: any) => sendEventData(e)}
+            type="submit"
+            className="button flex text-center mt-10 mb-10 xl:mb-20 py-2 px-4 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono "
+          >
+            CREATE EVENT
+          </button>
+        )}
       </form>
     </div>
   );
