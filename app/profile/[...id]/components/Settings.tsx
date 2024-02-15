@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
+
 import ProfileSettings from "../components/ProfileSettings";
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import Profsettings from "./Profsettings";

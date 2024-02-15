@@ -1,15 +1,18 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { useOrg } from "../OrgContext";
+import { Event } from "../Type";
 
 interface ContentProps {
   revenue: number;
   ticketSold: number;
   isSlideBar: boolean;
+  events: Event[];
 }
 
 export default function Dashboard() {
-  const { revenue, ticketSold, isSlideBar } = useOrg() as ContentProps;
+  const { revenue, ticketSold, isSlideBar, events } = useOrg() as ContentProps;
+  const [selectedEvent, setSelectedEvent] = useState<string>("Choose an event");
 
   return (
     <div className="flex rounded-lg  shadow-3xl md:pl-10 md:ml-2 pl-5 bg-[#fff] pt-8 lg:pl-12 flex-col justify-start items-start gap-12">
@@ -26,14 +29,42 @@ export default function Dashboard() {
           >
             <div className="w-full md:w-3/4">
               <select
+                onChange={(e) => setSelectedEvent(e.target.value)}
+                value={selectedEvent}
                 id="countries"
-                className="bg-white border border-[#848484] text-[#848484] focus:ring-gray-300 focus:border-gray-500 text-sm rounded-lg  block w-full p-2.5 "
+                className="bg-white border hover:bg-slate-200 focus:outline-custom-orange border-[#848484] text-[#848484] focus:ring-custom-orange focus:border-custom-orange text-sm rounded-lg  block w-full p-2.5 "
               >
-                <option selected>Select an event</option>
-                <option value="US">United States</option>
-                <option value="CA">Canada</option>
-                <option value="FR">France</option>
-                <option value="DE">Germany</option>
+                {events.length === 0 ? (
+                  <option
+                    className="text-black bg-slate-200 font-medium"
+                    selected
+                  >
+                    No events{" "}
+                  </option>
+                ) : (
+                  <>
+                    <option
+                      className="text-black bg-slate-200 font-medium"
+                      selected
+                    >
+                      Choose an event
+                    </option>
+                    {events.map((event) => (
+                      <option
+                        className="text-black bg-slate-200 font-medium	"
+                        key={event._id}
+                        value={event.eventName}
+                      >
+                        {event.eventName}
+                      </option>
+                    ))}
+                  </>
+                )}
+                {/* <option selected>Choose an event</option>
+            <option value="US">United States</option>
+            <option value="CA">Canada</option>
+            <option value="FR">France</option>
+            <option value="DE">Germany</option> */}
               </select>
             </div>
           </div>

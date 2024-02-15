@@ -7,49 +7,13 @@ export default function LoginFormBasic() {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
 
-  // const route = useRouter();
-
-  // async function sendLoginData() {
-  //   const data = {
-  //     email,
-  //     password,
-  //   };
-  //   // fetch("http://localhost:3000/api/v1/signup", {
-  //   //   method: "POST",
-  //   //   mode: "cors",
-  //   //   body: JSON.stringify(data),
-  //   // });
-
-  //   try {
-  //     const res = await signIn("credentials", {
-  //       email,
-  //       password,
-  //       redirect: true,
-  //     });
-
-  //     if (res?.error) {
-  //       console.log("💥 error ");
-  //     }
-  //   } catch (e) {
-  //     console.log("💥💥💥💥💥" + e);
-  //   }
-
-  //   // setemail("");
-  //   // setpassword("");
-  //   // route.replace("dashboard");
-  // }
-
   return (
     <div className="mx-auto  flex justify-center">
       <div className="">
         <div className="text-center text-[#455273] font-khand  text-[64px] font-semibold">
           Login
         </div>
-        <form
-          className=" flex-column "
-          // action={sendLoginData}
-          // onSubmit={() => sendLoginData}
-        >
+        <form className=" flex-column ">
           <input
             type="text"
             name="email"

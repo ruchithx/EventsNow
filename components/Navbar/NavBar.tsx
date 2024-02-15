@@ -19,17 +19,54 @@ import { usePathname } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import NavBarProfile from "./NavBarProfile";
 
-export default function NavBar() {
-  const [userActive, setUserActive] = useState(false);
-  const [userName, setUserName] = useState("");
-  const [user, setUser]: any = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+export type OrganizationProps = {
+  map: any;
+  name: string;
+  image: string;
+  id: string;
+};
 
-  const [showProfile, setShowProfile] = useState(false);
-  const { emailAuth, setEmail }: any = useAuth();
+type ID = {
+  id: string;
+};
+
+export type User = {
+  _id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  image: string;
+};
+
+export interface AuthContext {
+  organizationId: string | null;
+  emailAuth: string | null;
+  setOrganizationId: any;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  organization: OrganizationProps[];
+  setOrganization: React.Dispatch<React.SetStateAction<OrganizationProps[]>>;
+}
+
+export default function NavBar() {
+  const [userActive, setUserActive] = useState<boolean>(false);
+  // const [organization, setOrganization] = useState<OrganizationProps[]>([]);
+  const [user, setUser] = useState<User>({
+    _id: "",
+    email: "",
+    firstName: "",
+    lastName: "",
+    image: "",
+  });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+
+  const [showProfile, setShowProfile] = useState<boolean>(false);
+
+  const { emailAuth, setEmail, organization, setOrganization, organizationId } =
+    useAuth() as AuthContext;
 
   const ResponsiveMenuBar = dynamic(() => import("./ResponsiveMenuBar"));
+  const NavBarProfile = dynamic(() => import("./NavBarProfile"));
   const pathname = usePathname();
 
   function toggleMenu() {
@@ -41,43 +78,6 @@ export default function NavBar() {
     setEmail("");
     localStorage.removeItem("email");
   }
-
-  // get data from api
-  useEffect(
-    function () {
-      async function session() {
-        setIsLoading(true);
-        const session = await getSession();
-        console.log("session", session);
-
-        if (session) {
-          console.log("jelo");
-          const name = session?.user?.name ? session?.user?.name : "";
-          setUser(session?.user);
-
-          if (name !== "") {
-            const data = await getUser({ email: session?.user?.email });
-
-            setUserActive(true);
-            setUser(data);
-          } else {
-            const email = emailAuth;
-            const data = await getUser({ email });
-
-            if (data) {
-              setUserActive(true);
-              setUser(data);
-            } else {
-              setUserActive(false);
-            }
-          }
-        }
-        setIsLoading(false);
-      }
-      session();
-    },
-    [emailAuth]
-  );
 
   const getUser = async ({ email }: any) => {
     const user = await fetch("http://localhost:3000/api/v1/user/getOneUser", {
@@ -92,6 +92,66 @@ export default function NavBar() {
     return data;
   };
 
+  const getUserOrganization = async ({ id }: ID) => {
+    console.log(id, "🚀");
+    const organization = await fetch(
+      "http://localhost:3000/api/v1/user/userOrganization",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      }
+    );
+
+    if (!organization.ok) {
+      setIsLoading(false);
+      return;
+    }
+
+    const organizationData = await organization.json();
+
+    setOrganization(organizationData);
+  };
+
+  // get data from api
+  useEffect(
+    function () {
+      async function session() {
+        // setIsLoading(true);
+        const session = await getSession();
+
+        if (session) {
+          const name = session?.user?.name ? session?.user?.name : "";
+          if (name !== "") {
+            const data = await getUser({ email: session?.user?.email });
+
+            if (data) {
+              setUserActive(true);
+              setUser(data);
+              getUserOrganization({ id: data._id });
+            } else {
+              setUserActive(false);
+            }
+          } else {
+            const email = emailAuth;
+            const data = await getUser({ email });
+
+            if (data) {
+              setUserActive(true);
+              setUser(data);
+              getUserOrganization({ id: data._id });
+            } else {
+              setUserActive(false);
+            }
+          }
+        }
+        setIsLoading(false);
+      }
+      session();
+    },
+    [emailAuth]
+  );
+
   return (
     <div>
       {/* check data has loaded */}
@@ -100,7 +160,7 @@ export default function NavBar() {
           <Spinner />
         </nav>
       ) : (
-        <nav className="">
+        <nav className="dark:bg-navWhite">
           <div className="2xl:px-16 flex flex-wrap items-center justify-between mx-auto p-2">
             {/* Events now logo and name */}
             <Link href="/">
@@ -129,7 +189,7 @@ export default function NavBar() {
                 {/* home button */}
 
                 {pathname.startsWith("/organization/dashboard") ? (
-                  <Link href={"/createevent"}>
+                  <Link href={`/createevent/${organizationId}`}>
                     <Login
                       titleOfbutton={"HOST EVENT"}
                       image={"createevent.svg"}
@@ -214,9 +274,11 @@ export default function NavBar() {
 
                     <button
                       className="button"
-                      onClick={() => setShowProfile(true)}
+                      onClick={() =>
+                        setShowProfile((showProfile) => !showProfile)
+                      }
                     >
-                      <Profile name={user.firstName} picture={user?.image} />
+                      <Profile picture={user?.image} />
                     </button>
                   </>
                 )}
@@ -286,92 +348,12 @@ export default function NavBar() {
               className={`absolute ${
                 !showProfile
                   ? "hidden"
-                  : "lg:w-1/3 md:w-1/2 2xl:w-1/5 sm:block hidden"
+                  : "xl:w-3/12 lg:w-3/12 md:w-1/3 2xl:w-1/5 sm:block hidden"
               } rounded-2xl top-13 right-0   bg-gray-700 text-white`}
             >
-              {/* <div className="">
-                <div className="flex m-3 items-center justify-between">
-                  <div className="font-medium	">{user?.email}</div>
-                  <button onClick={() => setShowProfile(false)}>
-                    <AiOutlineClose />
-                  </button>
-                </div>
-                <div className="flex justify-center items-center flex-col gap-2">
-                  <div>
-                    <Image
-
-                      src={user?.image}
-
-                      alt="profile picture"
-                      width={60}
-                      height={20}
-                      className="rounded-full"
-                    />
-                  </div>
-                  <div className="font-medium	">{`hi ${user?.firstName} !`}</div>
-                  <div>
-                    <button className="rounded-full py-2 px-4 bg-blue-500 text-white font-semibold  shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-                      Manage your account
-                    </button>
-                  </div>
-                </div>
-                <div className=" mt-5 mb-5 md:p-3 lg:p-0 w-full flex xl:w-full  justify-center">
-                  <div className="z-20  w-full max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-800 dark:divide-gray-700">
-                    <div className="  px-4 py-2 font-medium items-center flex justify-between text-gray-700 rounded-full bg-gray-50 dark:bg-gray-800 dark:text-white">
-                      <div className="flex gap-2  items-center">
-                        <MdOutlineManageAccounts size={25} />
-                        <div className="text-xl">organization accounts</div>
-                      </div>
-                      {isOrganizationShowButton ? (
-                        <button
-                          onClick={() => setIsOrganizationShowButton(false)}
-                        >
-                          <AiOutlineUpCircle size={20} />
-                        </button>
-                      ) : (
-                        <button
-                          onClick={() => setIsOrganizationShowButton(true)}
-                        >
-                          <AiOutlineDownCircle size={20} />
-                        </button>
-                      )}
-                    </div>
-                    <div
-                      className={`divide-y ${
-                        isOrganizationShowButton ? "hidden" : ""
-                      } divide-gray-100 dark:divide-gray-700`}
-                    >
-                      <a
-                        href="#"
-                        className="flex px-4  justify-center items-center py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-                      >
-                        <div className="flex-shrink-0">
-                          <Image
-                            src={`/images/ReusableComponents/profilpic.jpg`}
-                            alt="profile picture"
-                            width={40}
-                            height={20}
-                            className="rounded-full"
-                          />
-                        </div>
-                        <div className="w-full ps-3">
-                          <div className="text-gray-500 font-medium text-md mb-1.5 dark:text-gray-400">
-                            Organization 1
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                    <button onClick={clickLogoutBtn}>
-                      <div className="items-center gap-2 text-xl flex px-4 py-2 font-medium  text-gray-700 rounded-t-lg bg-gray-50 dark:bg-gray-800 dark:text-white">
-                        <MdOutlineLogout />
-                        logout
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </div> */}
               <NavBarProfile
                 setShowProfile={setShowProfile}
+                showProfile={showProfile}
                 user={user}
                 clickLogoutBtn={clickLogoutBtn}
               />

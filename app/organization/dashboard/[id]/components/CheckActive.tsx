@@ -11,19 +11,6 @@ import Dashboard_Btn from "@/app/organization/dashboard/[id]/components/Dashboar
 import Spinner from "@/components/Spinner";
 import { OrgContext, voidFunc } from "../Type";
 
-interface ItemProps {
-  isSlideBar: boolean;
-  handleDashboard: voidFunc;
-  handleMyEvent: voidFunc;
-  handleMyTeam: voidFunc;
-  handleReport: voidFunc;
-  isDashboardOpen: boolean;
-  setIsDashboardOpen: (value: boolean) => void;
-  handleSetting: voidFunc;
-  isLoading: boolean;
-  isActive: boolean;
-}
-
 export default function CheckActive() {
   const {
     isSlideBar,
@@ -36,7 +23,7 @@ export default function CheckActive() {
     handleSetting,
     isLoading,
     isActive,
-  } = useOrg() as ItemProps;
+  } = useOrg() as OrgContext;
 
   return (
     <div>

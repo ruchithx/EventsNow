@@ -1,15 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import ProfileCard from "../app/profile/components/ProfileCard";
+import ProfileCard from "../app/profile/[...id]/components/ProfileCard";
 import ProfileBar from "./ProfileBar";
-import ProfileDetails from "../app/profile/components/ProfileDetails";
+import ProfileDetails from "../app/profile/[...id]/components/ProfileDetails";
 import Event_Dashboard_Nav_bar from "../app/organization/dashboard/[id]/components/DashboardSide";
 import Event_Dashboard_Btn from "../app/organization/dashboard/[id]/components/Dashboard_Btn";
 import { text } from "stream/consumers";
 import Upcoming_Events from "./Upcoming_Events";
 // import ProfileSettings from "./ProfileSettings";
 import Org_RequestHandle from "../app/admin/dashboard/[id]/components/Org_RequestHandle";
-import ProfileSettings from "@/app/profile/components/ProfileSettings";
+import ProfileSettings from "@/app/profile/[...id]/components/ProfileSettings";
 
 export default function ProfileSideNavBar() {
   const [content, setContent] = useState("My profile");

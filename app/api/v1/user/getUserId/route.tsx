@@ -12,7 +12,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ data: null });
     }
 
-    return NextResponse.json({ data });
+    return NextResponse.json({ id: data._id });
   } catch (e) {
     console.log(e);
   }

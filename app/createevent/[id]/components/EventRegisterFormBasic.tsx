@@ -2,15 +2,17 @@
 import React, { SetStateAction } from "react";
 import { useState, useRef } from "react";
 import Image from "next/image";
-
+import { useParams } from "next/navigation";
 import { z } from "zod";
-import { error, success } from "../../../util/Toastify";
+// import { error, success } from "../../../util/Toastify";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import firebase from "firebase/compat/app";
-import { firebaseConfig } from "../../../services/FirebaseConfig";
+// import { firebaseConfig } from "../../../services/FirebaseConfig";
 import "firebase/compat/storage";
+import { firebaseConfig } from "@/services/FirebaseConfig";
+import { error, success } from "@/util/Toastify";
 
 firebase.initializeApp(firebaseConfig);
 
@@ -26,6 +28,7 @@ export default function EventRegisterFormBasic() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const params = useParams();
 
   const validateEvent = z.object({
     eventName: z.string().min(1, "Enter event name "),
@@ -59,6 +62,7 @@ export default function EventRegisterFormBasic() {
       eventTimeZone,
       description,
       postImageLink,
+      organizationId: params.id,
     };
 
     const result = validateEvent.safeParse(data);

@@ -17,6 +17,9 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "@nextui-org/dropdown";
+import { getSession } from "next-auth/react";
+import { OrganizationProps } from "@/components/Navbar/NavBar";
+import { useAuth } from "@/app/AuthContext";
 
 export default function CreateOrganizationFormBasic() {
   const [fullName, setFullName] = useState("");
@@ -28,11 +31,29 @@ export default function CreateOrganizationFormBasic() {
   const [email, setEmail] = useState("");
   const [organizationName, setOrganizationName] = useState("");
   const [previewImage, setPreviewImage] = useState("");
-  const isActive = false;
+
   const [postImage, setPostImage] = useState([File] as any);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { organization, setOrganization }: any = useAuth();
+
+  const getUserId = async () => {
+    const session = await getSession();
+    if (!session) {
+      return null;
+    }
+    const email: string | null | undefined = session.user?.email;
+
+    const res = fetch("http://localhost:3000/api/v1/user/getUserId", {
+      method: "POST",
+      mode: "cors",
+      body: JSON.stringify({ email }),
+    });
+
+    const { id } = await res.then((res) => res.json());
+    return id;
+  };
 
   const validateOrganization = z.object({
     fullName: z
@@ -57,6 +78,9 @@ export default function CreateOrganizationFormBasic() {
 
   async function sendOrganizationData(e: any) {
     e.preventDefault();
+
+    const userId = await getUserId();
+
     setIsSubmitting(true);
 
     const storageRef = firebase.storage().ref();
@@ -98,6 +122,38 @@ export default function CreateOrganizationFormBasic() {
       }
 
       const id = await res.json();
+
+      const oraganizationDataForNavBarProfile = {
+        id: id.id,
+        name: organizationName,
+        image: postImageLink,
+      } as OrganizationProps;
+
+      setOrganization((data: OrganizationProps[]) => [
+        ...data,
+        oraganizationDataForNavBarProfile,
+      ]);
+
+      // setOrganization(oraganizationDataForNavBarProfile);
+
+      const organizerRes = await fetch(
+        "http://localhost:3000/api/v1/permission/createOrganizer",
+        {
+          method: "POST",
+          mode: "cors",
+          body: JSON.stringify({
+            organizationId: id.id,
+            userId,
+            globalPermission: ["allPermission"],
+          }),
+        }
+      );
+
+      if (!organizerRes.ok) {
+        error("There is an error for registration");
+        setIsSubmitting(false);
+        return null;
+      }
 
       success("registration data sent succesfully");
 

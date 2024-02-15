@@ -6,11 +6,8 @@ const adminContext = createContext();
 
 function AdminContextProvider({ children }) {
   const [status, setStatus] = useState("");
-  console.log(status);
 
   function handleNotification() {
-    console.log("Notification");
-
     setStatus("Notification");
   }
   function handleOrganization() {

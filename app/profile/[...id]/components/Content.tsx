@@ -2,9 +2,9 @@
 import React from "react";
 
 import { useProf } from "../ProfContext";
-import ProfileDetails from "@/app/profile/components/ProfileDetails";
+import ProfileDetails from "@/app/profile/[...id]/components/ProfileDetails";
 import Upcoming_Events from "@/components/Upcoming_Events";
-import Org_RequestHandle from "@/app/profile/components/Org_RequestHandle";
+import Org_RequestHandle from "@/app/profile/[...id]/components/Org_RequestHandle";
 import MyProfile from "./MyProfile";
 import Settings from "./Settings";
 import Wishlist from "./wishlist";

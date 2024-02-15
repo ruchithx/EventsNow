@@ -34,7 +34,7 @@ function EventCardOrgDash({
       >
         <Image
           className="object-center rounded-[10px]"
-          src={`/images/Organization/${img}`}
+          src={img}
           width={256}
           height={301}
           alt="event picture"

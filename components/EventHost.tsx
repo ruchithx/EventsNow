@@ -1,5 +1,6 @@
+import MyEventCard from "@/app/profile/[...id]/components/MyEventCard";
 import React, { useState } from "react";
-import MyEventCard from "@/app/profile/components/MyEventCard";
+// import MyEventCard from "@/app/profile/components/MyEventCard";
 
 function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
   const [btnState, setBtnState] = useState(1);
@@ -41,7 +42,6 @@ function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
               btn="Show Details"
             />
           </>
-
         )}
         {btnState === 2 && (
           <>
@@ -50,7 +50,6 @@ function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
               image={"././image 1.png"}
               btn="Show Details"
             />
-
           </>
         )}
       </div>
