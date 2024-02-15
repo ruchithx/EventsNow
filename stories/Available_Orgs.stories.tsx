@@ -1,6 +1,6 @@
 import type { ComponentStory, Meta, StoryObj } from "@storybook/react";
 
-import Available_Orgs from "../components/Available_Orgs";
+import Available_Orgs from "../app/admin/dashboard/[id]/components/Available_Orgs";
 
 const meta: Meta<typeof Available_Orgs> = {
   title: "Components/Available_Orgs",
