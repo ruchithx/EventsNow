@@ -34,7 +34,7 @@ export default function SideBar() {
             </div>
           </button>
         </div>
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start ">
           <Dashboard_Btn
             isSlideBar={isSlideBar}
             img="profile.svg"
