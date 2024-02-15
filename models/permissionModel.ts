@@ -4,8 +4,9 @@ import User from "./userModel";
 
 const permissionSchema = new mongoose.Schema({
   organizationId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: Organization,
+    // type: mongoose.Schema.Types.ObjectId,
+    // ref: Organization,
+    type: String,
     required: [true, "Please enter organization Id"],
   },
   userId: {

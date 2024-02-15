@@ -15,7 +15,7 @@ import {
 import { MdOutlineLogout, MdOutlineManageAccounts } from "react-icons/md";
 import { OrganizationProps, User } from "./NavBar";
 import Link from "next/link";
-import { type } from "os";
+
 import { useAuth } from "@/app/AuthContext";
 
 interface NavBarProfileProps {

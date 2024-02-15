@@ -93,6 +93,7 @@ export default function NavBar() {
   };
 
   const getUserOrganization = async ({ id }: ID) => {
+    console.log(id, "🚀");
     const organization = await fetch(
       "http://localhost:3000/api/v1/user/userOrganization",
       {
@@ -134,7 +135,7 @@ export default function NavBar() {
           } else {
             const email = emailAuth;
             const data = await getUser({ email });
-            
+
             if (data) {
               setUserActive(true);
               setUser(data);
@@ -159,7 +160,7 @@ export default function NavBar() {
           <Spinner />
         </nav>
       ) : (
-        <nav className="">
+        <nav className="dark:bg-navWhite">
           <div className="2xl:px-16 flex flex-wrap items-center justify-between mx-auto p-2">
             {/* Events now logo and name */}
             <Link href="/">
