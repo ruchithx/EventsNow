@@ -36,10 +36,7 @@ export default function Notification() {
           <>
             {data.map((me) => (
               <div key={me._id}>
-                <Available_Orgs
-                  organization={me}
-                  image={"PictureOfGitarist.png"}
-                />
+                <Available_Orgs organization={me} />
               </div>
             ))}
           </>

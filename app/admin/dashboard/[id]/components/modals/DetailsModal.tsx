@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import { Organization } from "@/app/organization/dashboard/[id]/Type";
 
@@ -11,7 +11,7 @@ const DetailsModalContent = ({ organization }: Data) => {
     <div className="sm:flex sm:items-start mb-2">
       <div className="mx-auto flex-shrink-0 flex items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10 ">
         <Image
-          src={`/images/Admin/PictureOfaSinger.png`}
+          src={organization.postImageLink}
           alt="image2"
           width={249.64}
           height={126}
@@ -24,7 +24,7 @@ const DetailsModalContent = ({ organization }: Data) => {
           className="text-lg leading-6 font-medium text-gray-900 flex justify-center mb-4"
           id="modal-headline"
         >
-          {organization.fullName}
+          {organization.organizationName}
         </h3>
         <div className="mt-2 mb-4">
           <div className="flex flex-col">

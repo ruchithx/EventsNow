@@ -7,14 +7,10 @@ import DetailsModalContent from "@/app/admin/dashboard/[id]/components/modals/De
 import DenyModalContent from "./modals/DenyModal";
 
 interface Available_Orgs {
-  image: String;
   organization: Organization;
 }
 
-export default function Available_Orgs({
-  image,
-  organization,
-}: Available_Orgs) {
+export default function Available_Orgs({ organization }: Available_Orgs) {
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [showDenyModal, setShowDenyModal] = useState(false);
   const value =
@@ -24,21 +20,22 @@ export default function Available_Orgs({
   return (
     <div>
       <div
-        className={`grid grid-cols-1 lg:grid-cols-11 md:grid-cols-1  sm:m-6  ${value} h-auto md:h-auto lg:h-32 rounded-lg bg-[#D9D9D9] mt-6 ms-10 lg:ms-0 md:ms-20`}
+        className={`grid grid-cols-1 lg:grid-cols-11 md:grid-cols-1  sm:m-6  ${value} h-auto md:h-auto lg:h-32 rounded-lg bg-[#D9D9D9] mt-6 ms-10 lg:ms-0 md:ms-20 shadow-3xl`}
       >
-        <div className="col-span-full lg:col-span-3 md:col-span-full sm:overflow-hidden  rounded-lg ">
+        <div className="col-span-full lg:col-span-3 md:col-span-full overflow-hidden  rounded-lg ">
           <Image
-            src={`/images/Admin/${image}`}
+            src={organization.postImageLink}
             alt="compo4"
             width={249.65}
             height={126}
+            className="sm:h-32 h-auto"
           />
         </div>
 
         <div className="col-span-full md:col-span-2 lg:col-span-3 flex justify-center sm:justify-start pl-8 sm:mt-0 md:mt-4 lg:mt-0">
-          <div className=" justify-auto flex flex-col  md:justify-center lg:justify-auto ">
+          <div className=" justify-auto flex flex-col  md:justify-center lg:justify-around">
             <div className="flex w-full md:w-1/2  lg:w-full text-[#353535] font-sans text-2xl font-bold mt-2 leading-7  ">
-              {organization.fullName}
+              {organization.organizationName}
             </div>
             <div className="flex flex-col md:flex-col lg:flex-row gap-4 ml-0">
               <button

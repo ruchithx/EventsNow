@@ -38,7 +38,7 @@ export default function Event() {
         text="Search Events"
         customComponent={
           <>
-            {data.map((event) => (
+            {/* {data.map((event) => (
               <div key={event._id}>
                 <Superadminevents
                   EventName={event.eventName}
@@ -49,7 +49,7 @@ export default function Event() {
                   Ratings={"2.45"}
                 />
               </div>
-            ))}
+            ))} */}
             <Superadminevents
               EventName={"nadagama"}
               image={"PictureOfGitarist.png"}

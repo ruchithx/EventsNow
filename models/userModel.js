@@ -6,6 +6,7 @@ import bcrypt from "bcrypt";
 // const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema({
+  
   email: {
     type: String,
     unique: true,

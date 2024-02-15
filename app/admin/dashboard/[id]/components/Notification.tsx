@@ -39,7 +39,7 @@ export default function Notification() {
               <div key={org._id}>
                 <Org_RequestHandle
                   organization={org}
-                  image={"PictureOfaSinger.png"}
+                  
                 />
               </div>
             ))}
