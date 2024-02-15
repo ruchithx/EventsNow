@@ -4,6 +4,8 @@ import { useContext, createContext, useState, useEffect } from "react";
 import { any } from "zod";
 
 interface AuthContext {
+  organizationId: string | null;
+  setOrganizationId: React.Dispatch<React.SetStateAction<string>>;
   emailAuth: string | null;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   organization: OrganizationProps[];
@@ -19,8 +21,7 @@ const authContext = createContext<AuthContext | null>(null);
 function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [organization, setOrganization] = useState<OrganizationProps[]>([]);
   const [emailAuth, setEmail] = useState<string>("");
-
-  console.log(organization);
+  const [organizationId, setOrganizationId] = useState<string>("");
 
   useEffect(() => {
     const email: any = localStorage.getItem("email");
@@ -34,6 +35,8 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
         setEmail,
         organization,
         setOrganization,
+        organizationId,
+        setOrganizationId,
       }}
     >
       {children}

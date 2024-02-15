@@ -1,7 +1,23 @@
 "use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { OrgContext, OrgStatus, Organization, voidFunc } from "./Type";
+import {
+  OrgContext,
+  OrgStatus,
+  Organization,
+  Team,
+  User,
+  voidFunc,
+} from "./Type";
+import { useAuth } from "@/app/AuthContext";
+import { AuthContext } from "@/components/Navbar/NavBar";
+
+export type Modal =
+  | ""
+  | "givenPermission"
+  | "allPermission"
+  | "permissionOneEvent"
+  | "selectOneEvent";
 
 interface OrgContextProviderProps {
   children: React.ReactNode;
@@ -10,12 +26,11 @@ interface OrgContextProviderProps {
 const orgContext = createContext<OrgContext | string>("");
 
 function OrgContextProvider({ children }: OrgContextProviderProps) {
-  
   const [status, setStatus] = useState<OrgStatus>("dashboard");
   const [revenue, setRevenue] = useState<number>(0);
   const [ticketSold, setTicketSold] = useState<number>(0);
   const [events, setEvents] = useState([]);
-  const [team, setTeam] = useState([]);
+  const [team, setTeam] = useState<Team[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isDashboardOpen, setIsDashboardOpen] = useState<boolean>(false);
@@ -23,7 +38,12 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
   const [organization, setOrganization] = useState<Organization | null>(null);
   const params = useParams();
   const router = useRouter();
-
+  const [editedName, setEditedName] = useState<string>("");
+  const [modal, setModal] = useState<Modal>("");
+  const [modalUserName, setModalUserName] = useState<string>("");
+  const [permissionID, setPermissionID] = useState<string>("");
+  const [globalPermission, setGlobalPermission] = useState<string[]>([]);
+  const { setOrganizationId } = useAuth() as AuthContext;
   useEffect(
     function () {
       async function getData() {
@@ -48,10 +68,27 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
           return;
         }
 
+        setEditedName(finalResponse.organization.organizationName || "");
         setOrganization(finalResponse.organization);
-        setIsLoading(false);
 
         setIsActive(finalResponse.organization.isActive);
+
+        // get users in organization
+        const res2 = await fetch(
+          "http://localhost:3000/api/v1/permission/getOrganiztionUsers",
+          {
+            method: "POST",
+            mode: "cors",
+            body: JSON.stringify({ id: params.id }),
+          }
+        );
+
+        const finalResponse2 = await res2.json();
+        setTeam(finalResponse2);
+        console.log("finalResponse2", finalResponse2);
+
+        setIsLoading(false);   
+        setOrganizationId(params.id);
       }
       getData();
     },
@@ -95,7 +132,6 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
         isLoading,
         isActive,
         revenue,
-        team,
         ticketSold,
         status,
         handleDashboard,
@@ -103,6 +139,18 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
         handleMyTeam,
         handleReport,
         organization,
+        editedName,
+        setEditedName,
+        modal,
+        setModal,
+        team,
+        setTeam,
+        modalUserName,
+        setModalUserName,
+        permissionID,
+        setPermissionID,
+        globalPermission,
+        setGlobalPermission,
       }}
     >
       {children}

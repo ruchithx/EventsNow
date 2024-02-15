@@ -1,3 +1,5 @@
+import Organization from "./organizationModel";
+
 const mongoose = require("mongoose");
 
 const eventSchema = new mongoose.Schema({
@@ -31,6 +33,11 @@ const eventSchema = new mongoose.Schema({
   postImageLink: {
     type: String,
     required: [true, "Please upload the event cover photo"],
+  },
+  organizationId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: Organization,
+    required: [true, "Please enter organization Id"],
   },
 });
 

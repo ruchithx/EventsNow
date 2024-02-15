@@ -137,14 +137,17 @@ export default function CreateOrganizationFormBasic() {
       ]);
 
       // setOrganization(oraganizationDataForNavBarProfile);
-      console.log(oraganizationDataForNavBarProfile);
-      console.log([...organization, oraganizationDataForNavBarProfile]);
+
       const organizerRes = await fetch(
         "http://localhost:3000/api/v1/permission/createOrganizer",
         {
           method: "POST",
           mode: "cors",
-          body: JSON.stringify({ organizationId: id.id, userId }),
+          body: JSON.stringify({
+            organizationId: id.id,
+            userId,
+            globalPermission: ["allPermission"],
+          }),
         }
       );
 

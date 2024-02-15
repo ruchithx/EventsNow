@@ -1,13 +1,17 @@
 const mongoose = require("mongoose");
+import Organization from "./organizationModel";
+import User from "./userModel";
 
 const permissionSchema = new mongoose.Schema({
   organizationId: {
-    type: String,
-    required: [true, "Please enter organizationId"],
+    type: mongoose.Schema.Types.ObjectId,
+    ref: Organization,
+    required: [true, "Please enter organization Id"],
   },
   userId: {
-    type: String,
-    required: [true, "Please enter userId"],
+    type: mongoose.Schema.Types.ObjectId,
+    ref: User,
+    required: [true, "Please enter user id"],
   },
   globalPermission: {
     type: [String],

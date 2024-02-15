@@ -39,7 +39,9 @@ export type User = {
 };
 
 export interface AuthContext {
+  organizationId: string | null;
   emailAuth: string | null;
+  setOrganizationId: any;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   organization: OrganizationProps[];
   setOrganization: React.Dispatch<React.SetStateAction<OrganizationProps[]>>;
@@ -60,10 +62,11 @@ export default function NavBar() {
 
   const [showProfile, setShowProfile] = useState<boolean>(false);
 
-  const { emailAuth, setEmail, organization, setOrganization } =
+  const { emailAuth, setEmail, organization, setOrganization, organizationId } =
     useAuth() as AuthContext;
 
   const ResponsiveMenuBar = dynamic(() => import("./ResponsiveMenuBar"));
+  const NavBarProfile = dynamic(() => import("./NavBarProfile"));
   const pathname = usePathname();
 
   function toggleMenu() {
@@ -90,6 +93,7 @@ export default function NavBar() {
   };
 
   const getUserOrganization = async ({ id }: ID) => {
+    console.log(id);
     const organization = await fetch(
       "http://localhost:3000/api/v1/user/userOrganization",
       {
@@ -105,9 +109,9 @@ export default function NavBar() {
     }
 
     const organizationData = await organization.json();
+    console.log(organizationData);
 
     setOrganization(organizationData);
-    console.log(organizationData);
   };
 
   // get data from api
@@ -119,7 +123,6 @@ export default function NavBar() {
 
         if (session) {
           const name = session?.user?.name ? session?.user?.name : "";
-          console.log(session);
           if (name !== "") {
             const data = await getUser({ email: session?.user?.email });
 
@@ -133,7 +136,7 @@ export default function NavBar() {
           } else {
             const email = emailAuth;
             const data = await getUser({ email });
-
+            console.log(data);
             if (data) {
               setUserActive(true);
               setUser(data);
@@ -187,7 +190,7 @@ export default function NavBar() {
                 {/* home button */}
 
                 {pathname.startsWith("/organization/dashboard") ? (
-                  <Link href={"/createevent"}>
+                  <Link href={`/createevent/${organizationId}`}>
                     <Login
                       titleOfbutton={"HOST EVENT"}
                       image={"createevent.svg"}

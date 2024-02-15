@@ -1,3 +1,5 @@
+import { Modal } from "./OrgContext";
+
 export type voidFunc = () => void;
 
 export type OrgStatus =
@@ -17,7 +19,8 @@ export interface OrgContext {
   isLoading: boolean;
   isActive: boolean;
   revenue: number;
-  team: any[];
+  modalUserName: string;
+  setModalUserName: React.Dispatch<React.SetStateAction<string>>;
   ticketSold: number;
   status: string;
   handleDashboard: voidFunc;
@@ -25,6 +28,16 @@ export interface OrgContext {
   handleMyTeam: voidFunc;
   handleReport: voidFunc;
   organization: any;
+  editedName: string;
+  setEditedName: React.Dispatch<React.SetStateAction<string>>;
+  modal: Modal;
+  setModal: React.Dispatch<React.SetStateAction<Modal>>;
+  team: Team[];
+  setTeam: React.Dispatch<React.SetStateAction<Team[]>>;
+  permissionID: string;
+  setPermissionID: React.Dispatch<React.SetStateAction<string>>;
+  globalPermission: string[];
+  setGlobalPermission: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 export type Organization = {
@@ -45,4 +58,17 @@ export type Organization = {
   payout?: string;
   accountName?: string;
   accountNumber?: string;
+};
+
+export type User = {
+  email: string;
+  _id: string;
+  firstName: string;
+  image: string;
+  lastName: string;
+};
+
+export type Team = {
+  userData: User;
+  permissionDocumentId: string;
 };

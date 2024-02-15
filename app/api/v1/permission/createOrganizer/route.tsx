@@ -3,12 +3,12 @@ import Permission from "@/models/permissionModel";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  const { organizationId, userId } = await req.json();
+  const { organizationId, userId, globalPermission } = await req.json();
 
   connectMongoDB();
 
   const res = await Permission.create({
-    globalPermission: ["allPermission"],
+    globalPermission,
     organizationId,
     userId,
   });
