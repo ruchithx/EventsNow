@@ -41,6 +41,7 @@ function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
               btn="Show Details"
             />
           </>
+
         )}
         {btnState === 2 && (
           <>
@@ -49,6 +50,7 @@ function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
               image={"././image 1.png"}
               btn="Show Details"
             />
+
           </>
         )}
       </div>

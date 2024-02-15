@@ -6,7 +6,7 @@ export async function POST(req: Request) {
   try {
     connectMongoDB();
 
-    const { email, name } = await req.json();
+    const { email, name, image } = await req.json();
 
     const user = await User.findOne({ email });
 
@@ -15,6 +15,7 @@ export async function POST(req: Request) {
         email,
         firstName: name.split(" ")[0],
         lastName: name.split(" ")[1],
+        image,
       });
       return NextResponse.json({ user: "user create success" });
     } else {

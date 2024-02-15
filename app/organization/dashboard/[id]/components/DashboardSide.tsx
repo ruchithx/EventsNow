@@ -3,7 +3,7 @@
 import React from "react";
 
 interface Event_navbar {
-  children: any;
+  children: React.ReactNode;
 }
 
 export default function Dashboard({ children }: Event_navbar) {

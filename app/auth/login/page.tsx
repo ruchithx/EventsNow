@@ -1,9 +1,9 @@
 import SignupSocial from "@/components/SignupSocial";
-import Image from "next/image";
+
 import Footer from "@/components/Footer";
-// import CreatAccountText from "./CreatAccountText";
+
 import LoginForm from "./components/LoginForm";
-import NavBar from "@/components/Navbar/NavBar";
+
 import CreatAccountText from "./components/CreatAccountText";
 
 export default function LogIn() {
@@ -22,7 +22,7 @@ export default function LogIn() {
           <CreatAccountText />
         </div>
 
-        <div className="md:w-1/2 max-md:hidden  md:col-span-1  overflow-hidden	bg-[url('/login.jpg')] bg-no-repeat bg-cover  bg-center"></div>
+        <div className="md:w-1/2 max-md:hidden  md:col-span-1  overflow-hidden	bg-[url('/images/login/login.jpg')] bg-no-repeat bg-cover  bg-center"></div>
       </div>
       <Footer />
     </>

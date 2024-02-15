@@ -17,7 +17,7 @@ export default function BestPost({
       <div className="flex flex-col items-center bg-myBrown pl-4 pb-2">
         <Image
           className="flex justify-center  "
-          src={`/ReUsableComponentData/${image}`}
+          src={`/images/ReusableComponents/${image}`}
           alt="Picture of the button"
           width={360}
           height={460}

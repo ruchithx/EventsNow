@@ -1,27 +1,23 @@
 "use client";
-import React, { use } from "react";
+import React from "react";
 import Image from "next/image";
 import NavBarButton from "./NavBarButton";
 import { getSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+
 import Profile from "@/components/Profile";
 import Link from "next/link";
 import Spinner from "../Spinner";
-import {
-  AiOutlineClose,
-  AiOutlineDownCircle,
-  AiOutlineMenu,
-  AiOutlineUpCircle,
-} from "react-icons/ai";
+import { AiOutlineMenu } from "react-icons/ai";
 
 import Login from "../Login";
 import { useAuth } from "@/app/AuthContext";
 
 import dynamic from "next/dynamic";
-import { MdOutlineLogout, MdOutlineManageAccounts } from "react-icons/md";
+
 import { usePathname } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
+import NavBarProfile from "./NavBarProfile";
 
 export default function NavBar() {
   const [userActive, setUserActive] = useState(false);
@@ -29,12 +25,11 @@ export default function NavBar() {
   const [user, setUser]: any = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isOrganizationShowButton, setIsOrganizationShowButton] =
-    useState(false);
+
   const [showProfile, setShowProfile] = useState(false);
   const { emailAuth, setEmail }: any = useAuth();
+
   const ResponsiveMenuBar = dynamic(() => import("./ResponsiveMenuBar"));
-  // const NavbarProfile = dynamic(() => import("./NavbarProfile"));
   const pathname = usePathname();
 
   function toggleMenu() {
@@ -53,34 +48,25 @@ export default function NavBar() {
       async function session() {
         setIsLoading(true);
         const session = await getSession();
+        console.log("session", session);
 
         if (session) {
+          console.log("jelo");
           const name = session?.user?.name ? session?.user?.name : "";
           setUser(session?.user);
+
           if (name !== "") {
+            const data = await getUser({ email: session?.user?.email });
+
             setUserActive(true);
-            setUserName(name);
+            setUser(data);
           } else {
             const email = emailAuth;
-
-            const user = await fetch(
-              "http://localhost:3000/api/v1/user/getOneUser",
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email }),
-              }
-            );
-
-            const { data } = await user.json();
+            const data = await getUser({ email });
 
             if (data) {
               setUserActive(true);
-
               setUser(data);
-              setUserName(data.firstName);
             } else {
               setUserActive(false);
             }
@@ -92,6 +78,19 @@ export default function NavBar() {
     },
     [emailAuth]
   );
+
+  const getUser = async ({ email }: any) => {
+    const user = await fetch("http://localhost:3000/api/v1/user/getOneUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    const { data } = await user.json();
+    return data;
+  };
 
   return (
     <div>
@@ -108,10 +107,11 @@ export default function NavBar() {
               <button className="button">
                 <div className="flex items-center gap-3">
                   <Image
-                    src="/ReUsableComponentData/nav-logo.png"
+                    src="/images/ReusableComponents/nav-logo.svg"
                     alt="EventNow Logo"
                     width={30}
                     height={20}
+                    className="w-auto h-auto"
                   />
 
                   <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-eventBrown    ">
@@ -216,7 +216,7 @@ export default function NavBar() {
                       className="button"
                       onClick={() => setShowProfile(true)}
                     >
-                      <Profile name={userName} picture="User_cicrle" />
+                      <Profile name={user.firstName} picture={user?.image} />
                     </button>
                   </>
                 )}
@@ -263,11 +263,11 @@ export default function NavBar() {
             {userActive && (
               <div className="flex justify-between items-center mt-5">
                 <Image
-                  src={`/ReUsableComponentData/profilpic.jpg`}
+                  src={`/images/profile/profile.jpg`}
                   alt="profile picture"
                   width={60}
                   height={20}
-                  className="rounded-full"
+                  className="rounded-full w-auto h-auto"
                 />
                 <div onClick={() => toggleMenu()} className="cursor-pointer ">
                   <IoMdClose size={30} />
@@ -289,7 +289,7 @@ export default function NavBar() {
                   : "lg:w-1/3 md:w-1/2 2xl:w-1/5 sm:block hidden"
               } rounded-2xl top-13 right-0   bg-gray-700 text-white`}
             >
-              <div className="">
+              {/* <div className="">
                 <div className="flex m-3 items-center justify-between">
                   <div className="font-medium	">{user?.email}</div>
                   <button onClick={() => setShowProfile(false)}>
@@ -299,14 +299,16 @@ export default function NavBar() {
                 <div className="flex justify-center items-center flex-col gap-2">
                   <div>
                     <Image
-                      src={`/ReUsableComponentData/profilpic.jpg`}
+
+                      src={user?.image}
+
                       alt="profile picture"
                       width={60}
                       height={20}
                       className="rounded-full"
                     />
                   </div>
-                  <div className="font-medium	">{`hi ${user?.name} !`}</div>
+                  <div className="font-medium	">{`hi ${user?.firstName} !`}</div>
                   <div>
                     <button className="rounded-full py-2 px-4 bg-blue-500 text-white font-semibold  shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
                       Manage your account
@@ -345,7 +347,7 @@ export default function NavBar() {
                       >
                         <div className="flex-shrink-0">
                           <Image
-                            src={`/ReUsableComponentData/profilpic.jpg`}
+                            src={`/images/ReusableComponents/profilpic.jpg`}
                             alt="profile picture"
                             width={40}
                             height={20}
@@ -367,7 +369,12 @@ export default function NavBar() {
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> */}
+              <NavBarProfile
+                setShowProfile={setShowProfile}
+                user={user}
+                clickLogoutBtn={clickLogoutBtn}
+              />
             </div>
           </div>
         </nav>

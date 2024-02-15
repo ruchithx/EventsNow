@@ -61,7 +61,7 @@ export default function SideBar() {
           />
           <Dashboard_Btn
             isSlideBar={isSlideBar}
-            img="Setting_alt_line.svg"
+            img="Setting.svg"
             text="Settings"
             onClick={() => handleSetting()}
           />

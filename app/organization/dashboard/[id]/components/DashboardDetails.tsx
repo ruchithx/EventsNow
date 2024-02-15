@@ -1,26 +1,32 @@
 import Image from "next/image";
 import React, { memo } from "react";
 import { useOrg } from "../OrgContext";
+import { Organization } from "../Type";
 
-const DashboardDetails = memo(() => {
-  const { organization } = useOrg();
+interface contextProps {
+  organization: Organization;
+}
+
+const DashboardDetails = memo(function DashboardDetails() {
+  const { organization } = useOrg() as contextProps;
+
   return (
     <div>
       <div className="bg-[#D9D9D9] rounded-lg items-center  h-full py-3 px-4 flex flex-col  ">
         <div className="flex flex-col items-start gap-3 justify-start">
           <Image
-            src="/bestevent.png"
+            src={`${organization.postImageLink}`}
             alt="organization dp"
             width={226}
             className="rounded-lg"
             height={300}
           />
           <div className="md:text-lg lg:text-2xl  gap-2   items-center  flex text-[#353535]">
-            {organization.fullName}
+            {organization.organizationName}
           </div>
           <div className="md:text-base lg:text-base flex justify-center items-center  gap-2">
             <Image
-              src="/Group_light.svg"
+              src="/images/Organization/TeamOfUsers.svg"
               alt="user count"
               width={30}
               height={30}
@@ -29,7 +35,7 @@ const DashboardDetails = memo(() => {
           </div>
           <div className="md:text-base lg:text-base flex justify-center items-center gap-3">
             <Image
-              src="/Bookmark_light.svg"
+              src="/images/Organization/Bookmark_light.svg"
               alt="user count"
               width={26}
               height={26}

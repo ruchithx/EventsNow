@@ -2,8 +2,12 @@ import View_Report from "@/app/organization/dashboard/[id]/components/View_Repor
 import React from "react";
 import { useOrg } from "../OrgContext";
 
+interface contextProps {
+  isSlideBar: boolean;
+}
+
 export default function Report() {
-  const { isSlideBar } = useOrg();
+  const { isSlideBar } = useOrg() as contextProps;
   return (
     <div className="flex md:ml-2 rounded-lg font-custom-orange shadow-3xl pl-2 bg-[#fff] pt-8 md:pl-12 flex-col justify-start items-start gap-12">
       <div className="flex flex-col gap-3 justify-start items-start">
@@ -37,12 +41,12 @@ export default function Report() {
       <div className="flex h-56 w-full overflow-auto flex-col gap-5 mb-5">
         <View_Report
           isSlideBar={isSlideBar}
-          img="Chart_alt_fill.svg"
+          img="couldWithThreeDots.svg"
           discription1="ATTENDANCE REPORT"
         />
         <View_Report
           isSlideBar={isSlideBar}
-          img="Chart_alt_fill.svg"
+          img="couldWithThreeDots.svg"
           discription1="REVENUE REPORT"
         />
       </div>

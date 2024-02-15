@@ -26,8 +26,10 @@ export default function profile() {
           Host an Event
         </p>
       </div>
+
       <ProfCard
         profilePic="./image 3.png"
+
         name="Ashan Dilsara"
         accountType="Organization Account "
         email="ashandilsara8@gmail.com"

@@ -16,6 +16,7 @@ export default function MyProfile() {
           Ratings={"4.5"}
           image={"././profile.jpg"}
           buttonDesc={"Remove from wishlist"}
+
         />
       </div>
     </div>

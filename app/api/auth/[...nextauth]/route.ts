@@ -58,6 +58,7 @@ export const authOptions: NextAuthOptions = {
       if (account?.provider === "google") {
         const email = user?.email;
         const name = user?.name;
+        const image = user?.image;
 
         const data = await fetch(
           "http://localhost:3000/api/v1/user/signInRegister",
@@ -66,7 +67,7 @@ export const authOptions: NextAuthOptions = {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email, name }),
+            body: JSON.stringify({ email, name, image }),
           }
         ).then((res) => res.json());
       }

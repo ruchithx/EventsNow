@@ -35,6 +35,7 @@ export default function Upcoming_Events({
       <div className="xl:grid xl:grid-rows-3 xl:justify-left xl:col-span-7 capitalize">
         <div className="mx-4 md:mt-4 grid grid-cols-2 ">
           <div className="font-sans text-2xl capitalize font-bold leading-7 text-[#353535]">
+
             {EventName}
           </div>
 
@@ -59,6 +60,7 @@ export default function Upcoming_Events({
           >
             <div className="w-8 h-8 xl:-mt-2">
               <Image src="pinfill.svg" alt="print" width={32} height={32} />
+
             </div>
             <div className="text-[#353C4E] text-center text-base font-normal leading-4 pl-4 ">
               {Location}
@@ -68,6 +70,7 @@ export default function Upcoming_Events({
           <div className={`mx-8 mt-2 flex ${margin} xl:mt-0`}>
             <div className="w-8 h-8">
               <Image src="Datelight.svg" alt="print" width={32} height={32} />
+
             </div>
             <div className="text-[#353C4E] text-center text-base font-normal leading-4 pl-4 pt-2 ">
               {Date}
@@ -81,6 +84,8 @@ export default function Upcoming_Events({
           >
             <div className="w-8 h-8 xl:-mt-2">
               <Image src="Clockfill.svg" alt="print" width={32} height={32} />
+
+
             </div>
             <div className="text-[#353C4E] text-center text-base font-normal leading-4 pl-4 ">
               {Time}
@@ -90,6 +95,7 @@ export default function Upcoming_Events({
           <div className={`mx-8 mt-2 flex ${margin}`}>
             <div className="w-8 h-8">
               <Image src="Lineup.svg" alt="print" width={32} height={32} />
+
             </div>
             <div className="text-[#353C4E] text-center text-base font-normal leading-4 pl-4 pt-2">
               {Ratings}
