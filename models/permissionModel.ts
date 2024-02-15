@@ -17,6 +17,15 @@ const permissionSchema = new mongoose.Schema({
     type: [String],
     required: [true, "please enter globalPermission"],
   },
+  eventPermission: {
+    type: [
+      {
+        _id: false,
+        eventId: { type: String },
+        eventPermission: [String],
+      },
+    ],
+  },
 });
 
 const Permission =
