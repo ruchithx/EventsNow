@@ -57,7 +57,7 @@ export default function NavBar() {
     lastName: "",
     image: "",
   });
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const [showProfile, setShowProfile] = useState<boolean>(false);
@@ -167,7 +167,7 @@ export default function NavBar() {
               <button className="button">
                 <div className="flex items-center gap-3">
                   <Image
-                    src="/images/ReusableComponents/nav-logo.svg"
+                    src="/images/reusableComponents/nav-logo.svg"
                     alt="EventNow Logo"
                     width={30}
                     height={20}
