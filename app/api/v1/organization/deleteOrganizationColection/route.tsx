@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    connectMongoDB();
+    await connectMongoDB();
     await Organization.deleteMany();
     return NextResponse.json({ message: "data delete success" });
   } catch (e) {

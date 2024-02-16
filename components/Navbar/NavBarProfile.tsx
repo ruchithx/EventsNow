@@ -136,7 +136,7 @@ const NavBarProfile = memo(function NavBarProfile({
                       alt="profile picture"
                       width={20}
                       height={10}
-                      className="rounded-full"
+                      className="rounded-full w-auto h-auto"
                     />
                   </div>
                   <div className="w-full ps-3">

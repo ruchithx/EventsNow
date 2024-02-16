@@ -44,11 +44,11 @@ const ResponsiveMenuBar = memo(function ResponsiveMenuBar({
       {userActive && (
         <div className="flex justify-between items-center mt-5">
           <Image
-            src={`/images/ReusableComponents/profilpic.jpg`}
+            src={`/images/reusableComponents/profilpic.jpg`}
             alt="profile picture"
             width={50}
             height={20}
-            className="rounded-full"
+            className="rounded-full w-auto h-auto"
           />
           <div onClick={() => toggleMenu()} className="cursor-pointer ">
             <IoMdClose size={30} />

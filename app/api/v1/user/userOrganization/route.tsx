@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import connectMongoDB from "@/lib/mongo/mongodb";
-import Permission from "@/models/permissionModel";
-import Organization from "@/models/organizationModel";
+import Permission from "../../../../../models/permissionModel";
+import Organization from "../../../../../models/organizationModel";
+// import Permission from "@/models/permissionModel";
+// import Organization from "@/models/organizationModel";
 
 export const POST = async (req: Request) => {
   try {
@@ -26,17 +28,22 @@ export const POST = async (req: Request) => {
     const needOrganizationID = user.map(
       (organization: any) => organization.organizationId
     );
+    console.log(needOrganizationID);
 
     const organization = await Promise.all(
       needOrganizationID.map(async (organizationID: any) => {
         const data = await Organization.find({
           _id: organizationID,
         });
+        console.log(data);
 
         if (!data) {
           return;
         }
-        console.log(data[0]);
+
+        if (data.length === 0) {
+          return new NextResponse("No data found", { status: 404 });
+        }
 
         const name = data[0].organizationName;
         const image = data[0].postImageLink;

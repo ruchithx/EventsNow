@@ -8,7 +8,7 @@ export default function BUyAdd() {
       <div className="flex justify-center w-32 bg-custom-orange text-white font-semibold rounded-s-lg p-1">
         <Image
           className=" mr-4"
-          src={`/images/ReusableComponents/CorrectionMark.svg`}
+          src={`/images/reusableComponents/CorrectionMark.svg`}
           alt="Picture of the button"
           width={30}
           height={30}
@@ -18,7 +18,7 @@ export default function BUyAdd() {
       <div className="flex justify-center w-32 bg-custom-blue text-white font-semibold rounded-e-lg p-1">
         <Image
           className="mr-4"
-          src={`/images/ReusableComponents/Paper_fill.svg`}
+          src={`/images/reusableComponents/Paper_fill.svg`}
           alt="Picture of the button"
           width={30}
           height={30}

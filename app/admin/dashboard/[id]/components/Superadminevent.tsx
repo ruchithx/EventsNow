@@ -25,7 +25,7 @@ export default function Upcoming_Events({
     <div className="bg-[#D9D9D9] h-[450px] my-6 mx-2 rounded-lg md:grid md:grid-cols-2 sm:grid-cols-2 w-[300px] md:w-[480px] lg:w-[800px] md:h-[13.5rem] xl:grid-cols-12 xl:h-[13.5rem] shadow-3xl">
       <div className="pt-4 mx-4 my-4 md:mx-0 md:my-0 md:pt-0 rounded-lg overflow-hidden h-[12.15rem] md:h-[13.5rem] xl:col-span-5">
         <Image
-          src={`/images/Admin/${image}`}
+          src={`/images/admin/${image}`}
           alt="hay"
           width={410}
           height={200}
@@ -45,7 +45,7 @@ export default function Upcoming_Events({
             >
               <div className="py-0.5 pl-1.5 pt-1">
                 <Image
-                  src={"/images/ReusableComponents/Sendfill.svg"}
+                  src={"/images/reusableComponents/Sendfill.svg"}
                   alt="info"
                   width={80}
                   height={80}
@@ -64,7 +64,7 @@ export default function Upcoming_Events({
           >
             <div className="w-8 h-8 xl:-mt-2">
               <Image
-                src="/images/ReusableComponents/location.svg"
+                src="/images/reusableComponents/location.svg"
                 alt="print"
                 width={32}
                 height={32}
@@ -78,7 +78,7 @@ export default function Upcoming_Events({
           <div className={`mx-8 mt-2 flex ${margin} xl:mt-0`}>
             <div className="w-8 h-8">
               <Image
-                src="/images/ReusableComponents/eventCalander.svg"
+                src="/images/reusableComponents/eventCalander.svg"
                 alt="print"
                 width={32}
                 height={32}
@@ -96,7 +96,7 @@ export default function Upcoming_Events({
           >
             <div className="w-8 h-8 xl:-mt-2">
               <Image
-                src="/images/ReusableComponents/Time.svg"
+                src="/images/reusableComponents/Time.svg"
                 alt="print"
                 width={32}
                 height={32}
@@ -110,7 +110,7 @@ export default function Upcoming_Events({
           <div className={`mx-8 mt-2 flex ${margin}`}>
             <div className="w-8 h-8">
               <Image
-                src="/images/ReusableComponents/Lineup.svg"
+                src="/images/reusableComponents/Lineup.svg"
                 alt="print"
                 width={32}
                 height={32}

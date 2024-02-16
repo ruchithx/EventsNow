@@ -29,8 +29,7 @@ export default function profile() {
 
       <ProfCard
         profilePic="./image 3.png"
-
-        name="Ashan Dilsara"
+        name="Ruchith samarawickrama"
         accountType="Organization Account "
         email="ashandilsara8@gmail.com"
       />

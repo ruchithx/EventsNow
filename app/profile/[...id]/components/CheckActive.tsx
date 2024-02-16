@@ -65,7 +65,7 @@ export default function CheckActive() {
                 <div className="bg-myBrown w-[100px] h-[55px] flex items-center   rounded-full">
                   <div className="bg-custom-orange w-[95px] h-[46px] flex justify-end pr-3 rounded-full">
                     <Image
-                      src="/images/Profile/responsiveMenuBar.svg"
+                      src="/images/profile/responsiveMenuBar.svg"
                       alt="menu bar"
                       width={20}
                       height={20}
@@ -86,7 +86,7 @@ export default function CheckActive() {
               <button onClick={() => setIsDashboardOpen(false)}>
                 <div className="mx-2 my-2 w-fit p-1 mb-3 ">
                   <Image
-                    src="/images/Profile/close.svg"
+                    src="/images/profile/close.svg"
                     alt="close"
                     width={29}
                     height={29}

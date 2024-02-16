@@ -10,7 +10,7 @@ export default function page() {
         <div className="lg:h-screen lg:overflow-scroll">
           <CreateOrganizationFormBasic />
         </div>
-        <div className=" max-lg:hidden  md:col-span-1  overflow-hidden	bg-[url('/images/CreateOrgamization/createOrganization.jpg')] bg-no-repeat bg-cover  bg-center"></div>
+        <div className=" max-lg:hidden  md:col-span-1  overflow-hidden	bg-[url('/images/createOrgamization/createOrganization.jpg')] bg-no-repeat bg-cover  bg-center"></div>
       </div>
       <Footer />
     </div>

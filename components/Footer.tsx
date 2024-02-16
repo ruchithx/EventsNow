@@ -64,7 +64,7 @@ export default function Footer() {
           </div>
           <div className="sm:flex justify-center hidden   mt-2  sm:justify-center">
             <Image
-              src={`/images/ReusableComponents/nav-logo.svg`}
+              src={`/images/reusableComponents/nav-logo.svg`}
               alt="Picture of the button"
               width={0}
               height={0}
