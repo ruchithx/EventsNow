@@ -46,9 +46,6 @@ export interface OrgContext {
 }
 
 export type Organization = {
-  map(
-    arg0: (org: any) => import("react").JSX.Element
-  ): import("react").ReactNode;
   _id: string;
   fullName: string;
   numberType: string;

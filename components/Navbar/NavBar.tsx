@@ -171,7 +171,6 @@ export default function NavBar() {
                     alt="EventNow Logo"
                     width={30}
                     height={20}
-                    className="w-auto h-auto"
                   />
 
                   <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-eventBrown    ">

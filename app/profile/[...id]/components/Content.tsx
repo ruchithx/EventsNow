@@ -12,7 +12,17 @@ import MyEvents from "./MyEvents";
 import MyTickets from "./MyTickets";
 
 export default function Content() {
-  const { status } = useProf();
+  type ProfStatus =
+    | "myProfile"
+    | "myTickets"
+    | "wishList"
+    | "myEvents"
+    | "setting";
+
+  interface ContentProps {
+    status: ProfStatus;
+  }
+  const { status } = useProf() as ContentProps;
   return (
     <div>
       {status === "myProfile" && <MyProfile />}
