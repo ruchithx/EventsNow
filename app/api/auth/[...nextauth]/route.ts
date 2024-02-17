@@ -96,6 +96,18 @@ export const authOptions: NextAuthOptions = {
 
       return true;
     },
+    async jwt(params: {
+      token: any;
+      user?: any | undefined;
+      session?: any | undefined;
+      // account?: any | null | undefined;
+      // profile?: any | undefined;
+      // isNewUser?: boolean | undefined;
+    }) {
+      console.log("jwt params 🦊🦒🐯🦁");
+      console.log(params.token, params.user, params.session);
+      return params.token;
+    },
   },
 
   pages: {

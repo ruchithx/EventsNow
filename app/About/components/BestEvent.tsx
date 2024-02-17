@@ -20,10 +20,13 @@ export default function BestEvent({
     <div className="w-[20rem]  bg-[#F9EBE9] mt-12 shadow-xl">
       <div className="mt-8 ml-8">
         <div className="h-[365px] w-[260px] bg-[#AC736D]  bg-cover bg-center">
-
           <div className="ml-2.5  overflow-hidden  h-[350px] ">
-            <Image src={`/${img}`} height={300} width={250} alt="bestevent" />
-
+            <Image
+              src={`/images/about/${img}`}
+              height={300}
+              width={250}
+              alt="bestevent"
+            />
           </div>
         </div>
       </div>

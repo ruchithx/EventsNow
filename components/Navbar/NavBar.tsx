@@ -66,7 +66,7 @@ export default function NavBar() {
     useAuth() as AuthContext;
 
   const ResponsiveMenuBar = dynamic(() => import("./ResponsiveMenuBar"));
-  const NavBarProfile = dynamic(() => import("./NavBarProfile"));
+  // const NavBarProfile = dynamic(() => import("./NavBarProfile"));
   const pathname = usePathname();
 
   function toggleMenu() {
@@ -130,6 +130,7 @@ export default function NavBar() {
               setUser(data);
               getUserOrganization({ id: data._id });
             } else {
+              // clickLogoutBtn();
               setUserActive(false);
             }
           } else {
@@ -141,6 +142,7 @@ export default function NavBar() {
               setUser(data);
               getUserOrganization({ id: data._id });
             } else {
+              // clickLogoutBtn();
               setUserActive(false);
             }
           }
@@ -161,7 +163,7 @@ export default function NavBar() {
         </nav>
       ) : (
         <nav className="dark:bg-navWhite">
-          <div className="2xl:px-16 flex flex-wrap items-center justify-between mx-auto p-2">
+          <div className=" flex flex-wrap items-center justify-between mx-auto p-2">
             {/* Events now logo and name */}
             <Link href="/">
               <button className="button">
@@ -171,7 +173,6 @@ export default function NavBar() {
                     alt="EventNow Logo"
                     width={30}
                     height={20}
-                    className="w-auto h-auto"
                   />
 
                   <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-eventBrown    ">
