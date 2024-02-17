@@ -1,31 +1,15 @@
 import React, { useState, useEffect } from "react";
 import SuperadminPages from "./SuperadminPages";
 import Org_RequestHandle from "./Org_RequestHandle";
-import { Organization } from "@/app/organization/dashboard/[id]/Type";
+import { Organization } from "@/app/admin/Type";
+import { useAdmin } from "../AdminContextFile";
 
-async function getData() {
-  const res = await fetch(
-    "http://localhost:3000/api/v1/organization/requestOrganization",
-    {
-      next: {
-        revalidate: 30,
-      },
-    }
-  );
-  return res.json();
+interface notificationProps {
+  organization: Organization[];
 }
 
 export default function Notification() {
-  const [data, setData] = useState<Organization[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getData();
-      setData(result);
-    };
-
-    fetchData();
-  }, []);
+  const { organization } = useAdmin() as notificationProps;
 
   return (
     <>
@@ -35,13 +19,8 @@ export default function Notification() {
         text="Search"
         customComponent={
           <>
-            {data.map((org) => (
-              <div key={org._id}>
-                <Org_RequestHandle
-                  organization={org}
-                  
-                />
-              </div>
+            {organization.map((org) => (
+              <Org_RequestHandle key={org._id} organization={org} />
             ))}
           </>
         }

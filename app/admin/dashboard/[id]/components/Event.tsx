@@ -1,34 +1,15 @@
 import React, { useState, useEffect } from "react";
 import SuperadminPages from "@/app/admin/dashboard/[id]/components/SuperadminPages";
 import Superadminevents from "./Superadminevent";
+import { Event } from "@/app/admin/Type";
+import { useAdmin } from "../AdminContextFile";
 
 interface EventData {
-  _id: string;
-  eventName: string;
-  startTime: String;
-  eventStartDate: String;
-}
-
-async function getData() {
-  const res = await fetch("http://localhost:3000/api/v1/event/getAllEvents", {
-    next: {
-      revalidate: 30,
-    },
-  });
-  return res.json();
+  event: Event[];
 }
 
 export default function Event() {
-  const [data, setData] = useState<EventData[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getData();
-      setData(result);
-    };
-
-    fetchData();
-  }, []);
+  const events = useAdmin() as EventData;
 
   return (
     <div>
@@ -38,9 +19,10 @@ export default function Event() {
         text="Search Events"
         customComponent={
           <>
-            {/* {data.map((event) => (
-              <div key={event._id}>
+            {/* {events.map((event) => (
+             
                 <Superadminevents
+                key={event._id}
                   EventName={event.eventName}
                   image={"PictureOfGitarist.png"}
                   Location="Matara"
@@ -48,16 +30,8 @@ export default function Event() {
                   Time={event.startTime}
                   Ratings={"2.45"}
                 />
-              </div>
+           
             ))} */}
-            <Superadminevents
-              EventName={"nadagama"}
-              image={"PictureOfGitarist.png"}
-              Location="Matara"
-              Date={"2021-09-12"}
-              Time={"12:00"}
-              Ratings={"2.45"}
-            />
           </>
         }
       />

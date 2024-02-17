@@ -4,7 +4,7 @@ import Modal from "./ModalContext";
 import DetailsModalContent from "./modals/DetailsModal";
 import AllowModalContent from "./modals/AllowModal";
 import DenyModalContent from "./modals/DenyModal";
-import { Organization } from "@/app/organization/dashboard/[id]/Type";
+import { Organization } from "@/app/admin/Type";
 
 interface OrgRequestHandleProps {
   organization: Organization;
