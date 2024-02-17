@@ -39,6 +39,7 @@ function AdminContextProvider({ children }: AdminContextProps) {
   const handlePayments: voidFunc = () => {
     setStatus("Payments");
   };
+
   async function getData() {
     const res = await fetch("http://localhost:3000/api/v1/user/getAllUser", {
       next: {
@@ -61,23 +62,27 @@ function AdminContextProvider({ children }: AdminContextProps) {
     setEvent(finalRes1);
 
     const res3 = await fetch(
-      "http://localhost:3000/api/v1/organization/getAllOrganization",
-      {
-        next: {
-          revalidate: 30,
-        },
-      }
+      "http://localhost:3000/api/v1/organization/getAllOrganization"
     );
 
-    const resActive = organization.find((org) => org.isActive);
-    const notActive = organization.find((org) => !org.isActive);
+    const { organization } = await res3.json();
+
+    console.log(organization);
+
+    const resActive = organization.filter((org: Organization) => org.isActive);
+    const notActive = organization.filter((org: Organization) => !org.isActive);
+
+    // const resActive = organization.filter((org: Organization) => org.isActive);
+    // console.log(resActive);
 
     if (resActive) {
       const finalRes2 = resActive;
-      // setOrganization(finalRes2);
+      console.log(finalRes2);
+      setOrganization(finalRes2);
     } else if (notActive) {
       const finalRes3 = notActive;
-      // setNotification(finalRes3);
+      console.log(finalRes3);
+      setNotification(finalRes3);
     }
 
     // const res3 = await fetch(
@@ -102,6 +107,7 @@ function AdminContextProvider({ children }: AdminContextProps) {
     // const finalRes3 = await res4.json();
     // setOrganization(finalRes3);
   }
+
   useEffect(() => {
     getData();
   }, []);
