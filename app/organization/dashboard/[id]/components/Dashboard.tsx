@@ -80,8 +80,8 @@ export default function Dashboard() {
           <Image
             src="/images/organization/couldWithThreeDots.svg"
             alt="revenue"
-            width={100}
-            height={100}
+            width={80}
+            height={80}
           />
         </div>
         <div className="flex flex-col   gap-4 items-start justify-center">
@@ -108,8 +108,8 @@ export default function Dashboard() {
           <Image
             src="/images/organization/couldWithThreeDots.svg"
             alt="revenue"
-            width={100}
-            height={100}
+            width={80}
+            height={80}
           />
         </div>
         <div className="flex flex-col  gap-4 items-start justify-center">
