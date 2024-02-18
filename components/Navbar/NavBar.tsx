@@ -325,6 +325,7 @@ export default function NavBar() {
                 <IoMdClose size={25} />
               </div>
             </div>
+
             {userActive && (
               <div className="flex justify-between items-center mt-5">
                 <Image
@@ -339,13 +340,15 @@ export default function NavBar() {
                 </div>
               </div>
             )}
+            <ResponsiveMenuBar
+              userImage={user?.image}
+              userActive={userActive}
+              isMenuOpen={isMenuOpen}
+              toggleMenu={toggleMenu}
+              clickLogoutBtn={clickLogoutBtn}
+            />
           </div>
-          <ResponsiveMenuBar
-            userActive={userActive}
-            isMenuOpen={isMenuOpen}
-            toggleMenu={toggleMenu}
-            clickLogoutBtn={clickLogoutBtn}
-          />
+          {/* */}
           <div className="relative">
             <div
               className={`absolute ${
