@@ -1,5 +1,3 @@
-import InviteButton from "@/components/InviteButton";
-
 import React from "react";
 import { Modal, useOrg } from "../OrgContext";
 
@@ -11,6 +9,7 @@ import AllPermission from "./modal/AllPermission";
 import PermissionOneEvent from "./modal/PermissionOneEvent";
 import SelectOneEvent from "./modal/SelectOneEvent";
 import { Team, User } from "../Type";
+import InviteButton from "./InviteButton";
 
 interface OrgProps {
   modal: Modal;
