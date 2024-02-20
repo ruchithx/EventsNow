@@ -1,11 +1,28 @@
 import React, { useState } from "react";
 
 import Image from "next/image";
+import { OrgContext } from "../Type";
+import { useOrg } from "../OrgContext";
 
 export default function InviteButton() {
+  const { organization } = useOrg() as OrgContext;
   const [email, setEmail] = useState<string>("");
 
-  function handleclick() {}
+  function handleclick() {
+    const res = fetch(
+      "http://localhost:3000/api/v1/organization/inviteTeamMember",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          organizationId: organization?._id,
+        }),
+      }
+    );
+  }
 
   return (
     <div className="flex gap-10 p-10">
