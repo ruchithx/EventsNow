@@ -1,16 +1,12 @@
-import NavBar from "@/components/Navbar/NavBar";
 import React from "react";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import BestEvent from "./components/BestEvent";
 
-
 export default function page() {
   return (
     <div>
-
-      <div className="xl:h-[600px] md:h-[400px] w-full bg-[url('/images/About/mainphoto.png')] bg-no-repeat bg-cover bg-center">
-
+      <div className="xl:h-[600px] md:h-[400px] w-full bg-[url('/images/about/mainphoto.png')] bg-no-repeat bg-cover bg-center">
         <div className="flex-auto w-full h-[213px] flex-col shrink-0 text-white text-center xl:text-6xl md:text-4xl sm:text-2xl md:py-40 xl:pt-56 py-20 px-20 font-['Khand'] font-semibold">
           &ldquo;Creating memorable moments through expert event
           management.&rdquo;
@@ -33,14 +29,13 @@ export default function page() {
           </div>
         </div>
 
-
         <div className=" xl:mt-8 md:mt-36 px-8 mb-4 mt-12  xl:ml-40 md:ml-12 md:px-6 place-items-center flex justify-center items-center w-full  xl:px-0 xl:w-[23rem] md:w-[22rem] ">
-        
           <Image
-            src={"/images/About/mission.png"}
+            src={"/images/about/mission.png"}
             width={360}
             height={200}
             alt="mission"
+            // className="w-auto h-auto"
           />
 
           {/* <img src="/mission.png" className="justify-center" alt="mission"  /> */}
@@ -65,15 +60,14 @@ export default function page() {
         </div>
 
         <div className=" xl:mt-0 md:mt-24 px-8 mt-6  xl:ml-40  md:ml-12 flex justify-center items-center xl:w-[23rem] xl:px-0 md:px-6 md:w-[22rem]  sm:-mt-16 ">
-          
           <Image
-            src={"/images/About/vision.png"}
+            src={"/images/about/vision.png"}
             width={360}
             height={200}
             alt="vision"
+            // className="w-auto h-auto"
           />
           {/* <img src='/vision.png' className='justify-center' alt='visionn'/> */}
-
         </div>
       </div>
 
@@ -82,19 +76,15 @@ export default function page() {
       </div>
 
       <div className="grid md:grid-cols-2 ">
-
         <div className="w-full flex justify-center items-center md:px-4 md:ml-4 xl:-mt-24 px-6 sm:px-0">
-        
           <Image
-            src={"/images/About/story.png"}
+            src={"/images/about/story.png"}
             width={500}
             height={300}
             alt="story"
+            // className="w-auto h-auto"
           />
-        
-
         </div>
-
 
         <div className=" sm:mt-8 xl:mx-12 md:mt-0 ">
           <div className='sm:px-10 sm:text-center px-4 md:px-14 xl:px-0 mt-6 flex-auto xl:h-[28rem] xl:w-[34rem] flex-col md:text-left shrink-0 text-black font-["Khand"] md:text-base font-medium xl:tracking-wider '>
@@ -117,7 +107,6 @@ export default function page() {
           </div>
         </div>
       </div>
-
 
       <div className='mt-6 text-center w-full  h-[5rem]  text-[#906953] font-["Khand"] md:text-4xl xl:text-5xl sm:text-3xl md:mt-12 font-semibold sm:my-10 '>
         BEST EVENTS

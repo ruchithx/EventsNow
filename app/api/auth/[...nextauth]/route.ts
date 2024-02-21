@@ -96,6 +96,27 @@ export const authOptions: NextAuthOptions = {
 
       return true;
     },
+    async jwt(params: {
+      token: any;
+      user: any;
+      session?: any;
+      // account?: any | null | undefined;
+      // profile?: any | undefined;
+      // isNewUser?: boolean | undefined;
+    }) {
+      console.log("jwt params 🦊🦒🐯🦁");
+      console.log(params.token, params.user, params.session);
+
+      if (params.user) {
+        console.log("User:", params.user);
+        // Handle user-related logic here
+      } else {
+        console.log("User is undefined");
+        // Handle the case when the user is undefined
+      }
+
+      return params.token;
+    },
   },
 
   pages: {

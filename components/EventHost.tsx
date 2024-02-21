@@ -38,7 +38,7 @@ function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
           <>
             <MyEventCard
               OrgName={"EvetnNow Studios "}
-              image={"././image 1.png"}
+              image={"/images/profile/ProfilePicture.png"}
               btn="Show Details"
             />
           </>

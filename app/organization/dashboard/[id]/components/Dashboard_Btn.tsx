@@ -19,7 +19,7 @@ export default function Dashboard_Btn({
     <button onClick={onClick} className="  hover:opacity-80  my-12 mt-2 ">
       <div className=" flex lg:gap-3 xl:gap-5 gap-5	">
         <Image
-          src={`/images/Organization/${img}`}
+          src={`/images/organization/${img}`}
           alt="team"
           width={24}
           height={24}

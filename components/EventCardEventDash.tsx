@@ -75,7 +75,7 @@ function EventCardEventDash({
 
         <div className="flex">
           <Image
-            src="/images/ReusableComponents/location1.svg"
+            src="/images/reusableComponents/location1.svg"
             width={32}
             height={32}
             alt="event picture"
@@ -87,7 +87,7 @@ function EventCardEventDash({
 
         <div className="flex">
           <Image
-            src="/images/ReusableComponents/Calander.svg"
+            src="/images/reusableComponents/Calander.svg"
             width={32}
             height={32}
             alt="event picture"
@@ -100,7 +100,7 @@ function EventCardEventDash({
         <div className="flex grid grid-cols-2">
           <div className=" flex">
             <Image
-              src="/images/ReusableComponents/Time.svg"
+              src="/images/reusableComponents/Time.svg"
               width={32}
               height={32}
               alt="event picture"

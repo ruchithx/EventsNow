@@ -3,6 +3,7 @@ const nextConfig = {
   // images: {
   //   domains: ["firebasestorage.googleapis.com"],
   // },
+  // reactStrictMode: false,
   images: {
     dangerouslyAllowSVG: true,
     remotePatterns: [

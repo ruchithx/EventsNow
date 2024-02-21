@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import connectMongoDB from "@/lib/mongo/mongodb";
-import Permission from "@/models/permissionModel";
-import Organization from "@/models/organizationModel";
+import Permission from "../../../../../models/permissionModel";
+import Organization from "../../../../../models/organizationModel";
+// import Permission from "@/models/permissionModel";
+// import Organization from "@/models/organizationModel";
 
 export const POST = async (req: Request) => {
   try {
     const { id } = await req.json();
-    console.log(id);
 
     // const objectId = new mongoose.Types.ObjectId(id);
     // console.log(objectId);
@@ -16,8 +17,6 @@ export const POST = async (req: Request) => {
     const user = await Permission.find({
       userId: id,
     });
-
-    console.log(user);
 
     if (!user) {
       return new NextResponse("No data found", { status: 404 });
@@ -36,7 +35,10 @@ export const POST = async (req: Request) => {
         if (!data) {
           return;
         }
-        console.log(data[0]);
+
+        if (data.length === 0) {
+          return new NextResponse("No data found", { status: 404 });
+        }
 
         const name = data[0].organizationName;
         const image = data[0].postImageLink;

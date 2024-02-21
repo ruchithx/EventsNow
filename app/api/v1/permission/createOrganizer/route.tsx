@@ -5,7 +5,19 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   const { organizationId, userId, globalPermission } = await req.json();
 
-  connectMongoDB();
+  await connectMongoDB();
+
+  const user = await Permission.findOne({
+    userId: userId,
+    organizationId: organizationId,
+  });
+
+  if (user) {
+    return NextResponse.json(
+      { message: "User already exists in the organization" },
+      { status: 400 }
+    );
+  }
 
   const res = await Permission.create({
     globalPermission,

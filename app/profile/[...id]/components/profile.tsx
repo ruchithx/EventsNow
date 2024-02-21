@@ -1,9 +1,8 @@
 "use client";
 import React from "react";
-import ProfileCard from "./ProfileCard";
-import ProfCard from "./ProfCard";
+import ProfCard from "./ProfileCard";
 
-export default function profile() {
+export default function Profile() {
   return (
     <div className=" p-4 col-span-1 sm:col-span-2 lg:col-span-3 h-fit w-fit items-center justify-center rounded-xl shadow-3xl bg-custom-lightorange">
       <div className="h-4 bg-white w-fit p-5 rounded-md flex items-center justify-center whitespace-nowrap">
@@ -29,8 +28,7 @@ export default function profile() {
 
       <ProfCard
         profilePic="./image 3.png"
-
-        name="Ashan Dilsara"
+        name="Ruchith samarawickrama"
         accountType="Organization Account "
         email="ashandilsara8@gmail.com"
       />

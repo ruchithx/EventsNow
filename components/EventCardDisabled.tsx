@@ -43,7 +43,7 @@ export default function EventCardDisabled({
           <div className="flex col-span-5">
             <Image
               className="mt-1"
-              src={"/images/Organization/location1.svg"}
+              src={"/images/organization/location1.svg"}
               alt={"pin-fill"}
               width={47}
               height={47}
@@ -55,7 +55,7 @@ export default function EventCardDisabled({
           <div className="col-span-1 ml-4 border-r-[1px] border-solid border-white h-10 w-1"></div>
           <div className=" ml-1 flex col-span-6">
             <Image
-              src={"/images/ReusableComponents/Date.svg"}
+              src={"/images/reusableComponents/Date.svg"}
               alt={"time-fill"}
               width={30}
               height={24}

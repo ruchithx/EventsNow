@@ -78,10 +78,10 @@ export default function Dashboard() {
       >
         <div className="block md:ml-0 ml-2 ">
           <Image
-            src="/images/Organization/couldWithThreeDots.svg"
+            src="/images/organization/couldWithThreeDots.svg"
             alt="revenue"
-            width={100}
-            height={100}
+            width={80}
+            height={80}
           />
         </div>
         <div className="flex flex-col   gap-4 items-start justify-center">
@@ -106,10 +106,10 @@ export default function Dashboard() {
         {" "}
         <div className="block md:ml-0 ml-2">
           <Image
-            src="/images/Organization/couldWithThreeDots.svg"
+            src="/images/organization/couldWithThreeDots.svg"
             alt="revenue"
-            width={100}
-            height={100}
+            width={80}
+            height={80}
           />
         </div>
         <div className="flex flex-col  gap-4 items-start justify-center">
