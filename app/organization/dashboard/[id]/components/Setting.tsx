@@ -117,7 +117,7 @@ export default function Setting() {
         </div>
       </div>
       <div className="w-11/12 lg:w-full ">
-        <div className="flex justify-between text-3xl sm:w-full lg:w-9/12 md:w-full font-semibold text-custom-orange	font-IBM">
+        <div className="flex font-medium	 justify-between text-3xl sm:w-full lg:w-9/12 md:w-full  text-custom-orange	font-IBM">
           ADVANCED DETAILS
           {!isEditingAdvanced && (
             <button

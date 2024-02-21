@@ -8,7 +8,7 @@ import Image from "next/image";
 import OrganizationRequestPending from "@/components/OrganizationRequestPending";
 
 import Dashboard_Btn from "@/app/organization/dashboard/[id]/components/Dashboard_Btn";
-import Profile from "./profile";
+import Profile from "./Profile";
 
 export default function CheckActive() {
   const {

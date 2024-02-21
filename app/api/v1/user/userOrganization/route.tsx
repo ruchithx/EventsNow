@@ -9,7 +9,6 @@ import Organization from "../../../../../models/organizationModel";
 export const POST = async (req: Request) => {
   try {
     const { id } = await req.json();
-    console.log(id);
 
     // const objectId = new mongoose.Types.ObjectId(id);
     // console.log(objectId);
@@ -19,8 +18,6 @@ export const POST = async (req: Request) => {
       userId: id,
     });
 
-    console.log(user);
-
     if (!user) {
       return new NextResponse("No data found", { status: 404 });
     }
@@ -28,14 +25,12 @@ export const POST = async (req: Request) => {
     const needOrganizationID = user.map(
       (organization: any) => organization.organizationId
     );
-    console.log(needOrganizationID);
 
     const organization = await Promise.all(
       needOrganizationID.map(async (organizationID: any) => {
         const data = await Organization.find({
           _id: organizationID,
         });
-        console.log(data);
 
         if (!data) {
           return;

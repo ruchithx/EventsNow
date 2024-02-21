@@ -16,6 +16,7 @@ interface props {
   userActive: boolean;
   toggleMenu: () => void;
   clickLogoutBtn: () => void;
+  userImage: string;
 }
 
 const ResponsiveMenuBar = memo(function ResponsiveMenuBar({
@@ -23,6 +24,7 @@ const ResponsiveMenuBar = memo(function ResponsiveMenuBar({
   toggleMenu,
   clickLogoutBtn,
   userActive,
+  userImage,
 }: props) {
   return (
     <div
@@ -44,7 +46,7 @@ const ResponsiveMenuBar = memo(function ResponsiveMenuBar({
       {userActive && (
         <div className="flex justify-between items-center mt-5">
           <Image
-            src={`/images/reusableComponents/profilpic.jpg`}
+            src={userImage}
             alt="profile picture"
             width={50}
             height={20}
@@ -55,7 +57,6 @@ const ResponsiveMenuBar = memo(function ResponsiveMenuBar({
           </div>
         </div>
       )}
-
       <div className="flex flex-col py-6 text-black">
         <ul>
           <Link href="/">
