@@ -2,30 +2,14 @@ import React, { useState, useEffect } from "react";
 import SuperadminPages from "@/app/admin/dashboard/[id]/components/SuperadminPages";
 import Available_Orgs from "@/app/admin/dashboard/[id]/components/Available_Orgs";
 import { Organization } from "@/app/organization/dashboard/[id]/Type";
+import { useAdmin } from "../AdminContextFile";
 
-async function getData() {
-  const res = await fetch(
-    "http://localhost:3000/api/v1/organization/approvedOrganization",
-    {
-      next: {
-        revalidate: 30,
-      },
-    }
-  );
-  return res.json();
+interface orgProps {
+  organization: Organization[];
 }
 
-export default function Notification() {
-  const [data, setData] = useState<Organization[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getData();
-      setData(result);
-    };
-
-    fetchData();
-  }, []);
+export default function Organization() {
+  const { organization } = useAdmin() as orgProps;
   return (
     <div>
       <SuperadminPages
@@ -34,10 +18,8 @@ export default function Notification() {
         text="Search Organizations"
         customComponent={
           <>
-            {data.map((me) => (
-              <div key={me._id}>
-                <Available_Orgs organization={me} />
-              </div>
+            {organization.map((me) => (
+              <Available_Orgs key={me._id} organization={me} />
             ))}
           </>
         }

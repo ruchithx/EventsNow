@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./ModalContext";
 import BlacklistModalContent from "./modals/BlacklistModal";
-import { User } from "@/app/admin/Type";
+
 interface PresonDetailsBar {
   name: string;
   email: string;
@@ -22,7 +22,7 @@ export default function AdminPersonDetailsBar({
         <div className="text-base font-light col-span-6	mr-2 md:mb-0 mb-1 ms-2 md:ms-2 lg:ms-0 flex ">
           {email}
         </div>
-        <div className="xl:col-span-1  grid shadow-3xl">
+        <div className="xl:col-span-1  grid ">
           <button
             onClick={() => setShowBlacklistModal(true)}
             className={`bg-custom-green h-[34px]  rounded-[5px] w-8 lg:w-[210px] md:w-12 ms-28 md:ms-[180px] lg:ms-0 shadow-3xl`}
