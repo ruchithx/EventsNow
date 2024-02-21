@@ -1,11 +1,12 @@
 "use client";
-
-
 import Footer from "@/components/Footer";
+import HostSideBar from "./Host/components/HostSideBar";
+
 
 export default function Home() {
   return (
-    <div className="">
+    <div>
+      <HostSideBar/>
       <Footer />
     </div>
   );

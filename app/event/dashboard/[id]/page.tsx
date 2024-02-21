@@ -3,6 +3,7 @@ import SideBar from "./components/SideBar";
 import Content from "./components/Content";
 import { EventDashContext } from "./EventDashContext";
 
+
 export default function page() {
   return (
     <div>
