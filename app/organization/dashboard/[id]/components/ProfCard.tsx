@@ -32,7 +32,7 @@ function ProfCard({ profilePic, name, eventCount, teamCount }: ProfileCard) {
               width={30}
               height={30}
             />
-            User Count -10
+            User Count -{teamCount}
           </div>
           <div className="md:text-sm lg:text-base font-medium	 flex justify-center items-center gap-3">
             <Image
@@ -41,7 +41,7 @@ function ProfCard({ profilePic, name, eventCount, teamCount }: ProfileCard) {
               width={26}
               height={26}
             />
-            Event Count -0
+            Event Count -{eventCount}
           </div>
         </p>
       </div>

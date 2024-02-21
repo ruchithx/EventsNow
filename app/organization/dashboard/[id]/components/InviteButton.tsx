@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-
 import Image from "next/image";
 import { OrgContext } from "../Type";
 import { useOrg } from "../OrgContext";
+import { error, success } from "@/util/Toastify";
 
 export default function InviteButton() {
   const { organization } = useOrg() as OrgContext;
   const [email, setEmail] = useState<string>("");
 
-  function handleclick() {
-    const res = fetch(
+  async function handleclick() {
+    const res = await fetch(
       "http://localhost:3000/api/v1/organization/inviteTeamMember",
       {
         method: "POST",
@@ -22,6 +22,15 @@ export default function InviteButton() {
         }),
       }
     );
+
+    const data = await res.json();
+
+    if (data === "No User  exists") {
+      error("No User  exists in the system");
+    }
+    if (data === "Email sent successfully") {
+      success("Invitation sent successfully");
+    }
   }
 
   return (
@@ -46,7 +55,7 @@ export default function InviteButton() {
         className={`bg-custom-green p-1 w-20 rounded`}
         onClick={handleclick}
       >
-        <div className="flex text-white text-sm font-bold justify-center">
+        <div className="flex button text-white text-sm font-bold justify-center">
           Invite
         </div>
       </button>
