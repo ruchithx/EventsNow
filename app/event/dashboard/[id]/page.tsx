@@ -1,21 +1,23 @@
 import React from "react";
+import { EventContextProvider } from "./EventDashContext";
 import SideBar from "./components/SideBar";
-import Content from "./components/Content";
-import { EventDashContext } from "./EventDashContext";
+import Container from "./components/Container";
 
-export default function page() {
+export default function Page() {
   return (
-    <div>
-      <EventDashContext>
-        <div>
-          <div className="grid grid-cols-4">
-            <div className="col-span-1">
-              <SideBar />
-            </div>
-            <div className="col-span-3">{<Content />} </div>
-          </div>
+    <EventContextProvider>
+      <div className="grid grid-cols-12 gap-5 md:gap-2 lg:gap-2 xl:gap-5 mt-5 mx-2">
+        <div className=" col-span-2">
+          <SideBar />
         </div>
-      </EventDashContext>
-    </div>
+        <div className=" col-span-7">
+          
+          middle part
+        </div>
+        <div className=" ">
+          right hand side component
+        </div>
+      </div>
+    </EventContextProvider>
   );
 }
