@@ -1,11 +1,20 @@
 import React from "react";
 import axios from "axios";
 import { Organization } from "@/app/organization/dashboard/[id]/Type";
+import { success } from "@/util/Toastify";
+import { useAdmin } from "../../AdminContextFile";
 
 interface DenyModalProps {
   organization: Organization;
 }
+type ContextData = {
+  setNotification: React.Dispatch<React.SetStateAction<Organization[]>>;
+  setOrganization: React.Dispatch<React.SetStateAction<Organization[]>>;
+  notification: Organization[];
+};
 const DenyModalContent = ({ organization }: DenyModalProps) => {
+  const { setOrganization, setNotification, notification } =
+    useAdmin() as ContextData;
   const handleDeny = async () => {
     try {
       await axios.put(
@@ -13,6 +22,13 @@ const DenyModalContent = ({ organization }: DenyModalProps) => {
         {
           isActive: false,
         }
+      );
+
+      const updatedNotifications = [...notification, organization];
+      success("Organization Denied successfully");
+      setNotification(updatedNotifications);
+      setOrganization((prev: Organization[]) =>
+        prev.filter((org) => org._id !== organization._id)
       );
     } catch (error) {
       console.error("Error updating organization:", error);

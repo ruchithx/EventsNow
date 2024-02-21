@@ -1,21 +1,47 @@
 import React from "react";
 import axios from "axios";
 import { Organization } from "@/app/organization/dashboard/[id]/Type";
+import { useAdmin } from "../../AdminContextFile";
+import { success } from "@/util/Toastify";
+import { error } from "@/util/Toastify";
+
 interface Data {
   organization: Organization;
 }
 
+type ContextData = {
+  setOrganization: React.Dispatch<React.SetStateAction<Organization[]>>;
+  setNotification: React.Dispatch<React.SetStateAction<Organization[]>>;
+  notification: Organization[];
+};
+
 const AllowModalContent = ({ organization }: Data) => {
+  const { setOrganization, setNotification, notification } =
+    useAdmin() as ContextData;
+
   const handleAllow = async () => {
     try {
-      await axios.put(
+      const res = await axios.put(
         `/api/v1/organization/updateOrganization/${organization._id}`,
         {
           isActive: true,
         }
       );
+
+      if (res.status !== 200) {
+        error("Failed to Allow the organization");
+        return;
+      }
+
+      const newNotification = notification.filter(
+        (org) => org._id !== organization._id
+      );
+      success("Organization Allowed successfully");
+      setNotification(newNotification);
+
+      setOrganization((prev: Organization[]) => [...prev, organization]);
     } catch (error) {
-      console.error("Error updating organization:", error);
+      console.error("Error updating......", error);
     }
   };
   return (

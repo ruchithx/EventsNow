@@ -23,6 +23,7 @@ function AdminContextProvider({ children }: AdminContextProps) {
   const [notification, setNotification] = useState<Organization[]>([]);
   const [organization, setOrganization] = useState<Organization[]>([]);
   const [payment, setPayment] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const handleNotification: voidFunc = () => {
     setStatus("Notification");
@@ -41,6 +42,23 @@ function AdminContextProvider({ children }: AdminContextProps) {
   };
 
   async function getData() {
+    setIsLoading(true);
+    const res3 = await fetch(
+      "http://localhost:3000/api/v1/organization/getAllOrganization"
+    );
+
+    const { organization } = await res3.json();
+
+    const resActive = organization.filter((org: Organization) => org.isActive);
+    const notActive = organization.filter((org: Organization) => !org.isActive);
+
+    if (resActive.length !== 0) {
+      setOrganization(resActive);
+    }
+    if (notActive.length !== 0) {
+      setNotification(notActive);
+    }
+
     const res = await fetch("http://localhost:3000/api/v1/user/getAllUser", {
       next: {
         revalidate: 30,
@@ -61,51 +79,7 @@ function AdminContextProvider({ children }: AdminContextProps) {
     const finalRes1 = await res2.json();
     setEvent(finalRes1);
 
-    const res3 = await fetch(
-      "http://localhost:3000/api/v1/organization/getAllOrganization"
-    );
-
-    const { organization } = await res3.json();
-
-    console.log(organization);
-
-    const resActive = organization.filter((org: Organization) => org.isActive);
-    const notActive = organization.filter((org: Organization) => !org.isActive);
-
-    // const resActive = organization.filter((org: Organization) => org.isActive);
-    // console.log(resActive);
-
-    if (resActive) {
-      const finalRes2 = resActive;
-      console.log(finalRes2);
-      setOrganization(finalRes2);
-    } else if (notActive) {
-      const finalRes3 = notActive;
-      console.log(finalRes3);
-      setNotification(finalRes3);
-    }
-
-    // const res3 = await fetch(
-    //   "http://localhost:3000/api/v1/organization/requestOrganization",
-    //   {
-    //     next: {
-    //       revalidate: 30,
-    //     },
-    //   }
-    // );
-    // const finalRes2 = await res3.json();
-    // setNotification(finalRes2);
-
-    // const res4 = await fetch(
-    //   "http://localhost:3000/api/v1/organization/approvedOrganization",
-    //   {
-    //     next: {
-    //       revalidate: 30,
-    //     },
-    //   }
-    // );
-    // const finalRes3 = await res4.json();
-    // setOrganization(finalRes3);
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -131,6 +105,7 @@ function AdminContextProvider({ children }: AdminContextProps) {
         setEvent,
         setUser,
         setPayment,
+        isLoading,
       }}
     >
       {children}

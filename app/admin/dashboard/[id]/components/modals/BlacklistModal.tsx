@@ -14,7 +14,7 @@ const BlacklistModalContent = ({ userId }: Blacklistprops) => {
       }
 
       const data = await response.json();
-      console.log(data); // Log the response from the server
+      console.log(data);
     } catch (error) {
       console.error("Error blacklisting user:", error);
     }

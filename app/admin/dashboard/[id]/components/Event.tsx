@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import SuperadminPages from "@/app/admin/dashboard/[id]/components/SuperadminPages";
-import Superadminevents from "./Superadminevent";
 import { Event } from "@/app/admin/Type";
 import { useAdmin } from "../AdminContextFile";
+import Upcoming_Events from "./Superadminevent";
 
 interface EventData {
   event: Event[];
 }
 
 export default function Event() {
-  const events = useAdmin() as EventData;
+  const { event } = useAdmin() as EventData;
 
   return (
     <div>
@@ -19,19 +19,9 @@ export default function Event() {
         text="Search Events"
         customComponent={
           <>
-            {/* {events.map((event) => (
-             
-                <Superadminevents
-                key={event._id}
-                  EventName={event.eventName}
-                  image={"PictureOfGitarist.png"}
-                  Location="Matara"
-                  Date={event.eventStartDate}
-                  Time={event.startTime}
-                  Ratings={"2.45"}
-                />
-           
-            ))} */}
+            {event.map((e) => (
+              <Upcoming_Events key={e._id} event={e} />
+            ))}
           </>
         }
       />

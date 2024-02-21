@@ -5,11 +5,11 @@ import { Organization } from "@/app/admin/Type";
 import { useAdmin } from "../AdminContextFile";
 
 interface notificationProps {
-  organization: Organization[];
+  notification: Organization[];
 }
 
 export default function Notification() {
-  const { organization } = useAdmin() as notificationProps;
+  const { notification } = useAdmin() as notificationProps;
 
   return (
     <>
@@ -19,7 +19,7 @@ export default function Notification() {
         text="Search"
         customComponent={
           <>
-            {organization.map((org) => (
+            {notification.map((org) => (
               <Org_RequestHandle key={org._id} organization={org} />
             ))}
           </>

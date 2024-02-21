@@ -1,19 +1,26 @@
 export type voidFunc = () => void;
 
+export type DashBoardStatus = "Notification";
+("Organization");
+("Event");
+("User");
+("Payments");
+
 export interface AdminContext {
   status: string;
+  isLoading: boolean;
   handleNotification: voidFunc;
   handleOrganization: voidFunc;
   handleEvent: voidFunc;
   handleUser: voidFunc;
   handlePayments: voidFunc;
   notification: Organization[];
-  organization: any;
+  organization: Organization[];
   event: Event[];
   user: User[];
   payment: any;
   setNotification: React.Dispatch<React.SetStateAction<Organization[]>>;
-  setOrganization: React.Dispatch<React.SetStateAction<any>>;
+  setOrganization: React.Dispatch<React.SetStateAction<Organization[]>>;
   setEvent: React.Dispatch<React.SetStateAction<Event[]>>;
   setUser: React.Dispatch<React.SetStateAction<User[]>>;
   setPayment: React.Dispatch<React.SetStateAction<any>>;

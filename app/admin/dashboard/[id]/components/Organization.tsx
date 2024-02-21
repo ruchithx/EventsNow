@@ -8,7 +8,7 @@ interface orgProps {
   organization: Organization[];
 }
 
-export default function Notification() {
+export default function Organization() {
   const { organization } = useAdmin() as orgProps;
   return (
     <div>
