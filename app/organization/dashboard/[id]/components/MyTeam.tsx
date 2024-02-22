@@ -20,7 +20,7 @@ export default function MyTeam() {
   async function handleTeam() {
     setLoading(true);
     const res2 = await fetch(
-      "http://localhost:3000/api/v1/permission/getOrganiztionUsers",
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/permission/getOrganiztionUsers`,
       {
         method: "POST",
         mode: "cors",

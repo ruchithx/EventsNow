@@ -37,7 +37,7 @@ export default function Settings() {
     function () {
       async function postOther() {
         const res = await fetch(
-          `http://localhost:3000/api/v1/user/updateUser/${params.id}`,
+          `${process.env.NEXT_PUBLIC_URL}/api/v1/user/updateUser/${params.id}`,
           {
             method: "POST",
             mode: "cors",
@@ -78,7 +78,7 @@ export default function Settings() {
         meal: meal,
       };
       const res = await fetch(
-        `http://localhost:3000/api/v1/user/updateUser/${params.id}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/user/updateUser/${params.id}`,
         {
           method: "PUT",
           headers: {

@@ -21,8 +21,8 @@ export async function POST(req) {
     passwordConfirm,
   } = await req.json();
 
-  await connectMongoDB();
-  await User.create({
+  const db = await connectMongoDB();
+  const res = await User.create({
     email,
     firstName,
     lastName,
@@ -32,5 +32,8 @@ export async function POST(req) {
     image:
       "https://firebasestorage.googleapis.com/v0/b/eventsnow-fb0ee.appspot.com/o/eventCover-Flashback?alt=media&token=6f6021ae-dd93-4d5c-931c-9dc50ae5dd4f",
   });
+
+  if (!res) return NextResponse.json({ message: "there is a error" });
+
   return NextResponse.json({ message: "success" }, { status: 201 });
 }

@@ -15,7 +15,7 @@ export default function NewUser() {
         return;
       }
       const res = await fetch(
-        "http://localhost:3000/api/v1/permission/createOrganizer",
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/permission/createOrganizer`,
         {
           method: "POST",
           headers: {

@@ -88,7 +88,7 @@ export default function PermissionOneEvent() {
     };
 
     const res = await fetch(
-      ` http://localhost:3000/api/v1/permission/updateEventPermission/${permissionID}`,
+      ` ${process.env.NEXT_PUBLIC_URL}/api/v1/permission/updateEventPermission/${permissionID}`,
       { method: "PUT", body: JSON.stringify(data) }
     );
     if (!res.ok) {

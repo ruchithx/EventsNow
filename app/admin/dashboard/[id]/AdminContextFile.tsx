@@ -43,7 +43,7 @@ function AdminContextProvider({ children }: AdminContextProps) {
   async function getData() {
     setIsLoading(true);
     const res3 = await fetch(
-      "http://localhost:3000/api/v1/organization/getAllOrganization"
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`
     );
 
     const { organization } = await res3.json();
@@ -58,17 +58,20 @@ function AdminContextProvider({ children }: AdminContextProps) {
       setNotification(notActive);
     }
 
-    const res = await fetch("http://localhost:3000/api/v1/user/getAllUser", {
-      next: {
-        revalidate: 30,
-      },
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getAllUser`,
+      {
+        next: {
+          revalidate: 30,
+        },
+      }
+    );
     const finalRes = await res.json();
 
     setUser(finalRes);
 
     const res2 = await fetch(
-      "http://localhost:3000/api/v1/event/getAllEvents",
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getAllEvents`,
       {
         next: {
           revalidate: 30,

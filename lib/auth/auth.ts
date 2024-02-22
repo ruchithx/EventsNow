@@ -65,7 +65,7 @@ export const authOptions: NextAuthOptions = {
         const image = user?.image;
 
         const data = await fetch(
-          "http://localhost:3000/api/v1/user/signInRegister",
+          `${process.env.NEXT_PUBLIC_URL}/api/v1/user/signInRegister`,
           {
             method: "POST",
             headers: {

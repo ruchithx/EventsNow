@@ -52,13 +52,16 @@ export default function LoginFormBasic() {
         return;
       }
 
-      const user = await fetch("http://localhost:3000/api/v1/user/exist", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
+      const user = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/user/exist`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
 
       const dat = await user.json();
 
@@ -68,11 +71,14 @@ export default function LoginFormBasic() {
         return;
       }
 
-      const res = await fetch("http://localhost:3000/api/v1/user/signup", {
-        method: "POST",
-        mode: "cors",
-        body: JSON.stringify(data),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/user/signup`,
+        {
+          method: "POST",
+          mode: "cors",
+          body: JSON.stringify(data),
+        }
+      );
 
       if (!res.ok) {
         setIsSubmitting(false);
