@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 
 import ProfileSettings from "../components/ProfileSettings";
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
@@ -6,17 +7,94 @@ import Profsettings from "./Profsettings";
 import ChangePassword from "./ChangePassword";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { UserDetails, useProf } from "../ProfContext";
+import { useParams } from "next/navigation";
+import { error, success } from "@/util/Toastify";
+type Detailss = {
+  userDeatails: UserDetails;
+  setLname: React.Dispatch<React.SetStateAction<string>>;
+  setFname: React.Dispatch<React.SetStateAction<string>>;
+  fname: string;
+  lname: string;
+};
 
 export default function Settings() {
-  const [birthday, setBirthday] = useState(null);
-  const [showOtherInfo, setShowOtherInfo] = useState(false); // State for toggling other information
+  const params = useParams();
+  const [showOtherInfo, setShowOtherInfo] = useState(false);
 
-  const handleDateChange = (date: any) => {
-    setBirthday(date);
-  };
+  const [mobile, setMobile] = useState<number>();
+  const [birth, setBirth] = useState<any>();
+  const [pemail, setPemail] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+  const [gender, setGender] = useState<string>("");
+  const [tshirt, setTshirt] = useState<string>("");
+  const [meal, setMeal] = useState<string>("");
 
   const toggleOtherInfo = () => {
     setShowOtherInfo(!showOtherInfo);
+  };
+  useEffect(
+    function () {
+      async function postOther() {
+        const res = await fetch(
+          `http://localhost:3000/api/v1/user/updateUser/${params.id}`,
+          {
+            method: "POST",
+            mode: "cors",
+            body: JSON.stringify(params.id),
+          }
+        );
+        if (!res.ok) {
+          return;
+        }
+        const response = await res.json();
+
+        setMobile(response.mobileNumber);
+        setBirth(response.birthday);
+        setPemail(response.primaryEmail);
+        setAddress(response.address);
+        setGender(response.gender);
+        setTshirt(response.tshirt);
+        setMeal(response.meal);
+      }
+      postOther();
+    },
+    [params.id]
+  );
+  const { userDeatails, setLname, setFname, lname, fname } =
+    useProf() as Detailss;
+
+  const handleSave = async () => {
+    try {
+      const data = {
+        firstName: fname,
+        lastName: lname,
+        birthday: birth,
+        mobileNumber: mobile,
+        primaryEmail: pemail,
+        address: address,
+        gender: gender,
+        tshirtSize: tshirt,
+        meal: meal,
+      };
+      const res = await fetch(
+        `http://localhost:3000/api/v1/user/updateUser/${params.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      if (!res.ok) {
+        error("Failed to save settings");
+        return;
+      }
+      success("Data save successfully");
+    } catch (error) {
+      console.error("Error saving settings:", error);
+    }
   };
 
   return (
@@ -30,26 +108,50 @@ export default function Settings() {
             <div className="pb-12">
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <form className="sm:col-span-4">
-                  <Profsettings name="first name" type="text" />
-                  <Profsettings name="last name" type="text" />
-                  <Profsettings name="email" type="email" />
+                  <Profsettings
+                    name="first name"
+                    type="text"
+                    value={fname}
+                    setFname={setFname}
+                  />
+                  <Profsettings
+                    name="last name"
+                    type="text"
+                    value={lname}
+                    setFname={setLname}
+                  />
                 </form>
                 <div className="sm:col-span-4">
                   <button
-                    onClick={toggleOtherInfo} // Button to toggle visibility of additional information
+                    onClick={toggleOtherInfo}
                     className="text-custom-orange hover:underline mt-4"
                   >
                     {showOtherInfo ? "Hide" : "Show"} Other Informations
                   </button>
                 </div>
 
-                {showOtherInfo && ( // Conditional rendering to show additional information section
+                {showOtherInfo && (
                   <form className="sm:col-span-4">
                     <div className="sm:col-span-4">
-                      <Profsettings name="Mobile Number" type="text" />
-                      <Profsettings name="Primary email address" type="text" />
+                      <Profsettings
+                        name="Mobile Number"
+                        type="text"
+                        value={mobile}
+                        setFname={setMobile}
+                      />
+                      <Profsettings
+                        name="Primary email address"
+                        type="text"
+                        value={pemail}
+                        setFname={setPemail}
+                      />
 
-                      <Profsettings name="address" type="text" />
+                      <Profsettings
+                        name="address"
+                        type="text"
+                        value={address}
+                        setFname={setAddress}
+                      />
                       <div className="sm:col-span-4">
                         <label
                           htmlFor="birthday"
@@ -60,9 +162,10 @@ export default function Settings() {
                         <DatePicker
                           placeholderText="Enter your Birthday"
                           id="birthday"
-                          selected={birthday}
-                          onChange={handleDateChange}
-                          dateFormat="MM/dd/yyyy"
+                          selected={birth}
+                          onChange={(date) => setBirth(date)}
+                          dateFormat="dd/MM/yyyy"
+                          yearDropdownItemNumber={50}
                           className="mt-1 p-2 border-2 border-custom-orange rounded-md focus:outline-none focus:ring-custom-orange focus:border-custom-orange block w-full shadow-sm sm:text-sm"
                         />
                       </div>
@@ -75,6 +178,8 @@ export default function Settings() {
                         </label>
                         <div className="mt-2">
                           <select
+                            value={gender}
+                            onChange={(e) => setGender(e.target.value)}
                             id="gender"
                             name="gender"
                             autoComplete="gender-name"
@@ -103,6 +208,8 @@ export default function Settings() {
                         </label>
                         <div className="mt-2">
                           <select
+                            value={tshirt}
+                            onChange={(e) => setTshirt(e.target.value)}
                             id="tShirt"
                             name="tShirt"
                             autoComplete="tShirt-name"
@@ -127,7 +234,12 @@ export default function Settings() {
                           </select>
                         </div>
                       </div>
-                      <Profsettings name="meal preferences" type="text" />
+                      <Profsettings
+                        name="meal preferences"
+                        type="text"
+                        value={meal}
+                        setFname={setMeal}
+                      />
                     </div>
                   </form>
                 )}
@@ -136,8 +248,9 @@ export default function Settings() {
           </div>
           <div className=" flex items-center justify-start gap-x-6 sm:col-span-3">
             <button
+              onClick={handleSave}
               type="submit"
-              className="bg-custom-orange text-white py-2 px-4 rounded-md shadow-sm hover:bg-custom-orange focus:outline-none focus:ring-2 focus:ring-custom-orange focus:ring-offset-2 sm:text-sm"
+              className="bg-custom-orange button text-white py-2 px-4 rounded-md shadow-sm hover:bg-custom-orange focus:outline-none focus:ring-2 focus:ring-custom-orange focus:ring-offset-2 sm:text-sm"
             >
               Save
             </button>
