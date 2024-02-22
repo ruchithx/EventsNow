@@ -1,6 +1,6 @@
 import React from "react";
-import { useModal } from "./ModalContext";
-import { UserData } from "./Org_RequestHandle";
+import useModal from "./ModalContext";
+import UserData from "./Org_RequestHandle";
 import Image from "next/image";
 
 interface ModalProps {

@@ -59,6 +59,7 @@
     "@storybook/nextjs": "^7.6.6",
     "@storybook/react": "^7.6.6",
     "@storybook/test": "^7.6.6",
+    "@types/bcrypt": "^5.0.2",
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20",

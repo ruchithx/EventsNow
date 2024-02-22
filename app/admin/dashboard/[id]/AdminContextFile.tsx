@@ -11,7 +11,6 @@ import {
 
 interface AdminContextProps {
   children: React.ReactNode;
-  organization: Organization;
 }
 
 const adminContext = createContext<AdminContext | string>("");
