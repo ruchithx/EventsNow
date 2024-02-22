@@ -7,12 +7,12 @@ export async function POST(req: Request, response: NextApiResponse) {
   try {
     connectMongoDB();
 
-    response.writeHead(200, {
-      "Access-Control-Allow-Origin":
-        "https://events-kc6urfcvu-ruchith-nusaras-projects.vercel.app",
-      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type",
-    });
+    // response.writeHead(200, {
+    //   "Access-Control-Allow-Origin":
+    //     "https://events-kc6urfcvu-ruchith-nusaras-projects.vercel.app",
+    //   "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    //   "Access-Control-Allow-Headers": "Content-Type",
+    // });
 
     const { email } = await req.json();
 

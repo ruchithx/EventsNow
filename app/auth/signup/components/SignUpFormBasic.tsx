@@ -55,6 +55,7 @@ export default function LoginFormBasic() {
       const user = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/api/v1/user/exist`,
         {
+          mode: "no-cors",
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -75,7 +76,7 @@ export default function LoginFormBasic() {
         `${process.env.NEXT_PUBLIC_URL}/api/v1/user/signup`,
         {
           method: "POST",
-          mode: "cors",
+          mode: "no-cors",
           body: JSON.stringify(data),
         }
       );
