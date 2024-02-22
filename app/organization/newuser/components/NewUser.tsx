@@ -2,7 +2,7 @@
 import { error, success } from "@/util/Toastify";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 export default function NewUser() {
   const router = useSearchParams();
@@ -39,16 +39,15 @@ export default function NewUser() {
 
     // Check if the code is running in a browser environment
     createOrganizer();
-  }, [organizationId, userId]); // Include the missing dependencies 'organizationId' and 'userId' in the dependency array.
+  }, []); // Include the missing dependencies 'organizationId' and 'userId' in the dependency array.
 
   return (
     <div className=" flex flex-col">
       <h1>You have add to the organization team </h1>
       <Link href="/">
         <button className="button w-1/5   bg-custom-orange">
-          {" "}
           Click ,go to the EventNow
-        </button>{" "}
+        </button>
       </Link>
     </div>
   );

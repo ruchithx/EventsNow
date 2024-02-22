@@ -1,10 +1,17 @@
 import React from "react";
-import NewUser from "./NewUser";
+import NewUser from "./components/NewUser";
+import { Suspense } from "react";
+
+function SearchBarFallback() {
+  return <>placeholder</>;
+}
 
 export default function Page() {
   return (
     <div>
-      <NewUser />
+      <Suspense fallback={<SearchBarFallback />}>
+        <NewUser />
+      </Suspense>
     </div>
   );
 }
