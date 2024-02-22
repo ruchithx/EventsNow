@@ -81,7 +81,7 @@ export default function CheckActive() {
                     <div className="bg-myBrown w-[100px] h-[55px] flex items-center   rounded-full">
                       <div className="bg-custom-orange w-[95px] h-[46px] flex justify-end pr-3 rounded-full">
                         <Image
-                          src="/images/ReusableComponents/responsiveMenuBar.svg"
+                          src="/images/reusableComponents/responsiveMenuBar.svg"
                           alt="menu bar"
                           width={20}
                           height={20}
@@ -103,7 +103,7 @@ export default function CheckActive() {
                     <div className="mx-2 my-2 w-fit p-1 mb-3 ">
                       {/* <MdClose size={20} /> */}
                       <Image
-                        src="/images/ReusableComponents/close.svg"
+                        src="/images/reusableComponents/close.svg"
                         alt="close"
                         width={29}
                         height={29}

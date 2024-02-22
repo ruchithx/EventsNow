@@ -7,18 +7,14 @@ interface Upcoming_Events {
   event: Event;
 }
 
-export default function Upcoming_Events({
-  event,
-}: Upcoming_Events) {
+export default function Upcoming_Events({ event }: Upcoming_Events) {
   const margin = event.eventName.length > 14 ? "mt-4" : " mt-0";
 
   return (
     <div className="bg-[#D9D9D9] h-[450px] my-6 mx-2 rounded-lg md:grid md:grid-cols-2 sm:grid-cols-2 w-[300px] md:w-[480px] lg:w-[800px] md:h-[13.5rem] xl:grid-cols-12 xl:h-[13.5rem] shadow-3xl">
       <div className="pt-4 mx-4 my-4 md:mx-0 md:my-0 md:pt-0 rounded-lg overflow-hidden h-[12.15rem] md:h-[13.5rem] xl:col-span-5">
         <Image
-
-          src={`/images/Admin/${event.postImageLink}`}
-
+          src={`/images/admin/${event.postImageLink}`}
           alt="hay"
           width={410}
           height={200}
