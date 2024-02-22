@@ -3,6 +3,7 @@ import SuperadminPages from "@/app/admin/dashboard/[id]/components/SuperadminPag
 import { Event } from "@/app/admin/Type";
 import { useAdmin } from "../AdminContextFile";
 import Upcoming_Events from "./Superadminevent";
+import EmptyStateComponent from "@/components/EmptyStateComponent";
 
 interface EventData {
   event: Event[];
@@ -10,7 +11,7 @@ interface EventData {
 
 export default function Event() {
   const { event } = useAdmin() as EventData;
-
+  console.log(event);
   return (
     <div>
       <SuperadminPages
@@ -19,9 +20,11 @@ export default function Event() {
         text="Search Events"
         customComponent={
           <>
-            {event.map((e) => (
-              <Upcoming_Events key={e._id} event={e} />
-            ))}
+            {event.length === 0 ? (
+              <EmptyStateComponent message="No Events" />
+            ) : (
+              event.map((e) => <Upcoming_Events key={e._id} event={e} />)
+            )}
           </>
         }
       />

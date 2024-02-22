@@ -10,11 +10,12 @@ type Details = {
 };
 export default function Profile() {
   const { userDeatails, fname, lname } = useProf() as Details;
+  console.log(userDeatails);
 
   return (
     <div className=" p-4 xl:col-span-3 col-span-1 sm:col-span-2  h-fit w-fit items-center justify-center rounded-xl shadow-3xl bg-custom-lightorange">
       <ProfCard
-        profilePic="./image 3.png"
+        profilePic={userDeatails.image}
         name={`${fname} ${lname}`}
         email={userDeatails.email}
       />

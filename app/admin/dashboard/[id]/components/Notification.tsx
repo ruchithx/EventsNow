@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import SuperadminPages from "./SuperadminPages";
 import Org_RequestHandle from "./Org_RequestHandle";
 import { Organization } from "@/app/admin/Type";
 import { useAdmin } from "../AdminContextFile";
+import EmptyStateComponent from "@/components/EmptyStateComponent";
 
 interface notificationProps {
   notification: Organization[];
@@ -10,6 +11,7 @@ interface notificationProps {
 
 export default function Notification() {
   const { notification } = useAdmin() as notificationProps;
+  console.log(notification);
 
   return (
     <>
@@ -19,9 +21,13 @@ export default function Notification() {
         text="Search"
         customComponent={
           <>
-            {notification.map((org) => (
-              <Org_RequestHandle key={org._id} organization={org} />
-            ))}
+            {notification.length === 0 ? (
+              <EmptyStateComponent message="No Events" />
+            ) : (
+              notification.map((org) => (
+                <Org_RequestHandle key={org._id} organization={org} />
+              ))
+            )}
           </>
         }
       />
