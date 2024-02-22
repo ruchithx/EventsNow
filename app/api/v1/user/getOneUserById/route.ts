@@ -5,14 +5,16 @@ import connectMongoDB from "@/lib/mongo/mongodb";
 export async function POST(req: Request) {
   try {
     connectMongoDB();
+
     const id = await req.json();
 
     const data = await User.findOne({ _id: id });
+    console.log("hiiiiiiii");
 
-    console.log(data);
     if (!data) {
       return NextResponse.json("No User");
     }
+    console.log("hi");
     return NextResponse.json(data);
   } catch (error) {
     console.log(error);

@@ -48,7 +48,6 @@ export default function Settings() {
           return;
         }
         const response = await res.json();
-        console.log(response);
 
         setMobile(response.mobileNumber);
         setBirth(response.birthday);

@@ -2,10 +2,11 @@
 import React, { use, useState } from "react";
 import Dashboard from "@/app/organization/dashboard/[id]/components/DashboardSide";
 import Dashboard_Btn from "@/app/organization/dashboard/[id]/components/Dashboard_Btn";
-import { useProf } from "../ProfContext";
+import { ProfContext, useProf } from "../ProfContext";
 import { HiArrowCircleRight } from "react-icons/hi";
 import { HiArrowCircleLeft } from "react-icons/hi";
 import { CgProfile } from "react-icons/cg";
+type VoidFunc = () => void;
 
 export default function SideBar() {
   const {
@@ -14,9 +15,9 @@ export default function SideBar() {
     setIsSlideBar,
     handleWishList,
     handleMyEvents,
-    handleyTickets,
+    handlemyTickets,
     handleSetting,
-  } = useProf();
+  } = useProf() as ProfContext;
   return (
     <div className="">
       <Dashboard>
@@ -57,7 +58,7 @@ export default function SideBar() {
             isSlideBar={isSlideBar}
             img="mytickets.svg"
             text="My Tickets"
-            onClick={() => handleyTickets()}
+            onClick={() => handlemyTickets()}
           />
           <Dashboard_Btn
             isSlideBar={isSlideBar}
