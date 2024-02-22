@@ -1,7 +1,7 @@
 import React from "react";
-import { EventContextProvider } from "./EventDashContext";
+import { EventContextProvider, UseEventContext } from "./EventDashContext";
 import SideBar from "./components/SideBar";
-import Container from "./components/Container";
+import MidContent from "./components/MidContent";
 
 export default function Page() {
   return (
@@ -11,12 +11,9 @@ export default function Page() {
           <SideBar />
         </div>
         <div className=" col-span-7">
-          
-          middle part
+          <MidContent />
         </div>
-        <div className=" ">
-          right hand side component
-        </div>
+        <div className=" ">right hand side component</div>
       </div>
     </EventContextProvider>
   );

@@ -6,15 +6,11 @@ import EventDashButton from "./EventDashButton";
 import { HiArrowCircleRight } from "react-icons/hi";
 import { HiArrowCircleLeft } from "react-icons/hi";
 import Container from "./Container";
+import { UseEventContext, EventContextType } from "../EventDashContext";
 
 export default function SideBar() {
   const [isSlideBar, setIsSlideBar] = useState(true);
-  const handleOverview = () => {};
-  const handleHostPage = () => {};
-  const handleMyteam = () => {};
-  const handleReports = () => {};
-  const handleCampaign = () => {};
-  const handleSetting = () => {};
+ const {handleOverview,handleHostPage,handleMyteam,handleReports,handleCampaign,handleSetting} = UseEventContext() as EventContextType;
 
   return (
     <div>
