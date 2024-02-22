@@ -42,7 +42,9 @@
     "app/organization/dashboard/[id]/OrgContext.tsx",
     "app/api/v1/organization/updateOrganization/[...id]/route.jsx",
     "components/List.jsx",
-    "models/userModel.js"
+    "models/userModel.js",
+
+    "app/api/v1/organization/denyOrganization/[...id]/route.jsx"
   ],
   "exclude": ["node_modules"]
 }

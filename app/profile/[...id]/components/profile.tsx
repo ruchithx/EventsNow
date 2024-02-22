@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import ProfileCard from "./ProfileCard";
+
 import ProfCard from "./ProfCard";
 import { UserDetails, useProf } from "../ProfContext";
 type Details = {
@@ -8,7 +8,7 @@ type Details = {
   fname: string;
   lname: string;
 };
-export default function profile() {
+export default function Profile() {
   const { userDeatails, fname, lname } = useProf() as Details;
 
   return (

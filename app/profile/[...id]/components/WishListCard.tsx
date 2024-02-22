@@ -29,7 +29,7 @@ export default function WishListCArd({
   return (
     <div className="bg-[#D9D9D9] h-fit my-6 mx-4 rounded-lg md:grid md:grid-cols-2 sm:grid-cols-2 w-[340px] md:w-[800px] md:h-fit xl:grid-cols-12 xl:h-fit">
       <div className="pt-4 mx-4 my-4 md:mx-0 md:my-0 md:pt-0 rounded-lg overflow-hidden h-fit md:h-[13.5rem] xl:col-span-5">
-        <Image src={`/${image}`} alt="hay" width={410} height={200} />
+        <Image src={`${image}`} alt="hay" width={410} height={200} />
       </div>
 
       <div className="xl:grid xl:grid-rows-3 xl:justify-left xl:col-span-7 capitalize">
@@ -86,7 +86,7 @@ export default function WishListCArd({
 
           <div className={`mx-8 mt-2 flex ${margin} xl:mt-0`}>
             <div className="w-8 h-8">
-              <Image src="Datelight.svg" alt="print" width={32} height={32} />
+              <Image src="/Datelight.svg" alt="print" width={32} height={32} />
             </div>
             <div className="text-[#353C4E] text-center text-base font-normal leading-4 pl-4 pt-2 ">
               {Date}
@@ -99,7 +99,7 @@ export default function WishListCArd({
             className={`mx-8 mt-2 flex items-center xl:items-start ${margin}`}
           >
             <div className="w-8 h-8 xl:-mt-2">
-              <Image src="Clockfill.svg" alt="print" width={32} height={32} />
+              <Image src="/Clockfill.svg" alt="print" width={32} height={32} />
             </div>
             <div className="text-[#353C4E] text-center text-base font-normal leading-4 pl-4 ">
               {Time}
@@ -108,7 +108,7 @@ export default function WishListCArd({
 
           <div className={`mx-8 mt-2 flex ${margin}`}>
             <div className="w-8 h-8">
-              <Image src="Lineup.svg" alt="print" width={32} height={32} />
+              <Image src="/Lineup.svg" alt="print" width={32} height={32} />
             </div>
             <div className="text-[#353C4E] text-center text-base font-normal leading-4 pl-4 pt-2">
               {Ratings}

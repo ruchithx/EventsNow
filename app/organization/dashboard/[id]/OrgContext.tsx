@@ -53,6 +53,22 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
   const [selectEventForPermission, setSelectEventForPermission] =
     useState<Event | null>(null);
 
+  const id: string | any = params.id;
+
+  // async function handleOrganizationTeam() {
+  //   const res2 = await fetch(
+  //     "http://localhost:3000/api/v1/permission/getOrganiztionUsers",
+  //     {
+  //       method: "POST",
+  //       mode: "cors",
+  //       body: JSON.stringify({ id: params.id }),
+  //     }
+  //   );
+
+  //   const finalResponse2 = await res2.json();
+  //   return finalResponse2;
+  // }
+
   const [eventPermission, setEventPermission] = useState<EventPermission[]>([]);
   useEffect(
     function () {
@@ -94,8 +110,16 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
         );
 
         const finalResponse2 = await res2.json();
-        setTeam(finalResponse2);
 
+        console.log(finalResponse2);
+        console.log(finalResponse.organization);
+
+        const team = finalResponse2.filter(
+          (user: Team) =>
+            user.userData.email !== finalResponse.organization.email
+        );
+        setTeam(finalResponse2);
+        console.log(team);
         setOrganizationId(params.id);
         // get events in organization
         const res3 = await fetch(
@@ -178,6 +202,7 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
         setSelectEventForPermission,
         eventPermission,
         setEventPermission,
+        id,
       }}
     >
       {children}

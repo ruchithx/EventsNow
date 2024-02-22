@@ -29,7 +29,7 @@ const DashboardDetails = memo(function DashboardDetails() {
           </div>
           <div className="md:text-base lg:text-base flex justify-center items-center  gap-2">
             <Image
-              src="/images/Organization/TeamOfUsers.svg"
+              src="/images/organization/TeamOfUsers.svg"
               alt="user count"
               width={30}
               height={30}
@@ -38,7 +38,7 @@ const DashboardDetails = memo(function DashboardDetails() {
           </div>
           <div className="md:text-base lg:text-base flex justify-center items-center gap-3">
             <Image
-              src="/images/Organization/Bookmark_light.svg"
+              src="/images/organization/Bookmark_light.svg"
               alt="user count"
               width={26}
               height={26}

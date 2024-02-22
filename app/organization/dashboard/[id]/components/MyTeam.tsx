@@ -1,6 +1,4 @@
-import InviteButton from "@/components/InviteButton";
-
-import React from "react";
+import React, { useState } from "react";
 import { Modal, useOrg } from "../OrgContext";
 
 import EmptyStateComponent from "@/components/EmptyStateComponent";
@@ -10,15 +8,32 @@ import GivenPermission from "./modal/GivenPermission";
 import AllPermission from "./modal/AllPermission";
 import PermissionOneEvent from "./modal/PermissionOneEvent";
 import SelectOneEvent from "./modal/SelectOneEvent";
-import { Team, User } from "../Type";
-
-interface OrgProps {
-  modal: Modal;
-  team: Team[];
-}
+import { OrgContext, Team, User } from "../Type";
+import InviteButton from "./InviteButton";
+import { MdRefresh } from "react-icons/md";
+import Spinner from "@/components/Spinner";
 
 export default function MyTeam() {
-  const { modal, team } = useOrg() as OrgProps;
+  const { modal, team, id, setTeam } = useOrg() as OrgContext;
+  const [loading, setLoading] = useState<boolean>(false);
+
+  async function handleTeam() {
+    setLoading(true);
+    const res2 = await fetch(
+      "http://localhost:3000/api/v1/permission/getOrganiztionUsers",
+      {
+        method: "POST",
+        mode: "cors",
+        body: JSON.stringify({ id }),
+      }
+    );
+
+    const finalResponse2 = await res2.json();
+    setTeam(finalResponse2);
+    setLoading(false);
+    // const res = (await handleOrganizationTeam) as () => Promise<any>;
+    // setTeam(res as Team[]);
+  }
 
   function handleModal() {
     switch (modal) {
@@ -50,20 +65,45 @@ export default function MyTeam() {
       </div>
       <div className="w-full border-[1px] border-black"></div>
       <div className=" mb-5 w-full 2xl:w-3/5 xl:w-3/4 flex flex-col gap-4 justify-start md:px-6 px-0 items-start  rounded-xl">
-        {team.length === 0 ? (
+        <div>
+          <button className="button" onClick={handleTeam}>
+            <MdRefresh size={25} />
+          </button>
+        </div>
+        {loading ? (
+          <Spinner />
+        ) : team.length === 0 ? (
           <EmptyStateComponent message="No user in the organization" />
         ) : (
           team.map((user) => (
-            <PersonDetailsBar
-              key={user.userData._id}
-              name={user.userData.firstName}
-              email={user.userData.email}
-              permissionDocumentId={user.permissionDocumentId}
-              globalPermission={user.globalPermission}
-              eventPermission={user.eventPermission}
-            />
+            <>
+              <PersonDetailsBar
+                key={user.userData._id}
+                name={user.userData.firstName}
+                email={user.userData.email}
+                permissionDocumentId={user.permissionDocumentId}
+                globalPermission={user.globalPermission}
+                eventPermission={user.eventPermission}
+              />
+            </>
           ))
         )}
+        {/* {team.length === 0 ? (
+          <EmptyStateComponent message="No user in the organization" />
+        ) : (
+          team.map((user) => (
+            <>
+              <PersonDetailsBar
+                key={user.userData._id}
+                name={user.userData.firstName}
+                email={user.userData.email}
+                permissionDocumentId={user.permissionDocumentId}
+                globalPermission={user.globalPermission}
+                eventPermission={user.eventPermission}
+              />
+            </>
+          ))
+        )} */}
 
         {/* <PersonDetailsBar
           key="65c9d12e0606616b4bd18384"

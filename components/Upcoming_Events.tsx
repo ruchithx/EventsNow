@@ -30,7 +30,7 @@ export default function Upcoming_Events({
     <div className="grid grid-cols-3 w-[1192px] h-[12.15rem] rounded-lg bg-[#D9D9D9]">
       <div className="overflow-hidden rounded-lg">
         <Image
-          src={`/images/Event/${image}`}
+          src={`/images/event/${image}`}
           alt="hay"
           width={410}
           height={200}
@@ -50,7 +50,7 @@ export default function Upcoming_Events({
             >
               <div className="py-0.5 pl-1.5 pt-1">
                 <Image
-                  src={"/images/ReusableComponents/Sendfill.svg"}
+                  src={"/images/reusableComponents/Sendfill.svg"}
                   alt="info"
                   width={80}
                   height={80}
@@ -66,7 +66,7 @@ export default function Upcoming_Events({
         <div className={`flex items-center h-auto ${margin}`}>
           <div className="w-8 h-8">
             <Image
-              src="/images/ReusableComponents/location.svg"
+              src="/images/reusableComponents/location.svg"
               alt="print"
               width={32}
               height={32}
@@ -80,7 +80,7 @@ export default function Upcoming_Events({
         <div className={`flex ${margin}`}>
           <div className="w-8 h-8">
             <Image
-              src="/images/ReusableComponents/eventCalander.svg"
+              src="/images/reusableComponents/eventCalander.svg"
               alt="print"
               width={32}
               height={32}
@@ -98,7 +98,7 @@ export default function Upcoming_Events({
         <div className={`flex items-center ${margin}`}>
           <div className="w-8 h-8">
             <Image
-              src="/images/ReusableComponents/Time.svg"
+              src="/images/reusableComponents/Time.svg"
               alt="print"
               width={32}
               height={32}
@@ -112,7 +112,7 @@ export default function Upcoming_Events({
         <div className={`flex ${margin}`}>
           <div className="w-8 h-8">
             <Image
-              src="/images/ReusableComponents/Lineup.svg"
+              src="/images/reusableComponents/Lineup.svg"
               alt="print"
               width={32}
               height={32}

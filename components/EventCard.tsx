@@ -37,7 +37,7 @@ function EventCard({ name, img, location, date, time }: EventCard) {
         <div className="flex col-span-5">
           <Image
             className="mt-1"
-            src={"/images/Organization/location1.svg"}
+            src={"/images/organization/location1.svg"}
             alt={"pin-fill"}
             width={47}
             height={47}
@@ -48,12 +48,7 @@ function EventCard({ name, img, location, date, time }: EventCard) {
         </div>
         <div className="col-span-1 ml-4 border-r-[1px] border-solid border-white h-10 w-1"></div>
         <div className=" ml-1 flex col-span-6">
-          <Image
-            src={"/Date.svg"}
-            alt={"time-fill"}
-            width={30}
-            height={24}
-          />
+          <Image src={"/Date.svg"} alt={"time-fill"} width={30} height={24} />
           <div className="flex flex-col mr-auto my-auto ml-3">
             <div className="text-xs font-khand font-semibold mt-1 mb-0 ">
               {date}
