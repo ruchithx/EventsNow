@@ -9,12 +9,10 @@ export async function POST(req: Request) {
     const id = await req.json();
 
     const data = await User.findOne({ _id: id });
-    console.log("hiiiiiiii");
 
     if (!data) {
       return NextResponse.json("No User");
     }
-    console.log("hi");
     return NextResponse.json(data);
   } catch (error) {
     console.log(error);
