@@ -8,7 +8,7 @@ function SearchBarFallback() {
 }
 
 export default function Page() {
-  const NewUser = dynamic(() => import("./components/NewUser"));
+  const NewUser = dynamic(() => import("./NewUser"));
   return (
     <div>
       <Suspense fallback={<SearchBarFallback />}>
