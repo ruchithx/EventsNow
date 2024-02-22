@@ -26,7 +26,7 @@ export const EmailVerification = ({ code }: SlackConfirmEmailProps) => (
       <Container style={container}>
         <Section style={logoContainer}>
           <Img
-            src={"http://localhost:3000/IEEE%20STUDENT%20B%20LOGO.jpg"}
+            src={`${process.env.NEXT_PUBLIC_URL}/IEEE%20STUDENT%20B%20LOGO.jpg`}
             width="120"
             height="36"
             alt="Slack"

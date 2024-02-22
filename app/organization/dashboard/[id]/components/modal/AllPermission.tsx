@@ -78,7 +78,7 @@ export default memo(function AllPermission() {
     const formDataKeysArray = Array.from(formDataKeys);
 
     const res = await fetch(
-      ` http://localhost:3000/api/v1/permission/updateGlobalPermission/${permissionID}`,
+      ` ${process.env.NEXT_PUBLIC_URL}/api/v1/permission/updateGlobalPermission/${permissionID}`,
       { method: "PUT", body: JSON.stringify(formDataKeysArray) }
     );
     if (!res.ok) {

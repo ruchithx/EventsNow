@@ -15,7 +15,7 @@ export default function NewUser() {
         return;
       }
       const res = await fetch(
-        "http://localhost:3000/api/v1/permission/createOrganizer",
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/permission/createOrganizer`,
         {
           method: "POST",
           headers: {
@@ -46,9 +46,8 @@ export default function NewUser() {
       <h1>You have add to the organization team </h1>
       <Link href="/">
         <button className="button w-1/5   bg-custom-orange">
-          {" "}
           Click ,go to the EventNow
-        </button>{" "}
+        </button>
       </Link>
     </div>
   );

@@ -81,13 +81,16 @@ export default function NavBar() {
   }
 
   const getUser = async ({ email }: any) => {
-    const user = await fetch("http://localhost:3000/api/v1/user/getOneUser", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email }),
-    });
+    const user = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getOneUser`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      }
+    );
 
     const { data } = await user.json();
     return data;
@@ -96,7 +99,7 @@ export default function NavBar() {
   const getUserOrganization = async ({ id }: ID) => {
     console.log(id, "🚀");
     const organization = await fetch(
-      "http://localhost:3000/api/v1/user/userOrganization",
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/user/userOrganization`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

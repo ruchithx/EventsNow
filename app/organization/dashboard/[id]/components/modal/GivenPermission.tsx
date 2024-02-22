@@ -29,7 +29,7 @@ export default memo(function GivenPermission() {
 
   async function deletePermission() {
     const res = await fetch(
-      "http://localhost:3000/api/v1/permission/deleteUserPermission",
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/permission/deleteUserPermission`,
       {
         method: "DELETE",
         headers: {

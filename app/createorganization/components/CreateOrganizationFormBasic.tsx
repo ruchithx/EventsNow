@@ -45,7 +45,7 @@ export default function CreateOrganizationFormBasic() {
     }
     const email: string | null | undefined = session.user?.email;
 
-    const res = fetch("http://localhost:3000/api/v1/user/getUserId", {
+    const res = fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user/getUserId`, {
       method: "POST",
       mode: "cors",
       body: JSON.stringify({ email }),
@@ -107,7 +107,7 @@ export default function CreateOrganizationFormBasic() {
 
     if (result.success) {
       const res = await fetch(
-        "http://localhost:3000/api/v1/organization/createOrganization",
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/createOrganization`,
         {
           method: "POST",
           mode: "cors",
@@ -137,7 +137,7 @@ export default function CreateOrganizationFormBasic() {
       // setOrganization(oraganizationDataForNavBarProfile);
 
       const organizerRes = await fetch(
-        "http://localhost:3000/api/v1/permission/createOrganizer",
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/permission/createOrganizer`,
         {
           method: "POST",
           mode: "cors",
@@ -170,6 +170,7 @@ export default function CreateOrganizationFormBasic() {
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
+      setIsSubmitting(false);
 
       router.push(`/organization/dashboard/${id.id}`);
       return;

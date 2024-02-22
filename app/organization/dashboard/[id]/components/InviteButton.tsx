@@ -10,7 +10,7 @@ export default function InviteButton() {
 
   async function handleclick() {
     const res = await fetch(
-      "http://localhost:3000/api/v1/organization/inviteTeamMember",
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/inviteTeamMember`,
       {
         method: "POST",
         headers: {

@@ -57,7 +57,7 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
 
   // async function handleOrganizationTeam() {
   //   const res2 = await fetch(
-  //     "http://localhost:3000/api/v1/permission/getOrganiztionUsers",
+  //     "${process.env.NEXT_PUBLIC_URL}/api/v1/permission/getOrganiztionUsers",
   //     {
   //       method: "POST",
   //       mode: "cors",
@@ -75,7 +75,7 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
       async function getData() {
         setIsLoading(true);
         const res = await fetch(
-          `http://localhost:3000/api/v1/organization/getOrganization`,
+          `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getOrganization`,
           {
             method: "POST",
             mode: "cors",
@@ -101,7 +101,7 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
 
         // get users in organization
         const res2 = await fetch(
-          "http://localhost:3000/api/v1/permission/getOrganiztionUsers",
+          `${process.env.NEXT_PUBLIC_URL}/api/v1/permission/getOrganiztionUsers`,
           {
             method: "POST",
             mode: "cors",
@@ -123,7 +123,7 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
         setOrganizationId(params.id);
         // get events in organization
         const res3 = await fetch(
-          "http://localhost:3000/api/v1/organization/getOrganizationEvent",
+          `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getOrganizationEvent`,
           {
             method: "POST",
             mode: "cors",
