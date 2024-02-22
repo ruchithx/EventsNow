@@ -7,13 +7,12 @@ import React, {
 } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { RiAddCircleFill } from "react-icons/ri";
-// import { Checkbox } from "@material-tailwind/react";
+
 import { Checkbox } from "@material-tailwind/react";
 import { FaBackspace } from "react-icons/fa";
 import { orgContext } from "./GivenPermission";
 import { useOrg } from "../../OrgContext";
 import { error, success } from "@/util/Toastify";
-// import { error, success } from "../../../../../utils/toast";
 
 export default memo(function AllPermission() {
   const [viewOnlyEvent, setViewOnlyEvent] = useState<boolean>(false);
@@ -70,7 +69,7 @@ export default memo(function AllPermission() {
           break;
       }
     });
-  }, [permissionID]);
+  }, [permissionID, globalPermission]);
 
   async function doneButton(e: any) {
     e.preventDefault();
