@@ -1,14 +1,14 @@
 import { NextResponse } from "next/server";
-import Event from "@/models/eventModel";
+import Organization from "@/models/organizationModel";
 import connectMongoDB from "@/lib/mongo/mongodb";
 
 export async function GET() {
   connectMongoDB();
-  const event = await Event.find();
+  const organization = await Organization.find({});
 
-  if (!event) {
+  if (!organization) {
     return NextResponse.json({ message: "No organization" });
   }
 
-  return NextResponse.json(event);
+  return NextResponse.json({ organization });
 }
