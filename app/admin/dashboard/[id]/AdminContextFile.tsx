@@ -44,7 +44,8 @@ function AdminContextProvider({ children }: AdminContextProps) {
     async function getData() {
       setIsLoading(true);
       const res3 = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`,
+        { method: "GET", mode: "no-cors" }
       );
 
       if (!res3.ok) {
