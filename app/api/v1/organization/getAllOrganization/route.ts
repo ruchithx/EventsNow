@@ -12,7 +12,7 @@ export async function GET() {
     }
 
     return NextResponse.json({ organization });
-  } catch (e) {
+  } catch (error) {
     return new NextResponse("Errror in fetching data" + error, { status: 500 });
   }
 }
