@@ -2,7 +2,11 @@ export const getAllOrganization = async () => {
   const res = await fetch(
     // `api/v1/organization/getAllOrganization`,
     `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`,
-    { cache: "no-store", next: { revalidate: 0 } }
+    {
+      method: "POST",
+      mode: "cors",
+      body: JSON.stringify({ data: "data" }),
+    }
   );
   return res;
 };
@@ -11,7 +15,11 @@ export const getAllUser = async () => {
   const res = await fetch(
     // `api/v1/user/getAllUser`
     `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getAllUser`,
-    { next: { revalidate: 0 }, cache: "no-store" }
+    {
+      method: "POST",
+      mode: "cors",
+      body: JSON.stringify({ data: "data" }),
+    }
   );
   return res;
 };
