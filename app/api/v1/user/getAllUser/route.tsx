@@ -5,7 +5,7 @@ import connectMongoDB from "@/lib/mongo/mongodb";
 
 export const GET = async (req: Request) => {
   try {
-    connectMongoDB();
+    await connectMongoDB();
     const user = await User.find();
     return new NextResponse(JSON.stringify(user), { status: 200 });
   } catch (error) {
