@@ -75,8 +75,8 @@ const ResponsiveMenuBar = memo(function ResponsiveMenuBar({
         </div>
       </div>
       {userActive && (
-        <Link href={`/profile/${user._id}`}>
-          <div className="flex justify-between items-center mt-5">
+        <div className="flex justify-between items-center mt-5">
+          <Link href={`/profile/${user._id}`}>
             <Image
               src={user.image}
               alt="profile picture"
@@ -84,14 +84,11 @@ const ResponsiveMenuBar = memo(function ResponsiveMenuBar({
               height={20}
               className="rounded-full w-auto h-auto"
             />
-            <div
-              onClick={() => setIsMenuOpen(false)}
-              className="cursor-pointer "
-            >
-              <IoMdClose size={30} />
-            </div>
+          </Link>
+          <div onClick={() => setIsMenuOpen(false)} className="cursor-pointer ">
+            <IoMdClose size={30} />
           </div>
-        </Link>
+        </div>
       )}
       <div className="flex flex-col py-6 text-black">
         <ul>
