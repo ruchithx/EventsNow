@@ -1,8 +1,8 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useRef } from "react";
 import { IoMdClose } from "react-icons/io";
 import Image from "next/image";
 import Link from "next/link";
-import { Item } from "./NavBar";
+import { Item, User } from "./NavBar";
 import Login from "../Login";
 import { MdContactless } from "react-icons/md";
 import { AiFillHome } from "react-icons/ai";
@@ -14,18 +14,48 @@ import { IoIosAddCircle } from "react-icons/io";
 interface props {
   isMenuOpen: boolean;
   userActive: boolean;
-  toggleMenu: () => void;
+  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
   clickLogoutBtn: () => void;
-  userImage: string;
+  user: User;
 }
+
+// setIsMenuOpen={setIsMenuOpen}
+// isMenuOpen={isMenuOpen}
 
 const ResponsiveMenuBar = memo(function ResponsiveMenuBar({
   isMenuOpen,
-  toggleMenu,
   clickLogoutBtn,
   userActive,
-  userImage,
+  user,
+  setIsMenuOpen,
 }: props) {
+  const menuBarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        menuBarRef.current &&
+        !menuBarRef.current.contains(event.target as Node)
+      ) {
+        // Clicked outside of modal, so close it
+        setIsMenuOpen(false);
+      }
+    };
+
+    // Add event listener when the modal is open
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      // Remove event listener when the modal is closed
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    // Cleanup function to remove event listener
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
   return (
     <div
       className={
@@ -33,26 +63,29 @@ const ResponsiveMenuBar = memo(function ResponsiveMenuBar({
           ? "fixed shadow-2xl  right-0 top-0 w-[65%] sm:hidden h-screen bg-[#ecf0fc] p-5 ease-in duration-50"
           : "fixed left-[100%] top-0 p-10 ease-in duration-50"
       }
+      ref={menuBarRef}
     >
       <div
         className={`w-full ${
           userActive ? "hidden" : "block"
         } flex items-center justify-end `}
       >
-        <div onClick={() => toggleMenu()} className="cursor-pointer ">
+        <div onClick={() => setIsMenuOpen(false)} className="cursor-pointer ">
           <IoMdClose size={25} />
         </div>
       </div>
       {userActive && (
         <div className="flex justify-between items-center mt-5">
-          <Image
-            src={userImage}
-            alt="profile picture"
-            width={50}
-            height={20}
-            className="rounded-full w-auto h-auto"
-          />
-          <div onClick={() => toggleMenu()} className="cursor-pointer ">
+          <Link href={`/profile/${user._id}`}>
+            <Image
+              src={user.image}
+              alt="profile picture"
+              width={50}
+              height={20}
+              className="rounded-full w-auto h-auto"
+            />
+          </Link>
+          <div onClick={() => setIsMenuOpen(false)} className="cursor-pointer ">
             <IoMdClose size={30} />
           </div>
         </div>
@@ -60,24 +93,24 @@ const ResponsiveMenuBar = memo(function ResponsiveMenuBar({
       <div className="flex flex-col py-6 text-black">
         <ul>
           <Link href="/">
-            <Item fn={toggleMenu} text="Home">
+            <Item fn={() => setIsMenuOpen(false)} text="Home">
               {/* <AiFillHome /> */}
             </Item>
           </Link>
           <Link href="/about">
-            <Item fn={toggleMenu} text="About">
+            <Item fn={() => setIsMenuOpen(false)} text="About">
               {/* <MdContactless /> */}
             </Item>
           </Link>
           {!userActive && (
             <div className="flex flex-col  text-black">
               <Link href="/auth/login">
-                <Item fn={toggleMenu} text="Login">
+                <Item fn={() => setIsMenuOpen(false)} text="Login">
                   {/* <RiLoginCircleFill /> */}
                 </Item>
               </Link>
               <Link href="/auth/signup">
-                <Item fn={toggleMenu} text="Signup">
+                <Item fn={() => setIsMenuOpen(false)} text="Signup">
                   {/* <FaLock /> */}
                 </Item>
               </Link>
@@ -87,12 +120,12 @@ const ResponsiveMenuBar = memo(function ResponsiveMenuBar({
           {userActive && (
             <div className="flex flex-col  text-black">
               <Link href={"/createorganization"}>
-                <Item fn={toggleMenu} text="Host Event">
+                <Item fn={() => setIsMenuOpen(false)} text="Host Event">
                   {/* <IoIosAddCircle /> */}
                 </Item>
               </Link>
-              <Link href="/profile">
-                <Item fn={toggleMenu} text="Profile">
+              <Link href={`/profile/${user._id}`}>
+                <Item fn={() => setIsMenuOpen(false)} text="Profile">
                   {/* <FaUser /> */}
                 </Item>
               </Link>

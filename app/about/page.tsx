@@ -2,6 +2,7 @@ import React from "react";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import BestEvent from "./components/BestEvent";
+// import BestEvent from "./components/BestEvent";
 
 export default function page() {
   return (

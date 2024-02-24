@@ -15,9 +15,10 @@ import { useAuth } from "@/app/AuthContext";
 
 import dynamic from "next/dynamic";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import NavBarProfile from "./NavBarProfile";
+import ResponsiveMenuBar from "./ResponsiveMenuBar";
 
 export type OrganizationProps = {
   map: any;
@@ -66,18 +67,20 @@ export default function NavBar() {
   const { emailAuth, setEmail, organization, setOrganization, organizationId } =
     useAuth() as AuthContext;
 
-  const ResponsiveMenuBar = dynamic(() => import("./ResponsiveMenuBar"));
+  // const ResponsiveMenuBar = dynamic(() => import("./ResponsiveMenuBar"));
   // const NavBarProfile = dynamic(() => import("./NavBarProfile"));
   const pathname = usePathname();
 
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
   }
+  const router = useRouter();
 
-  function clickLogoutBtn() {
-    signOut();
+  async function clickLogoutBtn() {
+    await signOut();
     setEmail("");
     localStorage.removeItem("email");
+    router.push("/");
   }
 
   const getUser = async ({ email }: any) => {
@@ -97,7 +100,6 @@ export default function NavBar() {
   };
 
   const getUserOrganization = async ({ id }: ID) => {
-    console.log(id, "🚀");
     const organization = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/v1/user/userOrganization`,
       {
@@ -288,7 +290,9 @@ export default function NavBar() {
                         <button
                           className="button"
                           onClick={() =>
-                            setShowProfile((showProfile) => !showProfile)
+                            setShowProfile(
+                              (showProfile: boolean) => !showProfile
+                            )
                           }
                         >
                           <Profile picture={user?.image} />
@@ -341,13 +345,6 @@ export default function NavBar() {
 
                 {userActive && (
                   <div className="flex justify-between items-center mt-5">
-                    <Image
-                      src={`/images/profile/profile.jpg`}
-                      alt="profile picture"
-                      width={60}
-                      height={20}
-                      className="rounded-full w-auto h-auto"
-                    />
                     <div
                       onClick={() => toggleMenu()}
                       className="cursor-pointer "
@@ -357,10 +354,10 @@ export default function NavBar() {
                   </div>
                 )}
                 <ResponsiveMenuBar
-                  userImage={user?.image}
+                  user={user}
                   userActive={userActive}
                   isMenuOpen={isMenuOpen}
-                  toggleMenu={toggleMenu}
+                  setIsMenuOpen={setIsMenuOpen}
                   clickLogoutBtn={clickLogoutBtn}
                 />
               </div>

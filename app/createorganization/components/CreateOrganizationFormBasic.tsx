@@ -32,7 +32,7 @@ export default function CreateOrganizationFormBasic() {
   const [organizationName, setOrganizationName] = useState("");
   const [previewImage, setPreviewImage] = useState("");
 
-  const [postImage, setPostImage] = useState([File] as any);
+  const [postImage, setPostImage] = useState([] as any);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);

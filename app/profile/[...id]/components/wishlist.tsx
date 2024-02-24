@@ -14,7 +14,7 @@ export default function MyProfile() {
           Time={"10.00"}
           Date={"02/04/2024"}
           Ratings={"4.5"}
-          image={"./images/ReusableComponents/login.jpg"}
+          image={"/images/reusableComponents/login.jpg"}
           buttonDesc={"Remove from wishlist"}
         />
       </div>

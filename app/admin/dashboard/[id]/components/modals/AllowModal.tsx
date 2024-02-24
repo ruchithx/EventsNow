@@ -22,7 +22,7 @@ const AllowModalContent = ({ organization }: Data) => {
   const handleAllow = async () => {
     try {
       const res = await axios.put(
-        `/api/v1/organization/updateOrganization/${organization._id}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/updateOrganization/${organization._id}`,
         {
           isActive: true,
         }

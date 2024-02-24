@@ -3,6 +3,7 @@ import SuperadminPages from "@/app/admin/dashboard/[id]/components/SuperadminPag
 import Available_Orgs from "@/app/admin/dashboard/[id]/components/Available_Orgs";
 import { Organization } from "@/app/organization/dashboard/[id]/Type";
 import { useAdmin } from "../AdminContextFile";
+import EmptyStateComponent from "@/components/EmptyStateComponent";
 
 interface orgProps {
   organization: Organization[];
@@ -10,6 +11,7 @@ interface orgProps {
 
 export default function Organization() {
   const { organization } = useAdmin() as orgProps;
+  console.log(organization);
   return (
     <div>
       <SuperadminPages
@@ -18,9 +20,13 @@ export default function Organization() {
         text="Search Organizations"
         customComponent={
           <>
-            {organization.map((me) => (
-              <Available_Orgs key={me._id} organization={me} />
-            ))}
+            {organization.length === 0 ? (
+              <EmptyStateComponent message="No Events" />
+            ) : (
+              organization.map((me) => (
+                <Available_Orgs key={me._id} organization={me} />
+              ))
+            )}
           </>
         }
       />

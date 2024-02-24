@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import SuperadminPages from "./SuperadminPages";
 import Org_RequestHandle from "./Org_RequestHandle";
 import { Organization } from "@/app/admin/Type";
 import { useAdmin } from "../AdminContextFile";
+import EmptyStateComponent from "@/components/EmptyStateComponent";
 
 interface notificationProps {
   notification: Organization[];
@@ -15,13 +16,17 @@ export default function Notification() {
     <>
       <SuperadminPages
         title="All organization requests"
-        description="You can see all the organizations that currently available from here"
+        description="Check organization requests and handle them."
         text="Search"
         customComponent={
           <>
-            {notification.map((org) => (
-              <Org_RequestHandle key={org._id} organization={org} />
-            ))}
+            {notification.length === 0 ? (
+              <EmptyStateComponent message="No Organization" />
+            ) : (
+              notification.map((org) => (
+                <Org_RequestHandle key={org._id} organization={org} />
+              ))
+            )}
           </>
         }
       />

@@ -86,8 +86,12 @@ const NavBarProfile = memo(function NavBarProfile({
           />
         </div>
         <div className="font-medium	">{`hi ${user?.firstName} !`}</div>
+
         <Link href={`/profile/${user._id}`}>
-          <button className="rounded-full 2xl:text-base py-2 px-2 md:px-1 md:py-1 md:text-sm lg:text-sm xl:text-base xl:py-1 xl:px-2 lg:px-2 bg-blue-500 text-white font-semibold  shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+          <button
+            onClick={() => setShowProfile(false)}
+            className="rounded-full 2xl:text-base py-2 px-2 md:px-1 md:py-1 md:text-sm lg:text-sm xl:text-base xl:py-1 xl:px-2 lg:px-2 bg-blue-500 text-white font-semibold  shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+          >
             Manage your account
           </button>
         </Link>

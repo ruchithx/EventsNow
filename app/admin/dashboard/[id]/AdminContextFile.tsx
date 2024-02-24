@@ -8,6 +8,7 @@ import {
   User,
   Organization,
 } from "@/app/admin/Type";
+import { getAllEvents, getAllOrganization, getAllUser } from "./FetchData";
 
 interface AdminContextProps {
   children: React.ReactNode;
@@ -40,51 +41,71 @@ function AdminContextProvider({ children }: AdminContextProps) {
     setStatus("Payments");
   };
 
-  async function getData() {
-    setIsLoading(true);
-    const res3 = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`
-    );
-
-    const { organization } = await res3.json();
-
-    const resActive = organization.filter((org: Organization) => org.isActive);
-    const notActive = organization.filter((org: Organization) => !org.isActive);
-
-    if (resActive.length !== 0) {
-      setOrganization(resActive);
-    }
-    if (notActive.length !== 0) {
-      setNotification(notActive);
-    }
-
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getAllUser`,
-      {
-        next: {
-          revalidate: 30,
-        },
-      }
-    );
-    const finalRes = await res.json();
-
-    setUser(finalRes);
-
-    const res2 = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getAllEvents`,
-      {
-        next: {
-          revalidate: 30,
-        },
-      }
-    );
-    const finalRes1 = await res2.json();
-    setEvent(finalRes1);
-
-    setIsLoading(false);
-  }
-
   useEffect(() => {
+    async function getData() {
+      setIsLoading(true);
+      // const res3 = await fetch(
+      //   // `api/v1/organization/getAllOrganization`,
+      //   `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`,
+      //   {
+      //     next: {
+      //       revalidate: 30,
+      //     },
+      //   }
+      // );
+
+      const res3 = await getAllOrganization();
+
+      if (!res3.ok) {
+        setIsLoading(false);
+        return;
+      }
+
+      const { organization } = await res3.json();
+
+      const resActive = organization.filter(
+        (org: Organization) => org.isActive
+      );
+      const notActive = organization.filter(
+        (org: Organization) => !org.isActive
+      );
+
+      if (resActive.length !== 0) {
+        setOrganization(resActive);
+      }
+      if (notActive.length !== 0) {
+        setNotification(notActive);
+      }
+
+      // const res = await fetch(
+      //   // `api/v1/user/getAllUser`
+      //   `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getAllUser`
+      // );
+
+      const res = await getAllUser();
+
+      if (!res.ok) {
+        setIsLoading(false);
+        return;
+      }
+
+      const finalRes = await res.json();
+
+      setUser(finalRes);
+
+      const res2 = await getAllEvents();
+
+      if (!res2.ok) {
+        setIsLoading(false);
+        return;
+      }
+
+      const finalRes1 = await res2.json();
+
+      setEvent(finalRes1);
+
+      setIsLoading(false);
+    }
     getData();
   }, []);
 

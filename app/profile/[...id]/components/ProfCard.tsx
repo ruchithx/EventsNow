@@ -12,7 +12,7 @@ function ProfCard({ profilePic, name, email }: ProfileCard) {
     <div className=" flex flex-col text-gray-700  bg-clip-border rounded-xl w-fit mt-5  bg-white ">
       <div className=" mx-4 mt-4 overflow-hidden text-gray-700 shadow-lg bg-clip-border rounded-xl h-fit">
         <Image
-          src={`/${profilePic}`}
+          src={`${profilePic}`}
           width={258}
           height={248}
           alt="profile picture"

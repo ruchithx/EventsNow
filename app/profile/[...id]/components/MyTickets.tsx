@@ -14,7 +14,7 @@ export default function MyTickets() {
         <div className="mt-10 mx-10">
           <MyEventCard
             OrgName={"Stein Studios "}
-            image={"./images/ReusableComponents/login.jpg"}
+            image={"./images/reusableComponents/login.jpg"}
             btn="View event"
           />
         </div>

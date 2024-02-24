@@ -73,7 +73,7 @@ export default function WishListCArd({
           >
             <div className="w-8 h-8 xl:-mt-2">
               <Image
-                src="/images/ReusableComponents/sendfill.svg"
+                src="/images/reusableComponents/sendfill.svg"
                 alt="print"
                 width={32}
                 height={32}
