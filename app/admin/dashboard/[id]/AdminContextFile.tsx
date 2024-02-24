@@ -47,11 +47,9 @@ function AdminContextProvider({ children }: AdminContextProps) {
         // `api/v1/organization/getAllOrganization`,
         `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`,
         {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
+          next: {
+            revalidate: 30,
           },
-          mode: "no-cors",
         }
       );
 
