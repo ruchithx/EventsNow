@@ -23,7 +23,7 @@ export default function Home() {
       <button className="w-40 bg-black text-white" onClick={handleButton}>
         click the organization{" "}
       </button>
-      <button className="w-40 bg-black text-white" onClick={handleButton}>
+      <button className="w-40 bg-black text-white" onClick={handleuser}>
         click the User{" "}
       </button>
       <button className="w-40 bg-black text-white" onClick={handleButton}>
