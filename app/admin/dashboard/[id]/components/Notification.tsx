@@ -11,18 +11,17 @@ interface notificationProps {
 
 export default function Notification() {
   const { notification } = useAdmin() as notificationProps;
-  console.log(notification);
 
   return (
     <>
       <SuperadminPages
         title="All organization requests"
-        description="You can see all the organizations that currently available from here"
+        description="Check organization requests and handle them."
         text="Search"
         customComponent={
           <>
             {notification.length === 0 ? (
-              <EmptyStateComponent message="No Events" />
+              <EmptyStateComponent message="No Organization" />
             ) : (
               notification.map((org) => (
                 <Org_RequestHandle key={org._id} organization={org} />
