@@ -4,7 +4,7 @@ export const getAllOrganization = async () => {
     `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`,
     {
       next: {
-        revalidate: 30,
+        revalidate: 0,
       },
     }
   );
