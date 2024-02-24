@@ -1,11 +1,12 @@
+const data = 23;
 export const getAllOrganization = async () => {
   const res = await fetch(
     // `api/v1/organization/getAllOrganization`,
     `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`,
     {
-      method: "POST",
-      mode: "cors",
-      body: JSON.stringify({ data: "data" }),
+      next: {
+        revalidate: 0,
+      },
     }
   );
   return res;
@@ -16,9 +17,9 @@ export const getAllUser = async () => {
     // `api/v1/user/getAllUser`
     `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getAllUser`,
     {
-      method: "POST",
-      mode: "cors",
-      body: JSON.stringify({ data: "data" }),
+      next: {
+        revalidate: 0,
+      },
     }
   );
   return res;
@@ -27,7 +28,11 @@ export const getAllUser = async () => {
 export const getAllEvents = async () => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getAllEvents`,
-    { cache: "no-store" }
+    {
+      next: {
+        revalidate: 0,
+      },
+    }
     // `${process.env.NEXT_PUBLIC_URL}api/v1/event/getAllEvents`
   );
   return res;
