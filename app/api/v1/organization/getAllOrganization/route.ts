@@ -3,7 +3,7 @@ import Organization from "@/models/organizationModel";
 import connectMongoDB from "@/lib/mongo/mongodb";
 
 export async function GET() {
-  connectMongoDB();
+  await connectMongoDB();
   const organization = await Organization.find({});
 
   if (!organization) {
