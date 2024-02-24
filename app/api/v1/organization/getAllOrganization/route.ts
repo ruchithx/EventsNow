@@ -4,7 +4,7 @@ import connectMongoDB from "@/lib/mongo/mongodb";
 
 export async function GET() {
   await connectMongoDB();
-  const organization = await Organization.find({});
+  const organization = await Organization.find();
 
   if (!organization) {
     return NextResponse.json({ message: "No organization" });
