@@ -14,7 +14,7 @@ import { MdRefresh } from "react-icons/md";
 import Spinner from "@/components/Spinner";
 
 export default function MyTeam() {
-  const { modal, team, id, setTeam } = useOrg() as OrgContext;
+  const { modal, team, id, setTeam, organization } = useOrg() as OrgContext;
   const [loading, setLoading] = useState<boolean>(false);
 
   async function handleTeam() {
@@ -29,7 +29,13 @@ export default function MyTeam() {
     );
 
     const finalResponse2 = await res2.json();
-    setTeam(finalResponse2);
+
+    const team = finalResponse2.filter(
+      (user: Team) => user.userData.email !== organization.email
+    );
+
+    setTeam(team);
+
     setLoading(false);
     // const res = (await handleOrganizationTeam) as () => Promise<any>;
     // setTeam(res as Team[]);

@@ -111,15 +111,12 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
 
         const finalResponse2 = await res2.json();
 
-        console.log(finalResponse2);
-        console.log(finalResponse.organization);
-
         const team = finalResponse2.filter(
           (user: Team) =>
             user.userData.email !== finalResponse.organization.email
         );
-        setTeam(finalResponse2);
-        console.log(team);
+
+        setTeam(team);
         setOrganizationId(params.id);
         // get events in organization
         const res3 = await fetch(

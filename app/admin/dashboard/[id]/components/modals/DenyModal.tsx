@@ -18,7 +18,7 @@ const DenyModalContent = ({ organization }: DenyModalProps) => {
   const handleDeny = async () => {
     try {
       await axios.put(
-        `/api/v1/organization/denyOrganization/${organization._id}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/denyOrganization/${organization._id}`,
         {
           isActive: false,
         }

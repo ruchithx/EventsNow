@@ -46,6 +46,13 @@ export const authOptions: NextAuthOptions = {
       clientId:
         "585040141563-5qq76qfjfl60d267mblh6voih0gj7uhh.apps.googleusercontent.com",
       clientSecret: "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",
+      // authorization: {
+      //   params: {
+      //     prompt: "consent",
+      //     access_type: "offline",
+      //     response_type: "code",
+      //   },
+      // },
     }),
 
     FacebookProvider({

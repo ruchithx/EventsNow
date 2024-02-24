@@ -45,7 +45,6 @@ function AdminContextProvider({ children }: AdminContextProps) {
       setIsLoading(true);
       const res3 = await fetch(
         // `api/v1/organization/getAllOrganization`,
-
         `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`
       );
 
@@ -55,7 +54,6 @@ function AdminContextProvider({ children }: AdminContextProps) {
       }
 
       const { organization } = await res3.json();
-      console.log("all organization is", organization);
 
       const resActive = organization.filter(
         (org: Organization) => org.isActive
