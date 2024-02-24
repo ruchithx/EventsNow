@@ -44,9 +44,9 @@ function AdminContextProvider({ children }: AdminContextProps) {
     async function getData() {
       setIsLoading(true);
       const res3 = await fetch(
-        `api/v1/organization/getAllOrganization`,
+        // `api/v1/organization/getAllOrganization`,
 
-        // `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`,
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`,
         { method: "GET", mode: "no-cors" }
       );
 
@@ -73,8 +73,8 @@ function AdminContextProvider({ children }: AdminContextProps) {
       }
 
       const res = await fetch(
-        `api/v1/user/getAllUser`
-        // `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getAllUser`
+        // `api/v1/user/getAllUser`
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getAllUser`
       );
 
       if (!res.ok) {
@@ -87,8 +87,8 @@ function AdminContextProvider({ children }: AdminContextProps) {
       setUser(finalRes);
 
       const res2 = await fetch(
-        // `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getAllEvents`
-        `api/v1/event/getAllEvents`
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getAllEvents`
+        // `${process.env.NEXT_PUBLIC_URL}api/v1/event/getAllEvents`
       );
 
       if (!res2.ok) {
