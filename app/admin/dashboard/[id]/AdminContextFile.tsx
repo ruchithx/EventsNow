@@ -8,6 +8,7 @@ import {
   User,
   Organization,
 } from "@/app/admin/Type";
+import { getAllEvents, getAllOrganization, getAllUser } from "./FetchData";
 
 interface AdminContextProps {
   children: React.ReactNode;
@@ -43,15 +44,17 @@ function AdminContextProvider({ children }: AdminContextProps) {
   useEffect(() => {
     async function getData() {
       setIsLoading(true);
-      const res3 = await fetch(
-        // `api/v1/organization/getAllOrganization`,
-        `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`,
-        {
-          next: {
-            revalidate: 30,
-          },
-        }
-      );
+      // const res3 = await fetch(
+      //   // `api/v1/organization/getAllOrganization`,
+      //   `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`,
+      //   {
+      //     next: {
+      //       revalidate: 30,
+      //     },
+      //   }
+      // );
+
+      const res3 = await getAllOrganization();
 
       if (!res3.ok) {
         setIsLoading(false);
@@ -74,10 +77,12 @@ function AdminContextProvider({ children }: AdminContextProps) {
         setNotification(notActive);
       }
 
-      const res = await fetch(
-        // `api/v1/user/getAllUser`
-        `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getAllUser`
-      );
+      // const res = await fetch(
+      //   // `api/v1/user/getAllUser`
+      //   `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getAllUser`
+      // );
+
+      const res = await getAllUser();
 
       if (!res.ok) {
         setIsLoading(false);
@@ -88,10 +93,7 @@ function AdminContextProvider({ children }: AdminContextProps) {
 
       setUser(finalRes);
 
-      const res2 = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getAllEvents`
-        // `${process.env.NEXT_PUBLIC_URL}api/v1/event/getAllEvents`
-      );
+      const res2 = await getAllEvents();
 
       if (!res2.ok) {
         setIsLoading(false);
