@@ -45,7 +45,14 @@ function AdminContextProvider({ children }: AdminContextProps) {
       setIsLoading(true);
       const res3 = await fetch(
         // `api/v1/organization/getAllOrganization`,
-        `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          mode: "no-cors",
+        }
       );
 
       if (!res3.ok) {
