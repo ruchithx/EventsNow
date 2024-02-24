@@ -1,11 +1,10 @@
-const data = 23;
 export const getAllOrganization = async () => {
   const res = await fetch(
     // `api/v1/organization/getAllOrganization`,
     `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`,
     {
       next: {
-        revalidate: 0,
+        revalidate: 1,
       },
     }
   );
@@ -18,7 +17,7 @@ export const getAllUser = async () => {
     `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getAllUser`,
     {
       next: {
-        revalidate: 0,
+        revalidate: 1,
       },
     }
   );
@@ -30,7 +29,7 @@ export const getAllEvents = async () => {
     `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getAllEvents`,
     {
       next: {
-        revalidate: 0,
+        revalidate: 1,
       },
     }
     // `${process.env.NEXT_PUBLIC_URL}api/v1/event/getAllEvents`

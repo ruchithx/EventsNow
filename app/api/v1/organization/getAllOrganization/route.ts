@@ -7,7 +7,7 @@ export async function GET() {
     await connectMongoDB();
     const organization = await Organization.find();
     console.log("organization is", organization);
-    if (!organization) {
+    if (!organization || organization.length === 0) {
       return NextResponse.json({ message: "No organization" });
     }
 
