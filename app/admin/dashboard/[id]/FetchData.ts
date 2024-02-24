@@ -11,7 +11,7 @@ export const getAllUser = async () => {
   const res = await fetch(
     // `api/v1/user/getAllUser`
     `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getAllUser`,
-    { cache: "no-store" }
+    { next: { revalidate: 0 } }
   );
   return res;
 };
