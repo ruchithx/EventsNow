@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import Organization from "@/models/organizationModel";
 import connectMongoDB from "@/lib/mongo/mongodb";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export async function GET() {
+export async function GET(req: NextApiRequest, res: NextApiResponse) {
   try {
+    res.setHeader("Cache-Control", "no-store");
     await connectMongoDB();
     const organization = await Organization.find();
     console.log("organization is", organization);
