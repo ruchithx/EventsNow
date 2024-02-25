@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import Organization from "@/models/organizationModel";
 import connectMongoDB from "@/lib/mongo/mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextRequest, res: NextApiResponse) {
   try {
     res.setHeader("Cache-Control", "no-store");
     await connectMongoDB();
