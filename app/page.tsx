@@ -9,7 +9,7 @@ import {
 export default function Home() {
   async function handleClickIt() {
     const res = await getAllOrganization();
-    const data = await res.json();
+    const data = await res.data;
     console.log("Organization data", data);
   }
   return (
