@@ -54,14 +54,14 @@ function AdminContextProvider({ children }: AdminContextProps) {
       //   }
       // );
 
-      const res3 = await getAllOrganization();
+      // const res3 = await getAllOrganization();
 
-      if (!res3.ok) {
-        setIsLoading(false);
-        return;
-      }
+      // if (!res3.ok) {
+      //   setIsLoading(false);
+      //   return;
+      // }
 
-      const { organization } = await res3.json();
+      // const { organization } = await res3.json();
 
       const resActive = organization.filter(
         (org: Organization) => org.isActive
