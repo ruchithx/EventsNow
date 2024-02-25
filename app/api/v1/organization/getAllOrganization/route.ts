@@ -3,9 +3,8 @@ import Organization from "@/models/organizationModel";
 import connectMongoDB from "@/lib/mongo/mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export async function GET(req: NextRequest, res: NextApiResponse) {
+export async function GET() {
   try {
-    res.setHeader("Cache-Control", "no-store");
     await connectMongoDB();
     const organization = await Organization.find();
     console.log("organization is", organization);
