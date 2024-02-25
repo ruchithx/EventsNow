@@ -1,7 +1,10 @@
 "use client";
 
 import Footer from "@/components/Footer";
-import { getAllOrganization } from "./admin/dashboard/[id]/FetchData";
+import {
+  getAllOrganization,
+  getAllUser,
+} from "./admin/dashboard/[id]/FetchData";
 
 export default function Home() {
   async function handleClickIt() {
