@@ -63,7 +63,7 @@ const NavBarProfile = memo(function NavBarProfile({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [showProfile]);
+  }, [showProfile, setShowProfile]);
 
   return (
     <div ref={profileRef} className=".modal-content">

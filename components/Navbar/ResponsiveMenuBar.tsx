@@ -54,7 +54,7 @@ const ResponsiveMenuBar = memo(function ResponsiveMenuBar({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isMenuOpen]);
+  }, [isMenuOpen, setIsMenuOpen]);
 
   return (
     <div

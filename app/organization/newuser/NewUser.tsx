@@ -39,7 +39,7 @@ export default function NewUser() {
 
     // Check if the code is running in a browser environment
     createOrganizer();
-  }, []); // Include the missing dependencies 'organizationId' and 'userId' in the dependency array.
+  }, [organizationId, userId]); // Include the missing dependencies 'organizationId' and 'userId' in the dependency array.
 
   return (
     <div className=" flex flex-col">

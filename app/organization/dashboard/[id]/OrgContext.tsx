@@ -135,7 +135,7 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
       }
       getData();
     },
-    [params.id]
+    [params.id, router, setOrganizationId]
   );
 
   const handleDashboard: voidFunc = () => {
