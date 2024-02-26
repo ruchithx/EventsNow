@@ -1,21 +1,15 @@
-import axios from "axios";
-
 export const getAllOrganization = async () => {
-  const resNew = await axios.get(
-    `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`
+  const res = await fetch(
+    // `api/v1/organization/getAllOrganization`,
+    `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`,
+    {
+      cache: "no-store",
+      headers: {
+        "Cache-Control": "no-cache",
+      },
+    }
   );
-
-  // const res = await fetch(
-  //   // `api/v1/organization/getAllOrganization`,
-  //   `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`,
-  //   {
-  //     cache: "no-store",
-  //     headers: {
-  //       "Cache-Control": "no-cache",
-  //     },
-  //   }
-  // );
-  return resNew;
+  return res;
 };
 
 export const getAllUser = async () => {

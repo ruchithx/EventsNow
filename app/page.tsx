@@ -8,8 +8,8 @@ import {
 
 export default function Home() {
   async function handleClickIt() {
-    const res = await getAllOrganization();
-    const data = await res.data;
+    const res = await getAllUser();
+    const data = await res.json();
     console.log("Organization data", data);
   }
   return (
