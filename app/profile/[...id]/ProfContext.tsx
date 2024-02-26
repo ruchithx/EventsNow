@@ -18,6 +18,7 @@ export interface ProfContext {
   isActive: boolean;
   setLname: React.Dispatch<React.SetStateAction<string>>;
   setFname: React.Dispatch<React.SetStateAction<string>>;
+  passwordExists: boolean;
 
   status: string;
   handleSetting: VoidFunc;
@@ -46,6 +47,7 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isSlideBar, setIsSlideBar] = useState(true);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [passwordExists, setPasswordExists] = useState<boolean>(false);
   const [userDeatails, setUserDeatails] = useState<UserDetails>({
     _id: "",
     email: "",
@@ -97,12 +99,37 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
           return;
         }
         const finalResponse = await res.json();
-        console.log("Testtttttttt");
-        console.log(finalResponse);
+
         setUserDeatails(finalResponse);
         setFname(finalResponse.firstName);
         setLname(finalResponse.lastName);
+
         setIsLoading(false);
+      }
+      getData();
+    },
+
+    [params.id]
+  );
+  useEffect(
+    function () {
+      async function getData() {
+        setIsLoading(true);
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getOneUserById`,
+          {
+            method: "GET",
+            mode: "cors",
+            body: JSON.stringify(params.id),
+          }
+        );
+
+        if (!res.ok) {
+          // router.push("/404");
+          return;
+        }
+        const passwordExists = await res.json();
+        setPasswordExists(passwordExists.passwordExists);
       }
       getData();
     },
@@ -133,6 +160,7 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
         userDeatails,
         setLname,
         setFname,
+        passwordExists,
       }}
     >
       {children}

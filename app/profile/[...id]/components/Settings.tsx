@@ -16,6 +16,7 @@ type Detailss = {
   setFname: React.Dispatch<React.SetStateAction<string>>;
   fname: string;
   lname: string;
+  passwordExists: boolean;
 };
 
 export default function Settings() {
@@ -61,7 +62,7 @@ export default function Settings() {
     },
     [params.id]
   );
-  const { userDeatails, setLname, setFname, lname, fname } =
+  const { userDeatails, setLname, setFname, lname, fname, passwordExists } =
     useProf() as Detailss;
 
   const handleSave = async () => {
@@ -257,7 +258,7 @@ export default function Settings() {
           </div>
 
           <div className="sm:col-span-3">
-            <ChangePassword />
+            {passwordExists && <ChangePassword />}
           </div>
         </div>
       </div>
