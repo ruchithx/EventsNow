@@ -6,6 +6,7 @@ import CoverPhoto from "./components/CoverPhoto";
 import Description from "./components/Description";
 import PostTab from "./components/PostTab";
 import React, { useState } from 'react'; 
+import SmallView from "./components/SmallView";
 
 
 export default function Home() {
@@ -27,11 +28,21 @@ export default function Home() {
                     />
                 )}
         
-
-        {activeComponent === "PostTab" && <PostTab/>}
+     
+      {activeComponent === "PostTab" && <PostTab/>}
+     
+        
+        
+          <div className="md:hidden">
+            <SmallView 
+            EventName={"'KUWENI'"}
+            Location={"Matara"}
+            Time={"12.00 to 14.00"}
+            Date={"21th April 2020"}/>
+          </div>
         
 
-        <div className="md:absolute md:right-0">
+        <div className="md:absolute md:right-0 hidden md:block ">
           <HostSideBar
             EventName={"'KUWENI'"}
             Location={"Matara"}
