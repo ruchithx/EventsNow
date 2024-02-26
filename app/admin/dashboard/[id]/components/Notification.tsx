@@ -1,48 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import SuperadminPages from "./SuperadminPages";
 import Org_RequestHandle from "./Org_RequestHandle";
-import { Organization } from "@/app/organization/dashboard/[id]/Type";
+import { Organization } from "@/app/admin/Type";
+import { useAdmin } from "../AdminContextFile";
+import EmptyStateComponent from "@/components/EmptyStateComponent";
 
-async function getData() {
-  const res = await fetch(
-    "http://localhost:3000/api/v1/organization/requestOrganization",
-    {
-      next: {
-        revalidate: 30,
-      },
-    }
-  );
-  return res.json();
+interface notificationProps {
+  notification: Organization[];
 }
 
 export default function Notification() {
-  const [data, setData] = useState<Organization[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getData();
-      setData(result);
-    };
-
-    fetchData();
-  }, []);
+  const { notification } = useAdmin() as notificationProps;
 
   return (
     <>
       <SuperadminPages
         title="All organization requests"
-        description="You can see all the organizations that currently available from here"
+        description="Check organization requests and handle them."
         text="Search"
         customComponent={
           <>
-            {data.map((org) => (
-              <div key={org._id}>
-                <Org_RequestHandle
-                  organization={org}
-                  
-                />
-              </div>
-            ))}
+            {notification.length === 0 ? (
+              <EmptyStateComponent message="No Organization" />
+            ) : (
+              notification.map((org) => (
+                <Org_RequestHandle key={org._id} organization={org} />
+              ))
+            )}
           </>
         }
       />

@@ -1,9 +1,9 @@
 import React from "react";
-import NavBar from "@/components/Navbar/NavBar";
+
 import Footer from "@/components/Footer";
 import CreateOrganizationFormBasic from "./components/CreateOrganizationFormBasic";
 
-export default function page() {
+export default function Page() {
   return (
     <div>
       <div className="grid lg:grid-cols-2 ">

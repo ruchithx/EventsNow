@@ -81,7 +81,7 @@ export default function LoginForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="w-full px-3 py-[6px] border rounded-md focus:outline-none focus:outline-custom-orange"
-          placeholder="Create password"
+          placeholder="Enter password"
           ref={passwordInputRef}
         />
       </div>

@@ -68,7 +68,7 @@ export default function EventRegisterFormBasic() {
     const result = validateEvent.safeParse(data);
     if (result.success) {
       const res = await fetch(
-        "http://localhost:3000/api/v1/event/createEvent",
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/event/createEvent`,
         {
           method: "POST",
           mode: "cors",

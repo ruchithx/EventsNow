@@ -3,12 +3,16 @@ import Organization from "@/models/organizationModel";
 import connectMongoDB from "@/lib/mongo/mongodb";
 
 export async function GET() {
-  connectMongoDB();
-  const organization = await Organization.find({});
+  try {
+    await connectMongoDB();
+    const organization = await Organization.find();
+    console.log("organization is", organization);
+    if (!organization || organization.length === 0) {
+      return NextResponse.json({ message: "No organization" });
+    }
 
-  if (!organization) {
-    return NextResponse.json({ message: "No organization" });
+    return NextResponse.json({ organization });
+  } catch (error) {
+    return new NextResponse("Errror in fetching data" + error, { status: 500 });
   }
-
-  return NextResponse.json({ organization });
 }

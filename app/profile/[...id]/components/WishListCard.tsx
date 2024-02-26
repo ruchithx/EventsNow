@@ -72,7 +72,12 @@ export default function WishListCArd({
             className={`mx-8 mt-2 flex items-center xl:items-start h-auto ${margin} `}
           >
             <div className="w-8 h-8 xl:-mt-2">
-              <Image src="/pinfill.svg" alt="print" width={32} height={32} />
+              <Image
+                src="/images/reusableComponents/sendfill.svg"
+                alt="print"
+                width={32}
+                height={32}
+              />
             </div>
             <div className="text-[#353C4E] text-center text-base font-normal leading-4 pl-4 ">
               {Location}

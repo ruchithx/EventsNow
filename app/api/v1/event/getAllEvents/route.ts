@@ -4,11 +4,11 @@ import connectMongoDB from "@/lib/mongo/mongodb";
 
 export async function GET() {
   connectMongoDB();
-  const event = await Event.find({});
+  const event = await Event.find();
 
-  if (!Event) {
+  if (!event) {
     return NextResponse.json({ message: "No organization" });
   }
 
-  return NextResponse.json({ Event });
+  return NextResponse.json(event);
 }

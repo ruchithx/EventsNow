@@ -2,6 +2,7 @@ import React from "react";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import BestEvent from "./components/BestEvent";
+// import BestEvent from "./components/BestEvent";
 
 export default function page() {
   return (
@@ -35,7 +36,7 @@ export default function page() {
             width={360}
             height={200}
             alt="mission"
-            className="w-auto h-auto"
+            // className="w-auto h-auto"
           />
 
           {/* <img src="/mission.png" className="justify-center" alt="mission"  /> */}
@@ -65,7 +66,7 @@ export default function page() {
             width={360}
             height={200}
             alt="vision"
-            className="w-auto h-auto"
+            // className="w-auto h-auto"
           />
           {/* <img src='/vision.png' className='justify-center' alt='visionn'/> */}
         </div>
@@ -82,7 +83,7 @@ export default function page() {
             width={500}
             height={300}
             alt="story"
-            className="w-auto h-auto"
+            // className="w-auto h-auto"
           />
         </div>
 

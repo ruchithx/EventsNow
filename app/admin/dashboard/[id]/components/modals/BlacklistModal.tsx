@@ -5,16 +5,19 @@ interface Blacklistprops {
 const BlacklistModalContent = ({ userId }: Blacklistprops) => {
   const blacklistUser = async () => {
     try {
-      const response = await fetch(`/app/api/v1/blacklist/${userId}`, {
-        method: "POST",
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/app/api/v1/blacklist/${userId}`,
+        {
+          method: "POST",
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to blacklist user");
       }
 
       const data = await response.json();
-      console.log(data); // Log the response from the server
+      console.log(data);
     } catch (error) {
       console.error("Error blacklisting user:", error);
     }

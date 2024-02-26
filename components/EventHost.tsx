@@ -17,7 +17,7 @@ function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
             btnState === 1
               ? "bg-custom-orange text-white"
               : "bg-transparent text-custom-orange"
-          } rounded-2xl text-center whitespace-nowrap uppercase w-full md:w-2/3 p-1 `}
+          } rounded-2xl text-center whitespace-nowrap uppercase w-full md:w-2/3 p-3 `}
           onClick={() => handleToggle(1)}
         >
           {btn1}
@@ -27,7 +27,7 @@ function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
             btnState === 2
               ? "bg-custom-orange text-white"
               : "bg-transparent text-custom-orange"
-          } rounded-2xl text-center whitespace-nowrap uppercase w-full md:w-2/3 p-1`}
+          } rounded-2xl text-center whitespace-nowrap uppercase w-full md:w-2/3 p-3`}
           onClick={() => handleToggle(2)}
         >
           {btn2}
@@ -38,7 +38,7 @@ function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
           <>
             <MyEventCard
               OrgName={"EvetnNow Studios "}
-              image={"/images/profile/ProfilePicture.png"}
+              image={"./images/reusableComponents/login.jpg"}
               btn="Show Details"
             />
           </>
@@ -47,7 +47,7 @@ function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
           <>
             <MyEventCard
               OrgName={"Stein Studios "}
-              image={"././image 1.png"}
+              image={"./images/reusableComponents/PictureOfPost.jpg"}
               btn="Show Details"
             />
           </>
