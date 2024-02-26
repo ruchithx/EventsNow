@@ -21,11 +21,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter your last name"],
   },
-  phone_number: {
-    type: Number,
-  },
+
   birthday: {
-    type: Date,
+    type: String,
   },
   password: {
     type: String,
@@ -48,11 +46,43 @@ const userSchema = new mongoose.Schema({
       message: "passwords are not the same",
     },
   },
+  mobileNumber: {
+    type: Number,
+    validate: {
+      validator: function (val) {
+        return /^[789]\d{9}$/.test(val.toString());
+      },
+      message: "Please provide a valid mobile number",
+    },
+  },
+  primaryEmail: {
+    type: String,
+
+    lowercase: true,
+    validate: [validator.isEmail, "Please provide valid email"],
+  },
+  address: {
+    type: String,
+  },
+  gender: {
+    type: String,
+    enum: ["male", "female"],
+  },
+  tshirtSize: {
+    type: String,
+  },
+  meal: {
+    type: String,
+  },
 });
 
 userSchema.pre("save", async function (next) {
   //only run this function if password was actually modified
   if (!this.isModified("password")) return next();
+
+  if (this.birthday instanceof Date) {
+    this.birthday = this.birthday.toISOString().split("T")[0]; // Convert to YYYY-MM-DD format
+  }
 
   //hash the password with cost of 12
   this.password = await bcrypt.hash(this.password, 12);

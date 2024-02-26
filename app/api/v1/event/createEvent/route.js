@@ -12,6 +12,7 @@ export async function POST(req) {
     eventTimeZone,
     description,
     postImageLink,
+    organizationId,
   } = await req.json();
 
   connectMongoDB();
@@ -24,6 +25,7 @@ export async function POST(req) {
     eventTimeZone,
     description,
     postImageLink,
+    organizationId,
   });
   return NextResponse.json(
     { message: "Event Created Successfully" },

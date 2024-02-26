@@ -1,9 +1,15 @@
 "use client";
+import { OrganizationProps } from "@/components/Navbar/NavBar";
 import { useContext, createContext, useState, useEffect } from "react";
+import { any } from "zod";
 
 interface AuthContext {
+  organizationId: string | null;
+  setOrganizationId: React.Dispatch<React.SetStateAction<string>>;
   emailAuth: string | null;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
+  organization: OrganizationProps[];
+  setOrganization: React.Dispatch<React.SetStateAction<OrganizationProps[]>>;
 }
 
 interface AuthContextProviderProps {
@@ -13,7 +19,9 @@ interface AuthContextProviderProps {
 const authContext = createContext<AuthContext | null>(null);
 
 function AuthContextProvider({ children }: AuthContextProviderProps) {
+  const [organization, setOrganization] = useState<OrganizationProps[]>([]);
   const [emailAuth, setEmail] = useState<string>("");
+  const [organizationId, setOrganizationId] = useState<string>("");
 
   useEffect(() => {
     const email: any = localStorage.getItem("email");
@@ -21,7 +29,16 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
   }, []);
 
   return (
-    <authContext.Provider value={{ emailAuth, setEmail }}>
+    <authContext.Provider
+      value={{
+        emailAuth,
+        setEmail,
+        organization,
+        setOrganization,
+        organizationId,
+        setOrganizationId,
+      }}
+    >
       {children}
     </authContext.Provider>
   );

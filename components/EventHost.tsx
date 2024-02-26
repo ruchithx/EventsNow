@@ -1,12 +1,8 @@
-import Org_RequestHandle from "@/app/profile/components/Org_RequestHandle";
+import MyEventCard from "@/app/profile/[...id]/components/MyEventCard";
 import React, { useState } from "react";
+// import MyEventCard from "@/app/profile/components/MyEventCard";
 
-interface btn {
-  btn1: string;
-  btn2: string;
-}
-
-export default function ToggleButtons({ btn1, btn2 }: btn) {
+function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
   const [btnState, setBtnState] = useState(1);
 
   const handleToggle = (selectedBtn: number) => {
@@ -14,54 +10,51 @@ export default function ToggleButtons({ btn1, btn2 }: btn) {
   };
 
   return (
-    <>
-      <div className="bg-initial m-4 h-16 p-2 font-semibold font-IBM rounded-2xl flex text-center whitespace-nowrap">
-        <div
+    <div className="flex flex-col items-center font-IBM pr-4">
+      <div className="bg-initial rounded-2xl m-4  md:w-2/2 flex items-center justify-center ">
+        <button
           className={`${
-            btnState === 1 ? "bg-custom-orange" : "bg-transparent"
-          } mr-3 p-2 rounded-2xl flex-1 whitespace-nowrap`}
+            btnState === 1
+              ? "bg-custom-orange text-white"
+              : "bg-transparent text-custom-orange"
+          } rounded-2xl text-center whitespace-nowrap uppercase w-full md:w-2/3 p-3 `}
+          onClick={() => handleToggle(1)}
         >
-          <button
-            className={`${
-              btnState === 1
-                ? "bg-custom-orange text-white"
-                : "bg-transparent text-custom-orange"
-            } rounded-2xl text-center uppercase w-full h-full`}
-            onClick={() => handleToggle(1)}
-          >
-            {btn1}
-          </button>
-        </div>
-        <div
+          {btn1}
+        </button>
+        <button
           className={`${
-            btnState === 2 ? "bg-custom-orange" : "bg-transparent"
-          } p-2 rounded-2xl flex-1 whitespace-nowrap`}
+            btnState === 2
+              ? "bg-custom-orange text-white"
+              : "bg-transparent text-custom-orange"
+          } rounded-2xl text-center whitespace-nowrap uppercase w-full md:w-2/3 p-3`}
+          onClick={() => handleToggle(2)}
         >
-          <button
-            className={`${
-              btnState === 2
-                ? "bg-custom-orange text-white"
-                : "bg-transparent text-custom-orange"
-            } rounded-2xl text-center uppercase w-full h-full`}
-            onClick={() => handleToggle(2)}
-          >
-            {btn2}
-          </button>
-        </div>
+          {btn2}
+        </button>
       </div>
-      <div className="m-4 p-2 font-IBM rounded-2xl flex flex-col md:flex-row text-center wrap whitespace-nowrap grid grid-cols-5">
+      <div className="m-4 p-2 font-IBM rounded-2xl bg-white grid grid-cols-1 gap-4">
         {btnState === 1 && (
-          <Org_RequestHandle OrgName={"Amna"} image="PictureOfaSinger.png" />
+          <>
+            <MyEventCard
+              OrgName={"EvetnNow Studios "}
+              image={"./images/reusableComponents/login.jpg"}
+              btn="Show Details"
+            />
+          </>
         )}
-
         {btnState === 2 && (
           <>
-            <Org_RequestHandle OrgName={"Amna"} image="PictureOfaSinger.png" />
-
-            <h1>Hiiiii</h1>
+            <MyEventCard
+              OrgName={"Stein Studios "}
+              image={"./images/reusableComponents/PictureOfPost.jpg"}
+              btn="Show Details"
+            />
           </>
         )}
       </div>
-    </>
+    </div>
   );
 }
+
+export default ToggleButtons;

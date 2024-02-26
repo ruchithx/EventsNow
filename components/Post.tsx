@@ -49,7 +49,7 @@ export default function Post({ profilePic, name, caption, post }: Post) {
       <div className="p-5">
         <div className="flex gap-7">
           <Image
-            src={`/images/ReusableComponents/${profilePic}.jpg`}
+            src={`/images/reusableComponents/${profilePic}.jpg`}
             alt="profile picture"
             width={60}
             height={10}
@@ -66,7 +66,7 @@ export default function Post({ profilePic, name, caption, post }: Post) {
       </div>
       <button>
         <Image
-          src={`/images/ReusableComponents/${post}.jpg`}
+          src={`/images/reusableComponents/${post}.jpg`}
           alt="post"
           width={661}
           height={363}
@@ -77,7 +77,7 @@ export default function Post({ profilePic, name, caption, post }: Post) {
         <div className="flex gap-4">
           <button onClick={() => handleClickLikeButton()}>
             <Image
-              src={"/images/ReusableComponents/React.svg"}
+              src={"/images/reusableComponents/React.svg"}
               alt="like"
               width={40}
               height={34}
@@ -86,7 +86,7 @@ export default function Post({ profilePic, name, caption, post }: Post) {
           </button>
           <button onClick={() => handleClickCommentButton()}>
             <Image
-              src={"/images/ReusableComponents/Comment.svg"}
+              src={"/images/reusableComponents/Comment.svg"}
               alt="comment"
               width={40}
               height={34}
@@ -95,7 +95,7 @@ export default function Post({ profilePic, name, caption, post }: Post) {
           </button>
           <button onClick={() => handleClickShareButton()}>
             <Image
-              src={"/images/ReusableComponents/Share.svg"}
+              src={"/images/reusableComponents/Share.svg"}
               alt="share"
               width={40}
               height={34}
@@ -131,21 +131,21 @@ export default function Post({ profilePic, name, caption, post }: Post) {
               className={styles.zoom}
             />
             <Image
-              src={"/images/ReusableComponents/TwitterIconPost.svg"}
+              src={"/images/reusableComponents/TwitterIconPost.svg"}
               alt="facebook"
               width={40}
               height={34}
               className={styles.zoom}
             />
             <Image
-              src={"/images/ReusableComponents/InstagramIconPost.svg"}
+              src={"/images/reusableComponents/InstagramIconPost.svg"}
               alt="facebook"
               width={40}
               height={34}
               className={styles.zoom}
             />
             <Image
-              src={"/images/ReusableComponents/threads-app-icon.svg"}
+              src={"/images/reusableComponents/threads-app-icon.svg"}
               alt="facebook"
               width={31}
               height={28}

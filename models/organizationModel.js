@@ -1,5 +1,3 @@
-import { string } from "zod";
-
 const mongoose = require("mongoose");
 
 const validator = require("validator");
@@ -7,6 +5,7 @@ const validator = require("validator");
 const organizationSchema = new mongoose.Schema({
   fullName: {
     type: String,
+
     required: [true, "Please enter your full name"],
   },
   numberType: {
@@ -43,6 +42,7 @@ const organizationSchema = new mongoose.Schema({
     required: [true, "Please provide your email"],
     lowercase: true,
     validate: [validator.isEmail, "Please provide valid email"],
+    unique: false,
   },
 
   postImageLink: {

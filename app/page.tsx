@@ -1,20 +1,22 @@
 "use client";
 
 import Footer from "@/components/Footer";
-import Event from "./event/dashboard/[id]/components/Event";
+import { getAllOrganization } from "./admin/dashboard/[id]/FetchData";
 
 export default function Home() {
+  async function handleClickIt() {
+    const res = await getAllOrganization();
+    const data = await res.json();
+    console.log("Organization data", data);
+  }
   return (
-    <div className="p-12">
-      {/* <Footer /> */}
-      <Event 
-        EventName={"NadaGama"}
-        Location={"Anuradhapura"}
-        Date={"21st June 2024"}
-        Time={"16.00 t0 22.00"}
-        buttonDesc={"Stein Studio"}
+    <div>
+      <button onClick={handleClickIt}> click it </button>
 
-      />
+      <div>Hero section</div>
+      <div>Event</div>
+      <div>Out dated Event</div>
+      <Footer />
     </div>
   );
 }

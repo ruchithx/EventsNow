@@ -1,33 +1,17 @@
 import React, { useState, useEffect } from "react";
 import SuperadminPages from "@/app/admin/dashboard/[id]/components/SuperadminPages";
-import Available_Orgs from "@/components/Available_Orgs";
-interface UserData {
-  _id: string;
-  fullName: string;
-}
-async function getData() {
-  const res = await fetch(
-    "http://localhost:3000/api/v1/organization/approvedOrganization",
-    {
-      next: {
-        revalidate: 30,
-      },
-    }
-  );
-  return res.json();
+import Available_Orgs from "@/app/admin/dashboard/[id]/components/Available_Orgs";
+import { Organization } from "@/app/organization/dashboard/[id]/Type";
+import { useAdmin } from "../AdminContextFile";
+import EmptyStateComponent from "@/components/EmptyStateComponent";
+
+interface orgProps {
+  organization: Organization[];
 }
 
-export default function Notification() {
-  const [data, setData] = useState<UserData[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getData();
-      setData(result);
-    };
-
-    fetchData();
-  }, []);
+export default function Organization() {
+  const { organization } = useAdmin() as orgProps;
+  console.log(organization);
   return (
     <div>
       <SuperadminPages
@@ -36,16 +20,13 @@ export default function Notification() {
         text="Search Organizations"
         customComponent={
           <>
-            {data.map((me) => (
-              <div key={me._id}>
-                <Available_Orgs
-                  OrgName={me.fullName}
-                  image={"image 1.png"}
-                  noOfEvents={"34"}
-                  noOfMembers={"12"}
-                />
-              </div>
-            ))}
+            {organization.length === 0 ? (
+              <EmptyStateComponent message="No Events" />
+            ) : (
+              organization.map((me) => (
+                <Available_Orgs key={me._id} organization={me} />
+              ))
+            )}
           </>
         }
       />

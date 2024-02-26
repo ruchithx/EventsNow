@@ -9,16 +9,7 @@ export default function Payments() {
         title="Payments Page"
         description="You can get all the details about payments from here"
         text="Search Payments"
-        customComponent={
-          <Superadminevents
-            EventName="Nadagama"
-            image={"image 3.png"}
-            Location="Matara"
-            Date="12.05.2024"
-            Time="23.00"
-            Ratings={"2.45"}
-          />
-        }
+        customComponent={""}
       />
     </div>
   );

@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SuperadminPages from "@/app/admin/dashboard/[id]/components/SuperadminPages";
-import Superadminevents from "./Superadminevent";
+import { Event } from "@/app/admin/Type";
+import { useAdmin } from "../AdminContextFile";
+import Upcoming_Events from "./Superadminevent";
+import EmptyStateComponent from "@/components/EmptyStateComponent";
+
+interface EventData {
+  event: Event[];
+}
 
 export default function Event() {
+  const { event } = useAdmin() as EventData;
+  console.log(event);
   return (
     <div>
       <SuperadminPages
@@ -11,22 +20,11 @@ export default function Event() {
         text="Search Events"
         customComponent={
           <>
-            <Superadminevents
-              EventName="Nadagama"
-              image={"PictureOfGitarist.png"}
-              Location="Matara"
-              Date="12.05.2024"
-              Time="23.00"
-              Ratings={"2.45"}
-            />
-            <Superadminevents
-              EventName="Nadagama"
-              image={"PictureOfGitarist.png"}
-              Location="Matara"
-              Date="12.05.2024"
-              Time="23.00"
-              Ratings={"2.45"}
-            />
+            {event.length === 0 ? (
+              <EmptyStateComponent message="No Events" />
+            ) : (
+              event.map((e) => <Upcoming_Events key={e._id} event={e} />)
+            )}
           </>
         }
       />

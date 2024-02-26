@@ -1,3 +1,5 @@
+import { EventPermission, Modal } from "./OrgContext";
+
 export type voidFunc = () => void;
 
 export type OrgStatus =
@@ -8,7 +10,6 @@ export type OrgStatus =
   | "setting";
 
 export interface OrgContext {
-  events: any[];
   handleSetting: voidFunc;
   isSlideBar: boolean;
   setIsSlideBar: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,7 +18,8 @@ export interface OrgContext {
   isLoading: boolean;
   isActive: boolean;
   revenue: number;
-  team: any[];
+  modalUserName: string;
+  setModalUserName: React.Dispatch<React.SetStateAction<string>>;
   ticketSold: number;
   status: string;
   handleDashboard: voidFunc;
@@ -25,9 +27,29 @@ export interface OrgContext {
   handleMyTeam: voidFunc;
   handleReport: voidFunc;
   organization: any;
+  editedName: string;
+  setEditedName: React.Dispatch<React.SetStateAction<string>>;
+  modal: Modal;
+  setModal: React.Dispatch<React.SetStateAction<Modal>>;
+  team: Team[];
+  setTeam: React.Dispatch<React.SetStateAction<Team[]>>;
+  permissionID: string;
+  setPermissionID: React.Dispatch<React.SetStateAction<string>>;
+  globalPermission: string[];
+  setGlobalPermission: React.Dispatch<React.SetStateAction<string[]>>;
+  events: Event[];
+  setEvents: React.Dispatch<React.SetStateAction<Event[]>>;
+  selectEventForPermission: any;
+  setSelectEventForPermission: any;
+  eventPermission: EventPermission[];
+  setEventPermission: React.Dispatch<React.SetStateAction<EventPermission[]>>;
+  id: string;
 }
 
 export type Organization = {
+  map(
+    arg0: (org: any) => import("react").JSX.Element
+  ): import("react").ReactNode;
   _id: string;
   fullName: string;
   numberType: string;
@@ -45,4 +67,34 @@ export type Organization = {
   payout?: string;
   accountName?: string;
   accountNumber?: string;
+};
+
+export type User = {
+  email: string;
+  _id: string;
+  firstName: string;
+  image: string;
+  lastName: string;
+};
+
+export type Team = {
+  userData: User;
+  permissionDocumentId: string;
+  globalPermission: string[];
+  eventPermission: EventPermission[];
+};
+
+export type Event = {
+  selectedTab: string;
+  duration: string;
+  eventTimeZone: string;
+  eventStartDate: string;
+  startTime: string;
+  _id: string;
+  eventName: string;
+  organizationId: string;
+  description: string;
+  postImageLink: string;
+  isActive?: boolean;
+  __v: number;
 };
