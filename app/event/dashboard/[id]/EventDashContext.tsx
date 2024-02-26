@@ -4,37 +4,35 @@ import React, { createContext, useState, useContext } from "react";
 
 export interface EventContextType {
   status: String;
-  handleOverview : voidFunc ;
-  handleHostPage : voidFunc ;
-  handleMyteam : voidFunc ;
-  handleReports : voidFunc ;
-  handleCampaign : voidFunc ;
-  handleSetting : voidFunc ;
-
+  handleOverview: voidFunc;
+  handleHostPage: voidFunc;
+  handleMyteam: voidFunc;
+  handleReports: voidFunc;
+  handleCampaign: voidFunc;
+  handleSetting: voidFunc;
 }
 
 const EventContext = createContext<EventContextType | string>("");
 
 function EventContextProvider({ children }: { children: React.ReactNode }) {
-  const [status, setStatus] = useState("hostpage");
-  const handleOverview : voidFunc = () => {
+  const [status, setStatus] = useState("reports");
+  const handleOverview: voidFunc = () => {
     setStatus("overview");
   };
-  const handleHostPage : voidFunc = () => {
+  const handleHostPage: voidFunc = () => {
     setStatus("hostpage");
   };
-  const handleMyteam : voidFunc = () => {
+  const handleMyteam: voidFunc = () => {
     setStatus("myteam");
   };
-  const handleReports : voidFunc = () => {
+  const handleReports: voidFunc = () => {
     setStatus("reports");
   };
-  const handleCampaign : voidFunc = () => {
+  const handleCampaign: voidFunc = () => {
     setStatus("campaign");
   };
-  const handleSetting : voidFunc = () => {
+  const handleSetting: voidFunc = () => {
     setStatus("settings");
-    
   };
 
   return (
