@@ -211,6 +211,7 @@ export default function NavBar() {
                     <Link href={"/about"}>
                       <NavBarButton text={"About"} />
                     </Link>
+                    
                   </>
                 )}
 

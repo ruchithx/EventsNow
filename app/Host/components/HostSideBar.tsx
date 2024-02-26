@@ -1,56 +1,78 @@
 import React from "react";
 import { useState } from "react";
 import Image from "next/image";
+import PostTab from "./PostTab";
+import CoverPhoto from "./CoverPhoto";
 
 interface HostSideBar {
-  EventName: String
+  EventName: String;
   Location: String;
   Time: String;
   Date: String;
+  activeComponent: string; // Add prop for active component
+  handleComponentChange: (component: string) => void; // Add prop for handling component change
 }
 
 function buyTckets() {}
 
-export default function HostSideBar({ EventName, Location, Time, Date }: HostSideBar) {
+export default function HostSideBar({
+  EventName,
+  Location,
+  Time,
+  Date,
+  activeComponent,
+  handleComponentChange,
+}: HostSideBar) {
   const [activeButton, setActiveButton] = useState<number | null>(1);
 
-  const handleClick = (buttonNumber: number) => {
-    setActiveButton(buttonNumber);
-  };
+  const handleClick = (buttonNumber: number) => {setActiveButton(buttonNumber);};
+
+  
   return (
-    <div className="w-96 h-screen  bg-gray-500 text-center">
-      <div className=' text-center text-[#454545cc] text-5xl font-normal pt-6 font-["Roboto"] pt-16'>
-      {EventName}
+    <div className="xl:w-96 xl:h-screen md:h-[40rem] bg-white items-end md:w-80 sm:w-64">
+      <div className=' text-center text-[#454545cc] md:text-5xl sm:text-xl font-normal xl:pt-16 md:pt-10 font-["Roboto"]'>
+        {EventName}
       </div>
 
-      <div className="flex w-80 h-14 rounded-3xl bg-[#F9EBE9] items-center mx-8 my-12">
+      <div className="flex xl:w-80 md:w-64 h-14 rounded-3xl bg-[#F9EBE9] items-center mx-8 xl:my-12 md:my-8 ">
         <button
-          className={`text-lg font-medium ml-2 w-40 h-12 rounded-3xl  ${
+          className={`xl:text-lg md:text-md font-medium ml-2 w-40 h-12 rounded-3xl  ${
             activeButton === 1
               ? "bg-[#D47151] text-white shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
               : "hover:bg-gray-200 text-[#D47151] bg-[#F9EBE9]"
           }`}
-          onClick={() => handleClick(1)}
+          onClick={() => {
+            if (activeComponent !== "CoverPhoto") {
+              handleComponentChange("CoverPhoto");
+              handleClick(1);
+            }
+          }}
         >
           EVENT HOST
         </button>
         <button
-          className={`text-lg font-medium mr-2 w-40 h-12 rounded-3xl  ${
+          className={`xl:text-lg md:text-md font-medium mr-2 w-40 h-12 rounded-3xl  ${
             activeButton === 2
               ? "bg-[#D47151] text-white shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
               : "hover:bg-gray-200 text-[#D47151] bg-[#F9EBE9]"
           }`}
-          onClick={() => handleClick(2)}
+          onClick={() => {
+            
+            if (activeComponent !== "PostTab") {
+              handleComponentChange("PostTab");
+              handleClick(2);
+            }
+          }}
         >
           COMMUNITY
         </button>
       </div>
 
-      <div className="text-left ml-12 text-[#455273] text-3xl font-bold my-12">
+      <div className="text-left xl:ml-12 md:ml-8 text-[#455273] xl:text-3xl md:text-2xl font-bold xl:mt-16 ">
         QUICK FACTS
       </div>
 
-      <div className="grid grid-rows-3 gap-6 ml-12 text-left -mt-4">
+      <div className="grid grid-rows-3 gap-6 xl:ml-12 md:ml-8 text-left mt-8">
         <div>
           <div className="w-8 h-8 ">
             <Image
@@ -60,7 +82,7 @@ export default function HostSideBar({ EventName, Location, Time, Date }: HostSid
               height={32}
             />
           </div>
-          <div className="text-[#353C4E] text-2xl  align-top -mt-8 font-['Roboto'] ml-12">
+          <div className="text-[#353C4E] xl:text-2xl md:text-xl  align-top -mt-8 font-['Roboto'] ml-12">
             {Location}
           </div>
         </div>
@@ -74,7 +96,7 @@ export default function HostSideBar({ EventName, Location, Time, Date }: HostSid
               height={32}
             />
           </div>
-          <div className="text-[#353C4E] text-2xl font-['Roboto'] align-top -mt-8 ml-12">
+          <div className="text-[#353C4E] xl:text-2xl  md:text-xl font-['Roboto'] align-top -mt-8 ml-12">
             {Date}
           </div>
         </div>
@@ -88,14 +110,13 @@ export default function HostSideBar({ EventName, Location, Time, Date }: HostSid
               height={32}
             />
           </div>
-          <div className="text-[#353C4E] text-2xl  font-['Roboto'] align-top -mt-8 ml-12">
+          <div className="text-[#353C4E] xl:text-2xl  md:text-xl  font-['Roboto'] align-top -mt-8 ml-12">
             {Time}
           </div>
         </div>
 
-        <div className="flex py-6">
-          
-          <button className="flex w-36 h-16 bg-[#D47151] rounded-l-2xl items-center px-4">
+        <div className="flex xl:pt-24 md:pt-14 items-center">
+          <button className="flex xl:w-36 md:w-32 h-16 bg-[#D47151] rounded-l-2xl items-center xl:px-4  ">
             <div className=" w-10 h-10 mt-2">
               <Image
                 src="/images/Event/HostPage/Check_fill.svg"
@@ -109,8 +130,8 @@ export default function HostSideBar({ EventName, Location, Time, Date }: HostSid
             </div>
           </button>
 
-          <button className="flex w-36 h-16 bg-[#455273] rounded-r-2xl items-center px-4">
-            <div className=" w-10 h-10 mt-2">
+          <button className="flex xl:w-36 md:w-36 h-16 bg-[#455273] rounded-r-2xl items-center xl:px-4">
+            <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
               <Image
                 src="/images/Event/HostPage/Paper_fill.svg"
                 alt="print"
@@ -122,7 +143,6 @@ export default function HostSideBar({ EventName, Location, Time, Date }: HostSid
               Add to Wish List
             </div>
           </button>
-
         </div>
       </div>
     </div>
