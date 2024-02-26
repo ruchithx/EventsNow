@@ -6,7 +6,7 @@ interface ContainerProps {
 export default function Container({ children }: ContainerProps) {
   return (
     <div className=" flex flex-col  px-8 shadow-3xl bg-[#FCFCFD] rounded-lg  ">
-      <div className=" grid-rows-8 mt-5 gap-3 flex flex-col ">{children}</div>
+      <div className=" grid-rows-8 gap-3 flex flex-col ">{children}</div>
     </div>
   );
 }
