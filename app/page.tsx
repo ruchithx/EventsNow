@@ -15,17 +15,16 @@ import { HiOutlineViewList } from "react-icons/hi";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 export default function Home() {
-  async function handleClickIt() {
-    const res = await getAllUser();
-    const data = await res.json();
-    console.log("Organization data", data);
-  }
-
   return (
     <div>
-      <button onClick={handleClickIt}> click it </button>
-
       <div>Hero sectin</div>
+      {/* <EventCardNewOrg
+        event="nadagama"
+        date="2002-2-1"
+        time="9.00"
+        location="matara"
+      />
+      <EventCardNew event="erewe" organization="sdsd" /> */}
       {/* <div className="flex flex-row justify-between">
         <div className="font-bold text-[80px] text-[#906953] ms-8 ">
           Upcoming Events
