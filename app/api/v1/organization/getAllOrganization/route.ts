@@ -1,6 +1,9 @@
-import { NextResponse } from "next/server";
+export const dynamic = "force-dynamic";
+
+import { NextRequest, NextResponse } from "next/server";
 import Organization from "@/models/organizationModel";
 import connectMongoDB from "@/lib/mongo/mongodb";
+import { NextApiRequest, NextApiResponse } from "next";
 
 export async function GET() {
   try {

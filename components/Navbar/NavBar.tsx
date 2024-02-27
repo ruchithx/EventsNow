@@ -100,23 +100,20 @@ export default function NavBar() {
   };
 
   const getUserOrganization = async ({ id }: ID) => {
-    const organization = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/v1/user/userOrganization`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
-      }
-    );
-
-    if (!organization.ok) {
-      setIsLoading(false);
-      return;
-    }
-
-    const organizationData = await organization.json();
-
-    setOrganization(organizationData);
+    // const organization = await fetch(
+    //   `${process.env.NEXT_PUBLIC_URL}/api/v1/user/userOrganization`,
+    //   {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({ id }),
+    //   }
+    // );
+    // if (!organization.ok) {
+    //   setIsLoading(false);
+    //   return;
+    // }
+    // const organizationData = await organization.json();
+    // setOrganization(organizationData);
   };
 
   // get data from api
@@ -138,7 +135,25 @@ export default function NavBar() {
             if (data) {
               setUserActive(true);
               setUser(data);
-              getUserOrganization({ id: data._id });
+
+              const organization = await fetch(
+                `${process.env.NEXT_PUBLIC_URL}/api/v1/user/userOrganization`,
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ id: data._id }),
+                }
+              );
+
+              if (!organization.ok) {
+                setIsLoading(false);
+                return;
+              }
+
+              const organizationData = await organization.json();
+
+              setOrganization(organizationData);
+              // getUserOrganization({ id: data._id });
             } else {
               // clickLogoutBtn();
               setUserActive(false);
@@ -150,7 +165,23 @@ export default function NavBar() {
             if (data) {
               setUserActive(true);
               setUser(data);
-              getUserOrganization({ id: data._id });
+              const organization = await fetch(
+                `${process.env.NEXT_PUBLIC_URL}/api/v1/user/userOrganization`,
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ id: data._id }),
+                }
+              );
+
+              if (!organization.ok) {
+                setIsLoading(false);
+                return;
+              }
+
+              const organizationData = await organization.json();
+
+              setOrganization(organizationData);
             } else {
               // clickLogoutBtn();
               setUserActive(false);
@@ -161,7 +192,7 @@ export default function NavBar() {
       }
       session();
     },
-    [emailAuth]
+    [emailAuth, pathname, organizationId, setOrganization]
   );
 
   return (

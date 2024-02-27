@@ -54,7 +54,7 @@ export async function POST(req: Request) {
       subject: "Invitation to join the organization",
       text: `You have been invited to join the organization`,
       // html: result,
-      html: `<h1>Invitation to join the organization <a href="${process.env.NEXT_PUBLIC_URL}/organization/newUser?organizationId=${organizationId}&userId=${user._id}" > click to verify</a></h1>`,
+      html: `<h1>Invitation to join the organization <a href="${process.env.NEXT_PUBLIC_URL}/organization/newuser?organizationId=${organizationId}&userId=${user._id}" > click to verify</a></h1>`,
     });
 
     if (res.accepted.length > 0) {

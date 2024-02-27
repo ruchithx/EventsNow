@@ -1,11 +1,14 @@
 "use client";
 
 import Footer from "@/components/Footer";
-import { getAllOrganization } from "./admin/dashboard/[id]/FetchData";
+import {
+  getAllOrganization,
+  getAllUser,
+} from "./admin/dashboard/[id]/FetchData";
 
 export default function Home() {
   async function handleClickIt() {
-    const res = await getAllOrganization();
+    const res = await getAllUser();
     const data = await res.json();
     console.log("Organization data", data);
   }
