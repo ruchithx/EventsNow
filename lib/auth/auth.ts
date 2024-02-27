@@ -6,6 +6,8 @@ import FacebookProvider from "next-auth/providers/facebook";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import User from "@/models/userModel";
+import { redirect } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 export async function comparePassword(password: string, hashPassword: string) {
   const isValid = await compare(password, hashPassword);
@@ -81,6 +83,8 @@ export const authOptions: NextAuthOptions = {
             body: JSON.stringify({ email, name, image }),
           }
         ).then((res) => res.json());
+
+        // return data;
       }
 
       // if (account?.provider === "google") {

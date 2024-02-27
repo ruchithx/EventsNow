@@ -7,6 +7,7 @@ import { error } from "@/util/Toastify";
 
 import Image from "next/image";
 import { useAuth } from "@/app/AuthContext";
+import { comparePassword } from "@/lib/auth/auth";
 
 interface contextProps {
   setEmail: React.Dispatch<React.SetStateAction<string>>;
@@ -30,17 +31,36 @@ export default function LoginForm() {
 
   async function handleSubmit(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    const enteredUsername = usernameInputRef.current?.value;
-    const enteredPassword = passwordInputRef.current?.value;
-
-    if (!enteredUsername || !enteredPassword) {
-      error("Enter username and password");
-      return;
-    }
-
     try {
+      setIsSubmitting(true);
+
+      const enteredUsername = usernameInputRef.current?.value;
+      const enteredPassword = passwordInputRef.current?.value;
+
+      if (!enteredUsername || !enteredPassword) {
+        error("Enter username and password");
+        return;
+      }
+
+      const res = await fetch("/api/v1/user/checkLogin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: enteredUsername,
+          password: enteredPassword,
+        }),
+      });
+
+      const { data } = await res.json();
+
+      if (data === "Invalid user name or password") {
+        error("Invalid username or password");
+        setIsSubmitting(false);
+        return;
+      }
+
       const result = await signIn("credentials", {
         redirect: false,
         email: enteredUsername,
@@ -52,6 +72,7 @@ export default function LoginForm() {
         setEmail(enteredUsername);
         setUsername("");
         setPassword("");
+        router.push("/");
       } else {
         error("Invalid username or password");
       }

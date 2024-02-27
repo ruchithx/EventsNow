@@ -1,9 +1,10 @@
 "use client";
+import { da } from "date-fns/locale";
 import { signIn } from "next-auth/react";
 import React from "react";
 
 export default function SignupSocial() {
-  function handleGoogleBtn() {
+  async function handleGoogleBtn() {
     signIn("google");
   }
   return (
