@@ -18,6 +18,8 @@ export interface ProfContext {
   isActive: boolean;
   setLname: React.Dispatch<React.SetStateAction<string>>;
   setFname: React.Dispatch<React.SetStateAction<string>>;
+  passwordExists: boolean;
+  userId: any;
 
   status: string;
   handleSetting: VoidFunc;
@@ -46,6 +48,7 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isSlideBar, setIsSlideBar] = useState(true);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [passwordExists, setPasswordExists] = useState<boolean>(false);
   const [userDeatails, setUserDeatails] = useState<UserDetails>({
     _id: "",
     email: "",
@@ -58,6 +61,7 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
   const [lname, setLname] = useState<string>("");
   const params = useParams();
   const router = useRouter();
+  const userId = params.id;
 
   const handleProfile: VoidFunc = () => {
     setStatus("myProfile");
@@ -94,14 +98,19 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
 
         if (!res.ok) {
           // router.push("/404");
+          setIsLoading(false);
+
           return;
         }
         const finalResponse = await res.json();
-        console.log("Testtttttttt");
         console.log(finalResponse);
         setUserDeatails(finalResponse);
         setFname(finalResponse.firstName);
         setLname(finalResponse.lastName);
+        if (finalResponse.password) {
+          setPasswordExists(true);
+        }
+
         setIsLoading(false);
       }
       getData();
@@ -123,6 +132,7 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
         isLoading,
         fname,
         lname,
+        userId,
 
         status,
         handleProfile,
@@ -133,6 +143,7 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
         userDeatails,
         setLname,
         setFname,
+        passwordExists,
       }}
     >
       {children}
