@@ -11,6 +11,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@craftjs/core": "^0.2.4",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
