@@ -70,7 +70,7 @@ export default function Setting() {
   return (
     <div className="flex rounded-lg  shadow-3xl md:pl-10 md:ml-2 pl-5 bg-[#fff] pt-8 lg:pl-12 flex-col justify-start items-start gap-12">
       <div className="md:w-11/12 w-11/12  lg:w-full flex flex-col gap-3">
-        <div className="text-3xl  sm:w-full lg:w-9/12 md:w-full flex justify-between font-semibold text-custom-orange	font-IBM">
+        <div className="lg:text-3xl text-2xl  sm:w-full lg:w-9/12 md:w-full flex justify-between font-semibold text-custom-orange	font-IBM">
           ACCOUNT DETAILS
           {!isEditing && (
             <button
@@ -104,7 +104,7 @@ export default function Setting() {
               id="firstName"
               // value={accountName}
               // onChange={(e) => setAccountName(e.target.value)}
-              className=" focus:outline-none  h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6 rounded-[12px]"
+              className=" focus:outline-none   block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6 rounded-[12px]"
             />
           </div> */}
           <ProfileSettings
@@ -117,7 +117,7 @@ export default function Setting() {
         </div>
       </div>
       <div className="w-11/12 lg:w-full ">
-        <div className="flex font-medium	 justify-between text-3xl sm:w-full lg:w-9/12 md:w-full  text-custom-orange	font-IBM">
+        <div className="flex font-semibold	 justify-between lg:text-3xl text-2xl sm:w-full lg:w-9/12 md:w-full  text-custom-orange	font-IBM">
           ADVANCED DETAILS
           {!isEditingAdvanced && (
             <button
@@ -148,7 +148,7 @@ export default function Setting() {
             id="countries"
             value={bank}
             onChange={(e) => setBank(e.target.value)}
-            className="mt-3 focus:outline-custom-orange w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-600  placeholder:text-gray-400  sm:text-sm sm:leading-6 border-2 rounded-[12px]"
+            className="mt-3 focus:outline-custom-orange w-full  block flex-1  bg-transparent py-1.5 pl-1 text-gray-600  placeholder:text-gray-400  sm:text-sm sm:leading-6 border-2 rounded-[12px]"
           >
             <option selected>Bank</option>
             <option value="Sampath">Sampath</option>
@@ -161,7 +161,7 @@ export default function Setting() {
             {...(!isEditingAdvanced && { disabled: true })}
             value={branch}
             onChange={(e) => setBranch(e.target.value)}
-            className=" mt-3 text-gray-600  focus:outline-custom-orange w-full h-8 block flex-1  bg-transparent py-1.5 pl-1  placeholder:text-gray-400  sm:text-sm sm:leading-6 border-2 rounded-[12px]"
+            className=" mt-3 text-gray-600  focus:outline-custom-orange w-full  block flex-1  bg-transparent py-1.5 pl-1  placeholder:text-gray-400  sm:text-sm sm:leading-6 border-2 rounded-[12px]"
           >
             <option selected>Branch</option>
             <option value="matara">matara</option>
@@ -178,7 +178,7 @@ export default function Setting() {
               id="firstName"
               value={accountName}
               onChange={(e) => setAccountName(e.target.value)}
-              className=" focus:outline-custom-orange w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-600  placeholder:text-gray-600  focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
+              className=" focus:outline-custom-orange w-full  block flex-1  bg-transparent py-1.5 pl-1 text-gray-600  placeholder:text-gray-600  focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
               placeholder=" Account Name  "
             />
             <input
@@ -189,7 +189,7 @@ export default function Setting() {
               id="firstName"
               value={accountNumber}
               onChange={(e) => setAccountNumber(e.target.value)}
-              className="focus:outline-custom-orange  w-full h-8 block flex-1  bg-transparent py-1.5 pl-1  placeholder:text-gray-600  text-gray-600 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
+              className="focus:outline-custom-orange  w-full  block flex-1  bg-transparent py-1.5 pl-1  placeholder:text-gray-600  text-gray-600 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px]"
               placeholder="Account Number "
             />
           </div>

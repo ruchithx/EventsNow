@@ -113,7 +113,7 @@ const ProfileSettings = memo(function ProfileSettings({
     //   </div>
     // </div>
     <>
-      <div className="font-medium	 border-[1px] text-sm border-[#848484] flex items-center gap-3 px-2 rounded-lg">
+      <div className="font-medium	 border-[1px] text-sm border-[#848484] flex items-center  gap-3 px-2 rounded-lg">
         Organization Name -:
         <input
           required
