@@ -27,7 +27,7 @@ export default function Upcoming_Events({ event }: Upcoming_Events) {
             {event.eventName}
           </div>
 
-          <div className="flex justify-end">
+          <div className="flex justify-end ">
             <button
               onClick={() => info()}
               className="w-20 h-7 rounded-3xl bg-custom-admin shrink-0 flex"
