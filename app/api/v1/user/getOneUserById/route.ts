@@ -19,17 +19,3 @@ export async function POST(req: Request) {
     console.log(error);
   }
 }
-export async function GET(req: Request) {
-  try {
-    connectMongoDB();
-
-    const id = await req.json();
-
-    const data = await User.findOne({ _id: id });
-
-    const passwordExists = !!data.password;
-    return NextResponse.json({ passwordExists });
-  } catch (error) {
-    console.log(error);
-  }
-}

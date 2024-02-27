@@ -103,33 +103,9 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
         setUserDeatails(finalResponse);
         setFname(finalResponse.firstName);
         setLname(finalResponse.lastName);
+        // setPasswordExists(finalResponse);
 
         setIsLoading(false);
-      }
-      getData();
-    },
-
-    [params.id]
-  );
-  useEffect(
-    function () {
-      async function getData() {
-        setIsLoading(true);
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getOneUserById`,
-          {
-            method: "GET",
-            mode: "cors",
-            body: JSON.stringify(params.id),
-          }
-        );
-
-        if (!res.ok) {
-          // router.push("/404");
-          return;
-        }
-        const passwordExists = await res.json();
-        setPasswordExists(passwordExists.passwordExists);
       }
       getData();
     },
