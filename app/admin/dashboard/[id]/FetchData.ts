@@ -3,8 +3,9 @@ export const getAllOrganization = async () => {
     // `api/v1/organization/getAllOrganization`,
     `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`,
     {
-      next: {
-        revalidate: 1,
+      cache: "no-store",
+      headers: {
+        "Cache-Control": "no-cache",
       },
     }
   );
@@ -16,8 +17,9 @@ export const getAllUser = async () => {
     // `api/v1/user/getAllUser`
     `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getAllUser`,
     {
-      next: {
-        revalidate: 1,
+      cache: "no-store",
+      headers: {
+        "Cache-Control": "no-cache",
       },
     }
   );

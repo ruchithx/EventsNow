@@ -80,10 +80,6 @@ userSchema.pre("save", async function (next) {
   //only run this function if password was actually modified
   if (!this.isModified("password")) return next();
 
-  if (this.birthday instanceof Date) {
-    this.birthday = this.birthday.toISOString().split("T")[0]; // Convert to YYYY-MM-DD format
-  }
-
   //hash the password with cost of 12
   this.password = await bcrypt.hash(this.password, 12);
 

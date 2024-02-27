@@ -1,6 +1,7 @@
 "use client";
 
 import Footer from "@/components/Footer";
+
 import { getAllOrganization } from "./admin/dashboard/[id]/FetchData";
 import EventCardNew from "@/components/EventCardNew";
 import { useAdmin } from "./admin/dashboard/[id]/AdminContextFile";
@@ -12,9 +13,10 @@ import EventCard from "@/components/EventCard";
 import { HiOutlineViewGrid } from "react-icons/hi";
 import { HiOutlineViewList } from "react-icons/hi";
 import { IoMdArrowDropdown } from "react-icons/io";
+
 export default function Home() {
   async function handleClickIt() {
-    const res = await getAllOrganization();
+    const res = await getAllUser();
     const data = await res.json();
     console.log("Organization data", data);
   }
