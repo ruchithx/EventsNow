@@ -113,7 +113,7 @@ export default function page() {
         BEST EVENTS
       </div>
 
-      <div className="ml-1 grid xl:grid-cols-3 md:grid-cols-2 -ml-12 flex justify-center items-center place-items-center -mt-20 xl:mt-1">
+      <div className="m-10 grid xl:grid-cols-4  md:grid-cols-3    justify-center items-center place-items-center -mt-20 xl:mt-1">
         <BestEvent
           img="bestevent.png"
           eventname={"MEGA"}
@@ -131,7 +131,14 @@ export default function page() {
             "Darani, an extraordinary event, was held with unmatched grandeur and elegance. This remarkable gathering celebrated the fusion of culture and creativity, creating an unforgettable experience for all attendees. From captivating performances to delectable cuisine, Darani left a lasting impression on every guest. It was a momentous journey, where the vibrancy of tradition blended seamlessly with modernity. The event's success is a testament to the "
           }
         />
-
+        <BestEvent
+          img="bestevent.png"
+          eventname={"MEGA"}
+          year={"2021"}
+          description={
+            "Darani, an extraordinary event, was held with unmatched grandeur and elegance. This remarkable gathering celebrated the fusion of culture and creativity, creating an unforgettable experience for all attendees. From captivating performances to delectable cuisine, Darani left a lasting impression on every guest. It was a momentous journey, where the vibrancy of tradition blended seamlessly with modernity. The event's success is a testament to the "
+          }
+        />
         <BestEvent
           img="bestevent.png"
           eventname={"MEGA"}

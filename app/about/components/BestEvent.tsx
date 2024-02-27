@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface Best_Event {
   img: String;
@@ -16,38 +16,54 @@ export default function BestEvent({
   year,
   description,
 }: Best_Event) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [showReadMoreButton, setShowReadMoreButton] = useState(false);
+  const ref = useRef<any>(null);
+  useEffect(() => {
+    if (ref.current) {
+      setShowReadMoreButton(
+        ref.current.scrollHeight !== ref.current.clientHeight
+      );
+    }
+  }, []);
+
   return (
-    <div className="w-[20rem]  bg-[#F9EBE9] mt-12 shadow-xl">
-      <div className="mt-8 ml-8">
-        <div className="h-[365px] w-[260px] bg-[#AC736D]  bg-cover bg-center">
-          <div className="ml-2.5  overflow-hidden  h-[350px] ">
-            <Image
-              src={`/images/about/${img}`}
-              height={300}
-              width={250}
-              alt="bestevent"
-            />
-          </div>
+    <div className="w-full sm:w-[20rem] md:w-[16rem] bg-[#F9EBE9] mt-12 p-3 rounded-xl shadow-xl">
+      <div className="mt-4 mx-auto max-w-[260px]">
+        <div className="h-[200px] bg-[#AC736D] bg-cover bg-center rounded-t-lg overflow-hidden">
+          <Image
+            src={`/images/about/${img}`}
+            height={200}
+            width={250}
+            alt="bestevent"
+          />
         </div>
       </div>
 
-      <div className="grid grid-cols-2 mt-4">
-        <div className='px-8 flex-auto w-[20rem] h-[5rem] text-[#AC736D] font-["JetBrains Mono"] text-lg font-bold'>
+      <div className="px-4 py-2 flex justify-between items-center">
+        <div className="text-[#AC736D] font-mono text-lg font-bold">
           {eventname}
         </div>
 
-        <div>
-          <button
-            onClick={() => print()}
-            className="ml-16 align-left w-[3.9rem] h-[1.5rem] rounded-full bg-[#AC736D] "
-          >
-            <div className=' text-white font-["JetBrains Mono"] '>{year}</div>
-          </button>
-        </div>
+        <button
+          onClick={() => print()}
+          className="w-[3.9rem] h-[1.5rem] rounded-full bg-[#AC736D] text-white font-mono"
+        >
+          {year}
+        </button>
       </div>
 
-      <div className='ml-8 mb-8 -mt-8 flex-auto w-[17rem] justify-center text-black font-["Roboto"] text-base font-light '>
-        {description}
+      <div className="px-4 py-2">
+        <div className={`${isOpen ? "" : "overflow-hidden line-clamp-5"}`}>
+          <p className="leading-tight" ref={ref}>
+            {description}
+          </p>
+        </div>
+        {showReadMoreButton && (
+          <button className="text-[#AC736D]" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? "Read less..." : "Read more..."}
+          </button>
+        )}
       </div>
     </div>
   );
