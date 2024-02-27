@@ -52,7 +52,7 @@ export default function Settings() {
         const response = await res.json();
 
         setMobile(response.mobileNumber);
-        setBirth(response.birthday);
+        setBirth(new Date(response.birthday));
         setPemail(response.primaryEmail);
         setAddress(response.address);
         setGender(response.gender);
@@ -161,6 +161,13 @@ export default function Settings() {
                         >
                           Select your birthday:
                         </label>
+                        <DatePicker
+                          className="mt-1 p-2 border-2 border-custom-orange rounded-md focus:outline-none focus:ring-custom-orange focus:border-custom-orange block w-full shadow-sm sm:text-sm"
+                          selected={birth}
+                          onChange={(date: Date | null) =>
+                            setBirth(date || new Date())
+                          }
+                        />
                         {/* <DatePicker
                           placeholderText="Enter your Birthday"
                           id="birthday"

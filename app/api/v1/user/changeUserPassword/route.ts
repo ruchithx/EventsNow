@@ -1,7 +1,8 @@
 import connectMongoDB from "@/lib/mongo/mongodb";
 import User from "@/models/userModel";
 import { NextResponse } from "next/server";
-import bcrypt from "bcrypt";
+import bcrypt, { compare } from "bcryptjs";
+import { comparePassword } from "@/lib/auth/auth";
 
 async function updateUserPassword(userId: string, newPassword: string) {
   try {
@@ -30,14 +31,17 @@ export async function POST(req: Request) {
     await connectMongoDB();
 
     const { id, currentPassword, newPassword } = await req.json();
+    console.log(currentPassword);
 
-    const user = await User.findById(id);
+    const user = await User.findById({ _id: id }).select("password");
+
     if (!user) {
       return NextResponse.json({ error: "User not found" });
     }
 
-    console.log("weeee");
-    const passwordMatch = await bcrypt.compare(currentPassword, user.password);
+    const passwordMatch = await compare(currentPassword, user.password);
+    console.log(passwordMatch);
+
     if (!passwordMatch) {
       return NextResponse.json({ error: "Incorrect Password" });
     }

@@ -19,6 +19,7 @@ export interface ProfContext {
   setLname: React.Dispatch<React.SetStateAction<string>>;
   setFname: React.Dispatch<React.SetStateAction<string>>;
   passwordExists: boolean;
+  userId: any;
 
   status: string;
   handleSetting: VoidFunc;
@@ -60,6 +61,7 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
   const [lname, setLname] = useState<string>("");
   const params = useParams();
   const router = useRouter();
+  const userId = params.id;
 
   const handleProfile: VoidFunc = () => {
     setStatus("myProfile");
@@ -96,14 +98,18 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
 
         if (!res.ok) {
           // router.push("/404");
+          setIsLoading(false);
+
           return;
         }
         const finalResponse = await res.json();
-
+        console.log(finalResponse);
         setUserDeatails(finalResponse);
         setFname(finalResponse.firstName);
         setLname(finalResponse.lastName);
-        // setPasswordExists(finalResponse);
+        if (finalResponse.password) {
+          setPasswordExists(true);
+        }
 
         setIsLoading(false);
       }
@@ -126,6 +132,7 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
         isLoading,
         fname,
         lname,
+        userId,
 
         status,
         handleProfile,
