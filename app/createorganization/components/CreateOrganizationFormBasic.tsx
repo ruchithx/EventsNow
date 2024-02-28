@@ -20,6 +20,12 @@ import {
 import { getSession } from "next-auth/react";
 import { OrganizationProps } from "@/components/Navbar/NavBar";
 import { useAuth } from "@/app/AuthContext";
+import {
+  CldUploadWidget,
+  CloudinaryUploadWidgetInfo,
+  CloudinaryUploadWidgetResults,
+} from "next-cloudinary";
+import { tr } from "date-fns/locale";
 
 export default function CreateOrganizationFormBasic() {
   const [fullName, setFullName] = useState("");
@@ -37,6 +43,8 @@ export default function CreateOrganizationFormBasic() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { organization, setOrganization }: any = useAuth();
+
+  const [profileImage, setProfileImage] = useState("");
 
   const getUserId = async () => {
     const session = await getSession();
@@ -208,6 +216,7 @@ export default function CreateOrganizationFormBasic() {
       </div>
       <form
         className=" flex-column "
+        method="POST"
         // action={sendOrganizationData}
         // onSubmit={() => sendOrganizationData()}
       >
@@ -322,13 +331,88 @@ export default function CreateOrganizationFormBasic() {
           placeholder="Enter email address "
         ></input>
         <div className=" border-2 w-auto border-solId rounded-xl   ">
-          <label
+          <CldUploadWidget
+            uploadPreset="organization"
+            onOpen={() => {
+              console.log("isPhotographer");
+            }}
+            onSuccess={(results: CloudinaryUploadWidgetResults) => {
+              const uploadedResult = results.info as CloudinaryUploadWidgetInfo;
+              const profileImageURL = {
+                image: uploadedResult.secure_url,
+              };
+              setProfileImage(profileImageURL.image);
+            }}
+            options={{
+              tags: ["profile image"],
+              // publicId: `${organizationName}/${Date.now()}`,
+              publicId: "b2c",
+
+              sources: ["local"],
+              googleApiKey: "<image_search_google_api_key>",
+              showAdvancedOptions: false,
+              cropping: true,
+              multiple: false,
+              showSkipCropButton: false,
+              croppingAspectRatio: 0.75,
+              croppingDefaultSelectionRatio: 0.75,
+              croppingShowDimensions: true,
+              croppingCoordinatesMode: "custom",
+              // maxImageHeight: 100,
+              // croppingValidateDimensions: true,
+              defaultSource: "local",
+              resourceType: "image",
+              folder: "organization",
+
+              styles: {
+                palette: {
+                  window: "#ffffff",
+                  sourceBg: "#f4f4f5",
+                  windowBorder: "#90a0b3",
+                  tabIcon: "#000000",
+                  inactiveTabIcon: "#555a5f",
+                  menuIcons: "#555a5f",
+                  link: "#000000",
+                  action: "#000000",
+                  inProgress: "#464646",
+                  complete: "#000000",
+                  error: "#cc0000",
+                  textDark: "#000000",
+                  textLight: "#fcfffd",
+                  theme: "white",
+                },
+              },
+            }}
+          >
+            {({ open }) => {
+              return (
+                // <Button
+                //   variant="default"
+                //   className="rounded-full mt-5 ml-3"
+                //   onClick={() => {
+                //     open();
+                //   }}
+                // >
+                //   <Camera />
+                // </Button>
+                <button
+                  onClick={() => {
+                    open();
+                  }}
+                >
+                  click it
+                </button>
+              );
+            }}
+          </CldUploadWidget>
+          {/* <label
             htmlFor="fileReader"
             className="   py-1.5 text-gray-400  sm:text-sm sm:leading-6 pl-4"
           >
             Enter cover photo for organization{" "}
-          </label>
-          <input
+          </label> */}
+
+          {/* <input
             required
             type="file"
             id="fileReader"
@@ -355,7 +439,25 @@ export default function CreateOrganizationFormBasic() {
               height={500}
               alt="organization cover image"
             />
+          )} */}
+
+          {profileImage.length > 0 && (
+            <Image
+              className=" p-4"
+              src={profileImage}
+              width={500}
+              height={500}
+              alt="organization cover image"
+            />
           )}
+
+          {/* <Image
+            className=" p-4"
+            src={profileImage}
+            width={500}
+            height={500}
+            alt="organization cover image"
+          /> */}
         </div>
 
         {isSubmitting ? (
