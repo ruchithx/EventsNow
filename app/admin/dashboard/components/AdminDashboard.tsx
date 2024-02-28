@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useAdmin } from "../AdminContextFile";
-import SuperadminButton from "@/app/admin/dashboard/[id]/components/SuperadminButton";
+import SuperadminButton from "@/app/admin/dashboard/components/SuperadminButton";
 import Notification from "./Notification";
 import Organization from "./Organization";
 import Event from "./Event";

@@ -15,7 +15,7 @@ import {
   Organization,
 } from "@/app/admin/Type";
 import { getAllEvents, getAllOrganization, getAllUser } from "./FetchData";
-import { getSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import { getUser } from "@/components/Navbar/NavBar";
 import { useRouter } from "next/navigation";
 

@@ -3,11 +3,12 @@ import { compare } from "bcrypt";
 import GoogleProvider from "next-auth/providers/google";
 import AppleProvider from "next-auth/providers/apple";
 import FacebookProvider from "next-auth/providers/facebook";
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, Session } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import User from "@/models/userModel";
 import { redirect } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { JWT } from "next-auth/jwt";
 
 export async function comparePassword(password: string, hashPassword: string) {
   const isValid = await compare(password, hashPassword);
@@ -111,6 +112,14 @@ export const authOptions: NextAuthOptions = {
 
       return true;
     },
+    async session(params: { session: Session; token: JWT; user: any }) {
+      if (params.session.user) {
+        params.session.user.email = params.token.email;
+      }
+
+      return params.session;
+    },
+
     // async jwt(params: {
     //   token: any;
     //   user: any;

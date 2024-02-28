@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import SuperadminPages from "@/app/admin/dashboard/[id]/components/SuperadminPages";
+import SuperadminPages from "@/app/admin/dashboard/components/SuperadminPages";
 import AdminPersonDetailsBar from "./AdminPersonalDetailBar";
 import { User } from "@/app/admin/Type";
 import { useAdmin } from "../AdminContextFile";

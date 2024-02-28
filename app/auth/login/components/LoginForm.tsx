@@ -1,13 +1,13 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { error } from "@/util/Toastify";
 
 import Image from "next/image";
 import { useAuth } from "@/app/AuthContext";
-import { comparePassword } from "@/lib/auth/auth";
+import { stat } from "fs";
 
 interface contextProps {
   setEmail: React.Dispatch<React.SetStateAction<string>>;
@@ -19,6 +19,7 @@ export default function LoginForm() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [isPageSubmitting, setIsPageSubmitting] = useState<boolean>(false);
   const { setEmail }: any = useAuth() as contextProps;
 
   const [showPassword, setShowPassword] = useState(false);
@@ -28,6 +29,43 @@ export default function LoginForm() {
   };
 
   const router = useRouter();
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    async function checkSession() {
+      //setIsPageSubmitting is not working yet
+      setIsPageSubmitting(true);
+      if (status === "unauthenticated") {
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (status === "authenticated") {
+        const res = await fetch("/api/v1/user/getOneUser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: session.user?.email,
+          }),
+        });
+        if (!res.ok) {
+          setIsPageSubmitting(false);
+          return;
+        }
+        const { data } = await res.json();
+        setIsPageSubmitting(false);
+        if (data.role === "admin") {
+          router.push("/admin/dashboard");
+        } else {
+          router.push("/");
+        }
+        setIsPageSubmitting(false);
+      }
+    }
+    checkSession();
+  }, [status, session, router]);
 
   async function handleSubmit(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
@@ -72,7 +110,10 @@ export default function LoginForm() {
         setEmail(enteredUsername);
         setUsername("");
         setPassword("");
-        router.push("/");
+
+        data.role === "admin"
+          ? router.push("/admin/dashboard")
+          : router.push("/");
       } else {
         error("Invalid username or password");
       }
