@@ -2,9 +2,8 @@
 
 import Footer from "@/components/Footer";
 
-import { getAllOrganization } from "./admin/dashboard/[id]/FetchData";
 import EventCardNew from "@/components/EventCardNew";
-import { useAdmin } from "./admin/dashboard/[id]/AdminContextFile";
+
 import EventCardEventDash from "@/components/EventCardEventDash";
 import Upcoming_Events from "@/components/UpcomingEvents";
 import EventCardNewOrg from "@/components/EventCardNewOrg";

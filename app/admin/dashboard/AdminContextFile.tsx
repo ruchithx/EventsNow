@@ -130,7 +130,7 @@ function AdminContextProvider({ children }: AdminContextProps) {
       setIsLoading(false);
     }
     getData();
-  }, []);
+  }, [router]);
 
   return (
     <adminContext.Provider
