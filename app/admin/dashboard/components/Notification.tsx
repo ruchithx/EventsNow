@@ -1,36 +1,41 @@
 import React, { useEffect, useState } from "react";
 import SuperadminPages from "./SuperadminPages";
 import Org_RequestHandle from "./Org_RequestHandle";
-import { Organization } from "@/app/admin/Type";
+import { AdminContext, Organization } from "@/app/admin/Type";
 import { useAdmin } from "../AdminContextFile";
 import EmptyStateComponent from "@/components/EmptyStateComponent";
-
-interface notificationProps {
-  notification: Organization[];
-}
+import { MdRefresh } from "react-icons/md";
+import Spinner from "@/components/Spinner";
+import { getAllOrganization } from "../FetchData";
 
 export default function Notification() {
-  const { notification } = useAdmin() as notificationProps;
-  // const [notification, setNotification] = useState<Organization[]>([]);
-  // useEffect(() => {
-  //   async function getData() {
-  //     const res = await fetch(
-  //       // `api/v1/organization/getAllOrganization`,
-  //       `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`,
-  //       {
-  //         cache: "no-store",
-  //         headers: {
-  //           "Cache-Control": "no-cache",
-  //         },
-  //       }
-  //     );
+  const { notification, setOrganization, setNotification } =
+    useAdmin() as AdminContext;
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  //     const data = await res.json();
+  async function reloadPage() {
+    setIsLoading(true);
 
-  //     setNotification(data.organization);
-  //   }
-  //   getData();
-  // }, []);
+    const res3 = await getAllOrganization();
+
+    if (!res3.ok) {
+      setIsLoading(false);
+      return;
+    }
+
+    const { organization } = await res3.json();
+
+    const resActive = organization.filter((org: Organization) => org.isActive);
+    const notActive = organization.filter((org: Organization) => !org.isActive);
+
+    if (resActive.length !== 0) {
+      setOrganization(resActive);
+    }
+    if (notActive.length !== 0) {
+      setNotification(notActive);
+    }
+    setIsLoading(false);
+  }
 
   return (
     <>
@@ -38,9 +43,12 @@ export default function Notification() {
         title="All organization requests"
         description="Check organization requests and handle them."
         text="Search"
+        reloadPage={reloadPage}
         customComponent={
           <>
-            {notification.length === 0 ? (
+            {isLoading ? (
+              <Spinner />
+            ) : notification.length === 0 ? (
               <EmptyStateComponent message="No Organization" />
             ) : (
               notification.map((org) => (

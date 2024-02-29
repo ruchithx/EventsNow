@@ -4,23 +4,52 @@ import Available_Orgs from "@/app/admin/dashboard/components/Available_Orgs";
 import { Organization } from "@/app/organization/dashboard/[id]/Type";
 import { useAdmin } from "../AdminContextFile";
 import EmptyStateComponent from "@/components/EmptyStateComponent";
-
-interface orgProps {
-  organization: Organization[];
-}
+import { AdminContext } from "../../Type";
+import { getAllOrganization } from "../FetchData";
+import Spinner from "@/components/Spinner";
+import { MdRefresh } from "react-icons/md";
 
 export default function Organization() {
-  const { organization } = useAdmin() as orgProps;
-  console.log(organization);
+  const { organization, setOrganization, setNotification } =
+    useAdmin() as AdminContext;
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  async function reloadPage() {
+    setIsLoading(true);
+
+    const res3 = await getAllOrganization();
+
+    if (!res3.ok) {
+      setIsLoading(false);
+      return;
+    }
+
+    const { organization } = await res3.json();
+
+    const resActive = organization.filter((org: Organization) => org.isActive);
+    const notActive = organization.filter((org: Organization) => !org.isActive);
+
+    if (resActive.length !== 0) {
+      setOrganization(resActive);
+    }
+    if (notActive.length !== 0) {
+      setNotification(notActive);
+    }
+    setIsLoading(false);
+  }
+
   return (
     <div>
       <SuperadminPages
         title="All Organizations"
         description="You can see all the organizations that currently available from here"
         text="Search Organizations"
+        reloadPage={reloadPage}
         customComponent={
           <>
-            {organization.length === 0 ? (
+            {isLoading ? (
+              <Spinner />
+            ) : organization.length === 0 ? (
               <EmptyStateComponent message="No Events" />
             ) : (
               organization.map((me) => (
