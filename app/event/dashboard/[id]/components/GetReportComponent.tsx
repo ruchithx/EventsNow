@@ -6,10 +6,11 @@ interface Props {
   reportName: string;
   image: string;
   getReport: () => void;
+  size: number;
 
 }
 
-export default function GetReportComponent({ reportName, image, getReport}: Props) {
+export default function GetReportComponent({ reportName, image, getReport,size}: Props) {
   
   return (
     <ContainerWithStroke>
@@ -18,8 +19,8 @@ export default function GetReportComponent({ reportName, image, getReport}: Prop
           className="justify-self-center my-3"
           src={`/images/eventDash/${image}.svg`}
           alt="reports "
-          width={80}
-          height={80}
+          width={size}
+          height={size}
         />
         <div className="content-center justify-start pl-20 grid gap-2 w-full">
           <div className=" text-left text-[#666]">EVENT’S</div>

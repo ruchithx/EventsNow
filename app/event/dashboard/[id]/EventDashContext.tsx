@@ -15,7 +15,7 @@ export interface EventContextType {
 const EventContext = createContext<EventContextType | string>("");
 
 function EventContextProvider({ children }: { children: React.ReactNode }) {
-  const [status, setStatus] = useState("reports");
+  const [status, setStatus] = useState("settings");
   const handleOverview: voidFunc = () => {
     setStatus("overview");
   };
