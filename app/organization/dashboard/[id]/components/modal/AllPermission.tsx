@@ -16,6 +16,7 @@ import { error, success } from "@/util/Toastify";
 
 export default memo(function AllPermission() {
   const [viewOnlyEvent, setViewOnlyEvent] = useState<boolean>(false);
+  const [viewattendees, setViewattendees] = useState<boolean>(false);
   const [manageEvent, setManageEvent] = useState<boolean>(false);
   const [registerAttendees, setRegisterAttendees] = useState<boolean>(false);
   const [markAttendance, setMarkAttendance] = useState<boolean>(false);
@@ -28,17 +29,22 @@ export default memo(function AllPermission() {
   const [manageMarketingCampaign, setManageMarketingCampaign] =
     useState<boolean>(false);
 
-  const { setModal, permissionID, globalPermission, modalUserName } =
-    useOrg() as orgContext;
+  const {
+    setModal,
+    permissionID,
+    globalPermission,
+    modalUserName,
+    setGlobalPermission,
+  } = useOrg() as orgContext;
 
   useEffect(() => {
-    setViewOnlyEvent(true);
-    setManageEvent(true);
-    setRegisterAttendees(true);
     globalPermission.map((permission) => {
       switch (permission) {
         case "View Only Event":
           setViewOnlyEvent(true);
+          break;
+        case "View Attendees":
+          setViewattendees(true);
           break;
         case "Manage Event":
           setManageEvent(true);
@@ -61,7 +67,7 @@ export default memo(function AllPermission() {
         case "Get Reports":
           setGetReports(true);
           break;
-        case "Mange Host Page":
+        case "Manage Host Page":
           setMangeHostPage(true);
           break;
         case "Manage Marketing Campaign":
@@ -86,6 +92,7 @@ export default memo(function AllPermission() {
     }
 
     success("permission updated");
+    setGlobalPermission(formDataKeysArray);
     setModal("");
   }
 
@@ -160,8 +167,8 @@ export default memo(function AllPermission() {
               />{" "}
               <PermissionName
                 name="View Attendees"
-                checked={viewOnlyEvent}
-                setCheck={setViewOnlyEvent}
+                checked={viewattendees}
+                setCheck={setViewattendees}
               />
               <PermissionName
                 name="Register Attendees"
@@ -228,6 +235,7 @@ const PermissionName = memo(function PermissionName({
   checked: any;
   setCheck: Dispatch<SetStateAction<boolean>>;
 }) {
+  console.log(name, checked);
   return (
     <div className="bg-[#D9D9D9]  flex justify-between w-10/12">
       <div className="ml-2">{name}</div>

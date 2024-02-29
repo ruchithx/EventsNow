@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { Organization } from "@/app/organization/dashboard/[id]/Type";
 import Modal from "./ModalContext";
-import DetailsModalContent from "@/app/admin/dashboard/[id]/components/modals/DetailsModal";
+import DetailsModalContent from "@/app/admin/dashboard/components/modals/DetailsModal";
 import DenyModalContent from "./modals/DenyModal";
 
 interface Available_Orgs {

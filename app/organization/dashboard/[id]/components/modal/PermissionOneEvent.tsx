@@ -12,6 +12,8 @@ import { useOrg } from "../../OrgContext";
 import { error, success } from "@/util/Toastify";
 
 export default function PermissionOneEvent() {
+  const [viewattendees, setViewattendees] = useState<boolean>(false);
+
   const [viewOnlyEvent, setViewOnlyEvent] = useState<boolean>(false);
   const [manageEvent, setManageEvent] = useState<boolean>(false);
   const [registerAttendees, setRegisterAttendees] = useState<boolean>(false);
@@ -47,6 +49,9 @@ export default function PermissionOneEvent() {
           case "Manage Event":
             setManageEvent(true);
             break;
+          case "View Attendees":
+            setViewattendees(true);
+            break;
           case "Register Attendees":
             setRegisterAttendees(true);
             break;
@@ -65,7 +70,7 @@ export default function PermissionOneEvent() {
           case "Get Reports":
             setGetReports(true);
             break;
-          case "Mange Host Page":
+          case "Manage Host Page":
             setMangeHostPage(true);
             break;
           case "Manage Marketing Campaign":
@@ -173,11 +178,11 @@ export default function PermissionOneEvent() {
                 name="Manage Event"
                 checked={manageEvent}
                 setCheck={setManageEvent}
-              />{" "}
+              />
               <PermissionName
                 name="View Attendees"
-                checked={viewOnlyEvent}
-                setCheck={setViewOnlyEvent}
+                checked={viewattendees}
+                setCheck={setViewattendees}
               />
               <PermissionName
                 name="Register Attendees"

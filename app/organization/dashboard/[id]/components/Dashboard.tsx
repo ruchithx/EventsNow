@@ -73,8 +73,8 @@ export default function Dashboard() {
 
       <div
         className={`flex shadow-normalComponent border-t-[1px] border-custom-orange gap-8 md:gap-10 rounded-xl bg-white ${
-          isSlideBar ? "md:w-11/12 md:pl-5" : "md:w-4/5 md:pl-10"
-        }  w-11/12	  lg:w-4/5  xl:w-4/5  2xl:w-2/5 pt-2 pb-2  lg:pl-24`}
+          isSlideBar ? "md:w-11/12 md:pl-5" : " md:w-4/5 md:pl-10"
+        }  w-11/12	  lg:w-4/5  xl:w-4/5  2xl:w-3/5 pt-2 pb-2  lg:pl-24`}
       >
         <div className="block md:ml-0 ml-2 ">
           <Image
@@ -101,7 +101,7 @@ export default function Dashboard() {
       <div
         className={`flex border-t-[1px] border-custom-orange shadow-normalComponent gap-8 md:gap-10 rounded-xl bg-white ${
           isSlideBar ? "md:w-11/12 md:pl-5" : "md:w-4/5 md:pl-10"
-        }  w-11/12	   lg:w-4/5 xl:w-4/5 mb-2  2xl:w-2/5 pt-2 pb-2 md:pl-10 lg:pl-24`}
+        }  w-11/12	   lg:w-4/5 xl:w-4/5 mb-2  2xl:w-3/5 pt-2 pb-2 md:pl-10 lg:pl-24`}
       >
         {" "}
         <div className="block md:ml-0 ml-2">

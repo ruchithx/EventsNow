@@ -1,8 +1,8 @@
 "use client";
-import React, { SetStateAction } from "react";
+import React, { SetStateAction, use } from "react";
 import { useState, useRef } from "react";
 import Image from "next/image";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { z } from "zod";
 // import { error, success } from "../../../util/Toastify";
 import DatePicker from "react-datepicker";
@@ -29,6 +29,7 @@ export default function EventRegisterFormBasic() {
   const [previewImage, setPreviewImage] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const params = useParams();
+  const router = useRouter();
 
   const validateEvent = z.object({
     eventName: z.string().min(1, "Enter event name "),
@@ -81,6 +82,8 @@ export default function EventRegisterFormBasic() {
         setIsSubmitting(false);
         return;
       }
+      router.push(`/organization/dashboard/${params.id}`);
+
       success("registration data sent succesfully");
 
       setEventStartDate(new Date());

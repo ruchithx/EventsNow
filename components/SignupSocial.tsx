@@ -1,9 +1,11 @@
 "use client";
+
 import { signIn } from "next-auth/react";
+
 import React from "react";
 
 export default function SignupSocial() {
-  function handleGoogleBtn() {
+  async function handleGoogleBtn() {
     signIn("google");
   }
   return (

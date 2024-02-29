@@ -4,6 +4,7 @@ import React from "react";
 import { useOrg } from "../OrgContext";
 import EmptyStateComponent from "@/components/EmptyStateComponent";
 import { Event } from "../Type";
+import EventCardNewOrg from "@/components/EventCardNewOrg";
 
 interface contextProps {
   isSlideBar: boolean;
@@ -29,6 +30,13 @@ export default function MyEvents() {
           <EmptyStateComponent message="No event in the organization" />
         ) : (
           events.map((event) => (
+            // <EventCardNewOrg
+            //   key={event._id}
+            //   event="nadagama"
+            //   date="2002-2-1"
+            //   time="9.00"
+            //   location="matara"
+            // />
             <EventCardOrgDash
               key={event._id}
               isSlideBar={isSlideBar}

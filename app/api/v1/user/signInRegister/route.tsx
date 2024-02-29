@@ -11,13 +11,13 @@ export async function POST(req: Request) {
     const user = await User.findOne({ email });
 
     if (!user) {
-      await User.create({
+      const user = await User.create({
         email,
         firstName: name.split(" ")[0],
         lastName: name.split(" ")[1],
         image,
       });
-      return NextResponse.json({ user: "user create success" });
+      return NextResponse.json({ user });
     } else {
       return NextResponse.json({ user });
     }

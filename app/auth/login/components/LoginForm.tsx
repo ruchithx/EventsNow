@@ -1,12 +1,13 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { error } from "@/util/Toastify";
 
 import Image from "next/image";
 import { useAuth } from "@/app/AuthContext";
+import { stat } from "fs";
 
 interface contextProps {
   setEmail: React.Dispatch<React.SetStateAction<string>>;
@@ -18,6 +19,7 @@ export default function LoginForm() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [isPageSubmitting, setIsPageSubmitting] = useState<boolean>(false);
   const { setEmail }: any = useAuth() as contextProps;
 
   const [showPassword, setShowPassword] = useState(false);
@@ -27,20 +29,76 @@ export default function LoginForm() {
   };
 
   const router = useRouter();
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    async function checkSession() {
+      //setIsPageSubmitting is not working yet
+      setIsPageSubmitting(true);
+      if (status === "unauthenticated") {
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (status === "authenticated") {
+        const res = await fetch("/api/v1/user/getOneUser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: session.user?.email,
+          }),
+        });
+        if (!res.ok) {
+          setIsPageSubmitting(false);
+          return;
+        }
+        const { data } = await res.json();
+        setIsPageSubmitting(false);
+        if (data.role === "admin") {
+          router.push("/admin/dashboard");
+        } else {
+          router.push("/");
+        }
+        setIsPageSubmitting(false);
+      }
+    }
+    checkSession();
+  }, [status, session, router]);
 
   async function handleSubmit(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    const enteredUsername = usernameInputRef.current?.value;
-    const enteredPassword = passwordInputRef.current?.value;
-
-    if (!enteredUsername || !enteredPassword) {
-      error("Enter username and password");
-      return;
-    }
-
     try {
+      setIsSubmitting(true);
+
+      const enteredUsername = usernameInputRef.current?.value;
+      const enteredPassword = passwordInputRef.current?.value;
+
+      if (!enteredUsername || !enteredPassword) {
+        error("Enter username and password");
+        return;
+      }
+
+      const res = await fetch("/api/v1/user/checkLogin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: enteredUsername,
+          password: enteredPassword,
+        }),
+      });
+
+      const { data } = await res.json();
+
+      if (data === "Invalid user name or password") {
+        error("Invalid username or password");
+        setIsSubmitting(false);
+        return;
+      }
+
       const result = await signIn("credentials", {
         redirect: false,
         email: enteredUsername,
@@ -52,6 +110,10 @@ export default function LoginForm() {
         setEmail(enteredUsername);
         setUsername("");
         setPassword("");
+
+        data.role === "admin"
+          ? router.push("/admin/dashboard")
+          : router.push("/");
       } else {
         error("Invalid username or password");
       }
