@@ -11,6 +11,7 @@ import { UserDetails, useProf } from "../ProfContext";
 import { useParams } from "next/navigation";
 import { error, success } from "@/util/Toastify";
 import { ZodNull } from "zod";
+
 type Detailss = {
   userDeatails: UserDetails;
   setLname: React.Dispatch<React.SetStateAction<string>>;
@@ -100,13 +101,13 @@ export default function Settings() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row rounded-lg shadow-3xl md:pl-10 md:ml-2 p-6 bg-[#fff] pt-8 lg:pl-6 justify-start items-start gap-12 ">
+    <div className="flex flex-col md:flex-row rounded-lg shadow-3xl  bg-[#fff] pt-8  justify-start items-start gap-12 ">
       <div className="w-full ml-0 ">
-        <div className="text-3xl font-semibold  mx-auto text-custom-orange font-IBM">
+        <div className="text-3xl font-semibold  mx-auto text-custom-orange font-IBM ml-[55px]">
           Settings
         </div>
         <div className="bg-white w-full sm:w-4/5 md:w-4/5 lg:w-4/5 mx-auto">
-          <div className="space-y-12">
+          <div className="">
             <div className="pb-12">
               <div className=" grid grid-cols-1 mt-[55px] gap-x-6 gap-y-8 sm:grid-cols-6">
                 <form className="sm:col-span-4">
@@ -161,13 +162,13 @@ export default function Settings() {
                         >
                           Select your birthday:
                         </label>
-                        <DatePicker
+                        {/* <DatePicker
                           className="mt-1 p-2 border-2 border-custom-orange rounded-md focus:outline-none focus:ring-custom-orange focus:border-custom-orange block w-full shadow-sm sm:text-sm"
                           selected={birth}
                           onChange={(date: Date | null) =>
                             setBirth(date || new Date())
                           }
-                        />
+                        /> */}
                         {/* <DatePicker
                           placeholderText="Enter your Birthday"
                           id="birthday"
