@@ -26,8 +26,8 @@ export default function View_Report({
         <Image
           src={`/images/organization/${img}`}
           alt="compo5"
-          width={100}
-          height={100}
+          width={80}
+          height={80}
         />
       </div>
 
@@ -48,7 +48,7 @@ export default function View_Report({
           <div className="flex gap-2 justify-center items-center">
             <div className="lg:block hidden ">
               <Image
-                src="/images/organization/print.svg"
+                src="/images/organization/revenueReport.svg"
                 alt="print"
                 width={24}
                 height={24}
