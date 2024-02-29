@@ -8,7 +8,7 @@ interface superadminpages {
   description: String;
   customComponent: React.ReactNode;
   text: String;
-  reloadPage: () => void;
+  reloadPage?: () => void;
 }
 
 const handleClick = () => {};
