@@ -25,7 +25,7 @@ export default function MyEvents() {
         </div>
       </div>
 
-      <div className="ml-10 md:ml-0 items-start overflow-auto w-full flex h-80    gap-5 flex-col">
+      <div className="  overflow-y-auto w-full grid h-96 gap-5 pr-16 sm:max-md:grid-cols-2 ">
         {events.length === 0 ? (
           <EmptyStateComponent message="No event in the organization" />
         ) : (
