@@ -346,7 +346,7 @@ export default function CreateOrganizationFormBasic() {
             options={{
               tags: ["profile image"],
               // publicId: `${organizationName}/${Date.now()}`,
-              publicId: "b2c",
+              // publicId: "b2c",
 
               sources: ["local"],
               googleApiKey: "<image_search_google_api_key>",
