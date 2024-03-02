@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "./Container";
 import Image from "next/image";
+import CreatePost from "./post/CreatePost";
 
 export default function Campaign() {
   return (
@@ -47,6 +48,8 @@ export default function Campaign() {
             Create a campaign
           </button>
         </div>
+
+        <CreatePost />
       </div>
     </Container>
   );
