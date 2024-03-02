@@ -2,6 +2,7 @@ import Image from "next/image";
 import React, { memo } from "react";
 
 import { IoClose } from "react-icons/io5";
+import { CldUploadWidget } from "next-cloudinary";
 
 export default memo(function GivenPermission() {
   return (
@@ -59,6 +60,80 @@ export default memo(function GivenPermission() {
               />
             </div>
           </button>
+          <CldUploadWidget
+            uploadPreset="organization"
+            onOpen={() => {
+              console.log("isPhotographer");
+            }}
+            onSuccess={(results: CloudinaryUploadWidgetResults) => {
+              const uploadedResult = results.info as CloudinaryUploadWidgetInfo;
+              const profileImageURL = {
+                image: uploadedResult.secure_url,
+              };
+              setProfileImage(profileImageURL.image);
+            }}
+            options={{
+              tags: ["profile image"],
+              // publicId: `${organizationName}/${Date.now()}`,
+              // publicId: "b2c",
+
+              sources: ["local"],
+              googleApiKey: "<image_search_google_api_key>",
+              showAdvancedOptions: false,
+              cropping: true,
+              multiple: false,
+              showSkipCropButton: false,
+              croppingAspectRatio: 0.75,
+              croppingDefaultSelectionRatio: 0.75,
+              croppingShowDimensions: true,
+              croppingCoordinatesMode: "custom",
+              // maxImageHeight: 100,
+              // croppingValidateDimensions: true,
+              defaultSource: "local",
+              resourceType: "image",
+              folder: "organization",
+
+              styles: {
+                palette: {
+                  window: "#ffffff",
+                  sourceBg: "#f4f4f5",
+                  windowBorder: "#90a0b3",
+                  tabIcon: "#000000",
+                  inactiveTabIcon: "#555a5f",
+                  menuIcons: "#555a5f",
+                  link: "#000000",
+                  action: "#000000",
+                  inProgress: "#464646",
+                  complete: "#000000",
+                  error: "#cc0000",
+                  textDark: "#000000",
+                  textLight: "#fcfffd",
+                  theme: "white",
+                },
+              },
+            }}
+          >
+            {({ open }) => {
+              return (
+                // <Button
+                //   variant="default"
+                //   className="rounded-full mt-5 ml-3"
+                //   onClick={() => {
+                //     open();
+                //   }}
+                // >
+                //   <Camera />
+                // </Button>
+                <button
+                  onClick={() => {
+                    open();
+                  }}
+                >
+                  click it
+                </button>
+              );
+            }}
+          </CldUploadWidget>
 
           <button className="w-full rounded-2xl flex justify-center items-center p-1 bg-custom-orange text-white text-bold text-lg ">
             Post
