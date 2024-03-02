@@ -1,6 +1,12 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  use,
+} from "react";
 import {
   AdminContext,
   voidFunc,
@@ -9,6 +15,9 @@ import {
   Organization,
 } from "@/app/admin/Type";
 import { getAllEvents, getAllOrganization, getAllUser } from "./FetchData";
+import { getSession, useSession } from "next-auth/react";
+import { getUser } from "@/components/Navbar/NavBar";
+import { useRouter } from "next/navigation";
 
 interface AdminContextProps {
   children: React.ReactNode;
@@ -24,6 +33,8 @@ function AdminContextProvider({ children }: AdminContextProps) {
   const [organization, setOrganization] = useState<Organization[]>([]);
   const [payment, setPayment] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const router = useRouter();
 
   const handleNotification: voidFunc = () => {
     setStatus("Notification");
@@ -44,6 +55,18 @@ function AdminContextProvider({ children }: AdminContextProps) {
   useEffect(() => {
     async function getData() {
       setIsLoading(true);
+
+      const session = await getSession();
+      if (!session) {
+        router.push("/404");
+      }
+
+      const data = await getUser({ email: session?.user?.email });
+
+      if (data.role !== "admin") {
+        router.push("/404");
+      }
+
       // const res3 = await fetch(
       //   // `api/v1/organization/getAllOrganization`,
       //   `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getAllOrganization`,
@@ -107,7 +130,7 @@ function AdminContextProvider({ children }: AdminContextProps) {
       setIsLoading(false);
     }
     getData();
-  }, []);
+  }, [router]);
 
   return (
     <adminContext.Provider

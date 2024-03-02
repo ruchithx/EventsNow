@@ -5,7 +5,7 @@ import { useOrg } from "../OrgContext";
 import { error, success } from "@/util/Toastify";
 
 export default function InviteButton() {
-  const { organization } = useOrg() as OrgContext;
+  const { organization, isSlideBar } = useOrg() as OrgContext;
   const [email, setEmail] = useState<string>("");
 
   async function handleclick() {
@@ -34,8 +34,12 @@ export default function InviteButton() {
   }
 
   return (
-    <div className="flex gap-10 p-10">
-      <div className="flex flex-row border-2 border-gray-400 bg-white rounded-lg w-72 h-10">
+    <div className="flex gap-10 ">
+      <div
+        className={`flex flex-row border-2 border-gray-400 bg-white rounded-lg ${
+          isSlideBar ? "md:w-48" : "md:w-72 "
+        } sm:w-48 w-40   h-10`}
+      >
         <Image
           src="/images/reusableComponents/Search (1).svg"
           width={20}
@@ -52,7 +56,7 @@ export default function InviteButton() {
         />
       </div>
       <button
-        className={`bg-custom-green p-1 w-20 rounded`}
+        className={`bg-custom-orange p-1 w-20 rounded-2xl`}
         onClick={handleclick}
       >
         <div className="flex button text-white text-sm font-bold justify-center">

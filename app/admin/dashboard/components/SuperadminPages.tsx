@@ -1,12 +1,14 @@
 import React from "react";
 
 import Image from "next/image";
+import { MdRefresh } from "react-icons/md";
 
 interface superadminpages {
   title: String;
   description: String;
   customComponent: React.ReactNode;
   text: String;
+  reloadPage?: () => void;
 }
 
 const handleClick = () => {};
@@ -14,6 +16,7 @@ const handleClick = () => {};
 export default function SuperadminPages({
   text,
   title,
+  reloadPage,
   description,
   customComponent,
 }: superadminpages) {
@@ -58,10 +61,17 @@ export default function SuperadminPages({
           </div>
         )}
       </div>
-
-      <div className="w-[320px] md:w-[520px] lg:w-[920px] ms-4 mt-6 xl:ms-12 h-80 overflow-y-auto">
-        {customComponent}
+      {/* refresh button */}
+      <div className="border-2 ml-5 button p-1 rounded-xl w-24">
+        <button onClick={reloadPage}>
+          <div className="flex text-slate-500  justify-center items-center gap-3">
+            <div>Refresh</div>
+            <MdRefresh size={20} />
+          </div>
+        </button>
       </div>
+
+      <div className=" h-80 overflow-y-auto mt-12">{customComponent}</div>
     </div>
   );
 }

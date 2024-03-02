@@ -37,6 +37,7 @@ export type User = {
   firstName: string;
   lastName: string;
   image: string;
+  role: string;
 };
 
 export interface AuthContext {
@@ -48,6 +49,22 @@ export interface AuthContext {
   setOrganization: React.Dispatch<React.SetStateAction<OrganizationProps[]>>;
 }
 
+export const getUser = async ({ email }: any) => {
+  const user = await fetch(
+    `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getOneUser`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    }
+  );
+
+  const { data } = await user.json();
+  return data;
+};
+
 export default function NavBar() {
   const [userActive, setUserActive] = useState<boolean>(false);
   const [newUserPath, setNewUserPath] = useState<boolean>(false);
@@ -58,6 +75,7 @@ export default function NavBar() {
     firstName: "",
     lastName: "",
     image: "",
+    role: "",
   });
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -82,22 +100,6 @@ export default function NavBar() {
     localStorage.removeItem("email");
     router.push("/");
   }
-
-  const getUser = async ({ email }: any) => {
-    const user = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getOneUser`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      }
-    );
-
-    const { data } = await user.json();
-    return data;
-  };
 
   const getUserOrganization = async ({ id }: ID) => {
     // const organization = await fetch(
@@ -306,9 +308,17 @@ export default function NavBar() {
                             pathname.startsWith("/admin") ||
                             pathname.startsWith("/event/dashboard")
                               ? "hidden"
-                              : "flex"
+                              : "flex gap-4"
                           } `}
                         >
+                          {user.role === "admin" && (
+                            <Link href={"/admin/dashboard"}>
+                              <Login
+                                titleOfbutton={"ADMIN DASHBOARD"}
+                                image={"createevent.svg"}
+                              />
+                            </Link>
+                          )}
                           <Link href={"/createorganization"}>
                             <Login
                               titleOfbutton={"HOST EVENT"}

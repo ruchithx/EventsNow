@@ -1,5 +1,5 @@
 import React from "react";
-import SuperadminPages from "@/app/admin/dashboard/[id]/components/SuperadminPages";
+import SuperadminPages from "@/app/admin/dashboard/components/SuperadminPages";
 import Superadminevents from "./Superadminevent";
 
 export default function Payments() {

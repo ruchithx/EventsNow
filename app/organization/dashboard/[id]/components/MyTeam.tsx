@@ -71,9 +71,12 @@ export default function MyTeam() {
       </div>
       <div className="w-full border-[1px] border-black"></div>
       <div className=" mb-5 w-full 2xl:w-3/5 xl:w-3/4 flex flex-col gap-4 justify-start md:px-6 px-0 items-start  rounded-xl">
-        <div>
-          <button className="button" onClick={handleTeam}>
-            <MdRefresh size={25} />
+        <div className="border-2 button p-1 rounded-xl">
+          <button onClick={handleTeam}>
+            <div className="flex text-slate-500  justify-center items-center gap-3">
+              <div>Refresh</div>
+              <MdRefresh size={20} />
+            </div>
           </button>
         </div>
         {loading ? (
