@@ -22,10 +22,10 @@ function EventCardOrgDash({
   return (
     <div className=" w-full  bg-[#D9D9D9] my-4  max-sm:mr-24 rounded-xl  shadow-lg grid lg:grid-cols-6 ">
       <div
-        className="lg:rounded-l-xl max-lg:rounded-t-xl overflow-hidden bg-no-repeat bg-cover lg:col-span-2 bg-center h-40 lg:h-full "
+        className="lg:rounded-l-xl max-lg:rounded-t-xl overflow-hidden bg-no-repeat bg-cover lg:col-span-2 bg-center h-40 lg:h-full"
         style={{ backgroundImage: `url(${img as string})` }}
       ></div>
-      <div className="lg:col-span-4 rounded-r-xl pt-1">
+      <div className="lg:col-span-4 rounded-r-xl pt-1 ">
         <div className="  flex justify-between px-6">
           <div className=" my-2 text-[#353535] font-semibold sm:font-bold text-lg sm:text-24">
             {name}
