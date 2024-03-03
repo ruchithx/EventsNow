@@ -1,23 +1,18 @@
 const mongoose = require("mongoose");
 
 const commentSchema = new mongoose.Schema({
-  userName: {
-    type: String,
-    required: [true, "Please enter the event name"],
-  },
-
   userImage: {
     type: String,
-    required: [true, "Please select the event type"],
+    required: [true, "Please enter userImage"],
   },
   postId: {
     type: String,
-    required: [true, "Please select the event start date"],
+    required: [true, "Please enter postId"],
   },
 
   description: {
     type: String,
-    required: [true, "Please select the event start time"],
+    required: [true, "Please enter description"],
   },
 });
 

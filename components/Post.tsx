@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./Post.module.css";
 import { useState } from "react";
 import TextField from "@mui/material/TextField";
@@ -15,12 +15,15 @@ import { BsSend } from "react-icons/bs";
 import CreatePost from "@/app/event/dashboard/[id]/components/post/CreatePost";
 import CommentBox from "./CommentBox";
 import CommentBtn from "./CommentBtn";
+import { success } from "@/util/Toastify";
+import { ClickingOff } from "@/util/ClickingOff";
 
 interface Post {
   profilePic: string;
   name: string;
   caption: string;
   post: string;
+  id: string;
 }
 
 export type User = {
@@ -32,18 +35,80 @@ export type User = {
   expires: string;
 };
 
-export default function Post({ profilePic, name, caption, post }: Post) {
+type Comment = {
+  _id: string;
+  userImage: string;
+  postId: string;
+  description: string;
+};
+
+export default function Post({ profilePic, name, caption, post, id }: Post) {
   const [like, setLike] = useState(0);
-  const [commentCount, setCommentCount] = useState(0);
-  const [allComment, setAllComment] = useState(["sad", "sda"]);
+  const [allComment, setAllComment] = useState<Comment[]>([]);
   const [comment, setComment] = useState("");
   const [isComment, setIsComment] = useState(false);
   const [hasComment, setHasComment] = useState(false);
   const [isShare, setIsShare] = useState(false);
+
   const [user, setUser] = useState<User | Session>({
     user: { image: "", email: "", name: "" },
     expires: "",
   });
+
+  const commentRef = useRef<HTMLDivElement>(null);
+  const allCommentRef = useRef<HTMLDivElement>(null);
+
+  // handle comment button
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        commentRef.current &&
+        !commentRef.current.contains(event.target as Node)
+      ) {
+        // Clicked outside of modal, so close it
+        setIsComment(false);
+      }
+    };
+
+    // Add event listener when the modal is open
+    if (isComment) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      // Remove event listener when the modal is closed
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    // Cleanup function to remove event listener
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isComment, setIsComment]);
+
+  // handle all comment
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        allCommentRef.current &&
+        !allCommentRef.current.contains(event.target as Node)
+      ) {
+        // Clicked outside of modal, so close it
+        setHasComment(false);
+      }
+    };
+
+    // Add event listener when the modal is open
+    if (hasComment) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      // Remove event listener when the modal is closed
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    // Cleanup function to remove event listener
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [setHasComment, hasComment]);
 
   useEffect(() => {
     const getUser = async () => {
@@ -52,9 +117,20 @@ export default function Post({ profilePic, name, caption, post }: Post) {
       if (user) {
         setUser(user);
       }
+
+      const res = await fetch("/api/v1/post/getCommentsByPost", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      });
+      const data = await res.json();
+
+      setAllComment(data.data);
     };
     getUser();
-  }, []);
+  }, [id]);
 
   function handleCommentBtn() {
     allComment.length > 0 ? setHasComment((comment) => !comment) : "";
@@ -74,11 +150,35 @@ export default function Post({ profilePic, name, caption, post }: Post) {
     isShare ? setIsShare(false) : setIsShare(true);
   }
 
-  function handleComment(e: any) {
-    setAllComment(e.target.value);
-  }
+  async function sentComment() {
+    if (comment.length > 0) {
+      const res = await fetch("/api/v1/post/createComment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userImage: user?.user?.image,
+          postId: id,
+          description: comment,
+        }),
+      });
+      const data = await res.json();
 
-  function sentComment() {}
+      if (data.message === "comment created successfully") {
+        setComment("");
+        setAllComment((prev) => [
+          ...prev,
+          {
+            _id: data.comment._id,
+            userImage: data.comment.userImage,
+            postId: data.comment.postId,
+            description: data.comment.description,
+          },
+        ]);
+      }
+    }
+  }
 
   return (
     <>
@@ -141,7 +241,10 @@ export default function Post({ profilePic, name, caption, post }: Post) {
             </button>
           </div>
           {isComment && (
-            <div className="mt-2 mb-2 items-center flex gap-4 ">
+            <div
+              ref={commentRef}
+              className="mt-2 mb-2 items-center flex gap-4 "
+            >
               <Image
                 src={user?.user?.image ?? ""}
                 alt="user-photo"
@@ -174,7 +277,7 @@ export default function Post({ profilePic, name, caption, post }: Post) {
           {isShare && (
             <div className="flex gap-3 mb-3 mt-3 mx-6">
               <Image
-                src={"./../public/images/"}
+                src={"/images/reusableComponents/FacebookIconPost.svg"}
                 alt="facebook"
                 width={40}
                 height={34}
@@ -209,16 +312,20 @@ export default function Post({ profilePic, name, caption, post }: Post) {
           </div>
           <button onClick={handleCommentBtn}>
             <div className="text-black font-Inter">
-              {` ${commentCount} comments`}
+              {` ${allComment.length} comments`}
             </div>
           </button>
 
           {hasComment ? (
-            <div>
+            <div ref={allCommentRef}>
               <div className=" mt-2 border-[1px] p-2 border-black rounded-lg h-20 overflow-auto mb-2 flex flex-col gap-2 ">
-                <CommentBtn user={user} />
-                <CommentBtn user={user} />
-                <CommentBtn user={user} />
+                {allComment.map((comment) => (
+                  <CommentBtn
+                    key={comment._id}
+                    userImage={comment.userImage}
+                    description={comment.description}
+                  />
+                ))}
               </div>
             </div>
           ) : (

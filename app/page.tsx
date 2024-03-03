@@ -40,6 +40,7 @@ export default function Home() {
       {data.map((post: Post) => (
         <Post
           key={post._id}
+          id={post._id}
           profilePic={post.userImage}
           name={post.userName}
           caption={post.description}
