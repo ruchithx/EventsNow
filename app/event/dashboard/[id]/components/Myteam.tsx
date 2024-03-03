@@ -9,7 +9,7 @@ export default function Myteam() {
   return (
     <div>
       <Container>
-        <div className="pl-10 mb-5 grid gap-2 mt-8 mr-10 pb-8">
+        <div className="lg:pl-10 mb-5 grid gap-2 mt-8 md:mr-10 pb-8">
           <div className=" font-mono text-custom-orange font-medium text-3xl ">
             MY TEAM
           </div>
@@ -17,20 +17,44 @@ export default function Myteam() {
             Experience the power of collaborating by easily inviting your team
             members and assigning roles
           </div>
-          <div className="flex py-4">
+          <div className="lg:flex py-4">
             <input
               type="text"
               placeholder="Search by email ... "
-              className="  focus:outline-custom-orange border-2 rounded-lg pl-4 pr-16 placeholder:text-[#ABB7C2] placeholder:font-Inter placeholder:text-base placeholder:font-normal"
+              className="  focus:outline-custom-orange border-2 rounded-lg pl-4 md:pr-16 placeholder:text-[#ABB7C2] placeholder:font-Inter placeholder:text-base placeholder:font-normal"
             />
             <button
-              className="bg-custom-orange rounded-md ml-12 py-1 text-white font-mono text-base font-normal px-4 drop-shadow-md"
+              className="bg-custom-orange rounded-md md:max-lg:mt-3 lg:ml-12 py-0.5 md:py-1 text-white font-mono text-base font-normal px-4 drop-shadow-md"
               onClick={handleInvite}
             >
               Invite
             </button>
           </div>
-          <div className="mt-12 grid gap-5">
+          <div className="mt-6 grid gap-5 overflow-y-scroll h-72  md:w-full">
+            <TeamMemberCard
+              name="ashan dilsara"
+              email="ashandilsara8@gmail.com"
+            />
+            <TeamMemberCard
+              name="ashan dilsara"
+              email="ashandilsara8@gmail.com"
+            />
+            <TeamMemberCard
+              name="ashan dilsara"
+              email="ashandilsara8@gmail.com"
+            />
+            <TeamMemberCard
+              name="ashan dilsara"
+              email="ashandilsara8@gmail.com"
+            />
+            <TeamMemberCard
+              name="ashan dilsara"
+              email="ashandilsara8@gmail.com"
+            />
+            <TeamMemberCard
+              name="ashan dilsara"
+              email="ashandilsara8@gmail.com"
+            />
             <TeamMemberCard
               name="ashan dilsara"
               email="ashandilsara8@gmail.com"

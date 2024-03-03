@@ -24,7 +24,7 @@ export default function OverviewSubComponent({
           width={80}
           height={80}
         />
-        <div className="text-[#273B4A] font-mono tracking-tight">
+        <div className="text-[#273B4A]  font-mono tracking-tight">
           {text}
           {/* Total Ticket Sale */}
         </div>

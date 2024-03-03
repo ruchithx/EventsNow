@@ -15,12 +15,12 @@ export default function Reports() {
         <div className=" font-mono text-custom-orange font-medium text-3xl ">
           REPORTS
         </div>
-        <div className=" text-[#455273] font-mono mr-8">
+        <div className=" text-[#455273] font-mono md:mr-8">
           Get your event report, identify what went well , what could be
           improved and make a better event in future.
         </div>
 
-        <div className="mt-12 grid gap-8 mr-16">
+        <div className="mt-12 grid gap-8 lg:mr-16">
           <GetReportComponent
             reportName="ATTENDANCE REPORT"
             image="attendanceReport"

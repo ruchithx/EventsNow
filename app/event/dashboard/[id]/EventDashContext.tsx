@@ -10,12 +10,15 @@ export interface EventContextType {
   handleReports: voidFunc;
   handleCampaign: voidFunc;
   handleSetting: voidFunc;
+  isSideBar: boolean;
+  setIsSideBar: (value: boolean) => void;
 }
 
 const EventContext = createContext<EventContextType | string>("");
 
 function EventContextProvider({ children }: { children: React.ReactNode }) {
   const [status, setStatus] = useState("settings");
+  const [isSideBar, setIsSideBar] = useState(true);
   const handleOverview: voidFunc = () => {
     setStatus("overview");
   };
@@ -45,6 +48,8 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
         handleReports,
         handleCampaign,
         handleSetting,
+        isSideBar,
+        setIsSideBar,
       }}
     >
       {children}
