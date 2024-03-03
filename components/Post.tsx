@@ -49,7 +49,7 @@ export default function Post({ profilePic, name, caption, post }: Post) {
       <div className="p-5">
         <div className="flex gap-7">
           <Image
-            src={`/images/reusableComponents/${profilePic}.jpg`}
+            src={`${profilePic}`}
             alt="profile picture"
             width={60}
             height={10}
@@ -66,7 +66,7 @@ export default function Post({ profilePic, name, caption, post }: Post) {
       </div>
       <button>
         <Image
-          src={`/images/reusableComponents/${post}.jpg`}
+          src={`${post}`}
           alt="post"
           width={661}
           height={363}

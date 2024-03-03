@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "./Container";
 import Image from "next/image";
 import CreatePost from "./post/CreatePost";
+import { User } from "@/app/organization/dashboard/[id]/Type";
+import { getSession } from "next-auth/react";
 
 export default function Campaign() {
+  const [createPost, setCreatePost] = useState(false);
+  const [user, setUser] = useState<unknown>(null);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const user = await getSession();
+      console.log(user);
+      if (user) {
+        setUser(user);
+      }
+    };
+    getUser();
+  }, []);
+
   return (
     <Container>
       <div className="pl-10 mb-5 grid gap-2 mt-8 mr-10 pb-20">
@@ -17,7 +33,10 @@ export default function Campaign() {
           <div className=" text-sm pb-4">
             You can use event’s community page for marketings
           </div>
-          <button className="bg-custom-orange rounded-md py-1 m-auto text-white font-mono text-base font-normal pr-7 drop-shadow-md flex ">
+          <button
+            onClick={() => setCreatePost(true)}
+            className="bg-custom-orange rounded-md py-1 m-auto text-white font-mono text-base font-normal pr-7 drop-shadow-md flex "
+          >
             <Image
               className="my-auto mx-2"
               src="/images/eventDash/Subtract.svg"
@@ -49,7 +68,7 @@ export default function Campaign() {
           </button>
         </div>
 
-        <CreatePost />
+        {createPost && <CreatePost setCreatePost={setCreatePost} user={user} />}
       </div>
     </Container>
   );
