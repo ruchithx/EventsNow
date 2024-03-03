@@ -7,11 +7,15 @@ import Image from "next/image";
 interface PresonDetailsBar {
   name: string;
   email: string;
+  userId: String;
+  role:String
 }
 
 export default function AdminPersonDetailsBar({
   name,
   email,
+  userId,
+  role,
 }: PresonDetailsBar) {
   const [showBlacklistModal, setShowBlacklistModal] = useState(false);
   const [showMakeAdminModal, setMakeAdminModal] = useState(false);
@@ -26,9 +30,10 @@ export default function AdminPersonDetailsBar({
           {email}
         </div>
         <div className="xl:col-span-4  flex gap-2 ">
-        <button
+        {role!=="admin" && 
+        <><button
             onClick={() =>  setMakeAdminModal(true)}
-            className={`bg-custom-blue h-[34px]  rounded-[5px] w-8 lg:w-[210px] md:w-12 xl:w-44  ms-28 md:ms-[180px] lg:ms-0 shadow-3xl`}
+            className={`bg-custom-blue h-[34px]  rounded-[5px] w-8 lg:w-[210px] md:w-36 xl:w-44  ms-28 md:ms-[180px] lg:ms-0 shadow-3xl`}
           >
             <div className="flex justify-around pl-1">
              <Image 
@@ -43,7 +48,7 @@ export default function AdminPersonDetailsBar({
           </button>
           <button
             onClick={() => setShowBlacklistModal(true)}
-            className={`bg-custom-green h-[34px]  rounded-[5px] w-8 lg:w-[210px] md:w-12 xl:w-48  ms-28 md:ms-[180px] lg:ms-0 shadow-3xl`}
+            className={`bg-custom-green h-[34px]  rounded-[5px] w-8 lg:w-[210px] md:w-12 xl:w-48 ms-28 md:ms-[180px] lg:ms-0 shadow-3xl`}
           >
             <div className="flex justify-around pl-1">
             <Image 
@@ -56,6 +61,26 @@ export default function AdminPersonDetailsBar({
               </div>
             </div>
           </button>
+          </>}
+
+          {role==="admin" &&
+          <>
+          <button
+            className={`bg-custom-blue h-[34px]  rounded-[5px] w-8 lg:w-[210px] md:w-12 xl:w-28  ms-28 md:ms-[180px] lg:ms-0 shadow-3xl`}
+          >
+            <div className="flex justify-around pl-1">
+             <Image 
+                src={"/images/admin/Info_fill.png"}
+                width={25}
+                height={25}
+                alt="cancel"/>
+              <div className="text-white font-mono self-center text-center text-base font-medium mr-2 hidden md:hidden lg:flex ">
+                Admin
+              </div>
+            </div>
+          </button>
+          </>}
+
         </div>
       </div>
 
@@ -67,7 +92,7 @@ export default function AdminPersonDetailsBar({
 
       {showMakeAdminModal && (
         <Modal title="Details" onClose={() => setMakeAdminModal(false)}>
-          <MakeAdminModalContent userId={""} />
+          <MakeAdminModalContent userId={userId} />
         </Modal>
       )}
     </div>

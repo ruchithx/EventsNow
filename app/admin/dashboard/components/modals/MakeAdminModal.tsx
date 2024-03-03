@@ -1,27 +1,37 @@
+import { error, success } from "@/util/Toastify";
 import React from "react";
 interface MAkeAdminprops {
   userId: String;
 }
 const MakeAdminModalContent = ({ userId }: MAkeAdminprops ) => {
   const adminUser = async () => {
+
+    console.log(userId);
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/app/api/v1/makeAdmin/${userId}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/makeAdmin`,
         {
-          method: "POST",
+          method: "PUT",
+          body: JSON.stringify({ id: userId }),
         }
       );
 
       if (!response.ok) {
-        throw new Error("Failed to admin user");
+        error ("Failed to make user an admin");
+        return;
       }
 
-      const data = await response.json();
-      console.log(data);
+     
+      success("User is now an admin");
+
     } catch (error) {
       console.error("Error make admin user:", error);
     }
+
+    
   };
+
+  
   return (
     <div className="sm:flex sm:items-start mb-2">
       <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
