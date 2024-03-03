@@ -8,7 +8,7 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
   return (
-    <div className="fixed z-10 inset-0 overflow-y-auto">
+    <div className="fixed z-10 inset-0 ">
       <div className="fixed inset-0 bg-gray-500 opacity-50"></div>
       <div className="flex justify-center items-center h-full ">
         <div className="bg-white w-96 h-auto rounded-2xl relative flex flex-col shadow-normalComponent border-2 border-[#d47151]">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SuperadminPages from "@/app/admin/dashboard/components/SuperadminPages";
 import Available_Orgs from "@/app/admin/dashboard/components/Available_Orgs";
-import { Organization } from "@/app/organization/dashboard/[id]/Type";
+import { Organization } from "@/app/admin/Type";
 import { useAdmin } from "../AdminContextFile";
 import EmptyStateComponent from "@/components/EmptyStateComponent";
 import { AdminContext } from "../../Type";
