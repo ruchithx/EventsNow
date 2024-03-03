@@ -9,7 +9,6 @@ import Container from "./Container";
 import { UseEventContext, EventContextType } from "../EventDashContext";
 
 export default function SideBar() {
-  const [isSlideBar, setIsSlideBar] = useState(true);
   const {
     handleOverview,
     handleHostPage,
@@ -17,66 +16,80 @@ export default function SideBar() {
     handleReports,
     handleCampaign,
     handleSetting,
+    isSideBar,
+    setIsSideBar,
   } = UseEventContext() as EventContextType;
 
   return (
     <div>
-      <Container>
-        <div className="mt-8">
-          <div>
-            <button
-              className="lg:hidden block"
-              onClick={() => setIsSlideBar(!isSlideBar)}
+      <div className=" flex flex-col  items-center shadow-3xl bg-[#FCFCFD] rounded-lg py- text-center  ">
+        <div className=" grid-rows-8 mt-5 gap-3 flex flex-col items-center">
+          <div
+            className={`mt-8 ${
+              isSideBar
+                ? "md:col-span-3 md:ml-2  col-span-4"
+                : "md:col-span-1  col-span-2"
+            }`}
+          >
+            <div>
+              <button
+                className="xl:hidden block"
+                onClick={() => setIsSideBar(!isSideBar)}
+              >
+                <div className="flex items-end  ">
+                  {isSideBar ? (
+                    <HiArrowCircleLeft size={40} />
+                  ) : (
+                    <HiArrowCircleRight size={40} />
+                  )}
+                </div>
+              </button>
+            </div>
+            <div
+              className={`flex flex-col  ${
+                isSideBar ? "items-start" : "items-center"
+              } `}
             >
-              <div className="flex items-end  ">
-                {isSlideBar ? (
-                  <HiArrowCircleLeft size={40} />
-                ) : (
-                  <HiArrowCircleRight size={40} />
-                )}
-              </div>
-            </button>
-          </div>
-          <div className="flex flex-col items-start">
-            <EventDashButton
-              isSlideBar={isSlideBar}
-              img="overview.svg"
-              text="Overview"
-              onClick={() => handleOverview()}
-            />
-            <EventDashButton
-              isSlideBar={isSlideBar}
-              img="bookmark.svg"
-              text="Host Page"
-              onClick={() => handleHostPage()}
-            />
-            <EventDashButton
-              isSlideBar={isSlideBar}
-              img="team.svg"
-              text="My Team"
-              onClick={() => handleMyteam()}
-            />
-            <EventDashButton
-              isSlideBar={isSlideBar}
-              img="file_dock.svg"
-              text="Reports"
-              onClick={() => handleReports()}
-            />
-            <EventDashButton
-              isSlideBar={isSlideBar}
-              img="bell_pin.svg"
-              text="Campaign"
-              onClick={() => handleCampaign()}
-            />
-            <EventDashButton
-              isSlideBar={isSlideBar}
-              img="Setting.svg"
-              text="Settings"
-              onClick={() => handleSetting()}
-            />
+              <EventDashButton
+                isSlideBar={isSideBar}
+                img="overview.svg"
+                text="Overview"
+                onClick={() => handleOverview()}
+              />
+              <EventDashButton
+                isSlideBar={isSideBar}
+                img="bookmark.svg"
+                text="Host Page"
+                onClick={() => handleHostPage()}
+              />
+              <EventDashButton
+                isSlideBar={isSideBar}
+                img="team.svg"
+                text="My Team"
+                onClick={() => handleMyteam()}
+              />
+              <EventDashButton
+                isSlideBar={isSideBar}
+                img="file_dock.svg"
+                text="Reports"
+                onClick={() => handleReports()}
+              />
+              <EventDashButton
+                isSlideBar={isSideBar}
+                img="bell_pin.svg"
+                text="Campaign"
+                onClick={() => handleCampaign()}
+              />
+              <EventDashButton
+                isSlideBar={isSideBar}
+                img="Setting.svg"
+                text="Settings"
+                onClick={() => handleSetting()}
+              />
+            </div>
           </div>
         </div>
-      </Container>
+      </div>
     </div>
   );
 }
