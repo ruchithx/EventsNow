@@ -50,7 +50,7 @@ export default function Settings() {
           </div>
           <div className="text-[#666] grid gap-6 ">
             <ContainerWithStroke>
-              <div className="md:px-8 xl:px-16 grid gap-2 pt-3 pb-8 max-md:px-3">
+              <div className="md:px-8 xl:px-16 grid gap-2 pt-3 pb-8 max-md:px-3 ">
                 <div className="w-full text-left text-lg ">Event Name</div>
                 <div className="w-full flex justify-start ">
                   <input
@@ -69,8 +69,8 @@ export default function Settings() {
             <ContainerWithStroke>
               <div className="lg:px-8 grid gap-2 pt-3 pb-8 max-md:px-3 md:px-8">
                 <div className="w-full text-left text-lg ">Event Type</div>
-                <div className="w-full sm:max-md:flex 2xl:flex justify-between  ">
-                  <div className="flex 2xl:shadow-lg mb-3 ">
+                <div className="w-full sm:max-md:flex 2xl:flex  justify-between  ">
+                  <div className="flex  2xl:shadow-lg mb-3 sm:mb-0 md:mb-3  2xl:mb-0 ">
                     <button
                       onClick={() => setEventType("Physical Event")}
                       className={`${
@@ -107,7 +107,7 @@ export default function Settings() {
                         setEventLocation(e.target.value);
                       }}
                       value={eventLocation}
-                      className=" pl-4 pr-16 placeholder:text-[#ABB7C2] placeholder:font-Inter placeholder:text-base placeholder:font-normal place-self-start w-full border-none focus:outline-none"
+                      className=" pl-4 xl:pr-16 placeholder:text-[#ABB7C2] placeholder:font-Inter placeholder:text-base placeholder:font-normal place-self-start w-full border-none focus:outline-none"
                     />
                   </div>
                 </div>
