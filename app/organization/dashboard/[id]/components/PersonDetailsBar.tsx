@@ -31,6 +31,7 @@ export default function PersonDetailsBar({
     setGlobalPermission(globalPermission);
     setEventPermission(eventPermission);
   };
+
   return (
     //parent div eken 3n 2k kiyala gaththe meka.wenas krla gann onnm.mn dila tynne meke mulu loku div ekatam col-span-2 kiyala-ashan
     <div className=" item-center flex-wrap  bg-[#D9D9D9] w-full flex justify-between  xl:grid xl:grid-cols-12 items-center  rounded-[5px]">

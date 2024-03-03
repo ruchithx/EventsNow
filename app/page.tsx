@@ -16,14 +16,16 @@ import { IoMdArrowDropdown } from "react-icons/io";
 export default function Home() {
   return (
     <div>
-      {/* <EventCardNew event={"ARQM"} organization={"ASd"} />
-      <EventCardNewOrg
+
+      {/* <EventCardNew event={"ARQM"} organization={"ASd"} /> */}
+      {/* <EventCardNewOrg
+
         event={"Nadagama"}
         date={"2022/05/1"}
         time={"09.00"}
         location={"online"}
       /> */}
-      {/* <button onClick={handleClickIt}> click it </button>  */}
+
 
       <div>{/* <HeroCarousel /> */}</div>
       {/* <EventCardNewOrg

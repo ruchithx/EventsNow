@@ -6,6 +6,7 @@ import Upcoming_Events from "./Superadminevent";
 import EmptyStateComponent from "@/components/EmptyStateComponent";
 import Spinner from "@/components/Spinner";
 import { getAllEvents } from "../FetchData";
+import EventCardNewOrg from "@/components/EventCardNewOrg";
 
 export default function Event() {
   const { event, setEvent } = useAdmin() as AdminContext;
@@ -41,7 +42,7 @@ export default function Event() {
             ) : event.length === 0 ? (
               <EmptyStateComponent message="No Events" />
             ) : (
-              event.map((e) => <Upcoming_Events key={e._id} event={e} />)
+              event.map((e) => <EventCardNewOrg key={e._id} event={e.eventName} date={e.eventStartDate} time={e.startTime} location={"KCC,Kandy Road,kandy."} eventCover={e.postImageLink} />)
             )}
             {}
           </>
