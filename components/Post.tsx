@@ -35,7 +35,8 @@ export type User = {
 export default function Post({ profilePic, name, caption, post }: Post) {
   const [like, setLike] = useState(0);
   const [commentCount, setCommentCount] = useState(0);
-  const [comment, setComment] = useState(["sad", "sda"]);
+  const [allComment, setAllComment] = useState(["sad", "sda"]);
+  const [comment, setComment] = useState("");
   const [isComment, setIsComment] = useState(false);
   const [hasComment, setHasComment] = useState(false);
   const [isShare, setIsShare] = useState(false);
@@ -56,29 +57,28 @@ export default function Post({ profilePic, name, caption, post }: Post) {
   }, []);
 
   function handleCommentBtn() {
-    comment.length > 0 ? setHasComment((comment) => !comment) : "";
+    allComment.length > 0 ? setHasComment((comment) => !comment) : "";
   }
 
   function handleClickLikeButton() {
     setLike((i) => i + 1);
   }
+
   function handleClickCommentButton() {
     isShare ? setIsShare(false) : "";
     isComment ? setIsComment(false) : setIsComment(true);
   }
+
   function handleClickShareButton() {
     isComment ? setIsComment(false) : "";
     isShare ? setIsShare(false) : setIsShare(true);
   }
 
   function handleComment(e: any) {
-    setComment(e.target.value);
+    setAllComment(e.target.value);
   }
 
-  function handleSendBtn() {
-    setComment("");
-    setCommentCount((i) => i + 1);
-  }
+  function sentComment() {}
 
   return (
     <>
@@ -154,8 +154,18 @@ export default function Post({ profilePic, name, caption, post }: Post) {
                   type="text"
                   className="outline-none text-gray-700 p-1 bg-initial "
                   placeholder="Write a comment"
+                  onChange={(e) => setComment(e.target.value)}
+                  value={comment}
                 />
-                <button className="bg-slate-400 rounded-md w-8 inline-flex justify-center items-center h-6">
+                <button
+                  onClick={sentComment}
+                  disabled={comment.length > 0 ? false : true}
+                  className={`${
+                    comment.length > 0
+                      ? "bg-slate-600"
+                      : "bg-slate-400 cursor-not-allowed"
+                  } rounded-md w-8 inline-flex justify-center items-center button h-6`}
+                >
                   <BsSend />
                 </button>
               </div>
