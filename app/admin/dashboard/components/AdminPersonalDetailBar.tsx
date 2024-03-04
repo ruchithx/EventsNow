@@ -66,7 +66,7 @@ export default function AdminPersonDetailsBar({
           {role==="admin" &&
           <>
           <button
-            className={`bg-custom-blue h-[34px]  rounded-[5px] w-8 lg:w-[210px] md:w-12 xl:w-28  ms-28 md:ms-[180px] lg:ms-0 shadow-3xl`}
+            className="bg-custom-blue justify-end h-[34px] rounded-[5px] w-8 lg:w-[210px] md:w-12 xl:w-28  ms-28 md:ms-[180px] lg:ms-0 shadow-3xl"
           >
             <div className="flex justify-around pl-1">
              <Image 
