@@ -34,9 +34,9 @@ export default function HostSideBar({
         {EventName}
       </div>
 
-      <div className="flex md:w-64 h-14 rounded-3xl bg-[#F9EBE9] items-center xl:mx-16 md:mx-8 xl:my-12 md:my-8 ">
+      <div className="flex md:w-64 xl:h-14 md:h-10 rounded-3xl bg-[#F9EBE9] items-center xl:mx-16 md:mx-8 xl:my-12 md:my-8 ">
         <button
-          className={` md:text-md font-medium ml-2 w-40 h-12 rounded-3xl  ${
+          className={` md:text-md font-medium ml-2 w-40 h-8 xl:h-12 rounded-3xl  ${
             activeButton === 1
               ? "bg-[#D47151] text-white shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
               : "hover:bg-gray-200 text-[#D47151] bg-[#F9EBE9]"
@@ -51,7 +51,7 @@ export default function HostSideBar({
           EVENT HOST
         </button>
         <button
-          className={` md:text-md font-medium mr-2 w-40 h-12 rounded-3xl  ${
+          className={` md:text-md font-medium mr-2 w-40 h-8 xl:h-12 rounded-3xl  ${
             activeButton === 2
               ? "bg-[#D47151] text-white shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
               : "hover:bg-gray-200 text-[#D47151] bg-[#F9EBE9]"
@@ -116,8 +116,8 @@ export default function HostSideBar({
         </div>
 
         <div className="flex xl:pt-24 md:pt-14 items-center ">
-          <button className="flex xl:w-36 md:w-32 xl:h-16 md:h-12 bg-[#D47151] rounded-l-2xl items-center xl:px-4  ">
-            <div className=" w-10 h-10 mt-2">
+          <button className="flex xl:w-36 w-32 xl:h-16 h-12  bg-[#D47151] rounded-l-2xl items-center xl:px-4  ">
+            <div className=" w-10 h-10 mt-2 ml-2 xl:ml-0">
               <Image
                 src="/images/Event/HostPage/Check_fill.svg"
                 alt="print"
@@ -125,12 +125,12 @@ export default function HostSideBar({
                 height={32}
               />
             </div>
-            <div className="font-medium xl:text-lg md:text-md text-white text-left leading-tight ml-4">
+            <div className="font-medium xl:text-lg text-md text-white text-left leading-tight ml-4">
               Buy tickets
             </div>
           </button>
 
-          <button className="flex xl:w-36 md:w-32 xl:h-16 md:h-12 bg-[#455273] rounded-r-2xl items-center xl:px-4">
+          <button className="flex xl:w-36 w-32 xl:h-16 h-12 bg-[#455273] rounded-r-2xl items-center xl:px-4">
             <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
               <Image
                 src="/images/Event/HostPage/Paper_fill.svg"
@@ -139,7 +139,7 @@ export default function HostSideBar({
                 height={32}
               />
             </div>
-            <div className="font-medium xl:text-lg md:text-md text-white text-left leading-tight xl:ml-4 md:ml-2">
+            <div className="font-medium xl:text-lg text-md text-white text-left leading-tight xl:ml-4 md:ml-2">
               Add to Wish List
             </div>
           </button>
