@@ -11,10 +11,12 @@ interface contextProps {
   team: Team[];
   events: Event[];
   organization: Organization;
+  organizationImage: string;
 }
 
 export default function Profile() {
-  const { editedName, team, events, organization } = useOrg() as contextProps;
+  const { editedName, team, events, organizationImage } =
+    useOrg() as contextProps;
 
   return (
     <div className=" lg:p-3 p-0 h-fit w-fit items-center justify-center rounded-xl shadow-3xl bg-custom-lightorange">
@@ -42,7 +44,7 @@ export default function Profile() {
       </div>
       <div className="flex justify-center">
         <ProfCard
-          profilePic={organization.postImageLink}
+          profilePic={organizationImage}
           name={editedName}
           teamCount={team.length}
           eventCount={events.length}

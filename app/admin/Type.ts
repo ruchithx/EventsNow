@@ -32,6 +32,7 @@ export type User = {
   firstName: string;
   image: string;
   lastName: string;
+  role: string;
 };
 export type Event = {
   selectedTab: string;

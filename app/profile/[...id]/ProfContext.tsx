@@ -29,6 +29,8 @@ export interface ProfContext {
   handlemyTickets: VoidFunc;
   setUserDeatails: React.Dispatch<React.SetStateAction<UserDetails>>;
   userDeatails: UserDetails;
+  userImage: string;
+  setUserImage: React.Dispatch<React.SetStateAction<string>>;
 }
 interface ProfContextProviderProps {
   children: React.ReactNode;
@@ -57,6 +59,7 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
     image: "",
     __v: 0,
   });
+  const [userImage, setUserImage] = useState<string>("");
   const [fname, setFname] = useState<string>("");
   const [lname, setLname] = useState<string>("");
   const params = useParams();
@@ -105,6 +108,7 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
         const finalResponse = await res.json();
         console.log(finalResponse);
         setUserDeatails(finalResponse);
+        setUserImage(finalResponse.image);
         setFname(finalResponse.firstName);
         setLname(finalResponse.lastName);
         if (finalResponse.password) {
@@ -133,7 +137,8 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
         fname,
         lname,
         userId,
-
+        userImage,
+        setUserImage,
         status,
         handleProfile,
         handleWishList,

@@ -1,166 +1,356 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./Post.module.css";
 import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 import SendIcon from "@mui/icons-material/Send";
+import { getSession } from "next-auth/react";
+import { Session } from "next-auth";
+import { IoIosSend } from "react-icons/io";
+import { BsSend } from "react-icons/bs";
+import CreatePost from "@/app/event/dashboard/[id]/components/post/CreatePost";
+import CommentBox from "./CommentBox";
+import CommentBtn from "./CommentBtn";
+
+
 
 interface Post {
   profilePic: string;
   name: string;
   caption: string;
   post: string;
+  id: string;
 }
 
-export default function Post({ profilePic, name, caption, post }: Post) {
+export type User = {
+  user: {
+    image: string;
+    email: string;
+    name: string;
+  };
+  expires: string;
+};
+
+type Comment = {
+  _id: string;
+  userImage: string;
+  postId: string;
+  description: string;
+};
+
+export default function Post({ profilePic, name, caption, post, id }: Post) {
   const [like, setLike] = useState(0);
-  const [commentCount, setCommentCount] = useState(0);
+  const [allComment, setAllComment] = useState<Comment[]>([]);
   const [comment, setComment] = useState("");
   const [isComment, setIsComment] = useState(false);
+  const [hasComment, setHasComment] = useState(false);
   const [isShare, setIsShare] = useState(false);
+
+  const [user, setUser] = useState<User | Session>({
+    user: { image: "", email: "", name: "" },
+    expires: "",
+  });
+
+  const commentRef = useRef<HTMLDivElement>(null);
+  const allCommentRef = useRef<HTMLDivElement>(null);
+
+  // handle comment button
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        commentRef.current &&
+        !commentRef.current.contains(event.target as Node)
+      ) {
+        // Clicked outside of modal, so close it
+        setIsComment(false);
+      }
+    };
+
+    // Add event listener when the modal is open
+    if (isComment) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      // Remove event listener when the modal is closed
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    // Cleanup function to remove event listener
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isComment, setIsComment]);
+
+  // handle all comment
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        allCommentRef.current &&
+        !allCommentRef.current.contains(event.target as Node)
+      ) {
+        // Clicked outside of modal, so close it
+        setHasComment(false);
+      }
+    };
+
+    // Add event listener when the modal is open
+    if (hasComment) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      // Remove event listener when the modal is closed
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    // Cleanup function to remove event listener
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [setHasComment, hasComment]);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const user = await getSession();
+
+      if (user) {
+        setUser(user);
+      }
+
+      const res = await fetch("/api/v1/post/getCommentsByPost", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      });
+      const data = await res.json();
+
+      setAllComment(data.data);
+    };
+    getUser();
+  }, [id]);
+
+  function handleCommentBtn() {
+    allComment.length > 0 ? setHasComment((comment) => !comment) : "";
+  }
 
   function handleClickLikeButton() {
     setLike((i) => i + 1);
   }
+
   function handleClickCommentButton() {
     isShare ? setIsShare(false) : "";
     isComment ? setIsComment(false) : setIsComment(true);
   }
+
   function handleClickShareButton() {
     isComment ? setIsComment(false) : "";
     isShare ? setIsShare(false) : setIsShare(true);
   }
 
-  function handleComment(e: any) {
-    setComment(e.target.value);
-  }
+  async function sentComment() {
+    if (comment.length > 0) {
+      const res = await fetch("/api/v1/post/createComment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userImage: user?.user?.image,
+          postId: id,
+          description: comment,
+        }),
+      });
+      const data = await res.json();
 
-  function handleSendBtn() {
-    setComment("");
-    setCommentCount((i) => i + 1);
+      if (data.message === "comment created successfully") {
+        setComment("");
+        setAllComment((prev) => [
+          ...prev,
+          {
+            _id: data.comment._id,
+            userImage: data.comment.userImage,
+            postId: data.comment.postId,
+            description: data.comment.description,
+          },
+        ]);
+      }
+    }
   }
 
   return (
-    <div className="w-571 bg-initial text-white m-8 rounded-xl pb-2">
-      <div className="p-5">
-        <div className="flex gap-7">
-          <Image
-            src={`/images/reusableComponents/${profilePic}.jpg`}
-            alt="profile picture"
-            width={60}
-            height={10}
-            className="rounded-full"
-          />
-          <div>
-            <div className="text-black text-24 font-bold font-Inter">
-              {name}
+    <>
+      <div className="xl:w-571 sm:w-[24rem] w-[20rem]  bg-initial text-white m-8 rounded-xl pb-2">
+        <div className="p-5">
+          <div className="flex gap-7">
+            <Image
+              src={`${profilePic}`}
+              alt="profile picture"
+              width={60}
+              height={10}
+              className="rounded-full"
+            />
+            <div>
+              <div className="text-black sm:text-24 text-lg font-bold font-Inter">
+                {name}
+              </div>
             </div>
-            <div className="text-black text-13">3d</div>
           </div>
+          <div className="text-black mt-3 font-Inter">{caption}</div>
         </div>
-        <div className="text-black mt-3 font-Inter">{caption}</div>
-      </div>
-      <button>
-        <Image
-          src={`/images/reusableComponents/${post}.jpg`}
-          alt="post"
-          width={661}
-          height={363}
-          className="fit"
-        />
-      </button>
-      <div className="px-5 my-2 mb-2">
-        <div className="flex gap-4">
-          <button onClick={() => handleClickLikeButton()}>
-            <Image
-              src={"/images/reusableComponents/React.svg"}
-              alt="like"
-              width={40}
-              height={34}
-              className={styles.zoom}
-            />
-          </button>
-          <button onClick={() => handleClickCommentButton()}>
-            <Image
-              src={"/images/reusableComponents/Comment.svg"}
-              alt="comment"
-              width={40}
-              height={34}
-              className={styles.zoom}
-            />
-          </button>
-          <button onClick={() => handleClickShareButton()}>
-            <Image
-              src={"/images/reusableComponents/Share.svg"}
-              alt="share"
-              width={40}
-              height={34}
-              className={styles.zoom}
-            />
-          </button>
-        </div>
-        {isComment && (
-          <div className="mt-2 mb-2 flex gap-4 items-end">
-            <TextField
-              id="comment"
-              label="Write a comment"
-              variant="standard"
-              value={comment}
-              onChange={(e) => handleComment(e)}
-            />
-            <Button
-              className="bg-gray-400 w-15 h-7"
-              endIcon={<SendIcon />}
-              onClick={() => handleSendBtn()}
+        <button>
+          <Image
+            src={`${post}`}
+            alt="post"
+            width={661}
+            height={363}
+            className="fit"
+          />
+        </button>
+        <div className="px-5 my-2 mb-2">
+          <div className="flex gap-4 sm:w-32 w-24">
+            <button onClick={() => handleClickLikeButton()}>
+              <Image
+                src={"/images/reusableComponents/React.svg"}
+                alt="like"
+                width={40}
+                height={34}
+                className={styles.zoom}
+              />
+            </button>
+            <button onClick={() => handleClickCommentButton()}>
+              <Image
+                src={"/images/reusableComponents/Comment.svg"}
+                alt="comment"
+                width={40}
+                height={34}
+                className={styles.zoom}
+              />
+            </button>
+            <button onClick={() => handleClickShareButton()}>
+              <Image
+                src={"/images/reusableComponents/Share.svg"}
+                alt="share"
+                width={40}
+                height={34}
+                className={styles.zoom}
+              />
+            </button>
+          </div>
+          {isComment && (
+            <div
+              ref={commentRef}
+              className="mt-2 mb-2 items-center flex gap-4 "
             >
-              Send
-            </Button>
-          </div>
-        )}
-        {isShare && (
-          <div className="flex gap-3 mb-3 mt-3 mx-6">
-            <Image
-              src={"./../public/images/"}
-              alt="facebook"
-              width={40}
-              height={34}
-              className={styles.zoom}
-            />
-            <Image
-              src={"/images/reusableComponents/TwitterIconPost.svg"}
-              alt="facebook"
-              width={40}
-              height={34}
-              className={styles.zoom}
-            />
-            <Image
-              src={"/images/reusableComponents/InstagramIconPost.svg"}
-              alt="facebook"
-              width={40}
-              height={34}
-              className={styles.zoom}
-            />
-            <Image
-              src={"/images/reusableComponents/threads-app-icon.svg"}
-              alt="facebook"
-              width={31}
-              height={28}
-              className={styles.zoom}
-            />
-          </div>
-        )}
+              <Image
+                src={user?.user?.image ?? ""}
+                alt="user-photo"
+                width={35}
+                height={35}
+                className="rounded-full mt-1"
+              />
+              <div className="border-[1px] gap-3 border-slate-500 rounded-3xl p-1 pl-2 pr-2 flex items-center">
+                <input
+                  type="text"
+                  className="outline-none text-gray-700 p-1 bg-initial "
+                  placeholder="Write a comment"
+                  onChange={(e) => setComment(e.target.value)}
+                  value={comment}
+                />
+                <button
+                  onClick={sentComment}
+                  disabled={comment.length > 0 ? false : true}
+                  className={`${
+                    comment.length > 0
+                      ? "bg-slate-600"
+                      : "bg-slate-400 cursor-not-allowed"
+                  } rounded-md w-8 inline-flex justify-center items-center button h-6`}
+                >
+                  <BsSend />
+                </button>
+              </div>
+            </div>
+          )}
+          {isShare && (
+            <div className="flex gap-3 mb-3 mt-3 mx-6">
+              <Image
+                src={"/images/reusableComponents/FacebookIconPost.svg"}
+                alt="facebook"
+                width={40}
+                height={34}
+                className={styles.zoom}
+              />
+              <Image
+                src={"/images/reusableComponents/TwitterIconPost.svg"}
+                alt="facebook"
+                width={40}
+                height={34}
+                className={styles.zoom}
+              />
+              <Image
+                src={"/images/reusableComponents/InstagramIconPost.svg"}
+                alt="facebook"
+                width={40}
+                height={34}
+                className={styles.zoom}
+              />
+              <Image
+                src={"/images/reusableComponents/threads-app-icon.svg"}
+                alt="facebook"
+                width={31}
+                height={28}
+                className={styles.zoom}
+              />
+            </div>
+          )}
 
-        <div className="text-black font-Inter">
-          {`Liked by ${like} peoples`}
-        </div>
-        <div className="text-black font-Inter">
-          {`View all ${commentCount} comments`}{" "}
+          <div className="text-black font-Inter">
+            {`Liked by ${like} peoples`}
+          </div>
+          <button onClick={handleCommentBtn}>
+            <div className="text-black font-Inter">
+              {` ${allComment.length} comments`}
+            </div>
+          </button>
+
+          {hasComment ? (
+            <div ref={allCommentRef}>
+              <div className=" mt-2 border-[1px] p-2 border-black rounded-lg h-20 overflow-auto mb-2 flex flex-col gap-2 ">
+                {allComment.map((comment) => (
+                  <CommentBtn
+                    key={comment._id}
+                    userImage={comment.userImage}
+                    description={comment.description}
+                  />
+                ))}
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
-    </div>
+    </>
   );
+}
+
+{
+  /* function commentBtn({user}: {user: User | Session}) {
+  return (
+    <>
+      <Image
+        src={user?.user?.image ?? ""}
+        alt="user-photo"
+        width={35}
+        height={35}
+        className="rounded-full mt-1"
+      />
+      <div className=" text-black p-1 pl-2 pr-2 flex items-center">
+        it is a great event
+      </div>
+    </>
+  );
+} */
 }

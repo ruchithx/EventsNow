@@ -4,11 +4,11 @@ import "react-phone-number-input/style.css";
 import { z } from "zod";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import firebase from "firebase/compat/app";
-import { firebaseConfig } from "../../../services/FirebaseConfig";
+// import firebase from "firebase/compat/app";
+// import { firebaseConfig } from "../../../services/FirebaseConfig";
 import "firebase/compat/storage";
 
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 
 import { error, success } from "../../../util/Toastify";
 import {
@@ -20,6 +20,13 @@ import {
 import { getSession } from "next-auth/react";
 import { OrganizationProps } from "@/components/Navbar/NavBar";
 import { useAuth } from "@/app/AuthContext";
+import {
+  CldUploadWidget,
+  CloudinaryUploadWidgetInfo,
+  CloudinaryUploadWidgetResults,
+} from "next-cloudinary";
+import { tr } from "date-fns/locale";
+import { FaCloudUploadAlt } from "react-icons/fa";
 
 export default function CreateOrganizationFormBasic() {
   const [fullName, setFullName] = useState("");
@@ -37,6 +44,8 @@ export default function CreateOrganizationFormBasic() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { organization, setOrganization }: any = useAuth();
+
+  const [profileImage, setProfileImage] = useState("");
 
   const getUserId = async () => {
     const session = await getSession();
@@ -83,13 +92,13 @@ export default function CreateOrganizationFormBasic() {
 
     setIsSubmitting(true);
 
-    const storageRef = firebase.storage().ref();
-    const fileRef = storageRef.child(`eventCover-${organizationName}`);
-    const postImageLink = await fileRef
-      .put(postImage)
-      .then((snapshot) =>
-        snapshot.ref.getDownloadURL().then((downloadURL) => downloadURL)
-      );
+    // const storageRef = firebase.storage().ref();
+    // const fileRef = storageRef.child(`eventCover-${organizationName}`);
+    // const postImageLink = await fileRef
+    //   .put(postImage)
+    //   .then((snapshot) =>
+    //     snapshot.ref.getDownloadURL().then((downloadURL) => downloadURL)
+    //   );
 
     const data = {
       fullName,
@@ -100,7 +109,7 @@ export default function CreateOrganizationFormBasic() {
       address,
       phoneNumber,
       email,
-      postImageLink,
+      postImageLink: profileImage,
     };
 
     const result = validateOrganization.safeParse(data);
@@ -126,7 +135,7 @@ export default function CreateOrganizationFormBasic() {
       const oraganizationDataForNavBarProfile = {
         id: id.id,
         name: organizationName,
-        image: postImageLink,
+        image: profileImage,
       } as OrganizationProps;
 
       setOrganization((data: OrganizationProps[]) => [
@@ -206,11 +215,7 @@ export default function CreateOrganizationFormBasic() {
       <div className="w-full px-10 lg:mx-0 lg:px-0 mt-8 mb-16 leading-none	 text-center text-[#455273] font-khand text-[32px] sm:text-[64px] font-semibold mx-2">
         Create organization account
       </div>
-      <form
-        className=" flex-column "
-        // action={sendOrganizationData}
-        // onSubmit={() => sendOrganizationData()}
-      >
+      <form className=" flex-column " method="POST">
         <input
           required
           type="text"
@@ -321,42 +326,96 @@ export default function CreateOrganizationFormBasic() {
           className=" my-5 w-full h-8 block flex-1  bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:outline-custom-orange sm:text-sm sm:leading-6 border-2 rounded-[12px] pl-4"
           placeholder="Enter email address "
         ></input>
-        <div className=" border-2 w-auto border-solId rounded-xl   ">
-          <label
-            htmlFor="fileReader"
-            className="   py-1.5 text-gray-400  sm:text-sm sm:leading-6 pl-4"
-          >
-            Enter cover photo for organization{" "}
-          </label>
-          <input
-            required
-            type="file"
-            id="fileReader"
-            ref={fileInputRef}
-            accept="image/*"
-            onChange={(e) => {
-              if (e.target.files && e.target.files.length > 0) {
-                setPreviewImage(URL.createObjectURL(e.target.files[0]));
-                setPostImage(e.target.files[0]);
-              }
-            }}
-            className="block  text-sm text-slate-500
-      file:mr-4 file:py-1.5 file:px-4
-      file:rounded-[12px] file:border-0
-      file:text-sm file:font-semibold
-      file:bg-violet-50 file:text-custom-orange
-      hover:file:bg-gray-200 rounded-[12px]"
-          />
-          {previewImage.length > 0 && (
+
+        <CldUploadWidget
+          uploadPreset="organization"
+          onOpen={() => {
+            console.log("isPhotographer");
+          }}
+          onSuccess={(results: CloudinaryUploadWidgetResults) => {
+            const uploadedResult = results.info as CloudinaryUploadWidgetInfo;
+            const profileImageURL = {
+              image: uploadedResult.secure_url,
+            };
+            setProfileImage(profileImageURL.image);
+          }}
+          options={{
+            tags: ["organization image"],
+            // publicId: `${organizationName}/${Date.now()}`,
+            // publicId: "b2c",
+
+            sources: ["local"],
+            googleApiKey: "<image_search_google_api_key>",
+            showAdvancedOptions: false,
+            cropping: true,
+            multiple: false,
+            showSkipCropButton: false,
+            croppingAspectRatio: 0.75,
+            croppingDefaultSelectionRatio: 0.75,
+            croppingShowDimensions: true,
+            croppingCoordinatesMode: "custom",
+            // maxImageHeight: 100,
+            // croppingValidateDimensions: true,
+            defaultSource: "local",
+            resourceType: "image",
+            folder: "organization",
+
+            styles: {
+              palette: {
+                window: "#ffffff",
+                sourceBg: "#f4f4f5",
+                windowBorder: "#90a0b3",
+                tabIcon: "#000000",
+                inactiveTabIcon: "#555a5f",
+                menuIcons: "#555a5f",
+                link: "#000000",
+                action: "#000000",
+                inProgress: "#464646",
+                complete: "#000000",
+                error: "#cc0000",
+                textDark: "#000000",
+                textLight: "#fcfffd",
+                theme: "white",
+              },
+            },
+          }}
+        >
+          {({ open }) => {
+            return (
+              // <Button
+              //   variant="default"
+              //   className="rounded-full mt-5 ml-3"
+              //   onClick={() => {
+              //     open();
+              //   }}
+              // >
+              //   <Camera />
+              // </Button>
+              <button
+                onClick={() => {
+                  open();
+                }}
+              >
+                <div className="p-1 text-white font-semibold flex items-center justify-center gap-2 bg-slate-400 rounded-2xl">
+                  <FaCloudUploadAlt />
+                  upload image
+                </div>
+              </button>
+            );
+          }}
+        </CldUploadWidget>
+
+        {profileImage.length > 0 && (
+          <div className=" mt-5 border-2 w-auto border-solId rounded-xl   ">
             <Image
               className=" p-4"
-              src={previewImage}
+              src={profileImage}
               width={500}
               height={500}
               alt="organization cover image"
             />
-          )}
-        </div>
+          </div>
+        )}
 
         {isSubmitting ? (
           <button className="button flex text-center mt-10 mb-10 xl:mb-20  px-2 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono ">

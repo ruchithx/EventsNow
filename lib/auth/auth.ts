@@ -85,7 +85,7 @@ export const authOptions: NextAuthOptions = {
           }
         ).then((res) => res.json());
 
-        // return data;
+        return data;
       }
 
       // if (account?.provider === "google") {
@@ -112,35 +112,41 @@ export const authOptions: NextAuthOptions = {
 
       return true;
     },
-    async session(params: { session: Session; token: JWT; user: any }) {
-      if (params.session.user) {
-        params.session.user.email = params.token.email;
-      }
+    async session(params: { session: any; token: JWT; user: any }) {
+      // console.log("session params 🦊🦒🐯🦁", params.user);
+
+      // if (params.session.user) {
+      //   params.session.user.email = params.token.email;
+      //   params.session.user.firstName = params.token.firstName;
+      //   params.session.user.userRole = params.token.userRole;
+      // }
+      params.session.user.email = params.token.email;
+      params.session.user.firstName = params.token.firstName;
+      params.session.user.userRole = params.token.userRole;
 
       return params.session;
     },
 
-    // async jwt(params: {
-    //   token: any;
-    //   user: any;
-    //   session?: any;
-    //   // account?: any | null | undefined;
-    //   // profile?: any | undefined;
-    //   // isNewUser?: boolean | undefined;
-    // }) {
-    //   console.log("jwt params 🦊🦒🐯🦁");
-    //   console.log(params.token, params.user, params.session);
+    async jwt(params: {
+      token: any;
+      user: any;
+      session?: any;
+      // account?: any | null | undefined;
+      // profile?: any | undefined;
+      // isNewUser?: boolean | undefined;
+    }) {
+      if (params.user) {
+        console.log("User:", params.user);
+        params.token.id = params.user._id;
+        params.token.firstName = params.user.firstName;
+        params.token.userRole = params.user.role;
+        // Handle user-related logic here
+      } else {
+        // Handle the case when the user is undefined
+      }
 
-    //   if (params.user) {
-    //     console.log("User:", params.user);
-    //     // Handle user-related logic here
-    //   } else {
-    //     console.log("User is undefined");
-    //     // Handle the case when the user is undefined
-    //   }
-
-    //   return params.token;
-    // },
+      return params.token;
+    },
   },
 
   pages: {

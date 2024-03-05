@@ -43,6 +43,8 @@ export default function Notification() {
                   key={use._id}
                   name={use.firstName}
                   email={use.email}
+                  userId={use._id}
+                  role={use.role}
                 />
               ))
             ) : (
