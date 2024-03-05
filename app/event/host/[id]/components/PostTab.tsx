@@ -1,12 +1,12 @@
-import React from 'react'
-import Image from 'next/image'
-import Post from '@/components/Post'
+import React from "react";
+import Image from "next/image";
+import Post from "@/components/Post";
 
 export default function PostTab() {
   return (
-    <div className='overflow-y-auto h-[40rem] xl:h-[45rem] md:h-[33rem] mt-12 xl:ml-44 md:ml-20 '>
-       <div className='xl:pr-72 md:pr-64 pr-8'>
-       <Post 
+    <div className="overflow-y-auto h-[40rem] xl:h-[45rem] md:h-[33rem] mt-12 xl:ml-44 md:ml-20 ">
+      <div className="xl:pr-72 md:pr-64 pr-8">
+        {/* <Post 
             profilePic="profilpic"
             name="Oshadhi Yasundara"
             caption="Hello everyone"
@@ -36,8 +36,8 @@ export default function PostTab() {
             name="Arkham"
             caption="Hello everyone"
             post="PictureOfPost"
-        />
-        </div>
+        /> */}
+      </div>
     </div>
-  )
+  );
 }
