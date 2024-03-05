@@ -4,11 +4,11 @@ import "react-phone-number-input/style.css";
 import { z } from "zod";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import firebase from "firebase/compat/app";
-import { firebaseConfig } from "../../../services/FirebaseConfig";
+// import firebase from "firebase/compat/app";
+// import { firebaseConfig } from "../../../services/FirebaseConfig";
 import "firebase/compat/storage";
 
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 
 import { error, success } from "../../../util/Toastify";
 import {
