@@ -25,29 +25,32 @@ export default function MyEvents() {
         </div>
       </div>
 
-      <div className="ml-10 md:ml-0 items-start overflow-auto w-full flex h-80    gap-5 flex-col">
-        {events.length === 0 ? (
-          <EmptyStateComponent message="No event in the organization" />
-        ) : (
-          events.map((event) => (
-            // <EventCardNewOrg
-            //   key={event._id}
-            //   event="nadagama"
-            //   date="2002-2-1"
-            //   time="9.00"
-            //   location="matara"
-            // />
-            <EventCardOrgDash
-              key={event._id}
-              isSlideBar={isSlideBar}
-              img={event.postImageLink}
-              location={event.selectedTab}
-              time={event.startTime}
-              name={event.eventName}
-              date={event.eventStartDate}
-            />
-          ))
-        )}
+      <div className="  overflow-y-auto w-full grid h-96 gap-5 pr-16 sm:max-md:grid-cols-2 ">
+        <div>
+          {events.length === 0 ? (
+            <EmptyStateComponent message="No event in the organization" />
+          ) : (
+            events.map((event) => (
+              // <EventCardNewOrg
+              //   key={event._id}
+              //   event="nadagama"
+              //   date="2002-2-1"
+              //   time="9.00"
+              //   location="matara"
+              // />
+
+              <EventCardOrgDash
+                key={event._id}
+                isSlideBar={isSlideBar}
+                img={event.postImageLink}
+                location={event.selectedTab}
+                time={event.startTime}
+                name={event.eventName}
+                date={event.eventStartDate}
+              />
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

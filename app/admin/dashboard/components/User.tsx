@@ -1,14 +1,30 @@
 import React, { useState, useEffect } from "react";
 import SuperadminPages from "@/app/admin/dashboard/components/SuperadminPages";
 import AdminPersonDetailsBar from "./AdminPersonalDetailBar";
-import { User } from "@/app/admin/Type";
+import { AdminContext, User } from "@/app/admin/Type";
 import { useAdmin } from "../AdminContextFile";
-interface userProps {
-  user: User[];
-}
+import { getAllUser } from "../FetchData";
+import Spinner from "@/components/Spinner";
 
 export default function Notification() {
-  const { user } = useAdmin() as userProps;
+  const { user, setUser } = useAdmin() as AdminContext;
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  async function reloadPage() {
+    setIsLoading(true);
+
+    const res = await getAllUser();
+
+    if (!res.ok) {
+      setIsLoading(false);
+      return;
+    }
+
+    const finalRes = await res.json();
+
+    setUser(finalRes);
+    setIsLoading(false);
+  }
 
   return (
     <>
@@ -16,9 +32,12 @@ export default function Notification() {
         title="All Users"
         description="You can see all the users that currently available from here"
         text="Search Users"
+        reloadPage={reloadPage}
         customComponent={
           <>
-            {user.length > 0 ? (
+            {isLoading ? (
+              <Spinner />
+            ) : user.length > 0 ? (
               user.map((use) => (
                 <AdminPersonDetailsBar
                   key={use._id}

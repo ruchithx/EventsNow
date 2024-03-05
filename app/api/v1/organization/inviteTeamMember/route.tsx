@@ -1,26 +1,30 @@
 import { NextResponse } from "next/server";
 import Handlebars from "handlebars";
-import fs from "fs";
+import { promises as fs } from "fs";
 
 import { transporter, mailOptions } from "@/config/nodemailer";
 import User from "@/models/userModel";
+import { emailTemplate } from "@/lib/email/email";
 export async function POST(req: Request) {
   const { email, organizationId } = await req.json();
 
-  console.log(email, organizationId);
-
   const user = await User.findOne({ email });
-  console.log(user);
 
   if (user === null) {
     return NextResponse.json("No User  exists");
   }
 
-  // const emailTemplate = fs.readFileSync(
-  //   "@/organization/dashboard/[id]/components/email.html",
+  // const emailTemplate = await fs.readFile(
+  //   "@/organization/dashboard/[id]/components/Email.html",
   //   "utf8"
   // );
-  // var template = Handlebars.compile(emailTemplate);
+
+  const template = Handlebars.compile(emailTemplate);
+  const htmlBody = template({
+    name: "99x",
+    URL: `${process.env.NEXT_PUBLIC_URL}/organization/newuser?organizationId=${organizationId}&userId=${user._id}`,
+  });
+
   // var data = {
   //   name: "Alan",
   //   hometown: "Somewhere, TX",
@@ -53,15 +57,16 @@ export async function POST(req: Request) {
       to: email,
       subject: "Invitation to join the organization",
       text: `You have been invited to join the organization`,
-      // html: result,
-      html: `<h1>Invitation to join the organization <a href="${process.env.NEXT_PUBLIC_URL}/organization/newuser?organizationId=${organizationId}&userId=${user._id}" > click to verify</a></h1>`,
+      html: htmlBody,
+      // html: `<h1>Invitation to join the organization <a href="${process.env.NEXT_PUBLIC_URL}/organization/newuser?organizationId=${organizationId}&userId=${user._id}" > click to verify</a></h1>`,
     });
+    console.log(res.accepted.length);
 
     if (res.accepted.length > 0) {
       return NextResponse.json("Email sent successfully");
     }
   } catch (error) {
-    console.log(error);
+    return NextResponse.json(error);
   }
 
   return NextResponse.json(user);

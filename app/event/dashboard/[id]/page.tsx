@@ -1,5 +1,12 @@
 import React from "react";
+import { EventContextProvider } from "./EventDashContext";
+
+import MainComponent from "./components/MainComponent";
 
 export default function Page() {
-  return <div></div>;
+  return (
+    <EventContextProvider>
+      <MainComponent />
+    </EventContextProvider>
+  );
 }

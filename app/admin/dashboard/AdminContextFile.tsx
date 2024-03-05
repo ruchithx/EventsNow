@@ -60,9 +60,9 @@ function AdminContextProvider({ children }: AdminContextProps) {
       if (!session) {
         router.push("/404");
       }
-      console.log(session);
+
       const data = await getUser({ email: session?.user?.email });
-      console.log(data.role);
+
       if (data.role !== "admin") {
         router.push("/404");
       }

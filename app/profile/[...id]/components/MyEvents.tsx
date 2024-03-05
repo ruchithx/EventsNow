@@ -18,9 +18,9 @@ export default function MyEvents() {
     }
   };
   return (
-    <div className="flex flex-col md:flex-row rounded-lg shadow-3xl md:pl-10 md:ml-2 pl-5 bg-[#fff] pt-8 lg:pl-12 justify-start items-start gap-12 ">
+    <div className="flex flex-col md:flex-row rounded-lg shadow-3xl  bg-[#fff] pt-8 justify-start items-start gap-12 ">
       <div className="w-fit ml-0">
-        <div className="text-3xl font-semibold text-custom-orange font-IBM ml-[75px]">
+        <div className="text-3xl font-semibold text-custom-orange font-IBM ml-[55px]">
           My Events
         </div>
         <div className="">

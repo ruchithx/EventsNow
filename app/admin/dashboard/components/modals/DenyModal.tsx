@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Organization } from "@/app/organization/dashboard/[id]/Type";
+import { Organization } from "@/app/admin/Type";
 import { success } from "@/util/Toastify";
 import { useAdmin } from "../../AdminContextFile";
 

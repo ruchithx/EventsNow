@@ -45,7 +45,7 @@ export default function Post({ profilePic, name, caption, post }: Post) {
   }
 
   return (
-    <div className="w-571 bg-initial text-white m-8 rounded-xl pb-2">
+    <div className="xl:w-571 sm:w-[24rem] w-[20rem]  bg-initial text-white m-8 rounded-xl pb-2">
       <div className="p-5">
         <div className="flex gap-7">
           <Image
@@ -56,7 +56,7 @@ export default function Post({ profilePic, name, caption, post }: Post) {
             className="rounded-full"
           />
           <div>
-            <div className="text-black text-24 font-bold font-Inter">
+            <div className="text-black sm:text-24 text-lg font-bold font-Inter">
               {name}
             </div>
             <div className="text-black text-13">3d</div>
@@ -74,7 +74,7 @@ export default function Post({ profilePic, name, caption, post }: Post) {
         />
       </button>
       <div className="px-5 my-2 mb-2">
-        <div className="flex gap-4">
+        <div className="flex gap-4 sm:w-32 w-24">
           <button onClick={() => handleClickLikeButton()}>
             <Image
               src={"/images/reusableComponents/React.svg"}
