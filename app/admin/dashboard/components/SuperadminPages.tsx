@@ -71,7 +71,7 @@ export default function SuperadminPages({
         </button>
       </div>
 
-      <div className="w-[320px] md:w-[520px] lg:w-[920px] ms-4 mt-6 xl:ms-12 h-80 overflow-y-auto">
+      <div className="w-full md:w-[550px] lg:w-[920px] ms-4 mt-6 xl:ms-12 h-80 overflow-y-auto">
         {customComponent}
       </div>
     </div>
