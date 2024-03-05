@@ -9,13 +9,12 @@ interface Dashboard_Btn {
   isSlideBar: boolean;
 }
 
-
 export default function EventDashButton({
-    onClick,
-    isSlideBar,
-    text,
-    img,
-  }: Dashboard_Btn) {
+  onClick,
+  isSlideBar,
+  text,
+  img,
+}: Dashboard_Btn) {
   return (
     <button onClick={onClick} className="  hover:opacity-80  my-12 mt-2">
       <div className=" flex lg:gap-3 xl:gap-5 gap-5	">
@@ -35,5 +34,5 @@ export default function EventDashButton({
         )}
       </div>
     </button>
-  )
+  );
 }

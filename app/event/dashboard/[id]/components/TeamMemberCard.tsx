@@ -1,17 +1,15 @@
 import React from "react";
 import ContainerWithStroke from "./ContainerWithStroke";
 interface TeamMemberCardProps {
-    name: string;
-    email: string;
-    
+  name: string;
+  email: string;
 }
 
 export default function TeamMemberCard({ name, email }: TeamMemberCardProps) {
-  
   return (
     <div>
       <ContainerWithStroke>
-        <div className="flex py-1 justify-between pl-10 pr-48">
+        <div className="lg:flex mx-auto py-1 md:justify-around md:pr-10 lg:pl-10 max-sm:text-sm ">
           <div className="">{name}</div>
           <div className=""></div>
           {email}

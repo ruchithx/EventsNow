@@ -26,7 +26,7 @@ export default function Campaign() {
         <div className=" font-mono text-custom-orange font-medium text-3xl pb-4 ">
           CAMPAIGN
         </div>
-        <div className="pr-64 grid place-content-center text-center pb-16 ">
+        <div className="xl:pr-64 2xl:pr-32 grid place-content-center text-center ">
           <div className="text-lg py-2 font-semibold">
             Use Event’s Community page .
           </div>
@@ -48,7 +48,7 @@ export default function Campaign() {
           </button>
         </div>
 
-        <div className="pr-64 grid place-content-center text-center">
+        <div className="xl:pr-64 2xl:pr-32 grid place-content-center text-center">
           <div className="text-lg py-2 font-semibold">
             Send Emails to your Attendees.
           </div>
