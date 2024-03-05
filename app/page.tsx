@@ -16,16 +16,18 @@ import { IoMdArrowDropdown } from "react-icons/io";
 export default function Home() {
   return (
     <div>
+
       {/* <EventCardNew event={"ARQM"} organization={"ASd"} /> */}
       {/* <EventCardNewOrg
+
         event={"Nadagama"}
         date={"2022/05/1"}
         time={"09.00"}
         location={"online"}
       /> */}
-      {/* <button onClick={handleClickIt}> click it </button> */}
 
-      <div>Hero sectin</div>
+
+      <div>{/* <HeroCarousel /> */}</div>
       {/* <EventCardNewOrg
         event="nadagama"
         date="2002-2-1"
@@ -33,27 +35,30 @@ export default function Home() {
         location="matara"
       />
       <EventCardNew event="erewe" organization="sdsd" /> */}
-      {/* <div className="flex flex-row justify-between">
-        <div className="font-bold text-[80px] text-[#906953] ms-8 ">
+      {/* <div className="flex flex-row mt-4">
+        <div className="font-bold text-[70px] text-[#906953] ms-12 w-1/2">
           Upcoming Events
         </div>
-        <div className="mt-14 flex flex-row">
-          Sort By
-          <div className="relative ml-4">
-            <select className="appearance-none bg-white border border-gray-300 px-4 py-1 rounded-md shadow-sm text-sm focus:outline-none focus:border-gray-400">
-              <option value="location">Location</option>
-              <option value="name">Name</option>
-              <option value="organization">Organization</option>
-              <option value="date">Date</option>
-            </select>
+        <div className="w-1/2 flex flex-row justify-evenly">
+          {" "}
+          <div className="mt-12 flex flex-row">
+            Sort By
+            <div className="relative ml-4">
+              <select className="appearance-none bg-white border border-gray-300 px-4 py-1 rounded-md shadow-sm text-sm focus:outline-none focus:border-gray-400">
+                <option value="location">Location</option>
+                <option value="name">Name</option>
+                <option value="organization">Organization</option>
+                <option value="date">Date</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div className="mt-14 flex flex-row gap-4 mr-20">
-          View As
-          <div className="mt-1 flex flex-row gap-3 cursor-pointer ">
-            <HiOutlineViewGrid className="cursor-pointer hover:bg-gray-200 " />
+          <div className="mt-12 flex flex-row gap-4 mr-20">
+            View As
+            <div className="mt-1 flex flex-row gap-3 cursor-pointer ">
+              <HiOutlineViewGrid className="cursor-pointer hover:bg-gray-200 " />
 
-            <HiOutlineViewList className="cursor-pointer hover:bg-gray-200" />
+              <HiOutlineViewList className="cursor-pointer hover:bg-gray-200" />
+            </div>
           </div>
         </div>
       </div>
@@ -109,9 +114,34 @@ export default function Home() {
           time={"10.00AM"}
         />
       </div>
-      <div className="font-bold text-[80px] text-[#906953] ms-8">
-        Out dated Event
+      <div className="flex flex-row justify-evenly mt-4">
+        <div className="font-bold text-[70px] text-[#906953] ms-12 w-1/2">
+          OutDated Events
+        </div>
+        <div className="w-1/2 flex flex-row justify-evenly">
+          {" "}
+          <div className="mt-12 flex flex-row">
+            Sort By
+            <div className="relative ml-4">
+              <select className="appearance-none bg-white border border-gray-300 px-4 py-1 rounded-md shadow-sm text-sm focus:outline-none focus:border-gray-400">
+                <option value="location">Location</option>
+                <option value="name">Name</option>
+                <option value="organization">Organization</option>
+                <option value="date">Date</option>
+              </select>
+            </div>
+          </div>
+          <div className="mt-12 flex flex-row gap-4 mr-20">
+            View As
+            <div className="mt-1 flex flex-row gap-3 cursor-pointer ">
+              <HiOutlineViewGrid className="cursor-pointer hover:bg-gray-200 " />
+
+              <HiOutlineViewList className="cursor-pointer hover:bg-gray-200" />
+            </div>
+          </div>
+        </div>
       </div>
+
       <div className="flex flex-wrap ms-12">
         {" "}
         <EventCardDisabled
