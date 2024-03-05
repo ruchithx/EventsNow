@@ -10,7 +10,15 @@ import "react-datepicker/dist/react-datepicker.css";
 import { UserDetails, useProf } from "../ProfContext";
 import { useParams } from "next/navigation";
 import { error, success } from "@/util/Toastify";
-import { ZodNull } from "zod";
+
+import {
+  CldUploadWidget,
+  CloudinaryUploadWidgetInfo,
+  CloudinaryUploadWidgetResults,
+} from "next-cloudinary";
+import { FaCloudUploadAlt } from "react-icons/fa";
+import Image from "next/image";
+
 type Detailss = {
   userDeatails: UserDetails;
   setLname: React.Dispatch<React.SetStateAction<string>>;
@@ -18,6 +26,7 @@ type Detailss = {
   fname: string;
   lname: string;
   passwordExists: boolean;
+  setUserImage: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function Settings() {
@@ -35,6 +44,8 @@ export default function Settings() {
   const toggleOtherInfo = () => {
     setShowOtherInfo(!showOtherInfo);
   };
+
+  const [profileImage, setProfileImage] = useState("");
   useEffect(
     function () {
       async function postOther() {
@@ -63,8 +74,15 @@ export default function Settings() {
     },
     [params.id]
   );
-  const { userDeatails, setLname, setFname, lname, fname, passwordExists } =
-    useProf() as Detailss;
+  const {
+    userDeatails,
+    setLname,
+    setFname,
+    lname,
+    fname,
+    passwordExists,
+    setUserImage,
+  } = useProf() as Detailss;
 
   const handleSave = async () => {
     try {
@@ -99,6 +117,27 @@ export default function Settings() {
     }
   };
 
+  async function handleImageSaveButton() {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/user/changeUserProfilePic`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: params.id,
+          image: profileImage,
+        }),
+      }
+    );
+    if (!res.ok) {
+      error("Failed to save settings");
+      return;
+    }
+    setUserImage(profileImage);
+    setProfileImage("");
+  }
   return (
     <div className="flex flex-col md:flex-row rounded-lg shadow-3xl md:pl-10 md:ml-2 p-6 bg-[#fff] pt-8 lg:pl-6 justify-start items-start gap-12 ">
       <div className="w-full ml-0 ">
@@ -122,6 +161,96 @@ export default function Settings() {
                     value={lname}
                     setFname={setLname}
                   />
+                  <CldUploadWidget
+                    uploadPreset="profilePic"
+                    onOpen={() => {
+                      console.log("isPhotographer");
+                    }}
+                    onSuccess={(results: CloudinaryUploadWidgetResults) => {
+                      const uploadedResult =
+                        results.info as CloudinaryUploadWidgetInfo;
+                      const profileImageURL = {
+                        image: uploadedResult.secure_url,
+                      };
+                      setProfileImage(profileImageURL.image);
+                    }}
+                    options={{
+                      tags: ["events image"],
+                      // publicId: `${organizationName}/${Date.now()}`,
+                      // publicId: "b2c",
+
+                      sources: ["local"],
+                      googleApiKey: "<image_search_google_api_key>",
+                      showAdvancedOptions: false,
+                      cropping: true,
+                      multiple: false,
+                      showSkipCropButton: false,
+                      croppingAspectRatio: 1,
+                      croppingDefaultSelectionRatio: 1,
+                      croppingShowDimensions: true,
+                      croppingCoordinatesMode: "custom",
+                      // maxImageHeight: 100,
+                      // croppingValidateDimensions: true,
+                      defaultSource: "local",
+                      resourceType: "image",
+                      folder: "userProfile",
+
+                      styles: {
+                        palette: {
+                          window: "#ffffff",
+                          sourceBg: "#f4f4f5",
+                          windowBorder: "#90a0b3",
+                          tabIcon: "#000000",
+                          inactiveTabIcon: "#555a5f",
+                          menuIcons: "#555a5f",
+                          link: "#000000",
+                          action: "#000000",
+                          inProgress: "#464646",
+                          complete: "#000000",
+                          error: "#cc0000",
+                          textDark: "#000000",
+                          textLight: "#fcfffd",
+                          theme: "white",
+                        },
+                      },
+                    }}
+                  >
+                    {({ open }) => {
+                      return (
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            open();
+                          }}
+                        >
+                          <div className="p-1 mt-5 text-white font-semibold flex items-center justify-center gap-2 bg-slate-400 rounded-2xl">
+                            <FaCloudUploadAlt />
+                            upload image
+                          </div>
+                        </button>
+                      );
+                    }}
+                  </CldUploadWidget>
+
+                  {profileImage.length > 0 && (
+                    <div className=" mt-5 border-2 w-auto border-solId rounded-xl   ">
+                      <Image
+                        className=" p-4"
+                        src={profileImage}
+                        width={500}
+                        height={500}
+                        alt="event cover image"
+                      />
+                      <div className=" flex justify-end items-end mr-5">
+                        <button
+                          onClick={handleImageSaveButton}
+                          className="bg-custom-orange button p-1 px-2 text-white rounded-2xl"
+                        >
+                          save image
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </form>
                 <div className="sm:col-span-4">
                   <button
