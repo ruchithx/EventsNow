@@ -20,6 +20,7 @@ export async function POST(req: NextRequest) {
     postId,
     description,
   });
+
   return NextResponse.json(
     { message: "comment created successfully", comment: comment },
     { status: 201 }

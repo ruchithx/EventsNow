@@ -2,21 +2,17 @@
 
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
-import styles from "./Post.module.css";
-import { useState } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 
-import SendIcon from "@mui/icons-material/Send";
+import { useState } from "react";
+
 import { getSession } from "next-auth/react";
 import { Session } from "next-auth";
-import { IoIosSend } from "react-icons/io";
-import { BsSend } from "react-icons/bs";
-import CreatePost from "@/app/event/dashboard/[id]/components/post/CreatePost";
-import CommentBox from "./CommentBox";
+
+import { error, success } from "@/util/Toastify";
 import CommentBtn from "./CommentBtn";
-import { IoMdHeart } from "react-icons/io";
-import { success } from "@/util/Toastify";
+import { EventContextType, UseEventContext } from "../EventDashContext";
+import { IoMdSettings } from "react-icons/io";
+import { IoSave } from "react-icons/io5";
 
 interface Post {
   profilePic: string;
@@ -36,13 +32,6 @@ export type User = {
   expires: string;
 };
 
-type Comment = {
-  _id: string;
-  userImage: string;
-  postId: string;
-  description: string;
-};
-
 export default function Post({
   profilePic,
   name,
@@ -52,17 +41,21 @@ export default function Post({
   likes,
 }: Post) {
   const [like, setLike] = useState(likes);
-  const [allComment, setAllComment] = useState<Comment[]>([]);
+  const [captionText, setCaptionText] = useState(caption);
   const [comment, setComment] = useState("");
   const [isComment, setIsComment] = useState(false);
   const [isLike, setIsLike] = useState(false);
   const [hasComment, setHasComment] = useState(false);
   const [isShare, setIsShare] = useState(false);
+  const { allComment, setAllComment } = UseEventContext() as EventContextType;
 
   const [user, setUser] = useState<User | Session>({
     user: { image: "", email: "", name: "" },
     expires: "",
   });
+
+  const [checkEditCaption, setcheckEditCaption] = useState(false);
+  const [checkSaveCaption, setcheckSaveCaption] = useState(false);
 
   const commentRef = useRef<HTMLDivElement>(null);
   const allCommentRef = useRef<HTMLDivElement>(null);
@@ -145,86 +138,30 @@ export default function Post({
     allComment.length > 0 ? setHasComment((comment) => !comment) : "";
   }
 
-  async function handleClickLikeButton() {
-    setIsLike(true);
-
-    const like = await fetch("/api/v1/post/likePost", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id,
-        type: "like",
-      }),
-    });
-
-    if (!like.ok) {
-      console.log(" like");
-      return;
-    }
-    setLike((prev) => prev + 1);
+  async function editCaption() {
+    setcheckEditCaption(true);
   }
 
-  async function handleClickOffLikeButton() {
-    setIsLike(false);
-    const like = await fetch("/api/v1/post/likePost", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id,
-        type: "dislike",
-      }),
-    });
-
-    if (!like.ok) {
-      console.log("not like");
-      return;
-    }
-
-    setLike((prev) => prev - 1);
-  }
-
-  function handleClickCommentButton() {
-    isShare ? setIsShare(false) : "";
-    isComment ? setIsComment(false) : setIsComment(true);
-  }
-
-  function handleClickShareButton() {
-    isComment ? setIsComment(false) : "";
-    isShare ? setIsShare(false) : setIsShare(true);
-  }
-
-  async function sentComment() {
-    if (comment.length > 0) {
-      const res = await fetch("/api/v1/post/createComment", {
-        method: "POST",
+  async function saveCaption() {
+    if (caption !== captionText) {
+      const res = await fetch("/api/v1/post/updatePost", {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userImage: user?.user?.image,
-          postId: id,
-          description: comment,
+          id,
+          description: captionText,
         }),
       });
-      const data = await res.json();
 
-      if (data.message === "comment created successfully") {
-        setComment("");
-        setAllComment((prev) => [
-          ...prev,
-          {
-            _id: data.comment._id,
-            userImage: data.comment.userImage,
-            postId: data.comment.postId,
-            description: data.comment.description,
-          },
-        ]);
+      if (!res.ok) {
+        error("Error in updating caption");
       }
+      success("Caption updated successfully");
     }
+
+    setcheckEditCaption(false);
   }
 
   return (
@@ -245,7 +182,26 @@ export default function Post({
               </div>
             </div>
           </div>
-          <div className="text-black mt-3 font-Inter">{caption}</div>
+          <div className="flex justify-between">
+            <input
+              disabled={checkEditCaption ? false : true}
+              onChange={(e) => setCaptionText(e.target.value)}
+              value={captionText}
+              type="text"
+              className="bg-initial w-11/12 text-black mt-3 font-Inter outline-none"
+            />
+
+            {checkEditCaption ? (
+              <button onClick={saveCaption} className="text-black button">
+                <IoSave size={22} />
+              </button>
+            ) : (
+              <button onClick={editCaption} className="text-black button">
+                <IoMdSettings size={22} />
+              </button>
+            )}
+          </div>
+          {/* <div className="text-black mt-3 font-Inter">{caption}</div> */}
         </div>
         <button>
           <Image
@@ -258,7 +214,7 @@ export default function Post({
         </button>
         <div className="px-5 my-2 mb-2">
           <div className="flex gap-4 sm:w-32 w-24">
-            {isLike ? (
+            {/* {isLike ? (
               <button onClick={handleClickOffLikeButton}>
                 <div className="bg-red-900">
                   <IoMdHeart size={25} />
@@ -293,9 +249,9 @@ export default function Post({
                 height={34}
                 className={styles.zoom}
               />
-            </button>
+            </button> */}
           </div>
-          {isComment && (
+          {/* {isComment && (
             <div
               ref={commentRef}
               className="mt-2 mb-2 items-center flex gap-4 "
@@ -360,7 +316,7 @@ export default function Post({
                 className={styles.zoom}
               />
             </div>
-          )}
+          )} */}
 
           <div className="text-black font-Inter">
             {`Liked by ${like} peoples`}
@@ -376,6 +332,7 @@ export default function Post({
               <div className=" mt-2 border-[1px] p-2 border-black rounded-lg h-20 overflow-auto mb-2 flex flex-col gap-2 ">
                 {allComment.map((comment) => (
                   <CommentBtn
+                    id={comment._id}
                     key={comment._id}
                     userImage={comment.userImage}
                     description={comment.description}

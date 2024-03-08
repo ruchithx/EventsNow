@@ -44,7 +44,8 @@
     "components/List.jsx",
     "models/userModel.js",
 
-    "app/api/v1/organization/denyOrganization/[...id]/route.jsx"
+    "app/api/v1/organization/denyOrganization/[...id]/route.jsx",
+    "app/api/v1/post/getOnePost/[...id]/route.jsx"
   ],
   "exclude": ["node_modules"]
 }

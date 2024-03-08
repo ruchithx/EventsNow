@@ -15,38 +15,9 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { useEffect, useState } from "react";
 import Post from "@/components/Post";
 
-interface Post {
-  _id: string;
-  userImage: string;
-  userName: string;
-  description: string;
-  image: string;
-  like: number;
-}
-
 export default function Home() {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    const post = async () => {
-      const res = await fetch("/api/v1/post/getPost");
-      const data = await res.json();
-      setData(data);
-      console.log(data);
-    };
-    post();
-  }, []);
   return (
     <div>
-      {data.map((post: Post) => (
-        <Post
-          key={post._id}
-          id={post._id}
-          profilePic={post.userImage}
-          name={post.userName}
-          caption={post.description}
-          post={post.image}
-        />
-      ))}
       {/* <EventCardNew event={"ARQM"} organization={"ASd"} /> */}
       {/* <EventCardNewOrg
 

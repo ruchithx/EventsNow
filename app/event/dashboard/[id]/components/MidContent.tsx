@@ -7,6 +7,8 @@ import Settings from "./Settings";
 import Hostpage from "./Hostpage";
 import Myteam from "./Myteam";
 import Reports from "./Reports";
+import EditPost from "./EditPost";
+import SendEmail from "./SendEmail";
 
 export default function MidContent() {
   const { status } = UseEventContext() as EventContextType;
@@ -18,6 +20,8 @@ export default function MidContent() {
       {status === "reports" && <Reports />}
       {status === "campaign" && <Campaign />}
       {status === "settings" && <Settings />}
+      {status === "editpost" && <EditPost />}
+      {status === "sendemail" && <SendEmail />}
     </div>
   );
 }
