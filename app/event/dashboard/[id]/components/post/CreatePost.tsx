@@ -8,6 +8,7 @@ import {
   CloudinaryUploadWidgetResults,
 } from "next-cloudinary";
 import { error, success } from "@/util/Toastify";
+import { useParams } from "next/navigation";
 
 interface Props {
   user: any;
@@ -15,7 +16,9 @@ interface Props {
 }
 
 export default memo(function CreatePost({ setCreatePost, user }: Props) {
+  const params = useParams();
   const [profileImage, setProfileImage] = useState("");
+
   const [title, setTitle] = useState("");
   const [isDissableBtn, setIsDissableBtn] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,7 +37,7 @@ export default memo(function CreatePost({ setCreatePost, user }: Props) {
     const data = {
       userName: user.user.name,
       userImage: user.user.image,
-      eventId: "123",
+      eventId: params.id,
       description: title,
       image: profileImage,
     };

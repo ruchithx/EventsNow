@@ -1,8 +1,12 @@
 import React from "react";
 import Container from "./Container";
 import TeamMemberCard from "./TeamMemberCard";
+import { EventContextType, UseEventContext } from "../EventDashContext";
+import EmptyStateComponent from "@/components/EmptyStateComponent";
 
 export default function Myteam() {
+  const { user } = UseEventContext() as EventContextType;
+
   function handleInvite() {
     console.log("Invite button clicked");
   }
@@ -17,7 +21,7 @@ export default function Myteam() {
             Experience the power of collaborating by easily inviting your team
             members and assigning roles
           </div>
-          <div className="lg:flex py-4">
+          {/* <div className="lg:flex py-4">
             <input
               type="text"
               placeholder="Search by email ... "
@@ -29,48 +33,19 @@ export default function Myteam() {
             >
               Invite
             </button>
-          </div>
-          <div className="mt-6 grid gap-5 overflow-y-scroll h-72  md:w-full">
-            <TeamMemberCard
-              name="ashan dilsara"
-              email="ashandilsara8@gmail.com"
-            />
-            <TeamMemberCard
-              name="ashan dilsara"
-              email="ashandilsara8@gmail.com"
-            />
-            <TeamMemberCard
-              name="ashan dilsara"
-              email="ashandilsara8@gmail.com"
-            />
-            <TeamMemberCard
-              name="ashan dilsara"
-              email="ashandilsara8@gmail.com"
-            />
-            <TeamMemberCard
-              name="ashan dilsara"
-              email="ashandilsara8@gmail.com"
-            />
-            <TeamMemberCard
-              name="ashan dilsara"
-              email="ashandilsara8@gmail.com"
-            />
-            <TeamMemberCard
-              name="ashan dilsara"
-              email="ashandilsara8@gmail.com"
-            />
-            <TeamMemberCard
-              name="ashan dilsara"
-              email="ashandilsara8@gmail.com"
-            />
-            <TeamMemberCard
-              name="ashan dilsara"
-              email="ashandilsara8@gmail.com"
-            />
-            <TeamMemberCard
-              name="ashan dilsara"
-              email="ashandilsara8@gmail.com"
-            />
+          </div> */}
+          <div className="mt-6 grid overflow-auto h-40  md:w-full">
+            {user.length === 0 ? (
+              <EmptyStateComponent message="No user in the event" />
+            ) : (
+              user.map((user) => (
+                <TeamMemberCard
+                  key={user.email}
+                  name={user.name}
+                  email={user.email}
+                />
+              ))
+            )}
           </div>
         </div>
       </Container>

@@ -4,10 +4,12 @@ import Image from "next/image";
 import CreatePost from "./post/CreatePost";
 import { User } from "@/app/organization/dashboard/[id]/Type";
 import { getSession } from "next-auth/react";
+import { EventContextType, UseEventContext } from "../EventDashContext";
 
 export default function Campaign() {
   const [createPost, setCreatePost] = useState(false);
   const [user, setUser] = useState<unknown>(null);
+  const { setStatus } = UseEventContext() as EventContextType;
 
   useEffect(() => {
     const getUser = async () => {
@@ -31,7 +33,7 @@ export default function Campaign() {
             Use Event’s Community page .
           </div>
           <div className=" text-sm pb-4">
-            You can use event’s community page for marketings
+            You can use event community page for marketings
           </div>
           <button
             onClick={() => setCreatePost(true)}
@@ -48,6 +50,26 @@ export default function Campaign() {
           </button>
         </div>
 
+        <div className="xl:pr-64 2xl:pr-32 grid place-content-center text-center ">
+          <div className="text-lg py-2 font-semibold">Edit Event Post .</div>
+          <div className=" text-sm pb-4">
+            You can use event community page for edit post
+          </div>
+          <button
+            onClick={() => setStatus("editpost")}
+            className="bg-custom-orange rounded-md py-1 m-auto text-white font-mono text-base font-normal pr-7 drop-shadow-md flex "
+          >
+            <Image
+              className="my-auto mx-2"
+              src="/images/eventDash/Subtract.svg"
+              alt="print"
+              width={20}
+              height={20}
+            />
+            Edit post
+          </button>
+        </div>
+
         <div className="xl:pr-64 2xl:pr-32 grid place-content-center text-center">
           <div className="text-lg py-2 font-semibold">
             Send Emails to your Attendees.
@@ -56,7 +78,10 @@ export default function Campaign() {
             Click on button below to create your first email campaign. Send
             event invitations, event reminders and more
           </div>
-          <button className="bg-custom-orange rounded-md py-1 m-auto text-white font-mono text-base font-normal pr-7 drop-shadow-md flex ">
+          <button
+            onClick={() => setStatus("sendemail")}
+            className="bg-custom-orange rounded-md py-1 m-auto text-white font-mono text-base font-normal pr-7 drop-shadow-md flex "
+          >
             <Image
               className="my-auto mx-2"
               src="/images/eventDash/Subtract.svg"

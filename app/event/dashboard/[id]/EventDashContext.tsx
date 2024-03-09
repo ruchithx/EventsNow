@@ -1,8 +1,17 @@
 "use client";
 import { voidFunc } from "@/app/organization/dashboard/[id]/Type";
-import React, { createContext, useState, useContext, useEffect } from "react";
+
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { useParams, useRouter } from "next/navigation";
-import { get } from "http";
+import { AuthContext, useAuth } from "@/app/AuthContext";
+import { Post } from "../../host/[id]/components/PostTab";
 
 export interface EventContextType {
   id: String;
@@ -15,6 +24,14 @@ export interface EventContextType {
   handleSetting: voidFunc;
   isSideBar: boolean;
   setIsSideBar: (value: boolean) => void;
+
+  user: EventUserDeatils[];
+  setStatus: Dispatch<SetStateAction<string>>;
+  eventPosts: Post[];
+  setEventPosts: Dispatch<SetStateAction<Post[]>>;
+  allComment: Comment[];
+  setAllComment: Dispatch<SetStateAction<Comment[]>>;
+
   eventname: String;
   eventLocation: String;
   eventType: String;
@@ -29,17 +46,38 @@ export interface EventContextType {
   setEventStartTime: (value: string) => void;
   setDuration: (value: string) => void;
   setEndTime: (value: string) => void;
+
 }
+
+type EventUserDeatils = {
+  email: string;
+  name: string;
+};
+type Comment = {
+  _id: string;
+  userImage: string;
+  postId: string;
+  description: string;
+};
 
 const EventContext = createContext<EventContextType | string>("");
 
 function EventContextProvider({ children }: { children: React.ReactNode }) {
+  const { setEventPublish } = useAuth() as AuthContext;
   const [status, setStatus] = useState("settings");
+  const params = useParams<{ id: string }>();
   const [isSideBar, setIsSideBar] = useState(true);
+
+  const [eventPosts, setEventPosts] = useState<Post[]>([]);
+  const [allComment, setAllComment] = useState<Comment[]>([]);
+
+
   const [isloading, setIsloading] = useState(false);
+
   const handleOverview: voidFunc = () => {
     setStatus("overview");
   };
+  const [user, setUser] = useState<EventUserDeatils[]>([]);
   const handleHostPage: voidFunc = () => {
     setStatus("hostpage");
   };
@@ -55,64 +93,97 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
   const handleSetting: voidFunc = () => {
     setStatus("settings");
   };
-  //setting tab
 
-  const [eventname, setEventname] = useState<string>("");
+        
+          const [eventname, setEventname] = useState<string>("");
   const [eventLocation, setEventLocation] = useState<string>("");
   const [eventType, setEventType] = useState<string>("");
   const [eventDate, setEventDate] = useState<string>("");
   const [eventStartTime, setEventStartTime] = useState<string>("");
   const [duration, setDuration] = useState<string>("");
   const [endTime, setEndTime] = useState<string>("");
-
-  //get id using params
-
-  const { id }: string | any = useParams();
-  const router = useRouter();
-
-  useEffect(
-    function () {
-      async function getEventData() {
-        setIsloading(true);
-
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getEvent`,
-          {
-            method: "POST",
-            mode: "cors",
-            body: JSON.stringify(id),
-          }
-        );
-
-        const finalResponse = await res.json();
-        if (!res.ok || finalResponse.message === "No event") {
-          router.push("/404");
-          return;
-        }
-        if (!finalResponse.event) {
-          return;
-        }
-
-        setEventname(finalResponse.event.eventName);
-        setEventLocation(finalResponse.event.eventLocation);
-        setEventType(finalResponse.event.selectedTab);
-        setEventDate(finalResponse.event.eventStartDate);
-        setEventStartTime(finalResponse.event.startTime);
-        setDuration(finalResponse.event.duration);
-        setEndTime(finalResponse.event.endTime);
-
-        setIsloading(false);
+ const router = useRouter();
+  useEffect(() => {
+    const getEvent = async () => {
+      const res = await fetch(`/api/v1/event/getOneEvent`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: params.id,
+        }),
+      });
+      if (!res.ok) {
+        router.push("/404");
+        return;
       }
-      getEventData();
-    },
-    [id, router]
-  );
+      const data = await res.json();
+      return data;
+    };
+
+    const eventPost = async () => {
+      const res = await fetch(`/api/v1/post/getAllPostEvent/${params.id}`);
+      if (!res.ok) {
+        return;
+      }
+      const data = await res.json();
+      return data;
+    };
+
+    const getUser = async () => {
+      const res = await fetch(`/api/v1/event/users`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: params.id,
+        }),
+      });
+      if (!res.ok) {
+        return;
+      }
+      const data = await res.json();
+
+      return data;
+    };
+
+    async function handleContext() {
+      const event = await getEvent();
+      if (event.message === "No event") {
+        router.push("/404");
+        return;
+      }
+       setEventname(event.eventName);
+        setEventLocation(event.eventLocation);
+        setEventType(event.selectedTab);
+        setEventDate(event.eventStartDate);
+        setEventStartTime(event.startTime);
+        setDuration(event.duration);
+        setEndTime(event.endTime);
+      
+      
+      setEventPublish(event.isPublished);
+
+      const user = await getUser();
+      if (!user) {
+        return;
+      }
+      setUser(user);
+
+      const posts = await eventPost();
+      setEventPosts(posts);
+    }
+    handleContext();
+  }, [params.id, router, setEventPublish, status]);
 
   return (
     <EventContext.Provider
       value={{
         id,
         status,
+        user,
         handleOverview,
         handleHostPage,
         handleMyteam,
@@ -121,6 +192,13 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
         handleSetting,
         isSideBar,
         setIsSideBar,
+
+        setStatus,
+        eventPosts,
+        setEventPosts,
+        allComment,
+        setAllComment,
+
         eventname,
         eventLocation,
         eventType,
@@ -135,6 +213,7 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
         setEventStartTime,
         setDuration,
         setEndTime,
+
       }}
     >
       {children}
