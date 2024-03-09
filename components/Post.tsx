@@ -17,6 +17,7 @@ import CommentBox from "./CommentBox";
 import CommentBtn from "./CommentBtn";
 import { IoMdHeart } from "react-icons/io";
 import { success } from "@/util/Toastify";
+import { FacebookShareButton, TwitterShareButton } from "react-share";
 
 interface Post {
   profilePic: string;
@@ -156,6 +157,7 @@ export default function Post({
       body: JSON.stringify({
         id,
         type: "like",
+        userEmail: user?.user?.email,
       }),
     });
 
@@ -176,6 +178,7 @@ export default function Post({
       body: JSON.stringify({
         id,
         type: "dislike",
+        userEmail: user?.user?.email,
       }),
     });
 
@@ -331,20 +334,24 @@ export default function Post({
           )}
           {isShare && (
             <div className="flex gap-3 mb-3 mt-3 mx-6">
-              <Image
-                src={"/images/reusableComponents/FacebookIconPost.svg"}
-                alt="facebook"
-                width={40}
-                height={34}
-                className={styles.zoom}
-              />
-              <Image
-                src={"/images/reusableComponents/TwitterIconPost.svg"}
-                alt="facebook"
-                width={40}
-                height={34}
-                className={styles.zoom}
-              />
+              <FacebookShareButton url={`${post}`}>
+                <Image
+                  src={"/images/reusableComponents/FacebookIconPost.svg"}
+                  alt="facebook"
+                  width={40}
+                  height={34}
+                  className={styles.zoom}
+                />
+              </FacebookShareButton>
+              <TwitterShareButton url={`${post}`}>
+                <Image
+                  src={"/images/reusableComponents/TwitterIconPost.svg"}
+                  alt="facebook"
+                  width={40}
+                  height={34}
+                  className={styles.zoom}
+                />
+              </TwitterShareButton>
               <Image
                 src={"/images/reusableComponents/InstagramIconPost.svg"}
                 alt="facebook"

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Post from "@/components/Post";
 import Spinner from "@/components/Spinner";
+import { getSession } from "next-auth/react";
 
 export interface Post {
   _id: string;
@@ -15,10 +16,13 @@ export interface Post {
 export default function PostTab() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [userEmail, setUserEmail] = useState<any>("");
   const id = "65e334e132680ad8a1d92c8c";
   useEffect(() => {
     setLoading(true);
     const post = async () => {
+      const session = await getSession();
+      setUserEmail(session?.user?.email);
       const res = await fetch(`/api/v1/post/getOnePost/${id}`);
       const data = await res.json();
       setData(data);
