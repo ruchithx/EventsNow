@@ -16,7 +16,7 @@ interface Props {
 
 export default memo(function GenaralUpdate({ setGenaralUpdate }: Props) {
   const params = useParams();
-  const [profileImage, setProfileImage] = useState("");
+
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
@@ -25,30 +25,39 @@ export default memo(function GenaralUpdate({ setGenaralUpdate }: Props) {
 
   const handlePostButton = async () => {
     setIsSubmitting(true);
-    // const data = {
-    //   userName: user.user.name,
-    //   userImage: user.user.image,
-    //   eventId: params.id,
-    //   description: title,
-    //   image: profileImage,
-    // };
-    // const res = await fetch("/api/v1/post/createPost", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // });
+    const res = await fetch(`/api/v1/event/sendGenaralUpdate`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        eventId: params.id,
+        subject: subject,
+        message: message,
+      }),
+    });
+    if (!res.ok) {
+      error("Error sending email");
+      setIsSubmitting(false);
+      return;
+    }
+    const returnMessage = await res.json();
 
-    // if (!res.ok) {
-    //   setIsSubmitting(false);
-    //   error("There was an error creating the post");
-    //   return;
-    // }
+    if (returnMessage.message === "No users registered for the event") {
+      error("No users registered for the event");
+      setIsSubmitting(false);
+      return;
+    }
 
-    // success("Post created successfully");
-    // setIsSubmitting(false);
-    // setCreatePost(false);
+    if (returnMessage.message === "Email sent successfully") {
+      success("Email sent successfully");
+      setIsSubmitting(false);
+      setMessage("");
+      setSubject("");
+      setGenaralUpdate(false);
+      return;
+    }
+    console.log(returnMessage);
   };
 
   function handleSubject(e: any) {

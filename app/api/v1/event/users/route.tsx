@@ -22,7 +22,9 @@ export async function POST(req: Request) {
   const { id } = await req.json();
   try {
     await connectMongoDB();
+
     const data = await Permission.find().populate("userId");
+
     const user = data.filter((permission: Permission) => {
       return permission.eventPermission?.find((p) => p.eventId === id);
     });
@@ -35,6 +37,7 @@ export async function POST(req: Request) {
         name: u.userId.firstName,
       };
     });
+
     return NextResponse.json(userDetails);
   } catch (e) {
     return NextResponse.json({ message: "server error" });

@@ -36,7 +36,7 @@ export default function Home() {
         location="matara"
       />
       <EventCardNew event="erewe" organization="sdsd" /> */}
-      {/* <div className="flex flex-row mt-4">
+      <div className="flex flex-row mt-4">
         <div className="font-bold text-[70px] text-[#906953] ms-12 w-1/2">
           Upcoming Events
         </div>
@@ -211,7 +211,7 @@ export default function Home() {
           location={"Matara"}
           date={"2024/12/12"}
         />
-      </div> */}
+      </div>
       <Footer />
     </div>
   );

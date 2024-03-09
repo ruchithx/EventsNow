@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import Template from "./template1/Template1";
 
 export default function SelectTemplate() {
+  console.log("hello2");
   const params = useParams<{ id: string }>();
   const [template, setTemplate] = useState("");
   useEffect(() => {
