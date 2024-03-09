@@ -3,6 +3,7 @@ import ProfileDetails from "./ProfileDetails";
 import Upcoming_Events from "@/components/Upcoming_Events";
 import Org_RequestHandle from "./Org_RequestHandle";
 import EventHost from "@/components/EventHost";
+import { ProfContext, useProf } from "../ProfContext";
 
 export default function MyEvents() {
   const [manageEventsContent, setManageEventsContent] =

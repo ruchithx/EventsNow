@@ -1,4 +1,5 @@
 "use client";
+import { da } from "date-fns/locale";
 import { useParams, useRouter } from "next/navigation";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
@@ -29,6 +30,8 @@ export interface ProfContext {
   handlemyTickets: VoidFunc;
   setUserDeatails: React.Dispatch<React.SetStateAction<UserDetails>>;
   userDeatails: UserDetails;
+  eventDetails: any;
+  register: any;
   userImage: string;
   setUserImage: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -59,6 +62,8 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
     image: "",
     __v: 0,
   });
+  const [eventDetails, setEventDetails] = useState<any>();
+  const [register, setRegister] = useState<any>();
   const [userImage, setUserImage] = useState<string>("");
   const [fname, setFname] = useState<string>("");
   const [lname, setLname] = useState<string>("");
@@ -117,7 +122,36 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
 
         setIsLoading(false);
       }
+      async function getWishList() {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getWishList/${params.id}`
+        );
+
+        if (!res.ok) {
+          // router.push("/404");
+          setIsLoading(false);
+
+          return;
+        }
+        const finalrespone = await res.json();
+        setEventDetails(finalrespone);
+      }
+      async function getRegisterdUser() {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getRegisteredUser/${params.id}`
+        );
+
+        if (!res.ok) {
+          setIsLoading(false);
+
+          return;
+        }
+        const finalrespone = await res.json();
+        setRegister(finalrespone);
+      }
       getData();
+      getWishList();
+      getRegisterdUser();
     },
 
     [params.id]
@@ -146,6 +180,8 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
         handlemyTickets,
         setUserDeatails,
         userDeatails,
+        eventDetails,
+        register,
         setLname,
         setFname,
         passwordExists,
