@@ -1,4 +1,5 @@
 import Organization from "./organizationModel";
+import User from "./userModel";
 
 const mongoose = require("mongoose");
 
@@ -38,6 +39,17 @@ const eventSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: Organization,
     required: [true, "Please enter organization Id"],
+  },
+  isPublished: {
+    type: Boolean,
+    default: false,
+  },
+  registerUser: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: User,
+  },
+  template: {
+    type: String,
   },
 });
 

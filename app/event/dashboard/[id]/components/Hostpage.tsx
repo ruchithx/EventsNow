@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "./Container";
 import ContainerWithStroke from "./ContainerWithStroke";
 import Image from "next/image";
+import Template from "./hostPage/Template";
+import Template1 from "./hostPage/Template1";
 export default function Hostpage() {
+  const [showTemplate, setShowTemplate] = useState(false);
+  const [isTemplate1, setIsTemplate1] = useState(false);
+  function handleTemplate1() {
+    setIsTemplate1(true);
+    setShowTemplate(false);
+  }
   return (
     <div>
       <Container>
@@ -31,7 +39,7 @@ export default function Hostpage() {
               </button>
             </ContainerWithStroke>
             <ContainerWithStroke>
-              <button className="w-full">
+              <button onClick={() => setShowTemplate(true)} className="w-full">
                 <div className=" py-1 flex justify-between  mx-4 sm:mx-10">
                   <div className=" flex items-center">USING TEMPLATE</div>
                   <Image
@@ -58,6 +66,14 @@ export default function Hostpage() {
                 </div>
               </button>
             </ContainerWithStroke>
+            {showTemplate && (
+              <Template
+                setShowTemplate={setShowTemplate}
+                handleTemplate1={handleTemplate1}
+              />
+            )}
+
+            {isTemplate1 && <Template1 setIsTemplate1={setIsTemplate1} />}
           </div>
         </div>
       </Container>

@@ -60,7 +60,7 @@ export default function SideBar() {
                 isSlideBar={isSideBar}
                 img="bookmark.svg"
                 text="Host Page"
-                onClick={() => handleHostPage()}
+                onClick={handleHostPage}
               />
               <EventDashButton
                 isSlideBar={isSideBar}

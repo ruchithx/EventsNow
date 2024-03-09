@@ -8,10 +8,8 @@ import { z } from "zod";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import firebase from "firebase/compat/app";
 // import { firebaseConfig } from "../../../services/FirebaseConfig";
-import "firebase/compat/storage";
-import { firebaseConfig } from "@/services/FirebaseConfig";
+
 import { error, success } from "@/util/Toastify";
 import {
   CldUploadWidget,
@@ -19,8 +17,6 @@ import {
   CloudinaryUploadWidgetResults,
 } from "next-cloudinary";
 import { FaCloudUploadAlt } from "react-icons/fa";
-
-firebase.initializeApp(firebaseConfig);
 
 export default function EventRegisterFormBasic() {
   const [eventName, setEventName] = useState("");
@@ -355,7 +351,8 @@ export default function EventRegisterFormBasic() {
             {({ open }) => {
               return (
                 <button
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
                     open();
                   }}
                 >

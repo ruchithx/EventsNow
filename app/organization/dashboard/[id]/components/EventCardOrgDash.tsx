@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 
 interface EventCardOrgDash {
   img: string;
@@ -8,6 +9,7 @@ interface EventCardOrgDash {
   date: string;
   time: string;
   isSlideBar: boolean;
+  id: string;
 }
 
 function eventDashboardHandler() {}
@@ -18,6 +20,7 @@ function EventCardOrgDash({
   date,
   time,
   isSlideBar,
+  id,
 }: EventCardOrgDash) {
   return (
     <div className=" w-full  bg-[#D9D9D9] my-4  max-sm:mr-24 rounded-xl  shadow-lg grid lg:grid-cols-6 ">
@@ -30,92 +33,93 @@ function EventCardOrgDash({
           <div className=" my-2 text-[#353535] font-semibold sm:font-bold text-lg sm:text-24">
             {name}
           </div>
-
-          <button className=" max-sm:hidden text-center hide flex gap-2 bg-[#D47151] text-white rounded-2xl px-2 my-auto py-1 ml-4 font-IBM ">
-            <svg
-              width="21"
-              height="20"
-              viewBox="0 0 21 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g id="Filter">
-                <path
-                  id="Vector 7"
-                  d="M4.375 10L4.375 3.33333"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-                <path
-                  id="Vector 9"
-                  d="M16.1919 16.667L16.1919 15.0003"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-                <path
-                  id="Vector 8"
-                  d="M4.375 16.667L4.375 13.3337"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-                <path
-                  id="Vector 10"
-                  d="M16.1919 10L16.1919 3.33333"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-                <path
-                  id="Vector 11"
-                  d="M10.2837 5.83301L10.2837 3.33301"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-                <path
-                  id="Vector 12"
-                  d="M10.2837 16.667L10.2837 10.0003"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-                <ellipse
-                  id="Ellipse 36"
-                  cx="4.37514"
-                  cy="11.6667"
-                  rx="1.68813"
-                  ry="1.66667"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-                <ellipse
-                  id="Ellipse 37"
-                  cx="10.2833"
-                  cy="7.49967"
-                  rx="1.68813"
-                  ry="1.66667"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-                <ellipse
-                  id="Ellipse 38"
-                  cx="16.192"
-                  cy="12.4997"
-                  rx="1.68813"
-                  ry="1.66667"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-              </g>
-            </svg>
-            Dashboard
-          </button>
+          <Link href={`/event/dashboard/${id}`}>
+            <button className="button max-sm:hidden text-center hide flex gap-2 bg-[#D47151] text-white rounded-2xl px-2 my-auto py-1 ml-4 font-IBM ">
+              <svg
+                width="21"
+                height="20"
+                viewBox="0 0 21 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="Filter">
+                  <path
+                    id="Vector 7"
+                    d="M4.375 10L4.375 3.33333"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    id="Vector 9"
+                    d="M16.1919 16.667L16.1919 15.0003"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    id="Vector 8"
+                    d="M4.375 16.667L4.375 13.3337"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    id="Vector 10"
+                    d="M16.1919 10L16.1919 3.33333"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    id="Vector 11"
+                    d="M10.2837 5.83301L10.2837 3.33301"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    id="Vector 12"
+                    d="M10.2837 16.667L10.2837 10.0003"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                  <ellipse
+                    id="Ellipse 36"
+                    cx="4.37514"
+                    cy="11.6667"
+                    rx="1.68813"
+                    ry="1.66667"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                  <ellipse
+                    id="Ellipse 37"
+                    cx="10.2833"
+                    cy="7.49967"
+                    rx="1.68813"
+                    ry="1.66667"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                  <ellipse
+                    id="Ellipse 38"
+                    cx="16.192"
+                    cy="12.4997"
+                    rx="1.68813"
+                    ry="1.66667"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </g>
+              </svg>
+              Dashboard
+            </button>
+          </Link>
         </div>
 
         <div className="grid  gap-2 pl-4 pb-4">
@@ -165,7 +169,9 @@ function EventCardOrgDash({
           </div> */}
         </div>
         <div className="flex sm:hidden content-center ">
-          <button className=" text-center mb-8 flex gap-2 bg-[#D47151] text-white rounded-2xl px-2 my-auto py-1 ml-4 font-IBM ">
+          {/* <Link href={`/event/dashboard/${id}`}> */}
+
+          <button className="button text-center mb-8 flex gap-2 bg-[#D47151] text-white rounded-2xl px-2 my-auto py-1 ml-4 font-IBM ">
             <svg
               width="21"
               height="20"
@@ -248,7 +254,7 @@ function EventCardOrgDash({
                 />
               </g>
             </svg>
-            Dashboard
+            d
           </button>
         </div>
       </div>

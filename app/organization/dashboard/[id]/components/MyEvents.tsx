@@ -1,10 +1,9 @@
-import EventCardOrgDash from "@/app/organization/dashboard/[id]/components/EventCardOrgDash";
 import React from "react";
 
 import { useOrg } from "../OrgContext";
 import EmptyStateComponent from "@/components/EmptyStateComponent";
 import { Event } from "../Type";
-import EventCardNewOrg from "@/components/EventCardNewOrg";
+import EventCardOrgDash from "./EventCardOrgDash";
 
 interface contextProps {
   isSlideBar: boolean;
@@ -40,6 +39,7 @@ export default function MyEvents() {
               // />
 
               <EventCardOrgDash
+                id={event._id}
                 key={event._id}
                 isSlideBar={isSlideBar}
                 img={event.postImageLink}
