@@ -46,7 +46,6 @@ export interface EventContextType {
   setEventStartTime: (value: string) => void;
   setDuration: (value: string) => void;
   setEndTime: (value: string) => void;
-
 }
 
 type EventUserDeatils = {
@@ -71,7 +70,6 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
   const [eventPosts, setEventPosts] = useState<Post[]>([]);
   const [allComment, setAllComment] = useState<Comment[]>([]);
 
-
   const [isloading, setIsloading] = useState(false);
 
   const handleOverview: voidFunc = () => {
@@ -93,16 +91,15 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
   const handleSetting: voidFunc = () => {
     setStatus("settings");
   };
-
-        
-          const [eventname, setEventname] = useState<string>("");
+  const id = useParams<{ id: string }>().id;
+  const [eventname, setEventname] = useState<string>("");
   const [eventLocation, setEventLocation] = useState<string>("");
   const [eventType, setEventType] = useState<string>("");
   const [eventDate, setEventDate] = useState<string>("");
   const [eventStartTime, setEventStartTime] = useState<string>("");
   const [duration, setDuration] = useState<string>("");
   const [endTime, setEndTime] = useState<string>("");
- const router = useRouter();
+  const router = useRouter();
   useEffect(() => {
     const getEvent = async () => {
       const res = await fetch(`/api/v1/event/getOneEvent`, {
@@ -155,15 +152,14 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
         router.push("/404");
         return;
       }
-       setEventname(event.eventName);
-        setEventLocation(event.eventLocation);
-        setEventType(event.selectedTab);
-        setEventDate(event.eventStartDate);
-        setEventStartTime(event.startTime);
-        setDuration(event.duration);
-        setEndTime(event.endTime);
-      
-      
+      setEventname(event.eventName);
+      setEventLocation(event.eventLocation);
+      setEventType(event.selectedTab);
+      setEventDate(event.eventStartDate);
+      setEventStartTime(event.startTime);
+      setDuration(event.duration);
+      setEndTime(event.endTime);
+
       setEventPublish(event.isPublished);
 
       const user = await getUser();
@@ -213,7 +209,6 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
         setEventStartTime,
         setDuration,
         setEndTime,
-
       }}
     >
       {children}
