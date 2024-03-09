@@ -4,12 +4,12 @@ import { NextResponse } from "next/server";
 
 export async function PUT(req: Request) {
   try {
-    connectMongoDB();
+    await connectMongoDB();
     const { id, wishListId } = await req.json();
 
     const user = await User.findByIdAndUpdate(
       id,
-      { $addToSet: { wishListId: wishListId } },
+      { $addToSet: { wishListId } },
       { new: true }
     );
 
