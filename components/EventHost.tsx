@@ -1,15 +1,19 @@
+import { useProf } from "@/app/profile/[...id]/ProfContext";
 import MyEventCard from "@/app/profile/[...id]/components/MyEventCard";
 import React, { useState } from "react";
-
+type RigisterEvent = {
+  register: any[];
+};
 function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
   const [btnState, setBtnState] = useState(1);
 
   const handleToggle = (selectedBtn: number) => {
     setBtnState(selectedBtn);
   };
+  const { register } = useProf() as any as RigisterEvent;
 
   return (
-    <div className="flex flex-col items-center font-IBM pr-4 ml-5">
+    <div className="flex h-screen flex-col items-center font-IBM pr-4 ml-5 overflow-y-scroll">
       <div className="bg-initial rounded-2xl m-4 md:w-2/2 flex items-center justify-center">
         <button
           className={`${
@@ -36,19 +40,25 @@ function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
         {btnState === 1 && (
           <>
             <MyEventCard
-              OrgName={"EvetnNow Studios "}
-              image={"./images/reusableComponents/login.jpg"}
+              OrgName={"Stein Studios "}
+              image={"./images/reusableComponents/PictureOfPost.jpg"}
               btn="Show Details"
             />
           </>
         )}
         {btnState === 2 && (
           <>
-            <MyEventCard
-              OrgName={"Stein Studios "}
-              image={"./images/reusableComponents/PictureOfPost.jpg"}
-              btn="Show Details"
-            />
+            {register ? (
+              register.map((e: any) => (
+                <MyEventCard
+                  OrgName={e.eventName}
+                  image={e.postImageLink}
+                  btn="Show Details"
+                />
+              ))
+            ) : (
+              <p>No registered events found.</p>
+            )}
           </>
         )}
       </div>
