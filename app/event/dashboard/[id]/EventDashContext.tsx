@@ -71,52 +71,52 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
   };
   const router = useRouter();
 
-  const getEvent = async () => {
-    const res = await fetch(`/api/v1/event/getOneEvent`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: params.id,
-      }),
-    });
-    if (!res.ok) {
-      router.push("/404");
-      return;
-    }
-    const data = await res.json();
-    return data;
-  };
-
-  const getUser = async () => {
-    const res = await fetch(`/api/v1/event/users`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: params.id,
-      }),
-    });
-    if (!res.ok) {
-      return;
-    }
-    const data = await res.json();
-
-    return data;
-  };
-
-  const eventPost = async () => {
-    const res = await fetch(`/api/v1/post/getAllPostEvent/${params.id}`);
-    if (!res.ok) {
-      return;
-    }
-    const data = await res.json();
-    return data;
-  };
-
   useEffect(() => {
+    const getEvent = async () => {
+      const res = await fetch(`/api/v1/event/getOneEvent`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: params.id,
+        }),
+      });
+      if (!res.ok) {
+        router.push("/404");
+        return;
+      }
+      const data = await res.json();
+      return data;
+    };
+
+    const eventPost = async () => {
+      const res = await fetch(`/api/v1/post/getAllPostEvent/${params.id}`);
+      if (!res.ok) {
+        return;
+      }
+      const data = await res.json();
+      return data;
+    };
+
+    const getUser = async () => {
+      const res = await fetch(`/api/v1/event/users`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: params.id,
+        }),
+      });
+      if (!res.ok) {
+        return;
+      }
+      const data = await res.json();
+
+      return data;
+    };
+
     async function handleContext() {
       const event = await getEvent();
       if (event.message === "No event") {
@@ -135,7 +135,7 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
       setEventPosts(posts);
     }
     handleContext();
-  }, []);
+  }, [params.id, router, setEventPublish, status]);
 
   return (
     <EventContext.Provider

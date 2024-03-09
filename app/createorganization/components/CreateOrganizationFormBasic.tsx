@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 // import firebase from "firebase/compat/app";
 // import { firebaseConfig } from "../../../services/FirebaseConfig";
-import "firebase/compat/storage";
+// import "firebase/compat/storage";
 
 // firebase.initializeApp(firebaseConfig);
 

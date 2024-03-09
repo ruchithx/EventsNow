@@ -132,7 +132,7 @@ export default function Post({
       setAllComment(data.data);
     };
     getUser();
-  }, [id]);
+  }, [id, setAllComment]);
 
   function handleCommentBtn() {
     allComment.length > 0 ? setHasComment((comment) => !comment) : "";
