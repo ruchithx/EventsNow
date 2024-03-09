@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { get } from "http";
 
 export interface EventContextType {
+  id: String;
   status: String;
   handleOverview: voidFunc;
   handleHostPage: voidFunc;
@@ -55,6 +56,7 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
     setStatus("settings");
   };
   //setting tab
+
   const [eventname, setEventname] = useState<string>("");
   const [eventLocation, setEventLocation] = useState<string>("");
   const [eventType, setEventType] = useState<string>("");
@@ -72,7 +74,7 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
     function () {
       async function getEventData() {
         setIsloading(true);
-        
+
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getEvent`,
           {
@@ -81,8 +83,7 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
             body: JSON.stringify(id),
           }
         );
-        
-        
+
         const finalResponse = await res.json();
         if (!res.ok || finalResponse.message === "No event") {
           router.push("/404");
@@ -91,14 +92,14 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
         if (!finalResponse.event) {
           return;
         }
-        
-        setEventname(finalResponse.event.eventName );
-        setEventLocation(finalResponse.event.eventLocation );
-        setEventType(finalResponse.event.selectedTab );
+
+        setEventname(finalResponse.event.eventName);
+        setEventLocation(finalResponse.event.eventLocation);
+        setEventType(finalResponse.event.selectedTab);
         setEventDate(finalResponse.event.eventStartDate);
-        setEventStartTime(finalResponse.event.startTime );
-        setDuration(finalResponse.event.duration );
-        setEndTime(finalResponse.event.endTime );
+        setEventStartTime(finalResponse.event.startTime);
+        setDuration(finalResponse.event.duration);
+        setEndTime(finalResponse.event.endTime);
 
         setIsloading(false);
       }
@@ -110,6 +111,7 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
   return (
     <EventContext.Provider
       value={{
+        id,
         status,
         handleOverview,
         handleHostPage,

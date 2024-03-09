@@ -6,9 +6,11 @@ import { set } from "mongoose";
 import Image from "next/image";
 import { Button } from "@material-tailwind/react";
 import { UseEventContext, EventContextType } from "../EventDashContext";
+import { error, success } from "@/util/Toastify";
 
 export default function Settings() {
   const {
+    id,
     status,
     handleOverview,
     handleHostPage,
@@ -39,17 +41,43 @@ export default function Settings() {
     setEventVisibility(checked);
   };
 
-  const handleUpdate = () => {
-    console.log({
-      eventType,
-      eventname,
-      eventLocation,
-      eventDate,
-      eventStartTime,
-      duration,
-      endTime,
-      eventVisibility,
-    });
+  const handleUpdate = async () => {
+    // console.log({
+    //   eventType,
+    //   eventname,
+    //   eventLocation,
+    //   eventDate,
+    //   eventStartTime,
+    //   duration,
+    //   endTime,
+    //   eventVisibility,
+    // });
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/event/updateEvent`,
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            id: id,
+            eventName: eventname,
+            selectedTab: eventType,
+            sventStartedDate: eventDate,
+            startTime: eventStartTime,
+            duration: duration,
+          }),
+        }
+      );
+      console.log(res);
+      if (!res.ok) {
+        error("Error updating event");
+        return;
+      }
+
+      success("Event updated successfully");
+    } catch (e) {
+      error(e);
+    }
   };
 
   return (
