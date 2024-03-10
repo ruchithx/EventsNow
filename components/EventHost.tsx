@@ -1,6 +1,11 @@
-import { useProf } from "@/app/profile/[...id]/ProfContext";
+import {
+  ProfContext,
+  RegisterEventType,
+  useProf,
+} from "@/app/profile/[...id]/ProfContext";
 import MyEventCard from "@/app/profile/[...id]/components/MyEventCard";
 import React, { useState } from "react";
+import EmptyStateComponent from "./EmptyStateComponent";
 type RigisterEvent = {
   register: any[];
 };
@@ -10,10 +15,10 @@ function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
   const handleToggle = (selectedBtn: number) => {
     setBtnState(selectedBtn);
   };
-  const { register } = useProf() as any as RigisterEvent;
+  const { register, registerEvent } = useProf() as ProfContext;
 
   return (
-    <div className="flex h-screen flex-col items-center font-IBM pr-4 ml-5 overflow-y-scroll">
+    <div className="flex h-screen flex-col items-center font-IBM pr-4 ml-5 ">
       <div className="bg-initial rounded-2xl m-4 md:w-2/2 flex items-center justify-center">
         <button
           className={`${
@@ -36,32 +41,59 @@ function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
           {btn2}
         </button>
       </div>
-      <div className="m-4 p-2 font-IBM rounded-2xl bg-white grid grid-cols-1 gap-4">
-        {btnState === 1 && (
-          <>
-            <MyEventCard
-              OrgName={"Stein Studios "}
-              image={"./images/reusableComponents/PictureOfPost.jpg"}
-              btn="Show Details"
-            />
-          </>
-        )}
-        {btnState === 2 && (
-          <>
-            {register ? (
-              register.map((e: any) => (
-                <MyEventCard
-                  key={e._id}
-                  OrgName={e.eventName}
-                  image={e.postImageLink}
-                  btn="Show Details"
-                />
-              ))
-            ) : (
-              <p>No registered events found.</p>
-            )}
-          </>
-        )}
+      <div className="m-4 p-2 font-IBM rounded-2xl bg-white  gap-4 h-80 overflow-auto">
+        <div className="flex flex-col gap-2 justify-start w-full">
+          {btnState === 1 && (
+            <>
+              {registerEvent.length > 0 ? (
+                registerEvent.map((event: RegisterEventType) => (
+                  <MyEventCard
+                    id={event._id}
+                    key={event._id}
+                    OrgName={event.eventName}
+                    image={event.postImageLink}
+                    btn="Dashboard"
+                  />
+                ))
+              ) : (
+                <EmptyStateComponent message="No manage events found." />
+              )}
+            </>
+          )}
+
+          {/* {btnState === 1 &&
+          (registerEvent.length > 0 ? (
+            <>
+            
+              registerEvent.map((event)=>{ <MyEventCard
+                OrgName={"Stein Studios "}
+                image={"./images/reusableComponents/PictureOfPost.jpg"}
+                btn="Show Details"
+              />}
+              )
+           
+            </>
+          ) : (
+            <EmptyStateComponent message="No manege events found." />
+          ))} */}
+          {btnState === 2 && (
+            <>
+              {register.length > 0 ? (
+                register.map((e: any) => (
+                  <MyEventCard
+                    id={e._id}
+                    key={e._id}
+                    OrgName={e.eventName}
+                    image={e.postImageLink}
+                    btn="Event"
+                  />
+                ))
+              ) : (
+                <EmptyStateComponent message="No registered events found." />
+              )}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

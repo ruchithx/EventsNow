@@ -25,6 +25,8 @@ interface Post {
   post: string;
   id: string;
   likes: number;
+  liked: boolean;
+  // email: string;
 }
 
 export type User = {
@@ -50,12 +52,15 @@ export default function Post({
   post,
   id,
   likes,
-}: Post) {
+  liked,
+}: // email,
+Post) {
+  console.log("liked", liked);
   const [like, setLike] = useState(likes);
   const [allComment, setAllComment] = useState<Comment[]>([]);
   const [comment, setComment] = useState("");
   const [isComment, setIsComment] = useState(false);
-  const [isLike, setIsLike] = useState(false);
+  const [isLike, setIsLike] = useState(liked);
   const [hasComment, setHasComment] = useState(false);
   const [isShare, setIsShare] = useState(false);
 
@@ -156,6 +161,7 @@ export default function Post({
       body: JSON.stringify({
         id,
         type: "like",
+        email: user?.user?.email,
       }),
     });
 
@@ -175,6 +181,7 @@ export default function Post({
       },
       body: JSON.stringify({
         id,
+        email: user?.user?.email,
         type: "dislike",
       }),
     });
