@@ -6,6 +6,7 @@ export async function POST(req) {
   const {
     eventName,
     selectedTab,
+    eventLocation,
     eventStartDate,
     startTime,
     duration,
@@ -19,6 +20,7 @@ export async function POST(req) {
   await Event.create({
     eventName,
     selectedTab,
+    eventLocation,
     eventStartDate,
     startTime,
     duration,

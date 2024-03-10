@@ -15,6 +15,7 @@ interface Event {
   Time: String;
   Date: String;
   buttonDesc: String;
+  eventCover: String;
 }
 
 export default function Event({
@@ -23,64 +24,63 @@ export default function Event({
   Time,
   Date,
   buttonDesc,
+  eventCover,
 }: Event) {
-const width1 = buttonDesc.length > 14 ? "w-48" : " w-36"; 
-const width2 = buttonDesc.length > 14 ? "w-12" : " w-14";
+  const width1 = buttonDesc.length > 14 ? "w-48" : " w-36";
+  const width2 = buttonDesc.length > 14 ? "w-12" : " w-14";
   return (
-    <div className="w-64 xl:w-72 xl:h-[40rem] h-[38rem] rounded-xl bg-[#D9D9D9] shadow-inner xl:py-8 xl:px-8 py-6 px-6 ">
-      <div className="xl:w-56 w-52 h-60 xl:h-64  ">
-        <Image
-          className=" rounded-md  "
-          src={"/image 1.png"}
-          alt="hay"
-          width={410}
-          height={200}
-        />
-      </div>
+    <div className=" w-64 xl:w-72   rounded-xl bg-[#D9D9D9] shadow-inner xl:py-8 xl:px-8 py-6 px-6  ">
+      <Image
+        className=" rounded-md  "
+        src={eventCover as string}
+        alt="event cover"
+        width={410}
+        height={200}
+      />
 
-      <div className='text-[#353535] font-[" Roboto"] text-2xl py-4 font-medium font-["Roboto"] '>
+      <div className="text-[#353535] font-mono text-2xl py-4  font-medium  ">
         {EventName}
       </div>
 
       <div className="grid grid-rows-5 gap-6 ">
-        <div>
-          <div className="w-8 h-8 ">
-            <Image
-              src="/images/ReusableComponents/Pin_fill.svg"
-              alt="print"
-              width={32}
-              height={32}
-            />
-          </div>
-          <div className="text-[#353C4E] text-lg text-center align-top -mt-8 font-['Inter']">
+        <div className="flex gap-3">
+          <Image
+            className="grid content-center "
+            src="/images/ReusableComponents/Pin_fill.svg"
+            alt="print"
+            width={32}
+            height={32}
+          />
+
+          <div className="text-[#353C4E] text-base text-start align-top font-mono grid content-center">
             {Location}
           </div>
         </div>
 
-        <div>
-          <div className="w-8 h-8 ">
-            <Image
-              src="/images/ReusableComponents/Date_org.svg"
-              alt="print"
-              width={32}
-              height={32}
-            />
-          </div>
-          <div className="text-[#353C4E] text-lg text-center font-['Inter'] align-top -mt-8">
+        <div className="flex gap-3">
+          <Image
+            className="grid content-center"
+            src="/images/ReusableComponents/Date_org.svg"
+            alt="print"
+            width={32}
+            height={32}
+          />
+
+          <div className="text-[#353C4E] text-base text-start font-mono align-top grid content-center">
             {Date}
           </div>
         </div>
 
-        <div>
-          <div className="w-8 h-8 ">
-            <Image
-              src="/images/ReusableComponents/Clock_fill.svg"
-              alt="print"
-              width={32}
-              height={32}
-            />
-          </div>
-          <div className="text-[#353C4E] text-lg text-center font-['Inter'] align-top -mt-8">
+        <div className="flex gap-3 ">
+          <Image
+            className="grid content-center"
+            src="/images/ReusableComponents/Clock_fill.svg"
+            alt="print"
+            width={32}
+            height={32}
+          />
+
+          <div className="text-[#353C4E] text-base text-start  font-mono align-top grid content-center">
             {Time}
           </div>
         </div>
@@ -124,7 +124,8 @@ const width2 = buttonDesc.length > 14 ? "w-12" : " w-14";
         <div>
           <button
             onClick={() => preview()}
-            className={`${width1} h-8 rounded-3xl bg-[#D47151] shrink-0 flex`}>
+            className={`${width1} h-8 rounded-3xl bg-[#D47151] shrink-0 flex`}
+          >
             <div className={` pl-4 pt-1 ${width2} `}>
               <Image
                 src={"/images/ReusableComponents/Send_fill.svg"}

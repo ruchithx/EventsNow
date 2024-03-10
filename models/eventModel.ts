@@ -12,6 +12,10 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please select the event type"],
   },
+  eventLocation:{
+    type: String,
+    required:[true,"please enter event location"]
+  },
   eventStartDate: {
     type: String,
     required: [true, "Please select the event start date"],

@@ -21,6 +21,7 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 export default function EventRegisterFormBasic() {
   const [eventName, setEventName] = useState("");
   const [selectedTab, setSelectedTab] = useState("Onsite");
+  const [eventLocation, setEventLocation] = useState("");
   const [eventStartDate, setEventStartDate] = useState(new Date());
   const [startTime, setStartTime] = useState("");
   const [duration, setDuration] = useState("");
@@ -38,6 +39,7 @@ export default function EventRegisterFormBasic() {
   const validateEvent = z.object({
     eventName: z.string().min(1, "Enter event name "),
     selectedTab: z.string().min(1, { message: "select the event type" }),
+    eventLocation:z.string().min(1,{ message:" Enter event location "}),
     eventStartDate: z.date(),
     startTime: z.string().min(1, { message: "Enter event start time " }),
     duration: z.string(),
@@ -61,6 +63,7 @@ export default function EventRegisterFormBasic() {
     const data = {
       eventName,
       selectedTab,
+      eventLocation,
       eventStartDate,
       startTime,
       duration,
@@ -89,7 +92,7 @@ export default function EventRegisterFormBasic() {
       }
       router.push(`/organization/dashboard/${params.id}`);
 
-      success("registration data sent succesfully");
+      success("event created succesfully");
 
       setEventStartDate(new Date());
       setStartTime("");
@@ -167,8 +170,22 @@ export default function EventRegisterFormBasic() {
                 Online
               </button>
             </div>
-            <div className="pl-4 text-custom-orange font-khand">
-              Select venue
+            <div className="px-4 text-custom-orange font-khand">
+              <div className="flex">
+                {selectedTab == "Onsite"
+                  ? "Enter event venue"
+                  : "Enter event platform"}
+                <div className="text-red-500 font-">*</div>
+              </div>
+              <input
+                required
+                type="text"
+                name="eventLocation"
+                id="eventLocation"
+                value={eventLocation}
+                onChange={(e) => setEventLocation(e.target.value)}
+                className=" my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px] focus:outline-custom-orange "
+              ></input>
             </div>
           </div>
         </div>

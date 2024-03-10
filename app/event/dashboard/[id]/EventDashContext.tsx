@@ -12,6 +12,7 @@ import React, {
 import { useParams, useRouter } from "next/navigation";
 import { AuthContext, useAuth } from "@/app/AuthContext";
 import { Post } from "../../host/[id]/components/PostTab";
+import { set } from "mongoose";
 
 export interface EventContextType {
   id: String;
@@ -39,6 +40,8 @@ export interface EventContextType {
   eventStartTime: String;
   duration: String;
   endTime: String;
+  eventVisibility: boolean;
+  eventCover: String;
   setEventname: (value: string) => void;
   setEventLocation: (value: string) => void;
   setEventType: (value: string) => void;
@@ -46,6 +49,8 @@ export interface EventContextType {
   setEventStartTime: (value: string) => void;
   setDuration: (value: string) => void;
   setEndTime: (value: string) => void;
+  setEventVisibility: (value: boolean) => void;
+  setEventCover: (value: string) => void;
 }
 
 type EventUserDeatils = {
@@ -63,7 +68,7 @@ const EventContext = createContext<EventContextType | string>("");
 
 function EventContextProvider({ children }: { children: React.ReactNode }) {
   const { setEventPublish } = useAuth() as AuthContext;
-  const [status, setStatus] = useState("settings");
+  const [status, setStatus] = useState("overview");
   const params = useParams<{ id: string }>();
   const [isSideBar, setIsSideBar] = useState(true);
 
@@ -99,6 +104,8 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
   const [eventStartTime, setEventStartTime] = useState<string>("");
   const [duration, setDuration] = useState<string>("");
   const [endTime, setEndTime] = useState<string>("");
+  const [eventVisibility, setEventVisibility] = useState<boolean>(false);
+  const [eventCover, setEventCover] = useState<string>("");
   const router = useRouter();
   useEffect(() => {
     const getEvent = async () => {
@@ -161,6 +168,8 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
       setEndTime(event.endTime);
 
       setEventPublish(event.isPublished);
+      setEventVisibility(event.isPublished);
+      setEventCover(event.postImageLink);
 
       const user = await getUser();
       if (!user) {
@@ -202,6 +211,8 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
         eventStartTime,
         duration,
         endTime,
+        eventVisibility,
+        eventCover,
         setEventname,
         setEventLocation,
         setEventType,
@@ -209,6 +220,8 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
         setEventStartTime,
         setDuration,
         setEndTime,
+        setEventVisibility,
+        setEventCover
       }}
     >
       {children}

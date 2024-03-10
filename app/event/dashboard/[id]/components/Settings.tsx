@@ -27,6 +27,8 @@ export default function Settings() {
     eventStartTime,
     duration,
     endTime,
+    eventVisibility,
+    setEventVisibility,
     setEventname,
     setEventLocation,
     setEventType,
@@ -36,7 +38,7 @@ export default function Settings() {
     setEndTime,
   } = UseEventContext() as EventContextType;
 
-  const [eventVisibility, setEventVisibility] = useState(false); //event visibility switch
+  //event visibility switch
   const handleChange = (checked: boolean) => {
     setEventVisibility(checked);
   };
@@ -62,13 +64,14 @@ export default function Settings() {
             id: id,
             eventName: eventname,
             selectedTab: eventType,
-            sventStartedDate: eventDate,
+            eventStartedDate: eventDate,
             startTime: eventStartTime,
             duration: duration,
+            eventVisibility : eventVisibility,
           }),
         }
       );
-      console.log(res);
+      
       if (!res.ok) {
         error("Error updating event");
         return;
