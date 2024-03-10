@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 // import firebase from "firebase/compat/app";
 // import { firebaseConfig } from "../../../services/FirebaseConfig";
-import "firebase/compat/storage";
+// import "firebase/compat/storage";
 
 // firebase.initializeApp(firebaseConfig);
 
@@ -18,15 +18,17 @@ import {
   DropdownItem,
 } from "@nextui-org/dropdown";
 import { getSession } from "next-auth/react";
-import { OrganizationProps } from "@/components/Navbar/NavBar";
-import { useAuth } from "@/app/AuthContext";
+// import { OrganizationProps } from "@/components/Navbar/NavBar";
+// import { useAuth } from "@/app/AuthContext";
 import {
   CldUploadWidget,
   CloudinaryUploadWidgetInfo,
   CloudinaryUploadWidgetResults,
 } from "next-cloudinary";
-import { tr } from "date-fns/locale";
+
 import { FaCloudUploadAlt } from "react-icons/fa";
+import { AuthContext, useAuth } from "../../AuthContext";
+import { OrganizationProps } from "../../../components/Navbar/NavBar";
 
 export default function CreateOrganizationFormBasic() {
   const [fullName, setFullName] = useState("");
@@ -43,7 +45,7 @@ export default function CreateOrganizationFormBasic() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { organization, setOrganization }: any = useAuth();
+  const { organization, setOrganization } = useAuth() as AuthContext;
 
   const [profileImage, setProfileImage] = useState("");
 

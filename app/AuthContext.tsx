@@ -1,9 +1,12 @@
 "use client";
-import { OrganizationProps } from "@/components/Navbar/NavBar";
+// import { OrganizationProps } from "@/components/Navbar/NavBar";
+// import { OrganizationProps } from "@/components/Navbar/NavBar";
 import { useContext, createContext, useState, useEffect } from "react";
 import { any } from "zod";
+import { OrganizationProps } from "../components/Navbar/NavBar";
 
-interface AuthContext {
+import React from "react";
+export interface AuthContext {
   organizationId: string | null;
   setOrganizationId: React.Dispatch<React.SetStateAction<string>>;
   emailAuth: string | null;

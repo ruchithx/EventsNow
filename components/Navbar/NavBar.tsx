@@ -5,13 +5,13 @@ import NavBarButton from "./NavBarButton";
 import { getSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 
-import Profile from "@/components/Profile";
+// import Profile from "@/components/Profile";
 import Link from "next/link";
 import Spinner from "../Spinner";
 import { AiOutlineMenu } from "react-icons/ai";
 
 import Login from "../Login";
-import { useAuth } from "@/app/AuthContext";
+// import { useAuth } from "@/app/AuthContext";
 
 import dynamic from "next/dynamic";
 
@@ -19,6 +19,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import NavBarProfile from "./NavBarProfile";
 import ResponsiveMenuBar from "./ResponsiveMenuBar";
+import { useAuth } from "../../app/AuthContext";
+import Profile from "../Profile";
 
 export type OrganizationProps = {
   map: any;

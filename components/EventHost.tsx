@@ -1,6 +1,8 @@
-import { useProf } from "@/app/profile/[...id]/ProfContext";
-import MyEventCard from "@/app/profile/[...id]/components/MyEventCard";
+// import { useProf } from "@/app/profile/[...id]/ProfContext";
+// import MyEventCard from "@/app/profile/[...id]/components/MyEventCard";
 import React, { useState } from "react";
+import { useProf } from "../app/profile/[...id]/ProfContext";
+import MyEventCard from "../app/profile/[...id]/components/MyEventCard";
 type RigisterEvent = {
   register: any[];
 };
@@ -51,6 +53,7 @@ function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
             {register ? (
               register.map((e: any) => (
                 <MyEventCard
+                  key={e._id}
                   OrgName={e.eventName}
                   image={e.postImageLink}
                   btn="Show Details"
