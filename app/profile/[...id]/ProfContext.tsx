@@ -34,6 +34,7 @@ export interface ProfContext {
   register: any;
   userImage: string;
   setUserImage: React.Dispatch<React.SetStateAction<string>>;
+  registerEvent: RegisterEventType[];
 }
 interface ProfContextProviderProps {
   children: React.ReactNode;
@@ -45,6 +46,12 @@ export type UserDetails = {
   lastName: string;
   image: string;
   __v: Number;
+};
+
+export type RegisterEventType = {
+  _id: string;
+  eventName: string;
+  postImageLink: string;
 };
 
 function ProfContextProvider({ children }: ProfContextProviderProps) {
@@ -70,6 +77,8 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
   const params = useParams();
   const router = useRouter();
   const userId = params.id;
+
+  const [registerEvent, setRegisterEvent] = useState<RegisterEventType[]>([]);
 
   const handleProfile: VoidFunc = () => {
     setStatus("myProfile");
@@ -111,7 +120,7 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
           return;
         }
         const finalResponse = await res.json();
-        console.log(finalResponse);
+
         setUserDeatails(finalResponse);
         setUserImage(finalResponse.image);
         setFname(finalResponse.firstName);
@@ -149,9 +158,22 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
         const finalrespone = await res.json();
         setRegister(finalrespone);
       }
+      async function getManageEvents() {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_URL}/api/v1/user/userManageEvent/${params.id}`
+        );
+        if (!res.ok) {
+          setIsLoading(false);
+          return;
+        }
+        const data = await res.json();
+
+        setRegisterEvent(data);
+      }
       getData();
       getWishList();
       getRegisterdUser();
+      getManageEvents();
     },
 
     [params.id]
@@ -160,6 +182,7 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
   return (
     <ProfContext.Provider
       value={{
+        registerEvent,
         handleSetting,
         isSlideBar,
         setIsSlideBar,

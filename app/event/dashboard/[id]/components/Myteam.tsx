@@ -7,9 +7,7 @@ import EmptyStateComponent from "@/components/EmptyStateComponent";
 export default function Myteam() {
   const { user } = UseEventContext() as EventContextType;
 
-  function handleInvite() {
-    console.log("Invite button clicked");
-  }
+  function handleInvite() {}
   return (
     <div>
       <Container>

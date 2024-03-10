@@ -1,9 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-function info() {
-  console.log("Direct to the info page");
-}
+function info() {}
 
 interface Upcoming_Events {
   EventName: String;
@@ -35,7 +33,6 @@ export default function Upcoming_Events({
       <div className="xl:grid xl:grid-rows-3 xl:justify-left xl:col-span-7 capitalize">
         <div className="mx-4 md:mt-4 grid grid-cols-2 ">
           <div className="font-sans text-2xl capitalize font-bold leading-7 text-[#353535]">
-
             {EventName}
           </div>
 
@@ -45,7 +42,12 @@ export default function Upcoming_Events({
               className="w-20 h-7 rounded-3xl bg-[#D47151] shrink-0 flex"
             >
               <div className="py-0.5 pl-1.5 pt-1">
-                <Image src={"/images/reusableComponents/Sendfill.svg"} alt="info" width={80} height={80} />
+                <Image
+                  src={"/images/reusableComponents/Sendfill.svg"}
+                  alt="info"
+                  width={80}
+                  height={80}
+                />
               </div>
               <div className="w-40 h-4 text-white text-xs font-medium py-1.5 pl-0 mr-2 ">
                 {buttonDesc}
@@ -59,8 +61,12 @@ export default function Upcoming_Events({
             className={`mx-8 mt-2 flex items-center xl:items-start h-auto ${margin} `}
           >
             <div className="w-8 h-8 xl:-mt-2">
-              <Image src="/images/reusableComponents/location.svg" alt="print" width={32} height={32} />
-
+              <Image
+                src="/images/reusableComponents/location.svg"
+                alt="print"
+                width={32}
+                height={32}
+              />
             </div>
             <div className="text-[#353C4E] text-center text-base font-normal leading-4 pl-4 ">
               {Location}
@@ -69,8 +75,12 @@ export default function Upcoming_Events({
 
           <div className={`mx-8 mt-2 flex ${margin} xl:mt-0`}>
             <div className="w-8 h-8">
-              <Image src="/images/reusableComponents/Date.svg" alt="print" width={32} height={32} />
-
+              <Image
+                src="/images/reusableComponents/Date.svg"
+                alt="print"
+                width={32}
+                height={32}
+              />
             </div>
             <div className="text-[#353C4E] text-center text-base font-normal leading-4 pl-4 pt-2 ">
               {Date}
@@ -83,9 +93,12 @@ export default function Upcoming_Events({
             className={`mx-8 mt-2 flex items-center xl:items-start ${margin}`}
           >
             <div className="w-8 h-8 xl:-mt-2">
-              <Image src="/images/reusableComponents/Time.svg" alt="print" width={32} height={32} />
-
-
+              <Image
+                src="/images/reusableComponents/Time.svg"
+                alt="print"
+                width={32}
+                height={32}
+              />
             </div>
             <div className="text-[#353C4E] text-center text-base font-normal leading-4 pl-4 ">
               {Time}
@@ -94,8 +107,12 @@ export default function Upcoming_Events({
 
           <div className={`mx-8 mt-2 flex ${margin}`}>
             <div className="w-8 h-8">
-              <Image src="/images/reusableComponents/Lineup.svg" alt="print" width={32} height={32} />
-
+              <Image
+                src="/images/reusableComponents/Lineup.svg"
+                alt="print"
+                width={32}
+                height={32}
+              />
             </div>
             <div className="text-[#353C4E] text-center text-base font-normal leading-4 pl-4 pt-2">
               {Ratings}

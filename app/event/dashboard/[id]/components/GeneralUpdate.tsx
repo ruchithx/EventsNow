@@ -57,7 +57,6 @@ export default memo(function GenaralUpdate({ setGenaralUpdate }: Props) {
       setGenaralUpdate(false);
       return;
     }
-    console.log(returnMessage);
   };
 
   function handleSubject(e: any) {

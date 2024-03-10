@@ -4,11 +4,11 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   const id = await req.json();
-    connectMongoDB();
-    const event = await Event.findOne({ _id: id });
+  connectMongoDB();
+  const event = await Event.findOne({ _id: id });
 
-    if (!event) {
-        return NextResponse.json({ message: "No event" });
-    }
-    return NextResponse.json({ event }) ;
+  if (!event) {
+    return NextResponse.json({ message: "No event" });
+  }
+  return NextResponse.json(event);
 }

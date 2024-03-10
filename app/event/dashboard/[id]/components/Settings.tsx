@@ -71,7 +71,6 @@ export default function Settings() {
           }),
         }
       );
-      
       if (!res.ok) {
         error("Error updating event");
         return;

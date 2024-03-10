@@ -1,13 +1,9 @@
 import React from "react";
 import Image from "next/image";
 
-function Share() {
-  console.log("Direct to the Share options");
-}
+function Share() {}
 
-function preview() {
-  console.log("Direct to the preview options");
-}
+function preview() {}
 
 interface Event {
   EventName: String;

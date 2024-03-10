@@ -14,7 +14,7 @@ export default function Campaign() {
   useEffect(() => {
     const getUser = async () => {
       const user = await getSession();
-      console.log(user);
+   
       if (user) {
         setUser(user);
       }

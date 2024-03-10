@@ -1,14 +1,24 @@
 "use client";
 import Footer from "@/components/Footer";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CoverPhoto from "../components/CoverPhoto";
 import PostTab from "../components/PostTab";
 import SmallView from "../components/SmallView";
 import HostSideBar from "../components/HostSideBar";
 import Description from "../components/Description";
+import { Event, Post } from "../SelectTemplate";
+import { parse } from "path";
 
-export default function Template() {
+export default function Template({ event }: { event: Event }) {
+  function formatDate(dateString: any) {
+    const date = new Date(dateString);
+    const formattedDate = date.toISOString().split("T")[0];
+    return formattedDate;
+  }
+
+  const date = formatDate(event.eventStartDate);
+
   const [activeComponent, setActiveComponent] = useState("CoverPhoto");
 
   const handleComponentChange = (component: string) => {
@@ -20,35 +30,36 @@ export default function Template() {
       <div className="md:flex relative">
         {activeComponent === "CoverPhoto" && (
           <CoverPhoto
-            image={"/images/Event/HostPage/cover2.jpg"}
+            image={event.postImageLink}
             // image={"/images/ReusableComponents/PictureOfPost.jpg"}
           />
         )}
 
         {activeComponent === "PostTab" && <PostTab />}
-
         <div className="md:hidden">
           <SmallView
-            EventName={"'KUWENI'"}
-            Location={"Matara"}
-            Time={"12.00 to 14.00"}
-            Date={"21th April 2020"}
+            EventName={event.eventName}
+            Location={event.selectedTab}
+            Time={`${event.startTime} to ${
+              parseInt(event.startTime, 10) + parseInt(event.duration, 10)
+            }`}
+            Date={date}
           />
         </div>
 
         <div className="md:absolute md:right-0 hidden md:block ">
           <HostSideBar
-            EventName={"'KUWENI'"}
-            Location={"Matara"}
-            Time={"12.00 to 14.00"}
-            Date={"21th April 2020"}
+            EventName={event.eventName}
+            Location={event.selectedTab}
+            Time={`${event.startTime} to ${event.startTime + event.duration}`}
+            Date={date}
             activeComponent={activeComponent}
             handleComponentChange={handleComponentChange}
           />
         </div>
       </div>
 
-      <Description />
+      <Description description={event.description} />
 
       <Footer />
     </div>

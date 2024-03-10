@@ -17,7 +17,7 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json("No user found");
     }
 
-    console.log("user image updated successfully:", data);
+
 
     return NextResponse.json(data);
   } catch (error) {
