@@ -1,9 +1,8 @@
+const mongoose = require("mongoose");
 import Organization from "./organizationModel";
 import User from "./userModel";
 
-import mongoose from "mongoose";
-
-const eventSchema: mongoose.Schema<any> = new mongoose.Schema({
+const eventSchema = new mongoose.Schema({
   eventName: {
     type: String,
     required: [true, "Please enter the event name"],
@@ -44,10 +43,10 @@ const eventSchema: mongoose.Schema<any> = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  registerUser: {
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: User,
-  },
+  // registerUser: {
+  //   type: [mongoose.Schema.Types.ObjectId],
+  //   ref: User,
+  // },
   template: {
     type: String,
   },
