@@ -8,11 +8,11 @@ import { request } from "http";
 export const GET = async (request: NextRequest, { params }: any) => {
   const id = params.id;
 
-  // console.log(id);
+  console.log(id);
 
   try {
-    connectMongoDB();
-    const post = await Post.find({ eventId: id });
+    await connectMongoDB();
+    const post = await Post.find({ eventId: id }).populate("likeBy");
 
     return new NextResponse(JSON.stringify(post), { status: 200 });
   } catch (error) {

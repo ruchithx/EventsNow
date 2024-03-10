@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+import Event from "./eventModel";
 import Organization from "./organizationModel";
 import User from "./userModel";
 
@@ -22,7 +23,10 @@ const permissionSchema = new mongoose.Schema({
     type: [
       {
         _id: false,
-        eventId: { type: String },
+        eventId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: Event,
+        },
         eventPermission: [String],
       },
     ],

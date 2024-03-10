@@ -27,12 +27,6 @@ export default function MyEvents() {
         <div className="">
           <EventHost btn1={"MANAGE EVENTS"} btn2={"REGISTERED EVENTS"} />
         </div>
-        {/* {manage && (
-          <>
-            <Org_RequestHandle OrgName={"Amna"} image="PictureOfaSinger.png"/>
-          </>
-        )}
-        {!manage && <></>} */}
       </div>
     </div>
   );
