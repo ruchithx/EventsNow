@@ -11,8 +11,9 @@ import React, {
 } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { AuthContext, useAuth } from "@/app/AuthContext";
-import { Post } from "../../host/[id]/components/PostTab";
+// import { Post } from "../../host/[id]/components/PostTab";
 import { set } from "mongoose";
+import { Post } from "../../host/[id]/SelectTemplate";
 
 export interface EventContextType {
   id: String;
@@ -221,7 +222,7 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
         setDuration,
         setEndTime,
         setEventVisibility,
-        setEventCover
+        setEventCover,
       }}
     >
       {children}
