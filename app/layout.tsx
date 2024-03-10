@@ -8,6 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 import { ToastContainer } from "react-toastify";
 import NavBar from "@/components/Navbar/NavBar";
 import "grapesjs/dist/css/grapes.min.css";
+import "grapick/dist/grapick.min.css";
 
 export const metadata: Metadata = {
   title: "EventsNow",
