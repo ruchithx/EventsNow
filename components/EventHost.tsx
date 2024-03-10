@@ -51,6 +51,7 @@ function ToggleButtons({ btn1, btn2 }: { btn1: string; btn2: string }) {
             {register ? (
               register.map((e: any) => (
                 <MyEventCard
+                  key={e._id}
                   OrgName={e.eventName}
                   image={e.postImageLink}
                   btn="Show Details"

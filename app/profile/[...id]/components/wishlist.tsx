@@ -19,6 +19,7 @@ export default function MyProfile() {
           {eventDetails ? (
             eventDetails.map((e: any) => (
               <WishListCard
+                key={e._id}
                 EventName={e.eventName}
                 Location={e.selectedTab}
                 Time={e.startTime}
