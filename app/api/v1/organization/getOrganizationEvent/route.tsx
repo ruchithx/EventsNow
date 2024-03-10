@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 
 export async function POST(req: Request) {
   const id = await req.json();
-  console.log(id);
+  
   const objectId = new mongoose.Types.ObjectId(id);
   await connectMongoDB();
   const organization = await Event.find({ organizationId: objectId });

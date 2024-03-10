@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 function info() {
-  console.log("Direct to the info page");
+
 }
 
 interface Upcoming_Events {

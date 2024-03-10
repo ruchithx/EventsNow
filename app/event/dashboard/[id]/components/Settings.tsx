@@ -68,7 +68,7 @@ export default function Settings() {
           }),
         }
       );
-      console.log(res);
+
       if (!res.ok) {
         error("Error updating event");
         return;

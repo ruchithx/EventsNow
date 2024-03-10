@@ -7,7 +7,7 @@ import User from "@/models/userModel";
 export async function PUT(request: NextRequest) {
   try {
     const { id, type, email } = await request.json();
-    console.log(email, "user._id");
+
 
     await connectMongoDB();
 

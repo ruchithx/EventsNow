@@ -30,7 +30,7 @@ export async function POST(req: Request) {
       html: htmlBody,
       // html: `<h1>Invitation to join the organization <a href="${process.env.NEXT_PUBLIC_URL}/organization/newuser?organizationId=${organizationId}&userId=${user._id}" > click to verify</a></h1>`,
     });
-    console.log(res.accepted.length);
+  
 
     if (res.accepted.length > 0) {
       return NextResponse.json("Email sent successfully");

@@ -113,8 +113,6 @@ export const authOptions: NextAuthOptions = {
       return true;
     },
     async session(params: { session: any; token: JWT; user: any }) {
-      // console.log("session params 🦊🦒🐯🦁", params.user);
-
       // if (params.session.user) {
       //   params.session.user.email = params.token.email;
       //   params.session.user.firstName = params.token.firstName;
@@ -136,7 +134,6 @@ export const authOptions: NextAuthOptions = {
       // isNewUser?: boolean | undefined;
     }) {
       if (params.user) {
-        console.log("User:", params.user);
         params.token.id = params.user._id;
         params.token.firstName = params.user.firstName;
         params.token.userRole = params.user.role;

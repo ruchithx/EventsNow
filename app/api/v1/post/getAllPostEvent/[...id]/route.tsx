@@ -8,7 +8,6 @@ import { request } from "http";
 export const GET = async (request: NextRequest, { params }: any) => {
   const id = params.id;
 
-  console.log(id);
 
   try {
     await connectMongoDB();

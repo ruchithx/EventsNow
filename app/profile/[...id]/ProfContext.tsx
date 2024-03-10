@@ -120,7 +120,7 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
           return;
         }
         const finalResponse = await res.json();
-        console.log(finalResponse);
+
         setUserDeatails(finalResponse);
         setUserImage(finalResponse.image);
         setFname(finalResponse.firstName);
@@ -167,7 +167,7 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
           return;
         }
         const data = await res.json();
-        console.log(data);
+
         setRegisterEvent(data);
       }
       getData();

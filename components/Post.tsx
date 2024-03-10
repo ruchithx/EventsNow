@@ -55,7 +55,6 @@ export default function Post({
   liked,
 }: // email,
 Post) {
-  console.log("liked", liked);
   const [like, setLike] = useState(likes);
   const [allComment, setAllComment] = useState<Comment[]>([]);
   const [comment, setComment] = useState("");
@@ -166,7 +165,7 @@ Post) {
     });
 
     if (!like.ok) {
-      console.log(" like");
+     
       return;
     }
     setLike((prev) => prev + 1);
@@ -187,7 +186,7 @@ Post) {
     });
 
     if (!like.ok) {
-      console.log("not like");
+     
       return;
     }
 
