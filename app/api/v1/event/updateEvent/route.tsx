@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from "next";
 import connectMongoDB from "@/lib/mongo/mongodb";
-import Event from "@/models/eventModel"; 
+import Event from "@/models/eventModel";
 export async function PUT(request: NextRequest, response: NextResponse) {
-
   try {
     const data = await request.json();
 
