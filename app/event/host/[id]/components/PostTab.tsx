@@ -5,15 +5,15 @@ import Spinner from "@/components/Spinner";
 import { getSession } from "next-auth/react";
 import EmptyStateComponent from "@/components/EmptyStateComponent";
 
-// export interface Post {
-//   _id: string;
-//   userImage: string;
-//   userName: string;
-//   description: string;
-//   image: string;
-//   like: number;
-//   likeBy: any;
-// }
+export interface Post {
+  _id: string;
+  userImage: string;
+  userName: string;
+  description: string;
+  image: string;
+  like: number;
+  likeBy: any;
+}
 import { useParams } from "next/navigation";
 import { Post as PostType } from "../SelectTemplate";
 
@@ -39,7 +39,7 @@ export default function PostTab() {
       setLoading(false);
     };
     postFunction();
-  }, []);
+  }, [id, email]);
 
   function checkLike({ post }: any) {
     {
