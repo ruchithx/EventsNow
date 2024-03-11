@@ -93,6 +93,7 @@ export default function NavBar() {
     setOrganization,
     organizationId,
   } = useAuth() as AuthContext;
+  console.log(emailAuth, "emailAuth");
 
   // const ResponsiveMenuBar = dynamic(() => import("./ResponsiveMenuBar"));
   // const NavBarProfile = dynamic(() => import("./NavBarProfile"));
@@ -104,7 +105,7 @@ export default function NavBar() {
   const router = useRouter();
 
   async function clickLogoutBtn() {
-    await signOut();
+    await signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_URL}` });
     setEmail("");
     localStorage.removeItem("email");
     router.push("/");
@@ -137,6 +138,7 @@ export default function NavBar() {
           setNewUserPath(true);
         }
         const session = await getSession();
+        console.log(session, "session");
 
         if (session) {
           const name = session?.user?.name ? session?.user?.name : "";
@@ -171,7 +173,9 @@ export default function NavBar() {
             }
           } else {
             const email = emailAuth;
+            console.log(email, "email");
             const data = await getUser({ email });
+            console.log(data, "data");
 
             if (data) {
               setUserActive(true);
