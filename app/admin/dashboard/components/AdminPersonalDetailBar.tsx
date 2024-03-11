@@ -74,7 +74,7 @@ export default function AdminPersonDetailsBar({
           {role === "admin" && (
             <>
               <div className="">
-                <button className="bg-custom-blue  h-[34px] rounded-[5px]  w-20 xl:w-36 shadow-3xl ">
+                <button className="bg-custom-blue  h-[34px] rounded-[5px]  w-[3.9rem] sm:w-[5.4rem] md:w-[7.3rem] xl:w-36 shadow-3xl ">
                   <div className="flex justify-around pl-1">
                   <div className="lg:hidden xl:grid grid">
                     <Image
