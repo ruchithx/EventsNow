@@ -1,4 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
+
+import { NextApiRequest, NextApiResponse } from 'next';
+
 import connectMongoDB from "@/lib/mongo/mongodb";
 import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
