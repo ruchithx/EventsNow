@@ -3,6 +3,7 @@ import ProfileDetails from "./ProfileDetails";
 import Upcoming_Events from "@/components/Upcoming_Events";
 import Org_RequestHandle from "./Org_RequestHandle";
 import EventHost from "@/components/EventHost";
+import { ProfContext, useProf } from "../ProfContext";
 
 export default function MyEvents() {
   const [manageEventsContent, setManageEventsContent] =
@@ -26,12 +27,6 @@ export default function MyEvents() {
         <div className="">
           <EventHost btn1={"MANAGE EVENTS"} btn2={"REGISTERED EVENTS"} />
         </div>
-        {/* {manage && (
-          <>
-            <Org_RequestHandle OrgName={"Amna"} image="PictureOfaSinger.png"/>
-          </>
-        )}
-        {!manage && <></>} */}
       </div>
     </div>
   );

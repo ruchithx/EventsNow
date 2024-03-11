@@ -52,6 +52,7 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
   const { setOrganizationId } = useAuth() as AuthContext;
   const [selectEventForPermission, setSelectEventForPermission] =
     useState<Event | null>(null);
+  const [organizationImage, setOrganizationImage] = useState<string>("");
 
   const id: string | any = params.id;
 
@@ -96,6 +97,7 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
 
         setEditedName(finalResponse.organization.organizationName || "");
         setOrganization(finalResponse.organization);
+        setOrganizationImage(finalResponse.organization.postImageLink || "");
 
         setIsActive(finalResponse.organization.isActive);
 
@@ -200,6 +202,8 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
         eventPermission,
         setEventPermission,
         id,
+        organizationImage,
+        setOrganizationImage,
       }}
     >
       {children}

@@ -9,7 +9,7 @@ export async function GET() {
   try {
     await connectMongoDB();
     const organization = await Organization.find();
-    console.log("organization is", organization);
+
     if (!organization || organization.length === 0) {
       return NextResponse.json({ message: "No organization" });
     }

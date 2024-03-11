@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Organization } from "@/app/organization/dashboard/[id]/Type";
+import { Organization } from "@/app/admin/Type";
 
 interface Data {
   organization: Organization;
@@ -8,40 +8,54 @@ interface Data {
 
 const DetailsModalContent = ({ organization }: Data) => {
   return (
-    <div className="sm:flex sm:items-start mb-2">
-      <div className="mx-auto flex-shrink-0 flex items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10 ">
+    <div className="flex flex-col h-72 overflow-y-auto px-8 py-8">
+      <div className="flex justify-center">
         <Image
           src={organization.postImageLink}
-          alt="image2"
-          width={249.64}
-          height={126}
-          className="w-auto h-auto rounded-full ms-4"
+          alt={organization.organizationName}
+          width={200}
+          height={200}
         />
       </div>
-
-      <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-        <h3
-          className="text-lg leading-6 font-medium text-gray-900 flex justify-center mb-4"
-          id="modal-headline"
-        >
-          {organization.organizationName}
-        </h3>
-        <div className="mt-2 mb-4">
-          <div className="flex flex-col">
-            <div className="flex flex-row">
-              <div className="text-sm font-bold text-black">Address :</div>
-              <p className="text-sm text-gray-500">{organization.address}</p>
-            </div>
-            <div className="flex flex-row">
-              <div className="text-sm font-bold text-black">phoneNumber :</div>
-              <p className="text-sm text-gray-500">
-                {organization.phoneNumber}
-              </p>
-            </div>
-            <div className="flex flex-row">
-              <div className="text-sm font-bold text-black">email :</div>
-              <p className="text-sm text-gray-500">{organization.email}</p>
-            </div>
+      <div className="flex flex-col space-y-4 ml-8 mt-4 ">
+        <div className="flex flex-col space-y-1">
+          {" "}
+          <h2>Organization Name </h2>
+          <div className="font-underlined border-b border-gray-400 text-gray-300">
+            {" "}
+            {organization.organizationName}
+          </div>
+        </div>
+        <div className="flex flex-col space-y-1">
+          {" "}
+          <h2>Phone number</h2>
+          <div className="font-underlined border-b border-gray-400 text-gray-300">
+            {" "}
+            {organization.phoneNumber}
+          </div>
+        </div>
+        <div className="flex flex-col space-y-1">
+          {" "}
+          <h2>Address</h2>
+          <div className="font-underlined border-b border-gray-400 text-gray-300 max-w-48 overflow-ellipsis overflow-hidden">
+            {" "}
+            {organization.address}
+          </div>
+        </div>
+        <div className="flex flex-col space-y-1">
+          {" "}
+          <h2>Company Name</h2>
+          <div className="font-underlined border-b border-gray-400 text-gray-300">
+            {" "}
+            {organization.companyName}
+          </div>
+        </div>
+        <div className="flex flex-col space-y-1">
+          {" "}
+          <h2>Founded</h2>
+          <div className="font-underlined border-b border-gray-400 text-gray-300">
+            {" "}
+            {organization.fullName}
           </div>
         </div>
       </div>

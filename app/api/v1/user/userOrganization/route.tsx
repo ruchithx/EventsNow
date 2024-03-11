@@ -11,7 +11,7 @@ export const POST = async (req: Request) => {
     const { id } = await req.json();
 
     // const objectId = new mongoose.Types.ObjectId(id);
-    // console.log(objectId);
+
 
     await connectMongoDB();
     const user = await Permission.find({
@@ -44,7 +44,7 @@ export const POST = async (req: Request) => {
         const image = data[0].postImageLink;
         const id = data[0]._id;
 
-        console.log(name, image, id);
+
         return { name, image, id };
       })
     );

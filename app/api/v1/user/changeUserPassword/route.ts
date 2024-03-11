@@ -31,7 +31,6 @@ export async function POST(req: Request) {
     await connectMongoDB();
 
     const { id, currentPassword, newPassword } = await req.json();
-    console.log(currentPassword);
 
     const user = await User.findById({ _id: id }).select("password");
 
@@ -40,7 +39,6 @@ export async function POST(req: Request) {
     }
 
     const passwordMatch = await compare(currentPassword, user.password);
-    console.log(passwordMatch);
 
     if (!passwordMatch) {
       return NextResponse.json({ error: "Incorrect Password" });
@@ -50,7 +48,6 @@ export async function POST(req: Request) {
 
     await updateUserPassword(id, hashedPassword);
 
-    console.log("Password changed successfully");
     return NextResponse.json({
       success: true,
       message: "Password changed successfully",

@@ -5,17 +5,26 @@ import { success } from "@/util/Toastify";
 import dynamic from "next/dynamic";
 import { Organization } from "../Type";
 import { IoSaveOutline } from "react-icons/io5";
-import { FaRegWindowClose } from "react-icons/fa";
+import { FaCloudUploadAlt, FaRegWindowClose } from "react-icons/fa";
+import {
+  CldUploadWidget,
+  CloudinaryUploadWidgetInfo,
+  CloudinaryUploadWidgetResults,
+} from "next-cloudinary";
+import Image from "next/image";
 const ProfileSettings = dynamic(
   () => import("@/app/organization/dashboard/[id]/components/ProfileSettings")
 );
 
 interface contextProps {
   organization: Organization;
+  id: string;
+  setOrganizationImage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function Setting() {
-  const { organization } = useOrg() as contextProps;
+  const [profileImage, setProfileImage] = useState("");
+  const { organization, id, setOrganizationImage } = useOrg() as contextProps;
   const [bank, setBank] = useState(organization.bank || "");
   const [branch, setBranch] = useState(organization.branch || "");
   const [payout, setPayout] = useState(organization.payout || "");
@@ -67,6 +76,28 @@ export default function Setting() {
     success("Organization details updated successfully");
   }
 
+  async function handleImageSaveButton() {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/updateOrganizationPrifilePic`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+          image: profileImage,
+        }),
+      }
+    );
+    if (!res.ok) {
+      error("Failed to save settings");
+      return;
+    }
+    setOrganizationImage(profileImage);
+    setProfileImage("");
+  }
+
   return (
     <div className="flex rounded-lg  shadow-3xl md:pl-10 md:ml-2 pl-5 bg-[#fff] pt-8 lg:pl-12 flex-col justify-start items-start gap-12">
       <div className="md:w-11/12 w-11/12  lg:w-full flex flex-col gap-3">
@@ -114,6 +145,95 @@ export default function Setting() {
             organizationID={organization._id}
             name={"Organization name"}
           />
+          <CldUploadWidget
+            uploadPreset="organization"
+            onOpen={() => {
+              console.log("isPhotographer");
+            }}
+            onSuccess={(results: CloudinaryUploadWidgetResults) => {
+              const uploadedResult = results.info as CloudinaryUploadWidgetInfo;
+              const profileImageURL = {
+                image: uploadedResult.secure_url,
+              };
+              setProfileImage(profileImageURL.image);
+            }}
+            options={{
+              tags: ["organization image"],
+              // publicId: `${organizationName}/${Date.now()}`,
+              // publicId: "b2c",
+
+              sources: ["local"],
+              googleApiKey: "<image_search_google_api_key>",
+              showAdvancedOptions: false,
+              cropping: true,
+              multiple: false,
+              showSkipCropButton: false,
+              croppingAspectRatio: 0.75,
+              croppingDefaultSelectionRatio: 0.75,
+              croppingShowDimensions: true,
+              croppingCoordinatesMode: "custom",
+              // maxImageHeight: 100,
+              // croppingValidateDimensions: true,
+              defaultSource: "local",
+              resourceType: "image",
+              folder: "organization",
+
+              styles: {
+                palette: {
+                  window: "#ffffff",
+                  sourceBg: "#f4f4f5",
+                  windowBorder: "#90a0b3",
+                  tabIcon: "#000000",
+                  inactiveTabIcon: "#555a5f",
+                  menuIcons: "#555a5f",
+                  link: "#000000",
+                  action: "#000000",
+                  inProgress: "#464646",
+                  complete: "#000000",
+                  error: "#cc0000",
+                  textDark: "#000000",
+                  textLight: "#fcfffd",
+                  theme: "white",
+                },
+              },
+            }}
+          >
+            {({ open }) => {
+              return (
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    open();
+                  }}
+                >
+                  <div className="p-1 mt-5 text-white font-semibold flex items-center justify-center gap-2 bg-slate-400 rounded-2xl">
+                    <FaCloudUploadAlt />
+                    upload image
+                  </div>
+                </button>
+              );
+            }}
+          </CldUploadWidget>
+
+          {profileImage.length > 0 && (
+            <div className=" mt-5 border-2 w-auto border-solId rounded-xl   ">
+              <Image
+                className=" p-4"
+                src={profileImage}
+                width={500}
+                height={500}
+                alt="event cover image"
+              />
+              <div className=" flex justify-end items-end mr-5">
+                <button
+                  onClick={handleImageSaveButton}
+                  className="bg-custom-orange button p-1 px-2 text-white rounded-2xl"
+                >
+                  save image
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <div className="w-11/12 lg:w-full ">

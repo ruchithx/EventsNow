@@ -29,11 +29,14 @@ export default function AdminPersonDetailsBar({
         <div className="text-base font-light lg:col-span-5 col-span-8	mr-2 md:mb-0 mb-1 ms-2 md:ms-2 lg:ms-0 flex ">
           {email}
         </div>
+
         <div className="col-span-4  flex gap-2 ">
+
           {role !== "admin" && (
             <>
               <button
                 onClick={() => setMakeAdminModal(true)}
+
                 className={`bg-custom-blue h-[34px]  rounded-[5px] w-20 md:w-32 xl:w-44  shadow-3xl`}
               >
                 <div className="flex justify-around pl-1">
@@ -46,12 +49,14 @@ export default function AdminPersonDetailsBar({
                     />
                   </div>
                   <div className="text-white font-mono self-center text-center text-base font-medium mr-2 hidden lg:flex ">
+
                     Make admin
                   </div>
                 </div>
               </button>
               <button
                 onClick={() => setShowBlacklistModal(true)}
+
                 className={`bg-custom-green h-[34px]  rounded-[5px] w-20 md:w-32 xl:w-44  shadow-3xl `}
               >
                 <div className="flex justify-around pl-1">
@@ -64,6 +69,7 @@ export default function AdminPersonDetailsBar({
                     />
                   </div>
                   <div className="text-white font-mono self-center text-center text-base font-medium xl:mr-2 hidden lg:flex ">
+
                     Block user
                   </div>
                 </div>
@@ -73,6 +79,7 @@ export default function AdminPersonDetailsBar({
 
           {role === "admin" && (
             <>
+
               <div className="">
                 <button className="bg-custom-blue  h-[34px] rounded-[5px]  w-[3.9rem] sm:w-[5.4rem] md:w-[7.3rem] xl:w-36 shadow-3xl ">
                   <div className="flex justify-around pl-1">
@@ -89,6 +96,7 @@ export default function AdminPersonDetailsBar({
                   </div>
                 </button>
               </div>
+
             </>
           )}
         </div>

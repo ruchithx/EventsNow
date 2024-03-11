@@ -8,13 +8,15 @@ import { z } from "zod";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import firebase from "firebase/compat/app";
 // import { firebaseConfig } from "../../../services/FirebaseConfig";
-import "firebase/compat/storage";
-import { firebaseConfig } from "@/services/FirebaseConfig";
-import { error, success } from "@/util/Toastify";
 
-firebase.initializeApp(firebaseConfig);
+import { error, success } from "@/util/Toastify";
+import {
+  CldUploadWidget,
+  CloudinaryUploadWidgetInfo,
+  CloudinaryUploadWidgetResults,
+} from "next-cloudinary";
+import { FaCloudUploadAlt } from "react-icons/fa";
 
 export default function EventRegisterFormBasic() {
   const [eventName, setEventName] = useState("");
@@ -31,6 +33,8 @@ export default function EventRegisterFormBasic() {
   const params = useParams();
   const router = useRouter();
 
+  const [profileImage, setProfileImage] = useState("");
+
   const validateEvent = z.object({
     eventName: z.string().min(1, "Enter event name "),
     selectedTab: z.string().min(1, { message: "select the event type" }),
@@ -46,13 +50,13 @@ export default function EventRegisterFormBasic() {
   async function sendEventData(e: any) {
     e.preventDefault();
     setIsSubmitting(true);
-    const storageRef = firebase.storage().ref();
-    const fileRef = storageRef.child(`eventCover-${eventName}`);
-    const postImageLink = await fileRef
-      .put(postImage)
-      .then((snapshot) =>
-        snapshot.ref.getDownloadURL().then((downloadURL) => downloadURL)
-      );
+    // const storageRef = firebase.storage().ref();
+    // const fileRef = storageRef.child(`eventCover-${eventName}`);
+    // const postImageLink = await fileRef
+    //   .put(postImage)
+    //   .then((snapshot) =>
+    //     snapshot.ref.getDownloadURL().then((downloadURL) => downloadURL)
+    //   );
 
     const data = {
       eventName,
@@ -62,11 +66,12 @@ export default function EventRegisterFormBasic() {
       duration,
       eventTimeZone,
       description,
-      postImageLink,
+      postImageLink: profileImage,
       organizationId: params.id,
     };
 
     const result = validateEvent.safeParse(data);
+
     if (result.success) {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/api/v1/event/createEvent`,
@@ -93,9 +98,9 @@ export default function EventRegisterFormBasic() {
       setDescription("");
       setPreviewImage("");
       setEventName("");
-      if (fileInputRef.current) {
-        fileInputRef.current.value = "";
-      }
+      // if (fileInputRef.current) {
+      //   fileInputRef.current.value = "";
+      // }
     } else {
       error(result.error.errors[0].message);
     }
@@ -108,7 +113,8 @@ export default function EventRegisterFormBasic() {
         Create Event
       </div>
       <form
-        onSubmit={(e: any) => sendEventData(e)}
+        method="POST"
+        // onSubmit={(e: any) => sendEventData(e)}
         // onSubmit={() => sendEventData()}
         className="px-8"
       >
@@ -259,7 +265,7 @@ export default function EventRegisterFormBasic() {
           Cover photo <div className="text-red-500 font-">*</div>
         </div>
 
-        <div className=" border-2 w-auto border-solId rounded-xl  ">
+        {/* <div className=" border-2 w-auto border-solId rounded-xl  ">
           <input
             required
             type="file"
@@ -287,14 +293,90 @@ export default function EventRegisterFormBasic() {
               alt="Picture of the author"
             />
           )}
+        </div> */}
+        <div>
+          <CldUploadWidget
+            uploadPreset="events"
+            onOpen={() => {
+              console.log("isPhotographer");
+            }}
+            onSuccess={(results: CloudinaryUploadWidgetResults) => {
+              const uploadedResult = results.info as CloudinaryUploadWidgetInfo;
+              const profileImageURL = {
+                image: uploadedResult.secure_url,
+              };
+              setProfileImage(profileImageURL.image);
+            }}
+            options={{
+              tags: ["events image"],
+              // publicId: `${organizationName}/${Date.now()}`,
+              // publicId: "b2c",
+
+              sources: ["local"],
+              googleApiKey: "<image_search_google_api_key>",
+              showAdvancedOptions: false,
+              cropping: true,
+              multiple: false,
+              showSkipCropButton: false,
+              croppingAspectRatio: 0.75,
+              croppingDefaultSelectionRatio: 0.75,
+              croppingShowDimensions: true,
+              croppingCoordinatesMode: "custom",
+              // maxImageHeight: 100,
+              // croppingValidateDimensions: true,
+              defaultSource: "local",
+              resourceType: "image",
+              folder: "events",
+
+              styles: {
+                palette: {
+                  window: "#ffffff",
+                  sourceBg: "#f4f4f5",
+                  windowBorder: "#90a0b3",
+                  tabIcon: "#000000",
+                  inactiveTabIcon: "#555a5f",
+                  menuIcons: "#555a5f",
+                  link: "#000000",
+                  action: "#000000",
+                  inProgress: "#464646",
+                  complete: "#000000",
+                  error: "#cc0000",
+                  textDark: "#000000",
+                  textLight: "#fcfffd",
+                  theme: "white",
+                },
+              },
+            }}
+          >
+            {({ open }) => {
+              return (
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    open();
+                  }}
+                >
+                  <div className="p-1 text-white font-semibold flex items-center justify-center gap-2 bg-slate-400 rounded-2xl">
+                    <FaCloudUploadAlt />
+                    upload image
+                  </div>
+                </button>
+              );
+            }}
+          </CldUploadWidget>
         </div>
 
-        {/* <button
-          type="submit"
-          className="flex text-center mt-5 mb-10 p-2 justify-center w-full bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono "
-        >
-          CREATE EVENT
-        </button> */}
+        {profileImage.length > 0 && (
+          <div className=" mt-5 border-2 w-auto border-solId rounded-xl   ">
+            <Image
+              className=" p-4"
+              src={profileImage}
+              width={500}
+              height={500}
+              alt="event cover image"
+            />
+          </div>
+        )}
 
         {isSubmitting ? (
           <button className="button flex text-center mt-10 mb-10 xl:mb-20  px-2 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono ">
@@ -310,8 +392,7 @@ export default function EventRegisterFormBasic() {
           </button>
         ) : (
           <button
-            // onSubmit={(e: any) => sendEventData(e)}
-            type="submit"
+            onClick={sendEventData}
             className="button flex text-center mt-10 mb-10 xl:mb-20 py-2 px-4 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono "
           >
             CREATE EVENT

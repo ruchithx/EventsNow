@@ -19,6 +19,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import NavBarProfile from "./NavBarProfile";
 import ResponsiveMenuBar from "./ResponsiveMenuBar";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { FaCircle } from "react-icons/fa";
 
 export type OrganizationProps = {
   map: any;
@@ -42,6 +44,7 @@ export type User = {
 
 export interface AuthContext {
   organizationId: string | null;
+  eventPublish: boolean;
   emailAuth: string | null;
   setOrganizationId: any;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
@@ -82,8 +85,15 @@ export default function NavBar() {
 
   const [showProfile, setShowProfile] = useState<boolean>(false);
 
-  const { emailAuth, setEmail, organization, setOrganization, organizationId } =
-    useAuth() as AuthContext;
+  const {
+    emailAuth,
+    eventPublish,
+    setEmail,
+    organization,
+    setOrganization,
+    organizationId,
+  } = useAuth() as AuthContext;
+  console.log(emailAuth, "emailAuth");
 
   // const ResponsiveMenuBar = dynamic(() => import("./ResponsiveMenuBar"));
   // const NavBarProfile = dynamic(() => import("./NavBarProfile"));
@@ -95,7 +105,7 @@ export default function NavBar() {
   const router = useRouter();
 
   async function clickLogoutBtn() {
-    await signOut();
+    await signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_URL}` });
     setEmail("");
     localStorage.removeItem("email");
     router.push("/");
@@ -128,6 +138,7 @@ export default function NavBar() {
           setNewUserPath(true);
         }
         const session = await getSession();
+        console.log(session, "session");
 
         if (session) {
           const name = session?.user?.name ? session?.user?.name : "";
@@ -162,7 +173,9 @@ export default function NavBar() {
             }
           } else {
             const email = emailAuth;
+            console.log(email, "email");
             const data = await getUser({ email });
+            console.log(data, "data");
 
             if (data) {
               setUserActive(true);
@@ -210,22 +223,38 @@ export default function NavBar() {
             <nav className="dark:bg-navWhite">
               <div className=" flex flex-wrap items-center justify-between mx-auto p-2">
                 {/* Events now logo and name */}
-                <Link href="/">
-                  <button className="button">
-                    <div className="flex items-center gap-3">
-                      <Image
-                        src="/images/reusableComponents/nav-logo.svg"
-                        alt="EventNow Logo"
-                        width={30}
-                        height={20}
-                      />
+                {pathname.startsWith("/event/dashboard") ? (
+                  <Link href={`/organization/dashboard/${organizationId}`}>
+                    <button
+                      className={`bg-custom-orange button  h-8 rounded-2xl`}
+                    >
+                      <div className="flex text-white  flex-row ml-2 mr-2  gap-2 p-0 items-center justify-center">
+                        <IoMdArrowRoundBack />
 
-                      <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-eventBrown    ">
-                        EventNow
-                      </span>
-                    </div>
-                  </button>
-                </Link>
+                        <div className=" text-white text-sm S font-bold ">
+                          Organization
+                        </div>
+                      </div>
+                    </button>
+                  </Link>
+                ) : (
+                  <Link href="/">
+                    <button className="button">
+                      <div className="flex items-center gap-3">
+                        <Image
+                          src="/images/reusableComponents/nav-logo.svg"
+                          alt="EventNow Logo"
+                          width={30}
+                          height={20}
+                        />
+
+                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-eventBrown    ">
+                          EventNow
+                        </span>
+                      </div>
+                    </button>
+                  </Link>
+                )}
 
                 <div
                   className="hidden w-full md:flex md:w-auto  items-end"
@@ -243,6 +272,26 @@ export default function NavBar() {
                       </Link>
                     ) : (
                       <>
+                        {pathname.startsWith("/event/dashboard") && (
+                          <div>
+                            {eventPublish ? (
+                              <div className="text-green-600 text-sm	 flex items-center gap-2">
+                                <div className="text-green-600">
+                                  <FaCircle size={15} />
+                                </div>
+                                publish
+                              </div>
+                            ) : (
+                              <div className=" text-red-600 text-sm	 flex items-center gap-2">
+                                <div className="text-red-600">
+                                  <FaCircle size={15} />
+                                </div>
+                                Not publish
+                              </div>
+                            )}
+                            <div></div>
+                          </div>
+                        )}
                         <li>
                           <Link href={"/"}>
                             <button
@@ -279,6 +328,7 @@ export default function NavBar() {
                     {userActive && (
                       <>
                         {/* crete event button */}
+
                         <button
                           type="button"
                           className={`${
