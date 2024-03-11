@@ -3,12 +3,14 @@ import Modal from "./ModalContext";
 import BlacklistModalContent from "./modals/BlacklistModal";
 import MakeAdminModalContent from "./modals/MakeAdminModal";
 import Image from "next/image";
+import { User } from "../../Type";
 
 interface PresonDetailsBar {
   name: string;
   email: string;
   userId: String;
   role: String;
+  setUser: React.Dispatch<React.SetStateAction<User[]>>;
 }
 
 export default function AdminPersonDetailsBar({
@@ -16,6 +18,7 @@ export default function AdminPersonDetailsBar({
   email,
   userId,
   role,
+  setUser,
 }: PresonDetailsBar) {
   const [showBlacklistModal, setShowBlacklistModal] = useState(false);
   const [showMakeAdminModal, setMakeAdminModal] = useState(false);
@@ -95,7 +98,11 @@ export default function AdminPersonDetailsBar({
 
       {showMakeAdminModal && (
         <Modal title="Details" onClose={() => setMakeAdminModal(false)}>
-          <MakeAdminModalContent userId={userId} />
+          <MakeAdminModalContent
+            setMakeAdminModal={setMakeAdminModal}
+            userId={userId}
+            setUser={setUser}
+          />
         </Modal>
       )}
     </div>
