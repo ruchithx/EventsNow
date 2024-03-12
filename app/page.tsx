@@ -1,6 +1,7 @@
 import React from "react";
 import Footer from "@/components/Footer";
 import EventCardDisabled from "@/components/EventCardDisabled";
+
 import EventViewMode from "./Components";
 //getevent functoion, api(data gnna ispublish bll),
 
@@ -100,6 +101,7 @@ export default function Home() {
       <div className="font-bold text-[60px] text-[#906953] drop-shadow-lg ms-8">
         Outdated Events
       </div>
+
       <div className="flex flex-wrap ms-12">
         {disablearr.map((event, index) => (
           <EventCardDisabled

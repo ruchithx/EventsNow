@@ -7,7 +7,6 @@ import { error } from "@/util/Toastify";
 
 import Image from "next/image";
 import { useAuth } from "@/app/AuthContext";
-import { stat } from "fs";
 
 interface contextProps {
   setEmail: React.Dispatch<React.SetStateAction<string>>;
@@ -79,6 +78,7 @@ export default function LoginForm() {
         error("Enter username and password");
         return;
       }
+    
 
       const res = await fetch("/api/v1/user/checkLogin", {
         method: "POST",
@@ -105,7 +105,10 @@ export default function LoginForm() {
         password: enteredPassword,
       });
 
-      if (!result?.error && result) {
+    
+      // remember this has error solve it later
+      // if (!result?.error && result)
+      if (result?.status === 200 && result?.ok) {
         localStorage.setItem("email", enteredUsername);
         setEmail(enteredUsername);
         setUsername("");
@@ -115,11 +118,10 @@ export default function LoginForm() {
           ? router.push("/admin/dashboard")
           : router.push("/");
       } else {
-        error("Invalid username or password");
+        error("user login failed");
       }
       setIsSubmitting(false);
     } catch (e) {
-      console.log("💥💥💥💥💥" + e);
       setIsSubmitting(false);
     }
   }

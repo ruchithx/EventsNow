@@ -25,7 +25,7 @@ export default function Org_RequestHandle({
             alt="image2"
             width={249.64}
             height={126}
-            className="shadow-xl  w-[300px] lg:w-[249.65px] md:w-[200px]"
+            className="shadow-xl  w-[300px] lg:w-[249.65px] md:w-[200px] h-[128px]"
           />
         </div>
         <div className="grid grid-rows-2 col-span-7">

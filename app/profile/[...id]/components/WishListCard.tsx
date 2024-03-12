@@ -2,17 +2,17 @@ import Image from "next/image";
 import React from "react";
 
 function info() {
-  console.log("Direct to the info page");
+
 }
 
 interface Upcoming_Events {
-  EventName: String;
-  Location: String;
-  Time: String;
-  Date: String;
-  Ratings: String;
-  image: String;
-  buttonDesc: String;
+  EventName: string;
+  Location: string;
+  Time: string;
+  Date: string;
+  Ratings: string;
+  image: string;
+  buttonDesc: string;
 }
 
 export default function WishListCArd({
@@ -24,7 +24,7 @@ export default function WishListCArd({
   image,
   buttonDesc,
 }: Upcoming_Events) {
-  const margin = EventName.length > 14 ? "mt-4" : " mt-0";
+  //const margin = EventName.length > 14 ? "mt-4" : " mt-0";
 
   return (
     <div className="bg-[#D9D9D9] h-fit my-6 mx-4 rounded-lg md:grid md:grid-cols-2 sm:grid-cols-2 w-[340px] md:w-[800px] md:h-fit xl:grid-cols-12 xl:h-fit">
@@ -68,9 +68,7 @@ export default function WishListCArd({
         </div>
 
         <div className="xl:grid xl:grid-cols-2">
-          <div
-            className={`mx-8 mt-2 flex items-center xl:items-start h-auto ${margin} `}
-          >
+          <div className={`mx-8 mt-2 flex items-center xl:items-start h-auto `}>
             <div className="w-8 h-8 xl:-mt-2">
               <Image
                 src="/images/reusableComponents/sendfill.svg"
@@ -84,7 +82,7 @@ export default function WishListCArd({
             </div>
           </div>
 
-          <div className={`mx-8 mt-2 flex ${margin} xl:mt-0`}>
+          <div className={`mx-8 mt-2 flex  xl:mt-0`}>
             <div className="w-8 h-8">
               <Image src="/Datelight.svg" alt="print" width={32} height={32} />
             </div>
@@ -95,9 +93,7 @@ export default function WishListCArd({
         </div>
 
         <div className="xl:grid xl:grid-cols-2">
-          <div
-            className={`mx-8 mt-2 flex items-center xl:items-start ${margin}`}
-          >
+          <div className={`mx-8 mt-2 flex items-center xl:items-start `}>
             <div className="w-8 h-8 xl:-mt-2">
               <Image src="/Clockfill.svg" alt="print" width={32} height={32} />
             </div>
@@ -106,7 +102,7 @@ export default function WishListCArd({
             </div>
           </div>
 
-          <div className={`mx-8 mt-2 flex ${margin}`}>
+          <div className={`mx-8 mt-2 flex `}>
             <div className="w-8 h-8">
               <Image src="/Lineup.svg" alt="print" width={32} height={32} />
             </div>

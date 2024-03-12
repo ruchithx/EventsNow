@@ -1,13 +1,9 @@
 import React from "react";
 import Image from "next/image";
 
-function Share() {
-  console.log("Direct to the Share options");
-}
+function Share() {}
 
-function preview() {
-  console.log("Direct to the preview options");
-}
+function preview() {}
 
 interface Event {
   EventName: String;
@@ -24,8 +20,8 @@ export default function Event({
   Date,
   buttonDesc,
 }: Event) {
-const width1 = buttonDesc.length > 14 ? "w-48" : " w-36"; 
-const width2 = buttonDesc.length > 14 ? "w-12" : " w-14";
+  const width1 = buttonDesc.length > 14 ? "w-48" : " w-36";
+  const width2 = buttonDesc.length > 14 ? "w-12" : " w-14";
   return (
     <div className="w-64 xl:w-72 xl:h-[40rem] h-[38rem] rounded-xl bg-[#D9D9D9] shadow-inner xl:py-8 xl:px-8 py-6 px-6 ">
       <div className="xl:w-56 w-52 h-60 xl:h-64  ">
@@ -124,7 +120,8 @@ const width2 = buttonDesc.length > 14 ? "w-12" : " w-14";
         <div>
           <button
             onClick={() => preview()}
-            className={`${width1} h-8 rounded-3xl bg-[#D47151] shrink-0 flex`}>
+            className={`${width1} h-8 rounded-3xl bg-[#D47151] shrink-0 flex`}
+          >
             <div className={` pl-4 pt-1 ${width2} `}>
               <Image
                 src={"/images/ReusableComponents/Send_fill.svg"}

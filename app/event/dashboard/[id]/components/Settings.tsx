@@ -5,22 +5,79 @@ import ContainerWithStroke from "./ContainerWithStroke";
 import { set } from "mongoose";
 import Image from "next/image";
 import { Button } from "@material-tailwind/react";
+import { UseEventContext, EventContextType } from "../EventDashContext";
+import { error, success } from "@/util/Toastify";
 
 export default function Settings() {
+  const {
+    id,
+    status,
+    handleOverview,
+    handleHostPage,
+    handleMyteam,
+    handleReports,
+    handleCampaign,
+    handleSetting,
+    isSideBar,
+    setIsSideBar,
+    eventname,
+    eventLocation,
+    eventType,
+    eventDate,
+    eventStartTime,
+    duration,
+    endTime,
+    setEventname,
+    setEventLocation,
+    setEventType,
+    setEventDate,
+    setEventStartTime,
+    setDuration,
+    setEndTime,
+  } = UseEventContext() as EventContextType;
+
   const [eventVisibility, setEventVisibility] = useState(false); //event visibility switch
   const handleChange = (checked: boolean) => {
     setEventVisibility(checked);
   };
 
-  const [eventname, setEventname] = useState("nada gama");
-  const [eventLocation, setEventLocation] = useState("KCC,Kandy Road,kandy.");
-  const [eventType, setEventType] = useState("Physical Event");
-  const [eventDate, setEventDate] = useState("2021-10-10");
-  const [eventStartTime, setEventStartTime] = useState("10:00 PM");
-  const [duration, setDuration] = useState("2 hours");
-  const [endTime, setEndTime] = useState("12:00 PM");
-  const handleUpdate = () => {
-    console.log("event details updated");
+  const handleUpdate = async () => {
+    // console.log({
+    //   eventType,
+    //   eventname,
+    //   eventLocation,
+    //   eventDate,
+    //   eventStartTime,
+    //   duration,
+    //   endTime,
+    //   eventVisibility,
+    // });
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/event/updateEvent`,
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            id: id,
+            eventName: eventname,
+            selectedTab: eventType,
+            sventStartedDate: eventDate,
+            startTime: eventStartTime,
+            duration: duration,
+          }),
+        }
+      );
+
+      if (!res.ok) {
+        error("Error updating event");
+        return;
+      }
+
+      success("Event updated successfully");
+    } catch (e) {
+      error(e);
+    }
   };
 
   return (
@@ -59,7 +116,7 @@ export default function Settings() {
                     onChange={(e) => {
                       setEventname(e.target.value);
                     }}
-                    value={eventname}
+                    value={eventname as string}
                     className="focus:outline-custom-orange border-2 rounded-md pl-4 pr-16 placeholder:text-[#ABB7C2] placeholder:font-Inter placeholder:text-base placeholder:font-normal place-self-start w-full"
                   />
                 </div>
@@ -72,9 +129,9 @@ export default function Settings() {
                 <div className="w-full sm:max-md:flex 2xl:flex  justify-between  ">
                   <div className="flex  2xl:shadow-lg mb-3 sm:mb-0 md:mb-3  2xl:mb-0 ">
                     <button
-                      onClick={() => setEventType("Physical Event")}
+                      onClick={() => setEventType("Onsite")}
                       className={`${
-                        eventType === "Physical Event"
+                        eventType === "Onsite"
                           ? "bg-custom-orange text-white rounded-l-md"
                           : "bg-white text-custom-orange rounded-l-md  border-custom-orange border-2"
                       } px-2  content-center grid `}
@@ -82,9 +139,9 @@ export default function Settings() {
                       Physical Event
                     </button>
                     <button
-                      onClick={() => setEventType("Online Event")}
+                      onClick={() => setEventType("Online")}
                       className={`${
-                        eventType === "Online Event"
+                        eventType === "Online"
                           ? "bg-custom-orange text-white rounded-r-md"
                           : "bg-white text-custom-orange rounded-r-md  border-custom-orange border-2"
                       } px-2  content-center grid `}
@@ -106,7 +163,7 @@ export default function Settings() {
                       onChange={(e) => {
                         setEventLocation(e.target.value);
                       }}
-                      value={eventLocation}
+                      value={eventLocation as string}
                       className=" pl-4 xl:pr-16 placeholder:text-[#ABB7C2] placeholder:font-Inter placeholder:text-base placeholder:font-normal place-self-start w-full border-none focus:outline-none"
                     />
                   </div>
@@ -125,7 +182,7 @@ export default function Settings() {
                       onChange={(e) => {
                         setEventDate(e.target.value);
                       }}
-                      value={eventDate}
+                      value={eventDate.substring(0, 10) as string}
                       className="focus:outline-custom-orange border-2 rounded-md pl-4 pr-16 placeholder:text-[#ABB7C2] placeholder:font-Inter placeholder:text-base placeholder:font-normal place-self-start w-full"
                     />
                   </div>
@@ -139,7 +196,7 @@ export default function Settings() {
                       onChange={(e) => {
                         setEventStartTime(e.target.value);
                       }}
-                      value={eventStartTime}
+                      value={eventStartTime as string}
                       className="focus:outline-custom-orange border-2 rounded-md pl-4 pr-16 placeholder:text-[#ABB7C2] placeholder:font-Inter placeholder:text-base placeholder:font-normal place-self-start w-full"
                     />
                   </div>
@@ -153,7 +210,7 @@ export default function Settings() {
                       onChange={(e) => {
                         setDuration(e.target.value);
                       }}
-                      value={duration}
+                      value={duration as string}
                       className="focus:outline-custom-orange border-2 rounded-md pl-4 pr-16 placeholder:text-[#ABB7C2] placeholder:font-Inter placeholder:text-base placeholder:font-normal place-self-start w-full"
                     />
                   </div>
@@ -167,7 +224,7 @@ export default function Settings() {
                       onChange={(e) => {
                         setEndTime(e.target.value);
                       }}
-                      value={endTime}
+                      value={endTime as string}
                       className="focus:outline-custom-orange border-2 rounded-md pl-4 pr-16 placeholder:text-[#ABB7C2] placeholder:font-Inter placeholder:text-base placeholder:font-normal place-self-start w-full"
                     />
                   </div>

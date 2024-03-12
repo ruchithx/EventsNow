@@ -8,7 +8,7 @@ import { NextResponse } from "next/server";
 export async function DELETE() {
   try {
     await connectMongoDB();
-    // await User.deleteMany();
+    // await Permission.deleteMany();
     return NextResponse.json({ message: "data delete success" });
   } catch (e) {
     console.log(e);

@@ -44,6 +44,8 @@ export interface OrgContext {
   eventPermission: EventPermission[];
   setEventPermission: React.Dispatch<React.SetStateAction<EventPermission[]>>;
   id: string;
+  organizationImage: string;
+  setOrganizationImage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export type Organization = {

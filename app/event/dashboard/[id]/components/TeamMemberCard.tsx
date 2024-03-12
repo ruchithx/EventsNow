@@ -11,7 +11,6 @@ export default function TeamMemberCard({ name, email }: TeamMemberCardProps) {
       <ContainerWithStroke>
         <div className="lg:flex mx-auto py-1 md:justify-around md:pr-10 lg:pl-10 max-sm:text-sm ">
           <div className="">{name}</div>
-          <div className=""></div>
           {email}
         </div>
       </ContainerWithStroke>

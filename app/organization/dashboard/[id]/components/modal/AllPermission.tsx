@@ -235,7 +235,6 @@ const PermissionName = memo(function PermissionName({
   checked: any;
   setCheck: Dispatch<SetStateAction<boolean>>;
 }) {
-  console.log(name, checked);
   return (
     <div className="bg-[#D9D9D9]  flex justify-between w-10/12">
       <div className="ml-2">{name}</div>
