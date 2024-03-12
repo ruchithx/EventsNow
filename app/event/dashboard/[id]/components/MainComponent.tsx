@@ -163,7 +163,6 @@ export default function MainComponent() {
           Location={eventLocation}
           Time={eventStartTime}
           Date={eventDate.substring(0, 10)}
-          buttonDesc={"organization name "}
           eventCover={eventCover}
           />
         </div>

@@ -10,7 +10,6 @@ interface Event {
   Location: String;
   Time: String;
   Date: String;
-  buttonDesc: String;
   eventCover: String;
 }
 
@@ -19,13 +18,11 @@ export default function Event({
   Location,
   Time,
   Date,
-  buttonDesc,
   eventCover,
 }: Event) {
-  const width1 = buttonDesc.length > 14 ? "w-48" : " w-36";
-  const width2 = buttonDesc.length > 14 ? "w-12" : " w-14";
   return (
-    <div className=" w-64 xl:w-72   rounded-xl bg-[#D9D9D9] shadow-inner xl:py-8 xl:px-8 py-6 px-6  ">
+    <div className=" w-64 xl:w-72   rounded-xl bg-[#D9D9D9] shadow-inner xl:pt-8 xl:px-8 pt-6 px-6  ">
+      <button>View Event</button>
       <Image
         className=" rounded-md  "
         src={eventCover as string}
@@ -113,25 +110,6 @@ export default function Event({
             </div>
             <div className="w-40 h-4 text-[#535353] text-sm font-['IBM Plex Mono'] font-medium py-1.5 pl-0 mr-2 ">
               Preview
-            </div>
-          </button>
-        </div>
-
-        <div>
-          <button
-            onClick={() => preview()}
-            className={`${width1} h-8 rounded-3xl bg-[#D47151] shrink-0 flex`}
-          >
-            <div className={` pl-4 pt-1 ${width2} `}>
-              <Image
-                src={"/images/ReusableComponents/Send_fill.svg"}
-                alt="info"
-                width={40}
-                height={40}
-              />
-            </div>
-            <div className="w-40 h-4 text-white text-sm font-medium py-1.5 pl-0 mr-2 font-['IBM Plex Mono'] ">
-              {buttonDesc}
             </div>
           </button>
         </div>

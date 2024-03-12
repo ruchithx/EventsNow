@@ -116,7 +116,7 @@ export default function Home() {
           time={"10.00AM"}
         />
       </div>
-      <div className="flex flex-row justify-evenly mt-4">
+      {/* <div className="flex flex-row justify-evenly mt-4">
         <div className="font-bold text-[70px] text-[#906953] ms-12 w-1/2">
           OutDated Events
         </div>
@@ -142,7 +142,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="flex flex-wrap ms-12">
         {" "}
