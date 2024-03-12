@@ -23,7 +23,6 @@ interface customUser {
   name: string;
   image: string;
   _id: string;
-
 }
 
 function buyTckets() {}
@@ -39,7 +38,9 @@ export default function HostSideBar({
   const [activeButton, setActiveButton] = useState<number | null>(1);
   const [userId, setUserId] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
-  const [registeredUserList, setRegisteredUserList] = useState<string[] | null>(null);
+  const [registeredUserList, setRegisteredUserList] = useState<string[] | null>(
+    null
+  );
 
   const handleClick = (buttonNumber: number) => {
     setActiveButton(buttonNumber);
@@ -55,7 +56,7 @@ export default function HostSideBar({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email:email, eventId: id }),
+        body: JSON.stringify({ email: email, eventId: id }),
       }
     );
     if (!res.ok) {
@@ -74,7 +75,7 @@ export default function HostSideBar({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email:email, eventId: id }),
+        body: JSON.stringify({ email: email, eventId: id }),
       }
     );
     if (!res.ok) {
@@ -83,9 +84,7 @@ export default function HostSideBar({
     }
 
     success("remove user from event successfully");
-    
   }
-
 
   useEffect(() => {
     const getUser = async () => {
@@ -93,11 +92,9 @@ export default function HostSideBar({
       const user = session?.user as customUser;
       setUserId(user._id);
       setEmail(user.email);
-     
-      
     };
     getUser();
-    
+
     const getEvent = async () => {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getEvent`,
@@ -109,19 +106,12 @@ export default function HostSideBar({
       );
       const data = await res.json();
       setRegisteredUserList(data.registerUser);
-    
-      
     };
     getEvent();
-   
-
-
-
-
   }, [id]);
 
   return (
-    <div className="xl:w-96 xl:h-[45rem] md:h-[36rem] bg-white items-end md:w-80">
+    <div className="xl:w-96 h-screen bg-white items-end md:w-80">
       <div className=' text-center text-[#454545cc] md:text-4xl xl:text-5xl sm:text-xl font-normal xl:pt-16 md:pt-10 font-["Roboto"]'>
         {EventName}
       </div>
@@ -207,19 +197,41 @@ export default function HostSideBar({
         </div>
 
         <div className="flex xl:pt-24 md:pt-14 items-center ">
-          <button className="flex xl:w-36 w-32 xl:h-16 h-12  bg-[#D47151] rounded-l-2xl items-center xl:px-4  ">
-            <div className=" w-10 h-10 mt-2 ml-2 xl:ml-0">
-              <Image
-                src="/images/Event/HostPage/Check_fill.svg"
-                alt="print"
-                width={32}
-                height={32}
-              />
-            </div>
-            <div className="font-medium xl:text-lg text-md text-white text-left leading-tight ml-4">
-              Buy tickets
-            </div>
-          </button>
+          {registeredUserList?.includes(userId || "") ? (
+            <button
+              onClick={removeUserFromRegisteredEvent}
+              className="flex xl:w-36 w-32 xl:h-16 h-12 bg-custom-orange rounded-l-2xl items-center xl:px-4"
+            >
+              <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
+                <Image
+                  src="/images/Event/HostPage/Paper_fill.svg"
+                  alt="print"
+                  width={32}
+                  height={32}
+                />
+              </div>
+              <div className="font-medium xl:text-lg text-md text-white text-left leading-tight xl:ml-4 md:ml-2">
+                Remove Registration
+              </div>
+            </button>
+          ) : (
+            <button
+              onClick={userRegistrationForEventHandler}
+              className="flex xl:w-36 w-32 xl:h-16 h-12  bg-custom-orange rounded-l-2xl items-center xl:px-4"
+            >
+              <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
+                <Image
+                  src="/images/Event/HostPage/Paper_fill.svg"
+                  alt="print"
+                  width={32}
+                  height={32}
+                />
+              </div>
+              <div className="font-medium xl:text-lg text-md text-white text-left leading-tight xl:ml-4 md:ml-2">
+                Register event
+              </div>
+            </button>
+          )}
 
           <button className="flex xl:w-36 w-32 xl:h-16 h-12 bg-[#455273] rounded-r-2xl items-center xl:px-4">
             <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
@@ -236,40 +248,19 @@ export default function HostSideBar({
           </button>
         </div>
 
-          {registeredUserList?.includes(userId || "") ? 
-           <button
-           onClick={removeUserFromRegisteredEvent}
-           className="flex xl:w-36 w-32 xl:h-16 h-12 bg-[#455273] rounded-r-2xl items-center xl:px-4"
-         >
-           <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
-             <Image
-               src="/images/Event/HostPage/Paper_fill.svg"
-               alt="print"
-               width={32}
-               height={32}
-             />
-           </div>
-           <div className="font-medium xl:text-lg text-md text-white text-left leading-tight xl:ml-4 md:ml-2">
-             remove 
-           </div>
-         </button>: <button
-           onClick={userRegistrationForEventHandler}
-           className="flex xl:w-36 w-32 xl:h-16 h-12 bg-[#455273] rounded-r-2xl items-center xl:px-4"
-         >
-           <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
-             <Image
-               src="/images/Event/HostPage/Paper_fill.svg"
-               alt="print"
-               width={32}
-               height={32}
-             />
-           </div>
-           <div className="font-medium xl:text-lg text-md text-white text-left leading-tight xl:ml-4 md:ml-2">
-             Register
-           </div>
-         </button>}
-
-        
+        <button className="flex xl:w-72 w-32 xl:h-16 h-8  bg-[#D47151] rounded-2xl items-center xl:px-4  ">
+          <div className=" w-10 h-8 mt-2 ml-2 xl:ml-0">
+            <Image
+              src="/images/Event/HostPage/Check_fill.svg"
+              alt="print"
+              width={32}
+              height={32}
+            />
+          </div>
+          <div className="font-medium xl:text-lg text-md text-white text-left leading-tight ml-4">
+            Buy tickets
+          </div>
+        </button>
       </div>
     </div>
   );
