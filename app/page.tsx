@@ -1,186 +1,116 @@
-"use client";
-
+import React from "react";
 import Footer from "@/components/Footer";
-
-import EventCardNew from "@/components/EventCardNew";
-
-import EventCardEventDash from "@/components/EventCardEventDash";
-import Upcoming_Events from "@/components/UpcomingEvents";
-import EventCardNewOrg from "@/components/EventCardNewOrg";
 import EventCardDisabled from "@/components/EventCardDisabled";
-import EventCard from "@/components/EventCard";
-import { HiOutlineViewGrid } from "react-icons/hi";
-import { HiOutlineViewList } from "react-icons/hi";
-import { IoMdArrowDropdown } from "react-icons/io";
+import EventViewMode from "./Components";
+//getevent functoion, api(data gnna ispublish bll),
+
+export const initialEventArr = [
+  {
+    name: "Nadagama",
+    img: "images/event/UpcomingEvent.png",
+    location: "akuressa",
+    date: "2024/02/12",
+    time: "12:00 PM",
+  },
+  {
+    name: "sadagama",
+    img: "images/event/UpcomingEvent.png",
+    location: "Matara",
+    date: "2024/11/12",
+    time: "12:00 PM",
+  },
+  {
+    name: "aadagama",
+    img: "images/event/UpcomingEvent.png",
+    location: "Matara",
+    date: "2024/12/10",
+    time: "12:00 PM",
+  },
+  {
+    name: "hadagama",
+    img: "images/event/UpcomingEvent.png",
+    location: "Matara",
+    date: "2024/12/5",
+    time: "12:00 PM",
+  },
+  {
+    name: "oadagama",
+    img: "images/event/UpcomingEvent.png",
+    location: "Matara",
+    date: "2024/12/9",
+    time: "12:00 PM",
+  },
+  {
+    name: "radagama",
+    img: "images/event/UpcomingEvent.png",
+    location: "Matara",
+    date: "2024/12/4",
+    time: "12:00 PM",
+  },
+  {
+    name: "wadagama",
+    img: "images/event/UpcomingEvent.png",
+    location: "Matara",
+    date: "2024/12/1",
+    time: "12:00 PM",
+  },
+  {
+    name: "ladagama",
+    img: "images/event/UpcomingEvent.png",
+    location: "Matara",
+    date: "2024/12/5",
+    time: "12:00 PM",
+  },
+];
+const disablearr = [
+  {
+    name: "ladagama",
+    img: "images/event/UpcomingEvent.png",
+    location: "Matara",
+    date: "2024/12/5",
+    time: "12:00 PM",
+  },
+  {
+    name: "ladagama",
+    img: "images/event/UpcomingEvent.png",
+    location: "Matara",
+    date: "2024/12/5",
+    time: "12:00 PM",
+  },
+  {
+    name: "ladagama",
+    img: "images/event/UpcomingEvent.png",
+    location: "Matara",
+    date: "2024/12/5",
+    time: "12:00 PM",
+  },
+  {
+    name: "ladagama",
+    img: "images/event/UpcomingEvent.png",
+    location: "Matara",
+    date: "2024/12/5",
+    time: "12:00 PM",
+  },
+];
 
 export default function Home() {
   return (
     <div>
-      {/* <EventCardNew event={"ARQM"} organization={"ASd"} /> */}
-      {/* <EventCardNewOrg
-        event={"Nadagama"}
-        date={"2022/05/1"}
-        time={"09.00"}
-        location={"online"}
-      /> */}
-      {/* <button onClick={handleClickIt}> click it </button> */}
-
-      <div>Hero sectin</div>
-      {/* <EventCardNewOrg
-        event="nadagama"
-        date="2002-2-1"
-        time="9.00"
-        location="matara"
-      />
-      <EventCardNew event="erewe" organization="sdsd" /> */}
-      {/* <div className="flex flex-row justify-between">
-        <div className="font-bold text-[80px] text-[#906953] ms-8 ">
-          Upcoming Events
-        </div>
-        <div className="mt-14 flex flex-row">
-          Sort By
-          <div className="relative ml-4">
-            <select className="appearance-none bg-white border border-gray-300 px-4 py-1 rounded-md shadow-sm text-sm focus:outline-none focus:border-gray-400">
-              <option value="location">Location</option>
-              <option value="name">Name</option>
-              <option value="organization">Organization</option>
-              <option value="date">Date</option>
-            </select>
-          </div>
-        </div>
-        <div className="mt-14 flex flex-row gap-4 mr-20">
-          View As
-          <div className="mt-1 flex flex-row gap-3 cursor-pointer ">
-            <HiOutlineViewGrid className="cursor-pointer hover:bg-gray-200 " />
-
-            <HiOutlineViewList className="cursor-pointer hover:bg-gray-200" />
-          </div>
-        </div>
-      </div>
-
-      <div className=" flex flex-wrap ms-12">
-        <EventCard
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-          time={"10.00AM"}
-        />
-        <EventCard
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-          time={"10.00AM"}
-        />
-        <EventCard
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-          time={"10.00AM"}
-        />
-        <EventCard
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-          time={"10.00AM"}
-        />
-        <EventCard
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-          time={"10.00AM"}
-        />
-        <EventCard
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-          time={"10.00AM"}
-        />
-        <EventCard
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-          time={"10.00AM"}
-        />
-      </div>
-      <div className="font-bold text-[80px] text-[#906953] ms-8">
-        Out dated Event
+      <EventViewMode />
+      <div className="font-bold text-[60px] text-[#906953] drop-shadow-lg ms-8">
+        Outdated Events
       </div>
       <div className="flex flex-wrap ms-12">
-        {" "}
-        <EventCardDisabled
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-        />
-        <EventCardDisabled
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-        />
-        <EventCardDisabled
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-        />
-        <EventCardDisabled
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-        />
-        <EventCardDisabled
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-        />
-        <EventCardDisabled
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-        />
-        <EventCardDisabled
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-        />
-        <EventCardDisabled
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-        />
-        <EventCardDisabled
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-        />
-        <EventCardDisabled
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-        />
-        <EventCardDisabled
-          name={"Nadagama"}
-          img={"images/event/UpcomingEvent.png"}
-          location={"Matara"}
-          date={"2024/12/12"}
-        />
-      </div> */}
+        {disablearr.map((event, index) => (
+          <EventCardDisabled
+            key={index}
+            name={event.name}
+            img={event.img}
+            location={event.location}
+            date={event.date}
+          />
+        ))}
+      </div>
       <Footer />
     </div>
   );

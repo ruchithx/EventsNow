@@ -39,6 +39,10 @@ const eventSchema = new mongoose.Schema({
     ref: Organization,
     required: [true, "Please enter organization Id"],
   },
+  isPublished: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const Event = mongoose.models.Event || mongoose.model("Event", eventSchema);
