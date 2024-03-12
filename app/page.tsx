@@ -3,7 +3,32 @@ import Footer from "@/components/Footer";
 import EventCardDisabled from "@/components/EventCardDisabled";
 
 import EventViewMode from "./Components";
-//getevent functoion, api(data gnna ispublish bll),
+
+// const getEvent = async ({ id }: any) => {
+//   const res = await fetch(
+//     `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getPublishedEvents`,
+//     { method: "GET" }
+//   );
+//   const data = await res.json();
+//   return data;
+// };
+async function getData({ id }: any) {
+  console.log(process.env.NEXT_PUBLIC_URL);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getPublishedEvents`,
+    {
+      method: "GET",
+      mode: "cors",
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Error fetching data: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data;
+}
 
 export const initialEventArr = [
   {
@@ -62,31 +87,15 @@ export const initialEventArr = [
     date: "2024/12/5",
     time: "12:00 PM",
   },
-];
-const disablearr = [
   {
-    name: "ladagama",
+    name: "Sandwani",
     img: "images/event/UpcomingEvent.png",
     location: "Matara",
     date: "2024/12/5",
     time: "12:00 PM",
   },
   {
-    name: "ladagama",
-    img: "images/event/UpcomingEvent.png",
-    location: "Matara",
-    date: "2024/12/5",
-    time: "12:00 PM",
-  },
-  {
-    name: "ladagama",
-    img: "images/event/UpcomingEvent.png",
-    location: "Matara",
-    date: "2024/12/5",
-    time: "12:00 PM",
-  },
-  {
-    name: "ladagama",
+    name: "Mayasi gee saraniya",
     img: "images/event/UpcomingEvent.png",
     location: "Matara",
     date: "2024/12/5",
@@ -94,25 +103,24 @@ const disablearr = [
   },
 ];
 
-export default function Home() {
+export default async function Home({ params }: any) {
+  const data = await getData(params);
   return (
     <div>
       <EventViewMode />
       <div className="font-bold text-[60px] text-[#906953] drop-shadow-lg ms-8">
         Outdated Events
       </div>
-
-      <div className="flex flex-wrap ms-12">
-        {disablearr.map((event, index) => (
-          <EventCardDisabled
-            key={index}
-            name={event.name}
-            img={event.img}
-            location={event.location}
-            date={event.date}
-          />
-        ))}
-      </div>
+      {data.map((e: any) => (
+        <EventCardDisabled
+          key={e._id}
+          name={e.name}
+          img={e.img}
+          location={e.location}
+          date={e.date}
+        />
+      ))}
+      <div className="flex flex-wrap ms-12"></div>
       <Footer />
     </div>
   );
