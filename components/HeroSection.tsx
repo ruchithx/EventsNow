@@ -26,13 +26,20 @@ export default function HeroSection() {
   };
   return (
     <div>
-      <div className="grid  sm:grid-cols-2  h-screen overflow-hidden ">
-        <div>
-          <div className="w-full bg-[#D7CFC7] xl:h-screen ">
-            <div className="text-[#906953] text-center font-khand text-4xl  md:py-16  xl:px-12 font-semibold py-6 md:px-6">
+      <div className="grid lg:grid-cols-2 ">
+        
+          <div className=" bg-[#D7CFC7] h-[500px] md:h-[565px] xl:h-[836px] ">
+             <div className=" text-[#906953] text-center font-khand text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl md:py-16 xl:pt-32 xl:px-12 font-semibold py-16 sm:py-12 md:px-6">
               “Where Moments Become Memories”
             </div>
-            <div className="text-[#4A4A4A] text-center font-khand text-sm  font-medium px-4  pb-6 md:px-12 sm:mx-8">
+            <div className="sm:hidden text-[#4A4A4A] text-center font-khand text-sm  font-medium px-8 pb-12 ">
+            "Welcome to EVENTNOW! Discover and attend unforgettable events 
+            that create cherished memories. From concerts to conferences and
+             cultural celebrations, we provide access to extraordinary experiences.
+              Join us in embracing the joy of the moment!"
+            </div>
+            
+            <div className="hidden sm:grid  text-[#4A4A4A] text-center font-khand text-sm  font-medium px-4  pb-10 lg:pb-4 md:px-12 lg:px-4 sm:mx-8">
               Welcome to EVENTNOW, where we believe that every event is an
               opportunity to create cherished memories. We're your dedicated
               platform for discovering and attending a wide range of exciting
@@ -43,9 +50,9 @@ export default function HeroSection() {
               unforgettable experiences. Join us in embracing the joy of the
               moment and let us be your guide to the world of extraordinary
               events.
-            </div>
+  </div>
 
-            <div className="justify-center items-center pb-10  md:pb-16 mx-10 flex md:py-8 xl:py-8">
+            <div className="justify-center items-center pb-10 mx-10 flex md:py-8 xl:py-8">
               <button
                 onClick={() => info()}
                 className=" md:w-48 w-12 md:h-11 h-8 rounded-l-full  bg-[#D47151]  flex  "
@@ -58,7 +65,7 @@ export default function HeroSection() {
                   alt="search"
                 />
 
-                <div className=" font-mono text-white text-lg mx-1 my-auto">
+                <div className=" hidden md:grid font-mono text-white text-lg mx-1 my-auto">
                   search events
                 </div>
               </button>
@@ -71,16 +78,15 @@ export default function HeroSection() {
                   name="search"
                 />
               </label>
-            </div>
+            </div> 
           </div>
-        </div>
-        <div className="h-screen  overflow-hidden xl:block rounded-none hidden">
+        
+        <div className="overflow-hidden rounded-none hidden lg:grid">
           <Flowbite theme={{ theme: customTheme }}>
             <Carousel>
               <Image
                 src="/images/heroSection/Frame1.png"
                 alt="..."
-                className="h-full w-full object-cover"
                 width={1000}
                 height={2000}
               />
@@ -89,21 +95,18 @@ export default function HeroSection() {
                 alt="..."
                 width={2000}
                 height={2000}
-                className="h-full w-full object-cover"
               />
               <Image
                 src="/images/heroSection/Frame3.png"
                 alt="..."
                 width={1000}
                 height={2000}
-                className="h-full w-full object-cover"
               />
               <Image
                 src="/images/heroSection/Frame4.png"
                 alt="..."
                 width={1000}
                 height={1000}
-                className="h-full w-full object-cover"
               />
             </Carousel>
           </Flowbite>

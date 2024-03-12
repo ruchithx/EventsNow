@@ -65,7 +65,7 @@ export default function Home() {
         </div>
       </div> */}
 
-      <div className=" flex flex-wrap ms-12">
+      <div className=" flex flex-wrap md:ms-12 mx-6 lg:mx-0 xl:ms-20 sm:mx-0  ">
         <EventCard
           name={"Nadagama"}
           img={"images/event/UpcomingEvent.png"}
@@ -144,7 +144,7 @@ export default function Home() {
         </div>
       </div> */}
 
-      <div className="flex flex-wrap ms-12">
+      <div className="flex flex-wrap md:ms-12 mx-6 lg:mx-0 xl:ms-20 sm:mx-0">
         {" "}
         <EventCardDisabled
           name={"Nadagama"}
