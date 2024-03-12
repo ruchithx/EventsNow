@@ -89,24 +89,28 @@ export default function HeroSection() {
                 alt="..."
                 width={1000}
                 height={2000}
+                className="xl:max-2xl:w-full xl:max-2xl:h-full"
               />
               <Image
                 src="/images/heroSection/Frame2.png"
                 alt="..."
                 width={2000}
                 height={2000}
+                className="xl:max-2xl:w-full xl:max-2xl:h-full "
               />
               <Image
                 src="/images/heroSection/Frame3.png"
                 alt="..."
                 width={1000}
                 height={2000}
+                className="xl:max-2xl:w-full xl:max-2xl:h-full"
               />
               <Image
                 src="/images/heroSection/Frame4.png"
                 alt="..."
                 width={1000}
                 height={1000}
+                className="xl:max-2xl:w-full xl:max-2xl:h-full"
               />
             </Carousel>
           </Flowbite>
