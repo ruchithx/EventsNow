@@ -2,7 +2,13 @@ import React from "react";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import BestEvent from "./components/BestEvent";
+import { Metadata } from "next";
 // import BestEvent from "./components/BestEvent";
+
+export const metadata: Metadata = {
+  title: " About",
+  description: "This is the about page of the website.",
+};
 
 export default function page() {
   return (

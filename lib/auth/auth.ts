@@ -36,7 +36,7 @@ export const authOptions: NextAuthOptions = {
         }
 
         const user = await User.findOne({ email: credentials.email });
-        console.log(user, "user");
+
         if (!user) {
           return null;
         }
@@ -76,7 +76,6 @@ export const authOptions: NextAuthOptions = {
       account: any;
     }): Promise<boolean> {
       if (account?.provider === "google") {
-        console.log("google user", user);
         const email = user?.email;
         const name = user?.name;
         const image = user?.image;
@@ -90,7 +89,7 @@ export const authOptions: NextAuthOptions = {
             body: JSON.stringify({ email, name, image }),
           }
         ).then((res) => res.json());
-        console.log(data, "data user sign");
+
         user.role = data.user.role;
         user.firstName = data.user.firstName;
         user.lastName = data.user.lastName;
@@ -99,7 +98,6 @@ export const authOptions: NextAuthOptions = {
         user.wishListId = data.user.wishListId;
         user.registeredUser = data.user.registeredUser;
 
-        console.log(user, "data user ");
         return data;
       }
       // if (account?.provider === "google") {
@@ -153,7 +151,6 @@ export const authOptions: NextAuthOptions = {
       } else {
         // Handle the case when the user is undefined
       }
-      console.log(params.token, "params token");
       return params.token;
     },
   },

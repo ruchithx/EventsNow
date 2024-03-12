@@ -36,6 +36,7 @@ export default function PermissionOneEvent() {
 
   useEffect(() => {
     if (!eventPermission) return;
+
     const existingDocument = eventPermission.find(
       (permission) => permission.eventId === selectEventForPermission._id
     );

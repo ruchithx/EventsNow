@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { NextRequest, NextResponse } from "next/server";
 import User from "@/models/userModel";
 import connectMongoDB from "@/lib/mongo/mongodb";
@@ -7,7 +9,6 @@ import { request } from "http";
 
 export const GET = async (request: NextRequest, { params }: any) => {
   const id = params.id;
-
 
   try {
     await connectMongoDB();

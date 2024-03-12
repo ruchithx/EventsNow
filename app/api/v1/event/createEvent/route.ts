@@ -1,8 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import connectMongoDB from "../../../../../lib/mongo/mongodb";
 import Event from "../../../../../models/eventModel";
 
-export async function POST(req) {
+export async function POST(req: NextRequest) {
   const {
     eventName,
     selectedTab,
@@ -16,7 +16,7 @@ export async function POST(req) {
   } = await req.json();
 
   connectMongoDB();
-  await Event.create({
+  const event = await Event.create({
     eventName,
     selectedTab,
     eventStartDate,
@@ -27,8 +27,11 @@ export async function POST(req) {
     postImageLink,
     organizationId,
   });
-  return NextResponse.json(
-    { message: "Event Created Successfully" },
-    { status: 201 }
-  );
+  if (!event) {
+    return NextResponse.json(
+      { message: "Event Creation Failed" },
+      { status: 400 }
+    );
+  }
+  return NextResponse.json({ event }, { status: 201 });
 }

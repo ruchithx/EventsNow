@@ -11,7 +11,6 @@ export default function Organization({
     <div className="py-5 ">
       <OrgContextProvider>
         <CheckActive />
-        
       </OrgContextProvider>
     </div>
   );

@@ -28,10 +28,14 @@ const MakeAdminModalContent = ({
 
       success("User is now an admin");
       setMakeAdminModal(false);
-      setUser((user) => {
-        const userIndex = user.findIndex((user) => user._id === userId);
-        user[userIndex].role = "admin";
-        return user;
+      setUser((user: User[]) => {
+        const userChangers = user.map((user: User) => {
+          if (user._id === userId) {
+            user.role = "admin";
+          }
+          return user;
+        });
+        return userChangers;
       });
 
       // (user.find((user) => user._id === userId)?.role = "admin")
