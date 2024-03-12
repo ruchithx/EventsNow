@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import grapesjs from "grapesjs";
 import plugin from "grapesjs-blocks-basic";
 import navbar from "grapesjs-navbar";
@@ -8,9 +10,11 @@ import filter from "grapesjs-style-filter";
 import styleBg from "grapesjs-style-bg";
 import webPage from "grapesjs-preset-webpage";
 import touch from "grapesjs-touch";
+import RenderedContent from "./RenderedContent";
 
-export default function build() {
+export default function Build({ onHtmlRendered }) {
   const [editor, setEditor] = useState(null);
+  const [html, setHtml] = useState(null); // State to store rendered HTML
 
   useEffect(() => {
     const editor = grapesjs.init({
@@ -40,9 +44,26 @@ export default function build() {
     setEditor(editor);
   }, []);
 
+  const renderPage = () => {
+    if (!editor) return;
+
+    const html = editor.getHtml();
+    setHtml(html);
+
+    // Optionally call the callback function with the rendered HTML
+    onHtmlRendered?.(html);
+  };
+
+  useEffect(() => {
+    renderPage(); // Render initially
+    editor?.on("update", renderPage); // Re-render on editor updates
+  }, [editor]);
+
   return (
     <div className="p-0 m-0 overflow-x-hidden overflow-scroll -scroll-ms-0 scroll-m-0">
       <div className="overflow-y-scroll" id="editor"></div>
+      {/* Placeholder for rendered content (optional, can be removed) */}
+      {html && <RenderedContent content={html} />}
     </div>
   );
 }

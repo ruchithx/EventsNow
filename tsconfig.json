@@ -45,7 +45,7 @@
     "models/userModel.js",
 
     "app/api/v1/organization/denyOrganization/[...id]/route.jsx",
-    "components/PageBuilder/Build.jsx"
+    "components/PageBuilder/Build.tsx"
   ],
   "exclude": ["node_modules"]
 }

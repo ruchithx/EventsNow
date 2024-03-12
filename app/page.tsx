@@ -2,19 +2,12 @@
 
 import Footer from "@/components/Footer";
 
-import EventCardNew from "@/components/EventCardNew";
+// ... other imports for Event Cards etc. (same as before)
 
-import EventCardEventDash from "@/components/EventCardEventDash";
-import Upcoming_Events from "@/components/UpcomingEvents";
-import EventCardNewOrg from "@/components/EventCardNewOrg";
-import EventCardDisabled from "@/components/EventCardDisabled";
-import EventCard from "@/components/EventCard";
-import { HiOutlineViewGrid } from "react-icons/hi";
-import { HiOutlineViewList } from "react-icons/hi";
-import { IoMdArrowDropdown } from "react-icons/io";
 import { useEffect, useState } from "react";
 import Post from "@/components/Post";
 import Build from "@/components/PageBuilder/Build";
+import RenderedContent from "@/components/PageBuilder/RenderedContent";
 
 interface Post {
   _id: string;
@@ -27,6 +20,7 @@ interface Post {
 
 export default function Home() {
   const [data, setData] = useState([]);
+
   useEffect(() => {
     const post = async () => {
       const res = await fetch("/api/v1/post/getPost");
@@ -36,9 +30,16 @@ export default function Home() {
     };
     post();
   }, []);
+
+  // Option 1: Using a callback function to receive rendered HTML
+  const handleHtmlRendered = (renderedHtml: any) => {
+    console.log("Received rendered HTML:", renderedHtml);
+  };
+
   return (
     <>
-      <Build />
+      <Build onHtmlRendered={handleHtmlRendered} />{" "}
+      {/* <RenderedContent content={null} />{" "} */}
     </>
   );
 }
