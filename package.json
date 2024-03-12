@@ -34,6 +34,7 @@
     "framer-motion": "^10.17.6",
     "grapesjs": "^0.21.9",
     "grapesjs-blocks-basic": "^1.0.2",
+    "grapesjs-indexeddb": "^1.0.5",
     "grapesjs-navbar": "^1.0.2",
     "grapesjs-plugin-ckeditor": "^1.0.1",
     "grapesjs-plugin-forms": "^2.0.6",

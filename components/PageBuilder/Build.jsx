@@ -11,6 +11,7 @@ import styleBg from "grapesjs-style-bg";
 import webPage from "grapesjs-preset-webpage";
 import touch from "grapesjs-touch";
 import RenderedContent from "./RenderedContent";
+import Indexeddb from "grapesjs-indexeddb";
 
 export default function Build({ onHtmlRendered }) {
   const [editor, setEditor] = useState(null);
@@ -28,6 +29,7 @@ export default function Build({ onHtmlRendered }) {
         styleBg,
         webPage,
         touch,
+        Indexeddb,
       ],
       pluginsOpts: {
         "grapesjs-blocks-basic": {},
@@ -38,6 +40,16 @@ export default function Build({ onHtmlRendered }) {
         "grapesjs-style-bg": {},
         "grapesjs-preset-webpage": {},
         "grapesjs-touch": {},
+        "grapesjs-indexeddb": {
+          options: {
+            // In case of multiple projects on the same page indicate an id to
+            // prevent collisions
+            key: "user-project-id",
+            // Update IndexedDB name for the DB and the table containing project data
+            dbName: "editorLocalData",
+            objectStoreName: "projects",
+          },
+        },
       },
     });
 
@@ -63,7 +75,7 @@ export default function Build({ onHtmlRendered }) {
     <div className="p-0 m-0 overflow-x-hidden overflow-scroll -scroll-ms-0 scroll-m-0">
       <div className="overflow-y-scroll" id="editor"></div>
       {/* Placeholder for rendered content (optional, can be removed) */}
-      {html && <RenderedContent content={html} />}
+      {/* {html && <RenderedContent content={html} />} */}
     </div>
   );
 }
