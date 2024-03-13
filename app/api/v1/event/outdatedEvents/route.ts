@@ -5,19 +5,18 @@ import connectMongoDB from "@/lib/mongo/mongodb";
 
 export const GET = async (req: Request) => {
   try {
-    connectMongoDB();
+    await connectMongoDB();
 
     const outdated = await Event.find({
       isPublished: false,
     });
-    if (outdated) {
+    console.log("outdated", outdated);
+
+    if (!outdated) {
       return new NextResponse(JSON.stringify("no outDated event"), {
         status: 404,
       });
-      return;
     }
-
-    console.log("outdated", outdated);
 
     return new NextResponse(JSON.stringify(outdated), { status: 200 });
   } catch (error) {
