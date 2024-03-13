@@ -12,60 +12,50 @@ export async function POST(request: NextRequest, response: NextResponse) {
 
     const getUserByemail = await User.findOne({ email: data.email });
     if (!getUserByemail) {
-      console.log("User not found");
       return NextResponse.json({ message: "User not found" });
     }
 
     const eventForUpdate = await Event.findOne({ _id: data.eventId });
     if (!eventForUpdate) {
-      console.log("Event not found");
       return NextResponse.json({ message: "Event not found" });
     }
-    
-    
 
+    const newRegisterUserArray = eventForUpdate.registerUser.filter(
+      (i: any) => i._id.toString() !== getUserByemail._id.toString()
+    );
 
-
-    
-
-
-const newRegisterUserArray = eventForUpdate.registerUser.filter((i: any) => i._id.toString() !== getUserByemail._id.toString());
-
-
-
-const updatedEvent = await Event.findByIdAndUpdate(data.eventId,{
-    $set: {
+    const updatedEvent = await Event.findByIdAndUpdate(data.eventId, {
+      $set: {
         registerUser: newRegisterUserArray,
-    },
-});
+      },
+    });
 
     if (!updatedEvent) {
-      return NextResponse.json({ message: "failed to remove user from  event " });
+      return NextResponse.json({
+        message: "failed to remove user from  event ",
+      });
     }
 
-    console.log(getUserByemail.registeredEvents);
-    
-    const newRegisteredEventArray = getUserByemail.registeredEvents.filter((i: any) => i._id.toString() !== data.eventId.toString());
-    console.log(newRegisteredEventArray); 
+    const newRegisteredEventArray = getUserByemail.registeredEvents.filter(
+      (i: any) => i._id.toString() !== data.eventId.toString()
+    );
 
-    
-
-    const updatedUser = await User.findByIdAndUpdate(getUserByemail._id,{
+    const updatedUser = await User.findByIdAndUpdate(getUserByemail._id, {
       $set: {
         registeredEvents: newRegisteredEventArray,
       },
-    
     });
-    
+
     if (!updatedUser) {
-      return NextResponse.json({ message: "failed to remove user from  event " });
+      return NextResponse.json({
+        message: "failed to remove user from  event ",
+      });
     }
 
-    return NextResponse.json("remove user from the event successfully", { status: 200 });
-    
+    return NextResponse.json("remove user from the event successfully", {
+      status: 200,
+    });
   } catch (e) {
     return NextResponse.json("error of the server", { status: 500 });
   }
 }
-
-

@@ -39,19 +39,29 @@ export interface EventContextType {
   eventType: String;
   eventDate: String;
   eventStartTime: String;
-  duration: String;
+
   endTime: String;
   eventVisibility: boolean;
-  eventCover: String;
+
   setEventname: (value: string) => void;
   setEventLocation: (value: string) => void;
   setEventType: (value: string) => void;
   setEventDate: (value: string) => void;
   setEventStartTime: (value: string) => void;
-  setDuration: (value: string) => void;
+
   setEndTime: (value: string) => void;
   setEventVisibility: (value: boolean) => void;
-  setEventCover: (value: string) => void;
+
+  eventDashboardImage: string;
+  eventCoverImage: string;
+  eventEndTime: string;
+  startTime: string;
+
+  setEventEndDate: React.Dispatch<React.SetStateAction<string>>;
+  eventEndDate: string;
+
+  setEventDashboardImage: React.Dispatch<React.SetStateAction<string>>;
+  setEventCoverImage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 type EventUserDeatils = {
@@ -102,11 +112,15 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
   const [eventLocation, setEventLocation] = useState<string>("");
   const [eventType, setEventType] = useState<string>("");
   const [eventDate, setEventDate] = useState<string>("");
+  const [eventEndDate, setEventEndDate] = useState<string>("");
   const [eventStartTime, setEventStartTime] = useState<string>("");
-  const [duration, setDuration] = useState<string>("");
+  const [eventEndTime, setEventEndTime] = useState<string>("");
+
   const [endTime, setEndTime] = useState<string>("");
+  const [startTime, setStartTime] = useState<string>("");
   const [eventVisibility, setEventVisibility] = useState<boolean>(false);
-  const [eventCover, setEventCover] = useState<string>("");
+  const [eventCoverImage, setEventCoverImage] = useState<string>("");
+  const [eventDashboardImage, setEventDashboardImage] = useState<string>("");
   const router = useRouter();
   useEffect(() => {
     const getEvent = async () => {
@@ -164,13 +178,16 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
       setEventLocation(event.eventLocation);
       setEventType(event.selectedTab);
       setEventDate(event.eventStartDate);
+      setEventEndDate(event.eventEndDate);
       setEventStartTime(event.startTime);
-      setDuration(event.duration);
-      setEndTime(event.endTime);
 
+      setEndTime(event.endTime);
+      // setStartTime(event.startTime);
       setEventPublish(event.isPublished);
       setEventVisibility(event.isPublished);
-      setEventCover(event.postImageLink);
+      setEventCoverImage(event.coverImage);
+      setEventDashboardImage(event.dashboardImage);
+      setEventEndTime(event.eventEndDate);
 
       const user = await getUser();
       if (!user) {
@@ -187,6 +204,9 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
   return (
     <EventContext.Provider
       value={{
+        setEventEndDate,
+        eventEndDate,
+
         id,
         status,
         user,
@@ -210,19 +230,26 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
         eventType,
         eventDate,
         eventStartTime,
-        duration,
+
         endTime,
         eventVisibility,
-        eventCover,
+        eventEndTime,
+        startTime,
+
+        eventDashboardImage,
+        eventCoverImage,
+
         setEventname,
         setEventLocation,
         setEventType,
         setEventDate,
         setEventStartTime,
-        setDuration,
+
         setEndTime,
         setEventVisibility,
-        setEventCover,
+
+        setEventDashboardImage,
+        setEventCoverImage,
       }}
     >
       {children}

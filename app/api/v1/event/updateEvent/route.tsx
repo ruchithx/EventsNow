@@ -16,9 +16,11 @@ export async function PUT(request: NextRequest, response: NextResponse) {
         selectedTab: data.selectedTab,
         eventStartDate: data.eventStartDate,
         startTime: data.startTime,
-        duration: data.duration,
         endTime: data.endTime,
-        isPublished:data.eventVisibility
+        isPublished: data.eventVisibility,
+        eventDashboardImage: data.eventDashboardImage,
+        eventCoverImage: data.eventCoverImage,
+        eventEndDate: data.eventEndDate,
       },
     });
 

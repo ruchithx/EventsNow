@@ -7,25 +7,22 @@ import Image from "next/image";
 import { Button } from "@material-tailwind/react";
 import { UseEventContext, EventContextType } from "../EventDashContext";
 import { error, success } from "@/util/Toastify";
-
+import {
+  CldUploadWidget,
+  CloudinaryUploadWidgetInfo,
+  CloudinaryUploadWidgetResults,
+} from "next-cloudinary";
+import { FaCloudUploadAlt } from "react-icons/fa";
 export default function Settings() {
   const {
     id,
-    status,
-    handleOverview,
-    handleHostPage,
-    handleMyteam,
-    handleReports,
-    handleCampaign,
-    handleSetting,
-    isSideBar,
-    setIsSideBar,
+
     eventname,
     eventLocation,
     eventType,
     eventDate,
     eventStartTime,
-    duration,
+
     endTime,
     eventVisibility,
     setEventVisibility,
@@ -34,8 +31,16 @@ export default function Settings() {
     setEventType,
     setEventDate,
     setEventStartTime,
-    setDuration,
+
     setEndTime,
+
+    setEventEndDate,
+    eventEndDate,
+
+    eventDashboardImage,
+    eventCoverImage,
+    setEventDashboardImage,
+    setEventCoverImage,
   } = UseEventContext() as EventContextType;
 
   //event visibility switch
@@ -66,8 +71,12 @@ export default function Settings() {
             selectedTab: eventType,
             eventStartedDate: eventDate,
             startTime: eventStartTime,
-            duration: duration,
-            eventVisibility : eventVisibility,
+
+            eventDashboardImage: eventDashboardImage,
+            eventCoverImage: eventCoverImage,
+            eventEndDate,
+
+            eventVisibility: eventVisibility,
           }),
         }
       );
@@ -176,7 +185,9 @@ export default function Settings() {
             <ContainerWithStroke>
               <div className="sm:grid grid-cols-2 md:grid-cols-1 xl:grid-cols-2 max-md:gap-3 max-md:px-3 py-4">
                 <div className="md:px-8 l xl:px-6 grid md:gap-2 pt-3 pb-5 ">
-                  <div className="w-full text-left text-lg ">Event Date </div>
+                  <div className="w-full text-left text-lg ">
+                    Event Start Date
+                  </div>
                   <div className="w-full flex justify-start ">
                     <input
                       type="text"
@@ -185,6 +196,22 @@ export default function Settings() {
                         setEventDate(e.target.value);
                       }}
                       value={eventDate.substring(0, 10) as string}
+                      className="focus:outline-custom-orange border-2 rounded-md pl-4 pr-16 placeholder:text-[#ABB7C2] placeholder:font-Inter placeholder:text-base placeholder:font-normal place-self-start w-full"
+                    />
+                  </div>
+                </div>
+                <div className="md:px-8 l xl:px-6 grid md:gap-2 pt-3 pb-5 ">
+                  <div className="w-full text-left text-lg ">
+                    Event End Date
+                  </div>
+                  <div className="w-full flex justify-start ">
+                    <input
+                      type="text"
+                      placeholder=""
+                      onChange={(e) => {
+                        setEventEndDate(e.target.value);
+                      }}
+                      value={eventEndDate.substring(0, 10) as string}
                       className="focus:outline-custom-orange border-2 rounded-md pl-4 pr-16 placeholder:text-[#ABB7C2] placeholder:font-Inter placeholder:text-base placeholder:font-normal place-self-start w-full"
                     />
                   </div>
@@ -203,20 +230,7 @@ export default function Settings() {
                     />
                   </div>
                 </div>
-                <div className="md:px-8 xl:px-6 grid gap-2 pt-3 pb-5">
-                  <div className="w-full text-left text-lg ">Duration</div>
-                  <div className="w-full flex justify-start ">
-                    <input
-                      type="text"
-                      placeholder=""
-                      onChange={(e) => {
-                        setDuration(e.target.value);
-                      }}
-                      value={duration as string}
-                      className="focus:outline-custom-orange border-2 rounded-md pl-4 pr-16 placeholder:text-[#ABB7C2] placeholder:font-Inter placeholder:text-base placeholder:font-normal place-self-start w-full"
-                    />
-                  </div>
-                </div>
+
                 <div className=" xl:px-6 md:px-8 grid gap-2 pt-3 pb-5">
                   <div className="w-full text-left text-lg ">End Time</div>
                   <div className="w-full flex justify-start ">
@@ -229,6 +243,190 @@ export default function Settings() {
                       value={endTime as string}
                       className="focus:outline-custom-orange border-2 rounded-md pl-4 pr-16 placeholder:text-[#ABB7C2] placeholder:font-Inter placeholder:text-base placeholder:font-normal place-self-start w-full"
                     />
+                  </div>
+                </div>
+
+                <div className=" xl:px-6 md:px-8 grid gap-2 pt-3 pb-5">
+                  <div className="w-full text-left text-lg ">
+                    Set cover image
+                  </div>
+                  <div className="w-full   ">
+                    <div>
+                      <CldUploadWidget
+                        uploadPreset="events"
+                        onOpen={() => {
+                          console.log("isPhotographer");
+                        }}
+                        onSuccess={(results: CloudinaryUploadWidgetResults) => {
+                          const uploadedResult =
+                            results.info as CloudinaryUploadWidgetInfo;
+                          const profileImageURL = {
+                            image: uploadedResult.secure_url,
+                          };
+                          setEventCoverImage(profileImageURL.image);
+                        }}
+                        options={{
+                          tags: ["events image"],
+                          // publicId: `${organizationName}/${Date.now()}`,
+                          // publicId: "b2c",
+
+                          sources: ["local"],
+                          googleApiKey: "<image_search_google_api_key>",
+                          showAdvancedOptions: false,
+                          // cropping: true,
+                          multiple: false,
+                          showSkipCropButton: false,
+                          croppingAspectRatio: 0.75,
+                          croppingDefaultSelectionRatio: 0.75,
+                          croppingShowDimensions: true,
+                          croppingCoordinatesMode: "custom",
+                          // maxImageHeight: 100,
+                          // croppingValidateDimensions: true,
+                          defaultSource: "local",
+                          resourceType: "image",
+                          folder: "events",
+
+                          styles: {
+                            palette: {
+                              window: "#ffffff",
+                              sourceBg: "#f4f4f5",
+                              windowBorder: "#90a0b3",
+                              tabIcon: "#000000",
+                              inactiveTabIcon: "#555a5f",
+                              menuIcons: "#555a5f",
+                              link: "#000000",
+                              action: "#000000",
+                              inProgress: "#464646",
+                              complete: "#000000",
+                              error: "#cc0000",
+                              textDark: "#000000",
+                              textLight: "#fcfffd",
+                              theme: "white",
+                            },
+                          },
+                        }}
+                      >
+                        {({ open }) => {
+                          return (
+                            <button
+                              onClick={(e) => {
+                                e.preventDefault();
+                                open();
+                              }}
+                            >
+                              <div className="p-1 text-white font-semibold flex items-center justify-center gap-2 bg-slate-400 rounded-2xl">
+                                <FaCloudUploadAlt />
+                                upload image
+                              </div>
+                            </button>
+                          );
+                        }}
+                      </CldUploadWidget>
+                    </div>
+
+                    {eventCoverImage.length > 0 && (
+                      <div className=" mt-5 border-2 w-auto border-solId rounded-xl   ">
+                        <Image
+                          className=" p-4"
+                          src={eventCoverImage}
+                          width={500}
+                          height={500}
+                          alt="event cover image"
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className=" xl:px-6 md:px-8 grid gap-2 pt-3 pb-5">
+                  <div className="w-full text-left text-lg ">
+                    Set dashboard image
+                  </div>
+                  <div className="w-full  ">
+                    <div>
+                      <CldUploadWidget
+                        uploadPreset="events"
+                        onOpen={() => {
+                          console.log("isPhotographer");
+                        }}
+                        onSuccess={(results: CloudinaryUploadWidgetResults) => {
+                          const uploadedResult =
+                            results.info as CloudinaryUploadWidgetInfo;
+                          const profileImageURL = {
+                            image: uploadedResult.secure_url,
+                          };
+                          setEventDashboardImage(profileImageURL.image);
+                        }}
+                        options={{
+                          tags: ["events image"],
+                          // publicId: `${organizationName}/${Date.now()}`,
+                          // publicId: "b2c",
+
+                          sources: ["local"],
+                          googleApiKey: "<image_search_google_api_key>",
+                          showAdvancedOptions: false,
+                          // cropping: true,
+                          multiple: false,
+                          showSkipCropButton: false,
+                          croppingAspectRatio: 0.75,
+                          croppingDefaultSelectionRatio: 0.75,
+                          croppingShowDimensions: true,
+                          croppingCoordinatesMode: "custom",
+                          // maxImageHeight: 100,
+                          // croppingValidateDimensions: true,
+                          defaultSource: "local",
+                          resourceType: "image",
+                          folder: "events",
+
+                          styles: {
+                            palette: {
+                              window: "#ffffff",
+                              sourceBg: "#f4f4f5",
+                              windowBorder: "#90a0b3",
+                              tabIcon: "#000000",
+                              inactiveTabIcon: "#555a5f",
+                              menuIcons: "#555a5f",
+                              link: "#000000",
+                              action: "#000000",
+                              inProgress: "#464646",
+                              complete: "#000000",
+                              error: "#cc0000",
+                              textDark: "#000000",
+                              textLight: "#fcfffd",
+                              theme: "white",
+                            },
+                          },
+                        }}
+                      >
+                        {({ open }) => {
+                          return (
+                            <button
+                              onClick={(e) => {
+                                e.preventDefault();
+                                open();
+                              }}
+                            >
+                              <div className="p-1 text-white font-semibold flex items-center justify-center gap-2 bg-slate-400 rounded-2xl">
+                                <FaCloudUploadAlt />
+                                upload image
+                              </div>
+                            </button>
+                          );
+                        }}
+                      </CldUploadWidget>
+                    </div>
+
+                    {eventDashboardImage.length > 0 && (
+                      <div className=" mt-5 border-2 w-auto border-solId rounded-xl   ">
+                        <Image
+                          className=" p-4"
+                          src={eventDashboardImage}
+                          width={500}
+                          height={500}
+                          alt="event cover image"
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

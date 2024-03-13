@@ -1,5 +1,5 @@
 "use client";
-import React, { useState,useEffect,useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import SideBar from "./SideBar";
 import MidContent from "./MidContent";
 import { UseEventContext, EventContextType } from "../EventDashContext";
@@ -21,7 +21,10 @@ export default function MainComponent() {
     eventLocation,
     eventDate,
     eventStartTime,
-    eventCover
+    eventDashboardImage,
+
+    endTime,
+    eventEndDate,
   } = UseEventContext() as EventContextType;
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
 
@@ -158,12 +161,14 @@ export default function MainComponent() {
           className={`lg:col-span-3 md:block hidden
              ${isSideBar ? "md:col-span-3 md:mr-2 " : "md:col-span-3  "}`}
         >
-          <Event 
-          EventName={eventname}
-          Location={eventLocation}
-          Time={eventStartTime}
-          Date={eventDate.substring(0, 10)}
-          eventCover={eventCover}
+          <Event
+            EventName={eventname}
+            Location={eventLocation}
+            Time={eventStartTime}
+            endTime={endTime}
+            endDate={eventEndDate.substring(0, 10)}
+            Date={eventDate.substring(0, 10)}
+            eventCover={eventDashboardImage}
           />
         </div>
       </div>

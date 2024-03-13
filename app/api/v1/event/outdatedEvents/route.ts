@@ -10,7 +10,6 @@ export const GET = async (req: Request) => {
     const outdated = await Event.find({
       isPublished: false,
     });
-    console.log("outdated", outdated);
 
     if (outdated.length === 0) {
       return new NextResponse(JSON.stringify([]), {

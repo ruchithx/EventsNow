@@ -11,49 +11,49 @@ export async function POST(request: NextRequest, response: NextResponse) {
 
     const getUserByemail = await User.findOne({ email: data.email });
     if (!getUserByemail) {
-      console.log("User not found");
       return NextResponse.json({ message: "User not found" });
     }
 
     const eventForUpdate = await Event.findOne({ _id: data.eventId });
     if (!eventForUpdate) {
-      console.log("Event not found");
       return NextResponse.json({ message: "Event not found" });
     }
-    
 
-    
+    const newRegisterUserArray = [
+      ...eventForUpdate.registerUser,
+      getUserByemail._id,
+    ];
 
-    const newRegisterUserArray = [...eventForUpdate.registerUser, getUserByemail._id];
-
-    const updatedEvent = await Event.findByIdAndUpdate(data.eventId,{
+    const updatedEvent = await Event.findByIdAndUpdate(data.eventId, {
       $set: {
         registerUser: newRegisterUserArray,
       },
-    
     });
 
     if (!updatedEvent) {
-      return NextResponse.json({ message: "failed to register user to  event " });
+      return NextResponse.json({
+        message: "failed to register user to  event ",
+      });
     }
 
-    const newRegisteredEventArray = [...getUserByemail.registeredEvents, data.eventId];
-    const updatedUser = await User.findByIdAndUpdate(getUserByemail._id,{
+    const newRegisteredEventArray = [
+      ...getUserByemail.registeredEvents,
+      data.eventId,
+    ];
+    const updatedUser = await User.findByIdAndUpdate(getUserByemail._id, {
       $set: {
         registeredEvents: newRegisteredEventArray,
       },
-    
     });
-    
+
     if (!updatedUser) {
-      return NextResponse.json({ message: "failed to register user to  event " });
+      return NextResponse.json({
+        message: "failed to register user to  event ",
+      });
     }
 
     return NextResponse.json("User registered successfully", { status: 200 });
-    
   } catch (e) {
     return NextResponse.json("error of the server", { status: 500 });
   }
 }
-
-

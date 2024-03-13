@@ -11,31 +11,37 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please select the event type"],
   },
-  eventLocation:{
+  eventLocation: {
     type: String,
-    required:[true,"please enter event location"]
+    required: [true, "please enter event location"],
   },
   eventStartDate: {
     type: String,
     required: [true, "Please select the event start date"],
   },
+  eventEndDate: {
+    type: String,
+    required: [true, "Please select the event end date"],
+  },
   startTime: {
     type: String,
     required: [true, "Please select the event start time"],
   },
-  duration: {
+  endTime: {
     type: String,
+    required: [true, "Please select the event end time"],
   },
-  eventTimeZone: {
-    type: String,
-    required: [true, "Please select the event time zone"],
-  },
+
   description: {
     type: String,
   },
-  postImageLink: {
+  coverImage: {
     type: String,
     required: [true, "Please upload the event cover photo"],
+  },
+  dashboardImage: {
+    type: String,
+    required: [true, "Please upload the event dashboard photo"],
   },
   organizationId: {
     type: [mongoose.Schema.Types.ObjectId],
@@ -55,7 +61,6 @@ const eventSchema = new mongoose.Schema({
     type: [mongoose.Schema.Types.ObjectId],
     ref: "User",
   },
-  
 });
 
 const Event = mongoose.models.Event || mongoose.model("Event", eventSchema);

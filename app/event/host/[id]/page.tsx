@@ -8,6 +8,7 @@ async function getData({ id }: any) {
       method: "POST",
       mode: "cors",
       body: JSON.stringify(id),
+      cache: "no-store",
     }
   );
 
@@ -15,7 +16,6 @@ async function getData({ id }: any) {
 
   return data;
 }
-
 
 // async function getAllPosts({ id }: any) {
 //   const res = await fetch(
@@ -31,7 +31,6 @@ async function getData({ id }: any) {
 export default async function Home({ params }: any) {
   const data = await getData(params);
   // const posts = await getAllPosts(params);
-
 
   return (
     <div>

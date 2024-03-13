@@ -11,8 +11,6 @@ export const GET = async (req: Request) => {
       isPublished: true,
     });
 
-    console.log(futureEvents);
-
     if (futureEvents.length === 0) {
       return new NextResponse(JSON.stringify([]), {
         status: 404,
