@@ -45,6 +45,9 @@ export default function HostSideBar({
 
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
 
+  
+  const [isAddWishList, setIsAddWishList] = useState<boolean>(false);
+
   const handleClick = (buttonNumber: number) => {
     setActiveButton(buttonNumber);
   };
@@ -89,6 +92,7 @@ export default function HostSideBar({
 
     success("remove user from event successfully");
     setIsRegistered(false);
+    
   }
 
   useEffect(() => {
@@ -119,6 +123,74 @@ export default function HostSideBar({
     };
     getEvent();
   }, [id, userId]);
+
+  //get user data
+  useEffect(() => {
+    const getUser = async () => {
+      if (userId) {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_URL}/api/v1/user/getWishlistByIdForHost`,
+          {
+            method: "POST",
+            mode: "cors",
+            body: JSON.stringify(userId),
+          }
+        );
+        const data = await res.json();
+        
+
+        const wishlistStatus = data?.includes(id || "");
+        setIsAddWishList(wishlistStatus);
+        console.log(wishlistStatus);
+        console.log(isAddWishList);
+      }
+    };
+    getUser();
+  }, [id, userId,isAddWishList]);
+
+  // add to wishlist
+
+  async function addTowishlistHandler() {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/event/addToWishList`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: userId, eventId: id }),
+      }
+    );
+    if (!res.ok) {
+      error("Error adding to wishlist");
+      return;
+    }
+
+    success("Event added to the wishlist ");
+    setIsAddWishList(true);
+  }
+
+  //remove from wishlist 
+
+  async function removeFromWishlistHandler() {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/event/removeFromWishList`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: userId, eventId: id }),
+      }
+    );
+    if (!res.ok) {
+      error("Error removing from wishlist");
+      return;
+    }
+
+    success("Event removed from the wishlist ");
+    setIsAddWishList(false);
+  }
 
   return (
     <div className="xl:w-96 h-screen bg-white items-end md:w-80">
@@ -206,7 +278,7 @@ export default function HostSideBar({
           </div>
         </div>
 
-        <div className="flex xl:pt-24 md:pt-14 items-center ">
+        <div className="flex xl:pt-12 md:pt-14 items-center ">
           {isRegistered ? (
             <button
               onClick={removeUserFromRegisteredEvent}
@@ -243,7 +315,27 @@ export default function HostSideBar({
             </button>
           )}
 
-          <button className="flex xl:w-36 w-32 xl:h-16 h-12 bg-[#455273] rounded-r-2xl items-center xl:px-4">
+{isAddWishList ? 
+  <button
+            onClick={removeFromWishlistHandler}
+            className="flex xl:w-36 w-32 xl:h-16 h-12 bg-[#455273] rounded-r-2xl items-center xl:px-4"
+          >
+            <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
+              <Image
+                src="/images/Event/HostPage/Paper_fill.svg"
+                alt="print"
+                width={32}
+                height={32}
+              />
+            </div>
+            <div className="font-medium xl:text-lg text-md text-white text-left leading-tight xl:ml-4 md:ml-2">
+              Remove Wish List
+            </div>
+          </button>:
+  <button
+            onClick={addTowishlistHandler}
+            className="flex xl:w-36 w-32 xl:h-16 h-12 bg-[#455273] rounded-r-2xl items-center xl:px-4"
+          >
             <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
               <Image
                 src="/images/Event/HostPage/Paper_fill.svg"
@@ -255,7 +347,10 @@ export default function HostSideBar({
             <div className="font-medium xl:text-lg text-md text-white text-left leading-tight xl:ml-4 md:ml-2">
               Add to Wish List
             </div>
-          </button>
+          </button>}
+
+
+          
         </div>
 
         <button className="flex xl:w-72 w-32 xl:h-16 h-8  bg-[#D47151] rounded-2xl items-center xl:px-4  ">

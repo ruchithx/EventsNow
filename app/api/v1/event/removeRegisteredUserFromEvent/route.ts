@@ -20,12 +20,14 @@ export async function POST(request: NextRequest, response: NextResponse) {
       return NextResponse.json({ message: "Event not found" });
     }
 
-    const newRegisterUserArray = eventForUpdate.registerUser.filter(
-      (i: any) => i._id.toString() !== getUserByemail._id.toString()
-    );
 
-    const updatedEvent = await Event.findByIdAndUpdate(data.eventId, {
-      $set: {
+const newRegisterUserArray = eventForUpdate.registerUser.filter((i: any) => i._id.toString() !== getUserByemail._id.toString());
+
+
+
+const updatedEvent = await Event.findByIdAndUpdate(data.eventId,{
+    $set: {
+
         registerUser: newRegisterUserArray,
       },
     });

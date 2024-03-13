@@ -67,10 +67,13 @@ export default async function Home() {
   const event = await getEvent();
   return (
     <div>
-      {/* {/* <HeroSection /> */}
 
+      <HeroSection />
+
+    
       <EventViewMode event={event} />
       <div className="font-bold text-[30px] md:text-[40px] lg:text-[60px] text-[#906953] drop-shadow-lg ms-8">
+
         Outdated Events
       </div>
 

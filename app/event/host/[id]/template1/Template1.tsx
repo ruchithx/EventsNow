@@ -24,7 +24,9 @@ export default function Template({ event }: { event: Event }) {
 
   return (
     <div>
+
       <div className="md:flex relative -z-10">
+
         {activeComponent === "CoverPhoto" && (
           <CoverPhoto
             image={event.coverImage}
