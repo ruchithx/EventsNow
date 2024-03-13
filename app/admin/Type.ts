@@ -61,6 +61,13 @@ export type Event = {
   postImageLink: string;
   isActive?: boolean;
   __v: number;
+  organizationName: string;
+  organizationFullName: string;
+  organizationNumber: string;
+  organizationNumberType: string;
+  organizationEmail: string;
+  organizationAddress: string;
+  location: string;
 };
 export type Organization = {
   map(

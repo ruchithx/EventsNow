@@ -7,11 +7,11 @@ export const GET = async (req: Request) => {
   try {
     connectMongoDB();
 
-    const futureEvents = await Event.find({
-      isPublished: true,
+    const outdated = await Event.find({
+      isPublished: false,
     });
 
-    return new NextResponse(JSON.stringify(futureEvents), { status: 200 });
+    return new NextResponse(JSON.stringify(outdated), { status: 200 });
   } catch (error) {
     return new NextResponse("Error in fetching data" + error, { status: 500 });
   }

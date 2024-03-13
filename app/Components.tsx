@@ -1,33 +1,70 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { HiOutlineViewGrid, HiOutlineViewList } from "react-icons/hi";
-import { initialEventArr } from "./page";
+
 import EventCard from "@/components/EventCard";
 import Pagination from "@mui/material/Pagination";
+import { Event } from "@/app/admin/Type";
+function getData() {
+  const response = fetch(
+    `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getPublishedEvents`,
+    {
+      method: "GET",
+      mode: "cors",
+    }
+  );
+  return response;
+}
 
 const EventViewMode = () => {
-  const [eventarr, setEventarr] = useState(initialEventArr);
+  useEffect(() => {
+    const handleResize = () => {
+      setEventsPerPage(getEventsPerPage());
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  const getEventsPerPage = () => {
+    if (window.innerWidth >= 1024) {
+      return 8;
+    } else if (window.innerWidth >= 768) {
+      return 4;
+    } else {
+      return 3;
+    }
+  };
+  const [eventarr, setEventarr] = useState<Event[]>([]);
   const [viewMode, setViewMode] = useState("grid");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState("");
-  const eventsPerPage = 8;
+  const [eventsPerPage, setEventsPerPage] = useState(getEventsPerPage());
+  useEffect(() => {
+    getData().then((res) => {
+      res.json().then((data) => {
+        setEventarr(data);
+      });
+    });
+  }, []);
 
   const handleSortByChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedSortBy = e.target.value;
     setSortBy(selectedSortBy);
     if (selectedSortBy === "name") {
       const sortedEvents = [...eventarr].sort((a, b) =>
-        a.name.localeCompare(b.name)
+        a.eventName.localeCompare(b.eventName)
       );
       setEventarr(sortedEvents);
     } else if (selectedSortBy === "location") {
       const sortedEvents = [...eventarr].sort((a, b) =>
-        a.location.localeCompare(b.location)
+        a.selectedTab.localeCompare(b.selectedTab)
       );
       setEventarr(sortedEvents);
     } else if (selectedSortBy === "date") {
       const sortedEvents = [...eventarr].sort((a, b) =>
-        a.date.localeCompare(b.date)
+        a.eventStartDate.localeCompare(b.eventName)
       );
       setEventarr(sortedEvents);
     }
@@ -82,16 +119,16 @@ const EventViewMode = () => {
           </div>
         </div>
       </div>
-      <div className=" flex flex-wrap ms-12">
+      <div className="flex flex-wrap ms-12">
         {currentEvents.map((event, index) =>
           viewMode === "grid" ? (
             <EventCard
               key={index}
-              name={event.name}
-              img={event.img}
-              location={event.location}
-              date={event.date}
-              time={event.time}
+              name={event.eventName}
+              img={event.postImageLink}
+              location={event.selectedTab}
+              date={event.eventStartDate}
+              time={event.eventTimeZone}
             />
           ) : (
             <div key={index}>abcd</div>
@@ -102,7 +139,7 @@ const EventViewMode = () => {
       {/* Pagination */}
       {eventarr.length > eventsPerPage && (
         <Pagination
-          count={Math.ceil(initialEventArr.length / eventsPerPage)}
+          count={Math.ceil(eventarr.length / eventsPerPage)}
           variant="outlined"
           shape="rounded"
           onChange={paginate}
