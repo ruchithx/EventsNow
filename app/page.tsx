@@ -1,5 +1,6 @@
+
 import React from "react";
-import Footer from "@/components/Footer";
+
 import EventCardDisabled from "@/components/EventCardDisabled";
 
 import EventViewMode from "./Components";
@@ -17,10 +18,15 @@ async function getData(): Promise<Event[]> {
   return data;
 }
 
+import Footer from "@/components/Footer";
+import HeroSection from "@/components/HeroSection";
+
+
 export default async function Home() {
   const data = await getData();
   return (
     <div>
+
       <EventViewMode />
       <div className="font-bold text-[30px] md:text-[40px] lg:text-[60px] text-[#906953] drop-shadow-lg ms-8">
         Outdated Events
@@ -37,6 +43,10 @@ export default async function Home() {
           />
         ))}
       </div>
+
+      <HeroSection />
+
+
       <Footer />
     </div>
   );

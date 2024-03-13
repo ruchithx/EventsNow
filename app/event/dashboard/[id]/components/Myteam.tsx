@@ -32,7 +32,7 @@ export default function Myteam() {
               Invite
             </button>
           </div> */}
-          <div className="mt-6 grid overflow-auto h-40  md:w-full">
+          <div className="mt-6 grid overflow-auto h-80 md:w-full">
             {user.length === 0 ? (
               <EmptyStateComponent message="No user in the event" />
             ) : (
