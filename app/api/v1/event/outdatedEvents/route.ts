@@ -12,8 +12,8 @@ export const GET = async (req: Request) => {
     });
     console.log("outdated", outdated);
 
-    if (!outdated) {
-      return new NextResponse(JSON.stringify("no outDated event"), {
+    if (outdated.length === 0) {
+      return new NextResponse(JSON.stringify([]), {
         status: 404,
       });
     }

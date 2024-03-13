@@ -8,17 +8,20 @@ import { formatDate } from "@/util/helper";
 // import { Event } from "./admin/Type";
 
 async function getData() {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/v1/event/outdatedEvents`
-  );
-  const data = await response.json();
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/event/outdatedEvents`,
+      {}
+    );
+    const data = await response.json();
 
-  console.log(data);
-  if (data === "no outDated event") {
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
     return [];
   }
-
-  return data;
 }
 
 // import HeroSection from "@/components/HeroSection";
