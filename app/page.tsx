@@ -25,7 +25,7 @@ export default async function Home() {
   const data = await getData();
   return (
     <div>
-      {/* <HeroSection /> */}
+      <HeroSection />
 
       <EventViewMode />
       <div className="font-bold text-[30px] md:text-[40px] lg:text-[60px] text-[#906953] drop-shadow-lg ms-8">
