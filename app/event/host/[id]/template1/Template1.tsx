@@ -22,7 +22,7 @@ export default function Template({ event }: { event: Event }) {
 
   return (
     <div>
-      <div className="md:flex relative">
+      <div className="md:flex relative ">
         {activeComponent === "CoverPhoto" && (
           <CoverPhoto
             image={event.postImageLink}
