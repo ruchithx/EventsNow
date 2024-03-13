@@ -72,8 +72,8 @@ export default function Build({ onHtmlRendered }) {
   }, [editor]);
 
   return (
-    <div className="p-0 m-0 overflow-x-hidden overflow-scroll -scroll-ms-0 scroll-m-0">
-      <div className="overflow-y-scroll" id="editor"></div>
+    <div className="p-0 m-0 overflow-x-hidden ">
+      <div id="editor"></div>
       {/* Placeholder for rendered content (optional, can be removed) */}
       {/* {html && <RenderedContent content={html} />} */}
     </div>

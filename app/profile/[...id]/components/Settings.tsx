@@ -162,7 +162,7 @@ export default function Settings() {
                     value={lname}
                     setFname={setLname}
                   />
-                  <CldUploadWidget
+                  {/* <CldUploadWidget
                     uploadPreset="profilePic"
                     onOpen={() => {
                       console.log("isPhotographer");
@@ -251,7 +251,7 @@ export default function Settings() {
                         </button>
                       </div>
                     </div>
-                  )}
+                  )} */}
                 </form>
                 <div className="sm:col-span-4">
                   <button
