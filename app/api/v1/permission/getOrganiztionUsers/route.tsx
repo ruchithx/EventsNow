@@ -10,6 +10,7 @@ type OrganizationPermission = {
   permission: string[];
   _id: string;
   globalPermission: string[];
+  eventPermission: string[];
 };
 
 export const POST = async (req: Request) => {
@@ -26,6 +27,7 @@ export const POST = async (req: Request) => {
         userData: user.userId,
         permissionDocumentId: user._id,
         globalPermission: user.globalPermission,
+        eventPermission: user.eventPermission,
       };
       return data;
     });

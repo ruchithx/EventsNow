@@ -16,6 +16,7 @@ async function getData({ id }: any) {
   return data;
 }
 
+
 // async function getAllPosts({ id }: any) {
 //   const res = await fetch(
 //     `${process.env.NEXT_PUBLIC_URL}/api/v1/post/getAllPostEvent/${id}`,
@@ -31,7 +32,7 @@ export default async function Home({ params }: any) {
   const data = await getData(params);
   // const posts = await getAllPosts(params);
 
-  // console.log(data);
+
   return (
     <div>
       <SelectTemplate event={data} />

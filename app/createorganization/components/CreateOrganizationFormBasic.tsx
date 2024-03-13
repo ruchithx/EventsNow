@@ -326,119 +326,118 @@ export default function CreateOrganizationFormBasic() {
           className=" my-5 w-full h-8 block flex-1  bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:outline-custom-orange sm:text-sm sm:leading-6 border-2 rounded-[12px] pl-4"
           placeholder="Enter email address "
         ></input>
+      </form>
+      <CldUploadWidget
+        uploadPreset="organization"
+        onOpen={() => {
+          console.log("isPhotographer");
+        }}
+        onSuccess={(results: CloudinaryUploadWidgetResults) => {
+          const uploadedResult = results.info as CloudinaryUploadWidgetInfo;
+          const profileImageURL = {
+            image: uploadedResult.secure_url,
+          };
+          setProfileImage(profileImageURL.image);
+        }}
+        options={{
+          tags: ["organization image"],
+          // publicId: `${organizationName}/${Date.now()}`,
+          // publicId: "b2c",
 
-        <CldUploadWidget
-          uploadPreset="organization"
-          onOpen={() => {
-            console.log("isPhotographer");
-          }}
-          onSuccess={(results: CloudinaryUploadWidgetResults) => {
-            const uploadedResult = results.info as CloudinaryUploadWidgetInfo;
-            const profileImageURL = {
-              image: uploadedResult.secure_url,
-            };
-            setProfileImage(profileImageURL.image);
-          }}
-          options={{
-            tags: ["organization image"],
-            // publicId: `${organizationName}/${Date.now()}`,
-            // publicId: "b2c",
+          sources: ["local"],
+          googleApiKey: "<image_search_google_api_key>",
+          showAdvancedOptions: false,
+          cropping: true,
+          multiple: false,
+          showSkipCropButton: false,
+          croppingAspectRatio: 0.75,
+          croppingDefaultSelectionRatio: 0.75,
+          croppingShowDimensions: true,
+          croppingCoordinatesMode: "custom",
+          // maxImageHeight: 100,
+          // croppingValidateDimensions: true,
+          defaultSource: "local",
+          resourceType: "image",
+          folder: "organization",
 
-            sources: ["local"],
-            googleApiKey: "<image_search_google_api_key>",
-            showAdvancedOptions: false,
-            cropping: true,
-            multiple: false,
-            showSkipCropButton: false,
-            croppingAspectRatio: 0.75,
-            croppingDefaultSelectionRatio: 0.75,
-            croppingShowDimensions: true,
-            croppingCoordinatesMode: "custom",
-            // maxImageHeight: 100,
-            // croppingValidateDimensions: true,
-            defaultSource: "local",
-            resourceType: "image",
-            folder: "organization",
-
-            styles: {
-              palette: {
-                window: "#ffffff",
-                sourceBg: "#f4f4f5",
-                windowBorder: "#90a0b3",
-                tabIcon: "#000000",
-                inactiveTabIcon: "#555a5f",
-                menuIcons: "#555a5f",
-                link: "#000000",
-                action: "#000000",
-                inProgress: "#464646",
-                complete: "#000000",
-                error: "#cc0000",
-                textDark: "#000000",
-                textLight: "#fcfffd",
-                theme: "white",
-              },
+          styles: {
+            palette: {
+              window: "#ffffff",
+              sourceBg: "#f4f4f5",
+              windowBorder: "#90a0b3",
+              tabIcon: "#000000",
+              inactiveTabIcon: "#555a5f",
+              menuIcons: "#555a5f",
+              link: "#000000",
+              action: "#000000",
+              inProgress: "#464646",
+              complete: "#000000",
+              error: "#cc0000",
+              textDark: "#000000",
+              textLight: "#fcfffd",
+              theme: "white",
             },
-          }}
-        >
-          {({ open }) => {
-            return (
-              // <Button
-              //   variant="default"
-              //   className="rounded-full mt-5 ml-3"
-              //   onClick={() => {
-              //     open();
-              //   }}
-              // >
-              //   <Camera />
-              // </Button>
-              <button
-                onClick={() => {
-                  open();
-                }}
-              >
-                <div className="p-1 text-white font-semibold flex items-center justify-center gap-2 bg-slate-400 rounded-2xl">
-                  <FaCloudUploadAlt />
-                  upload image
-                </div>
-              </button>
-            );
-          }}
-        </CldUploadWidget>
+          },
+        }}
+      >
+        {({ open }) => {
+          return (
+            // <Button
+            //   variant="default"
+            //   className="rounded-full mt-5 ml-3"
+            //   onClick={() => {
+            //     open();
+            //   }}
+            // >
+            //   <Camera />
+            // </Button>
+            <button
+              onClick={() => {
+                open();
+              }}
+            >
+              <div className="p-1 text-white font-semibold flex items-center justify-center gap-2 bg-slate-400 rounded-2xl">
+                <FaCloudUploadAlt />
+                upload image
+              </div>
+            </button>
+          );
+        }}
+      </CldUploadWidget>
 
-        {profileImage.length > 0 && (
-          <div className=" mt-5 border-2 w-auto border-solId rounded-xl   ">
+      {profileImage.length > 0 && (
+        <div className=" mt-5 border-2 w-auto border-solId rounded-xl   ">
+          <Image
+            className=" p-4"
+            src={profileImage}
+            width={500}
+            height={500}
+            alt="organization cover image"
+          />
+        </div>
+      )}
+
+      {isSubmitting ? (
+        <button className="button flex text-center mt-10 mb-10 xl:mb-20  px-2 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono ">
+          <div className="flex gap-2 justify-center items-center">
+            <div> Creating</div>
             <Image
-              className=" p-4"
-              src={profileImage}
-              width={500}
-              height={500}
-              alt="organization cover image"
+              src="/images/createEvent/LoadingBtnIcon.svg"
+              alt="loading btn"
+              width={40}
+              height={40}
             />
           </div>
-        )}
-
-        {isSubmitting ? (
-          <button className="button flex text-center mt-10 mb-10 xl:mb-20  px-2 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono ">
-            <div className="flex gap-2 justify-center items-center">
-              <div> Creating</div>
-              <Image
-                src="/images/createEvent/LoadingBtnIcon.svg"
-                alt="loading btn"
-                width={40}
-                height={40}
-              />
-            </div>
-          </button>
-        ) : (
-          <button
-            onClick={(e: any) => sendOrganizationData(e)}
-            type="submit"
-            className="button flex text-center mt-10 mb-10 xl:mb-20 py-2 px-4 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono "
-          >
-            SEND TO APPROVAL
-          </button>
-        )}
-      </form>
+        </button>
+      ) : (
+        <button
+          onClick={(e: any) => sendOrganizationData(e)}
+          type="submit"
+          className="button flex text-center mt-10 mb-10 xl:mb-20 py-2 px-4 justify-center bg-custom-orange text-white font-semibold rounded-lg  text-base font-mono "
+        >
+          SEND TO APPROVAL
+        </button>
+      )}
     </div>
   );
 }

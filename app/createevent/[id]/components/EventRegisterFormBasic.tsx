@@ -90,7 +90,9 @@ export default function EventRegisterFormBasic() {
         setIsSubmitting(false);
         return;
       }
-      router.push(`/organization/dashboard/${params.id}`);
+      const { event } = await res.json();
+
+      router.push(`/event/dashboard/${event._id}`);
 
       success("event created succesfully");
 

@@ -1,9 +1,16 @@
+import { User } from "@/app/admin/Type";
 import { error, success } from "@/util/Toastify";
 import React from "react";
 interface MAkeAdminprops {
+  setUser: React.Dispatch<React.SetStateAction<User[]>>;
   userId: String;
+  setMakeAdminModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const MakeAdminModalContent = ({ userId }: MAkeAdminprops) => {
+const MakeAdminModalContent = ({
+  userId,
+  setMakeAdminModal,
+  setUser,
+}: MAkeAdminprops) => {
   const adminUser = async () => {
     try {
       const response = await fetch(
@@ -20,6 +27,18 @@ const MakeAdminModalContent = ({ userId }: MAkeAdminprops) => {
       }
 
       success("User is now an admin");
+      setMakeAdminModal(false);
+      setUser((user: User[]) => {
+        const userChangers = user.map((user: User) => {
+          if (user._id === userId) {
+            user.role = "admin";
+          }
+          return user;
+        });
+        return userChangers;
+      });
+
+      // (user.find((user) => user._id === userId)?.role = "admin")
     } catch (error) {
       console.error("Error make admin user:", error);
     }

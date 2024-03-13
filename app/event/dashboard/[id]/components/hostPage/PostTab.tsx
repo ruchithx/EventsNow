@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Post from "@/components/Post";
+// import Post from "@/components/Post";
 import Spinner from "@/components/Spinner";
+import Post from "../Post";
 
-interface Post {
-  _id: string;
-  userImage: string;
-  userName: string;
-  description: string;
-  image: string;
-  like: number;
-}
+// interface Post {
+//   _id: string;
+//   userImage: string;
+//   userName: string;
+//   description: string;
+//   image: string;
+//   like: number;
+// }
 
 export default function PostTab() {
   const [data, setData] = useState([]);

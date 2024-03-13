@@ -1,5 +1,3 @@
-"use client";
-
 import Footer from "@/components/Footer";
 
 import EventCardNew from "@/components/EventCardNew";
@@ -37,6 +35,8 @@ export default function Home() {
         location="matara"
       />
       <EventCardNew event="erewe" organization="sdsd" /> */}
+
+      {/* newly commnet*/}
       {/* <div className="flex flex-row mt-4">
         <div className="font-bold text-[70px] text-[#906953] ms-12 w-1/2">
           Upcoming Events
