@@ -24,6 +24,18 @@ export default function PostTab() {
   const [email, setEmail] = useState<string | null | undefined>("");
   const { id } = useParams();
 
+  interface CustomUser {
+    _id: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    role: string;
+    image: string;
+    wishListId: string;
+    registeredUser: boolean;
+    // Add any other properties you expect in your user object here
+  }
+
   useEffect(() => {
     setLoading(true);
 
