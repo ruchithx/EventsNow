@@ -26,7 +26,7 @@ export default function RootLayout({
         <link rel="icon" href="/reusableComponents/nav-logo.png" sizes="any" />
         <AuthProvider>
           <AuthContextProvider>
-            <NavBar />
+            {/* <NavBar /> */}
             {children}
           </AuthContextProvider>
           <TostifyProvider />

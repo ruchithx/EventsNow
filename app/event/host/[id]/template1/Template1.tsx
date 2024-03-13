@@ -9,14 +9,9 @@ import HostSideBar from "../components/HostSideBar";
 import Description from "../components/Description";
 import { Event, Post } from "../SelectTemplate";
 import { parse } from "path";
+import { formatDate } from "@/util/helper";
 
 export default function Template({ event }: { event: Event }) {
-  function formatDate(dateString: any) {
-    const date = new Date(dateString);
-    const formattedDate = date.toISOString().split("T")[0];
-    return formattedDate;
-  }
-
   const date = formatDate(event.eventStartDate);
 
   const [activeComponent, setActiveComponent] = useState("CoverPhoto");

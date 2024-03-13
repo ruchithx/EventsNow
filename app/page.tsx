@@ -1,9 +1,8 @@
-
 import React from "react";
 
 import EventCardDisabled from "@/components/EventCardDisabled";
 
-import EventViewMode from "./Components";
+import EventViewMode from "../components/EventViewMode";
 import { Event } from "./admin/Type";
 
 async function getData(): Promise<Event[]> {
@@ -20,15 +19,16 @@ async function getData(): Promise<Event[]> {
 
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
-
+import { formatDate } from "@/util/helper";
 
 export default async function Home() {
   const data = await getData();
   return (
     <div>
+      {/* <HeroSection /> */}
 
       <EventViewMode />
-      <div className="font-bold text-[30px] md:text-[40px] lg:text-[60px] text-[#906953] drop-shadow-lg ms-8">
+      {/* <div className="font-bold text-[30px] md:text-[40px] lg:text-[60px] text-[#906953] drop-shadow-lg ms-8">
         Outdated Events
       </div>
 
@@ -39,15 +39,12 @@ export default async function Home() {
             name={e.eventName}
             img={e.postImageLink}
             location={e.selectedTab}
-            date={e.eventStartDate}
+            date={formatDate(e.eventStartDate)}
           />
         ))}
       </div>
 
-      <HeroSection />
-
-
-      <Footer />
+      <Footer /> */}
     </div>
   );
 }

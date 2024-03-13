@@ -5,6 +5,8 @@ import { HiOutlineViewGrid, HiOutlineViewList } from "react-icons/hi";
 import EventCard from "@/components/EventCard";
 import Pagination from "@mui/material/Pagination";
 import { Event } from "@/app/admin/Type";
+import { formatDate } from "@/util/helper";
+import EventListView from "./EventListView";
 function getData() {
   const response = fetch(
     `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getPublishedEvents`,
@@ -120,20 +122,21 @@ const EventViewMode = () => {
         </div>
       </div>
       <div className="flex flex-wrap ms-12">
-        {currentEvents.map((event, index) =>
+        <EventListView />
+        {/* {currentEvents.map((event, index) =>
           viewMode === "grid" ? (
             <EventCard
               key={index}
               name={event.eventName}
               img={event.postImageLink}
               location={event.selectedTab}
-              date={event.eventStartDate}
+              date={formatDate(event.eventStartDate)}
               time={event.eventTimeZone}
             />
           ) : (
-            <div key={index}>abcd</div>
+            <EventListView key={index} />
           )
-        )}{" "}
+        )}{" "} */}
       </div>
 
       {/* Pagination */}
