@@ -28,7 +28,7 @@ export default async function Home() {
       {/* <HeroSection /> */}
 
       <EventViewMode />
-      {/* <div className="font-bold text-[30px] md:text-[40px] lg:text-[60px] text-[#906953] drop-shadow-lg ms-8">
+      <div className="font-bold text-[30px] md:text-[40px] lg:text-[60px] text-[#906953] drop-shadow-lg ms-8">
         Outdated Events
       </div>
 
@@ -44,7 +44,7 @@ export default async function Home() {
         ))}
       </div>
 
-      <Footer /> */}
+      <Footer />
     </div>
   );
 }

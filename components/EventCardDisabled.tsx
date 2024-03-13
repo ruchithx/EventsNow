@@ -31,9 +31,6 @@ export default function EventCardDisabled({
           <div className="text ml-5 col-span-2  text-xl font-mono  font-extrabold ">
             {name}
           </div>
-          <button className="hover:bg-[#526595] col-span-1 w-63 h-22 mr-4 rounded-[10px]   text-center text-sm font-mono bg-custom-blue">
-            INFO
-          </button>
         </div>
         <div>
           <hr className="w-52 ml-5 mt-1"></hr>

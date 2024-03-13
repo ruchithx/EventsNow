@@ -21,7 +21,7 @@ function getData() {
 const EventViewMode = () => {
   useEffect(() => {
     const handleResize = () => {
-      setEventsPerPage(getEventsPerPage());
+      setEventsPerPage(4);
     };
 
     window.addEventListener("resize", handleResize);
@@ -29,20 +29,27 @@ const EventViewMode = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  const getEventsPerPage = () => {
-    if (window.innerWidth >= 1024) {
-      return 8;
-    } else if (window.innerWidth >= 768) {
-      return 4;
-    } else {
-      return 3;
-    }
-  };
+
+  // const getEventsPerPage = () => {
+  //   if (window.innerWidth >= 1024) {
+  //     return 8;
+  //   } else if (window.innerWidth >= 768) {
+  //     return 4;
+  //   } else {
+  //     return 3;
+  //   }
+  // };
+
+  // document.addEventListener("DOMContentLoaded", function () {
+  //   getEventsPerPage();
+  //   // Now you can use getEventsPerPage() safely.
+  // });
+
   const [eventarr, setEventarr] = useState<Event[]>([]);
   const [viewMode, setViewMode] = useState("grid");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState("");
-  const [eventsPerPage, setEventsPerPage] = useState(getEventsPerPage());
+  const [eventsPerPage, setEventsPerPage] = useState(4);
   useEffect(() => {
     getData().then((res) => {
       res.json().then((data) => {
@@ -121,11 +128,18 @@ const EventViewMode = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap ms-12">
-        <EventListView />
-        {/* {currentEvents.map((event, index) =>
+      <div
+        className={`flex ${
+          viewMode === "grid"
+            ? "flex-wrap ml-1"
+            : " flex-col gap-3 justify-center items-center"
+        }  `}
+      >
+        {/* <EventListView /> */}
+        {currentEvents.map((event, index) =>
           viewMode === "grid" ? (
             <EventCard
+              id={event._id}
               key={index}
               name={event.eventName}
               img={event.postImageLink}
@@ -134,9 +148,17 @@ const EventViewMode = () => {
               time={event.eventTimeZone}
             />
           ) : (
-            <EventListView key={index} />
+            <EventListView
+              id={event._id}
+              key={index}
+              name={event.eventName}
+              img={event.postImageLink}
+              location={event.selectedTab}
+              date={formatDate(event.eventStartDate)}
+              time={event.eventTimeZone}
+            />
           )
-        )}{" "} */}
+        )}{" "}
       </div>
 
       {/* Pagination */}
