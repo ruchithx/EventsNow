@@ -8,6 +8,7 @@ import { error, success } from "@/util/Toastify";
 import { Session } from "inspector";
 import { useLocalizedStringDictionary } from "@react-aria/i18n";
 import { get, set } from "lodash";
+import { is } from "date-fns/locale";
 
 interface HostSideBar {
   EventName: String;
@@ -42,6 +43,8 @@ export default function HostSideBar({
     null
   );
 
+  const [isRegistered, setIsRegistered] = useState<boolean>(false);
+
   const handleClick = (buttonNumber: number) => {
     setActiveButton(buttonNumber);
   };
@@ -65,6 +68,7 @@ export default function HostSideBar({
     }
 
     success("registered for event successfully");
+    setIsRegistered(true);
   }
 
   async function removeUserFromRegisteredEvent() {
@@ -84,6 +88,7 @@ export default function HostSideBar({
     }
 
     success("remove user from event successfully");
+    setIsRegistered(false);
   }
 
   useEffect(() => {
@@ -94,7 +99,9 @@ export default function HostSideBar({
       setEmail(user.email);
     };
     getUser();
+  }, [id]);
 
+  useEffect(() => {
     const getEvent = async () => {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getEvent`,
@@ -106,9 +113,12 @@ export default function HostSideBar({
       );
       const data = await res.json();
       setRegisteredUserList(data.registerUser);
+
+      const register = data.registerUser?.includes(userId || "");
+      setIsRegistered(register);
     };
     getEvent();
-  }, [id]);
+  }, [id, userId]);
 
   return (
     <div className="xl:w-96 h-screen bg-white items-end md:w-80">
@@ -197,7 +207,7 @@ export default function HostSideBar({
         </div>
 
         <div className="flex xl:pt-24 md:pt-14 items-center ">
-          {registeredUserList?.includes(userId || "") ? (
+          {isRegistered ? (
             <button
               onClick={removeUserFromRegisteredEvent}
               className="flex xl:w-36 w-32 xl:h-16 h-12 bg-custom-orange rounded-l-2xl items-center xl:px-4"
