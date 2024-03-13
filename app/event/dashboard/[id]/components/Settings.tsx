@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Container from "./Container";
 import Switch from "react-switch";
 import ContainerWithStroke from "./ContainerWithStroke";
-import { set } from "mongoose";
 import Image from "next/image";
 import { Button } from "@material-tailwind/react";
 import { UseEventContext, EventContextType } from "../EventDashContext";
