@@ -9,13 +9,15 @@ import { formatDate } from "@/util/helper";
 
 async function getData() {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/v1/event/outdatedEvents`,
-    {
-      method: "GET",
-      mode: "cors",
-    }
+    `${process.env.NEXT_PUBLIC_URL}/api/v1/event/outdatedEvents`
   );
   const data = await response.json();
+
+  console.log(data);
+  if (data === "no outDated event") {
+    return [];
+  }
+
   return data;
 }
 

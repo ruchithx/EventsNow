@@ -10,6 +10,14 @@ export const GET = async (req: Request) => {
     const outdated = await Event.find({
       isPublished: false,
     });
+    if (outdated) {
+      return new NextResponse(JSON.stringify("no outDated event"), {
+        status: 404,
+      });
+      return;
+    }
+
+    console.log("outdated", outdated);
 
     return new NextResponse(JSON.stringify(outdated), { status: 200 });
   } catch (error) {
