@@ -18,6 +18,7 @@ export async function PUT(request: NextRequest, response: NextResponse) {
         startTime: data.startTime,
         duration: data.duration,
         endTime: data.endTime,
+        isPublished:data.eventVisibility
       },
     });
 

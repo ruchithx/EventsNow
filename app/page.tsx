@@ -12,6 +12,7 @@ import { HiOutlineViewList } from "react-icons/hi";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useEffect, useState } from "react";
 import Post from "@/components/Post";
+import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
   return (
@@ -25,7 +26,7 @@ export default function Home() {
         location={"online"}
       /> */}
 
-      <div>Hero sectin</div>
+      <HeroSection />
 
       {/* <EventCardNewOrg
         event="nadagama"
@@ -62,9 +63,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div className=" flex flex-wrap ms-12">
+      <div className=" flex flex-wrap md:ms-12 mx-6 lg:mx-0 xl:ms-20 sm:mx-0  ">
         <EventCard
           name={"Nadagama"}
           img={"images/event/UpcomingEvent.png"}
@@ -115,7 +116,7 @@ export default function Home() {
           time={"10.00AM"}
         />
       </div>
-      <div className="flex flex-row justify-evenly mt-4">
+      {/* <div className="flex flex-row justify-evenly mt-4">
         <div className="font-bold text-[70px] text-[#906953] ms-12 w-1/2">
           OutDated Events
         </div>
@@ -141,9 +142,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div className="flex flex-wrap ms-12">
+      <div className="flex flex-wrap md:ms-12 mx-6 lg:mx-0 xl:ms-20 sm:mx-0">
         {" "}
         <EventCardDisabled
           name={"Nadagama"}
@@ -212,7 +213,7 @@ export default function Home() {
           date={"2024/12/12"}
         />
       </div>
-      <Footer /> */}
+      <Footer />
     </div>
   );
 }
