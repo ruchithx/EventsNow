@@ -25,6 +25,20 @@ export interface AdminContext {
   setUser: React.Dispatch<React.SetStateAction<User[]>>;
   setPayment: React.Dispatch<React.SetStateAction<any>>;
 }
+export interface EventContext {
+  eventarr: Event[];
+  setEventarr: React.Dispatch<React.SetStateAction<Event[]>>;
+  viewMode: string;
+  setViewMode: React.Dispatch<React.SetStateAction<string>>;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  sortBy: string;
+  setSortBy: React.Dispatch<React.SetStateAction<string>>;
+  eventsPerPage: number;
+  handleViewChange: (mode: string) => void;
+  handleSortByChange: (selectedSortBy: string) => void;
+  paginate: (pageNumber: number) => void;
+}
 
 export type User = {
   email: string;
@@ -47,6 +61,13 @@ export type Event = {
   postImageLink: string;
   isActive?: boolean;
   __v: number;
+  organizationName: string;
+  organizationFullName: string;
+  organizationNumber: string;
+  organizationNumberType: string;
+  organizationEmail: string;
+  organizationAddress: string;
+  location: string;
 };
 export type Organization = {
   map(

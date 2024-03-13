@@ -20,7 +20,7 @@ export default function EventCardDisabled({
         <div className=" styleQ h-[301px] overflow-hidden">
           <Image
             className="rounded-t-[9px] 	"
-            src={`/${img}`}
+            src={`${img}`}
             alt={"event-img"}
             width={256}
             height={301}
