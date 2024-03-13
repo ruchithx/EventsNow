@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import grapesjs from "grapesjs";
 import plugin from "grapesjs-blocks-basic";
-import navbar from "grapesjs-navbar";
 import form from "grapesjs-plugin-forms";
 import gradient from "grapesjs-style-gradient";
 import filter from "grapesjs-style-filter";
@@ -12,6 +11,8 @@ import webPage from "grapesjs-preset-webpage";
 import touch from "grapesjs-touch";
 import RenderedContent from "./RenderedContent";
 import Indexeddb from "grapesjs-indexeddb";
+import newsletter from "grapesjs-preset-newsletter";
+import navbar from "grapesjs-navbar";
 
 export default function Build({ onHtmlRendered }) {
   const [editor, setEditor] = useState(null);
@@ -30,16 +31,18 @@ export default function Build({ onHtmlRendered }) {
         webPage,
         touch,
         Indexeddb,
+        newsletter,
       ],
       pluginsOpts: {
         "grapesjs-blocks-basic": {},
-        "grapesjs-navbar": {},
+        [navbar]: {},
         "grapesjs-plugin-forms": {},
         "grapesjs-style-gradient": {},
         "grapesjs-style-filter": {},
         "grapesjs-style-bg": {},
         "grapesjs-preset-webpage": {},
         "grapesjs-touch": {},
+        "grapesjs-preset-newsletter": {},
         "grapesjs-indexeddb": {
           options: {
             // In case of multiple projects on the same page indicate an id to

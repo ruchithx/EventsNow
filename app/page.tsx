@@ -38,7 +38,7 @@ export default function Home() {
 
   return (
     <>
-      {/* <Build onHtmlRendered={handleHtmlRendered} />{" "} */}
+      <Build onHtmlRendered={handleHtmlRendered} />{" "}
       {/* <RenderedContent content={null} />{" "} */}
     </>
   );
