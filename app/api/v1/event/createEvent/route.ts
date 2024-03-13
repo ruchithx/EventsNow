@@ -9,11 +9,13 @@ export async function POST(req: NextRequest) {
     eventLocation,
     eventStartDate,
     startTime,
-    duration,
-    eventTimeZone,
+
     description,
-    postImageLink,
+    coverImage,
+    dashboardImage,
     organizationId,
+    eventEndDate,
+    endTime,
   } = await req.json();
 
   connectMongoDB();
@@ -23,11 +25,12 @@ export async function POST(req: NextRequest) {
     eventLocation,
     eventStartDate,
     startTime,
-    duration,
-    eventTimeZone,
     description,
-    postImageLink,
+    coverImage,
+    dashboardImage,
     organizationId,
+    eventEndDate,
+    endTime,
   });
   if (!event) {
     return NextResponse.json(

@@ -11,6 +11,8 @@ interface Event {
   Time: String;
   Date: String;
   eventCover: String;
+  endTime: String;
+  endDate: String;
 }
 
 export default function Event({
@@ -19,29 +21,11 @@ export default function Event({
   Time,
   Date,
   eventCover,
+  endTime,
+  endDate,
 }: Event) {
   return (
     <div className=" w-64 xl:w-72   rounded-xl bg-[#D9D9D9] shadow-inner xl:pt-8 xl:px-8 pt-6 px-6  ">
-      <button >
-        <div className="py-0.5 text-custom-orange bg-white w-fit rounded-md flex items-center justify-center whitespace-nowrap mb-3 px-2 hover:bg-[#ece3df] ">
-          <svg
-            width="30"
-            height="30"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M20.7703 12C20.7703 11.6412 20.5762 11.4056 20.188 10.9343C18.768 9.21014 15.6357 6 12 6C8.36428 6 5.23207 9.21014 3.81198 10.9343C3.42382 11.4056 3.22974 11.6412 3.22974 12C3.22974 12.3588 3.42382 12.5944 3.81198 13.0657C5.23207 14.7899 8.36428 18 12 18C15.6357 18 18.768 14.7899 20.188 13.0657C20.5762 12.5944 20.7703 12.3588 20.7703 12ZM12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3432 9 9.00002 10.3431 9.00002 12C9.00002 13.6569 10.3432 15 12 15Z"
-              fill="#D47151"
-            />
-          </svg>
-          View Event
-        </div>
-      </button>
-
       <Image
         className=" rounded-md  "
         src={eventCover as string}
@@ -79,7 +63,7 @@ export default function Event({
           />
 
           <div className="text-[#353C4E] text-base text-start font-mono align-top grid content-center">
-            {Date}
+            {Date} to {endDate}
           </div>
         </div>
 
@@ -93,7 +77,7 @@ export default function Event({
           />
 
           <div className="text-[#353C4E] text-base text-start  font-mono align-top grid content-center">
-            {Time}
+            {Time}-{endTime}
           </div>
         </div>
 

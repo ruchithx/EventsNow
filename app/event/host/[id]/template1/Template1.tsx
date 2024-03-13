@@ -8,11 +8,13 @@ import SmallView from "../components/SmallView";
 import HostSideBar from "../components/HostSideBar";
 import Description from "../components/Description";
 import { Event, Post } from "../SelectTemplate";
-import { parse } from "path";
+
 import { formatDate } from "@/util/helper";
 
 export default function Template({ event }: { event: Event }) {
-  const date = formatDate(event.eventStartDate);
+  const date = `${formatDate(event.eventStartDate)} to ${formatDate(
+    event.eventEndDate
+  )}`;
 
   const [activeComponent, setActiveComponent] = useState("CoverPhoto");
 
@@ -22,10 +24,12 @@ export default function Template({ event }: { event: Event }) {
 
   return (
     <div>
-      <div className="md:flex relative ">
+
+      <div className="md:flex relative -z-10">
+
         {activeComponent === "CoverPhoto" && (
           <CoverPhoto
-            image={event.postImageLink}
+            image={event.coverImage}
             // image={"/images/ReusableComponents/PictureOfPost.jpg"}
           />
         )}
@@ -46,7 +50,7 @@ export default function Template({ event }: { event: Event }) {
           <HostSideBar
             EventName={event.eventName}
             Location={event.selectedTab}
-            Time={`${event.startTime} to ${event.startTime + event.duration}`}
+            Time={`${event.startTime} to ${event.endTime}`}
             Date={date}
             activeComponent={activeComponent}
             handleComponentChange={handleComponentChange}
