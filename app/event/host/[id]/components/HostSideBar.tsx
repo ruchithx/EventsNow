@@ -92,6 +92,7 @@ export default function HostSideBar({
 
     success("remove user from event successfully");
     setIsRegistered(false);
+    
   }
 
   useEffect(() => {
@@ -166,7 +167,10 @@ export default function HostSideBar({
     }
 
     success("Event added to the wishlist ");
+    setIsAddWishList(true);
   }
+
+  //remove from wishlist 
 
   async function removeFromWishlistHandler() {
     const res = await fetch(
@@ -185,6 +189,7 @@ export default function HostSideBar({
     }
 
     success("Event removed from the wishlist ");
+    setIsAddWishList(false);
   }
 
   return (

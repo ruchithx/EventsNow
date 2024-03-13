@@ -24,11 +24,6 @@ export async function POST(request: NextRequest, response: NextResponse) {
     
     
 
-
-
-    
-
-
 const newRegisterUserArray = eventForUpdate.registerUser.filter((i: any) => i._id.toString() !== getUserByemail._id.toString());
 
 
