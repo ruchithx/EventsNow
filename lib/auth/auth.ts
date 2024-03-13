@@ -10,6 +10,15 @@ import { redirect } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { JWT } from "next-auth/jwt";
 
+type User = {
+  _id: string;
+  email: string;
+  firstName: string;
+  role: string;
+ image: string;
+};
+
+
 export async function comparePassword(password: string, hashPassword: string) {
   const isValid = await compare(password, hashPassword);
   return isValid;
@@ -133,6 +142,7 @@ export const authOptions: NextAuthOptions = {
       params.session.user.email = params.token.email;
       params.session.user.firstName = params.token.firstName;
       params.session.user.role = params.token.role;
+      params.session.user._id = params.token.id;
       return params.session;
     },
     async jwt(params: {
@@ -147,6 +157,7 @@ export const authOptions: NextAuthOptions = {
         params.token.id = params.user._id;
         params.token.firstName = params.user.firstName;
         params.token.role = params.user.role;
+
         // Handle user-related logic here
       } else {
         // Handle the case when the user is undefined

@@ -1,8 +1,13 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import PostTab from "./PostTab";
 import CoverPhoto from "./CoverPhoto";
+import { getSession } from "next-auth/react";
+import { useParams } from "next/navigation";
+import { error, success } from "@/util/Toastify";
+import { Session } from "inspector";
+import { useLocalizedStringDictionary } from "@react-aria/i18n";
+import { get, set } from "lodash";
 
 interface HostSideBar {
   EventName: String;
@@ -11,6 +16,13 @@ interface HostSideBar {
   Date: String;
   activeComponent: string; // Add prop for active component
   handleComponentChange: (component: string) => void; // Add prop for handling component change
+}
+
+interface customUser {
+  email: string;
+  name: string;
+  image: string;
+  _id: string;
 }
 
 function buyTckets() {}
@@ -24,12 +36,82 @@ export default function HostSideBar({
   handleComponentChange,
 }: HostSideBar) {
   const [activeButton, setActiveButton] = useState<number | null>(1);
+  const [userId, setUserId] = useState<string | null>(null);
+  const [email, setEmail] = useState<string | null>(null);
+  const [registeredUserList, setRegisteredUserList] = useState<string[] | null>(
+    null
+  );
 
-  const handleClick = (buttonNumber: number) => {setActiveButton(buttonNumber);};
+  const handleClick = (buttonNumber: number) => {
+    setActiveButton(buttonNumber);
+  };
 
-  
+  const id = useParams<{ id: string }>().id;
+
+  async function userRegistrationForEventHandler() {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/event/registerUserForEvent`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: email, eventId: id }),
+      }
+    );
+    if (!res.ok) {
+      error("Error registration for event");
+      return;
+    }
+
+    success("registered for event successfully");
+  }
+
+  async function removeUserFromRegisteredEvent() {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/event/removeRegisteredUserFromEvent`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: email, eventId: id }),
+      }
+    );
+    if (!res.ok) {
+      error("Error registration for event");
+      return;
+    }
+
+    success("remove user from event successfully");
+  }
+
+  useEffect(() => {
+    const getUser = async () => {
+      const session = await getSession();
+      const user = session?.user as customUser;
+      setUserId(user._id);
+      setEmail(user.email);
+    };
+    getUser();
+
+    const getEvent = async () => {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getEvent`,
+        {
+          method: "POST",
+          mode: "cors",
+          body: JSON.stringify(id),
+        }
+      );
+      const data = await res.json();
+      setRegisteredUserList(data.registerUser);
+    };
+    getEvent();
+  }, [id]);
+
   return (
-    <div className="xl:w-96 xl:h-[45rem] md:h-[36rem] bg-white items-end md:w-80">
+    <div className="xl:w-96 h-screen bg-white items-end md:w-80">
       <div className=' text-center text-[#454545cc] md:text-4xl xl:text-5xl sm:text-xl font-normal xl:pt-16 md:pt-10 font-["Roboto"]'>
         {EventName}
       </div>
@@ -57,7 +139,6 @@ export default function HostSideBar({
               : "hover:bg-gray-200 text-[#D47151] bg-[#F9EBE9]"
           }`}
           onClick={() => {
-            
             if (activeComponent !== "PostTab") {
               handleComponentChange("PostTab");
               handleClick(2);
@@ -116,19 +197,41 @@ export default function HostSideBar({
         </div>
 
         <div className="flex xl:pt-24 md:pt-14 items-center ">
-          <button className="flex xl:w-36 w-32 xl:h-16 h-12  bg-[#D47151] rounded-l-2xl items-center xl:px-4  ">
-            <div className=" w-10 h-10 mt-2 ml-2 xl:ml-0">
-              <Image
-                src="/images/Event/HostPage/Check_fill.svg"
-                alt="print"
-                width={32}
-                height={32}
-              />
-            </div>
-            <div className="font-medium xl:text-lg text-md text-white text-left leading-tight ml-4">
-              Buy tickets
-            </div>
-          </button>
+          {registeredUserList?.includes(userId || "") ? (
+            <button
+              onClick={removeUserFromRegisteredEvent}
+              className="flex xl:w-36 w-32 xl:h-16 h-12 bg-custom-orange rounded-l-2xl items-center xl:px-4"
+            >
+              <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
+                <Image
+                  src="/images/Event/HostPage/Paper_fill.svg"
+                  alt="print"
+                  width={32}
+                  height={32}
+                />
+              </div>
+              <div className="font-medium xl:text-lg text-md text-white text-left leading-tight xl:ml-4 md:ml-2">
+                Remove Registration
+              </div>
+            </button>
+          ) : (
+            <button
+              onClick={userRegistrationForEventHandler}
+              className="flex xl:w-36 w-32 xl:h-16 h-12  bg-custom-orange rounded-l-2xl items-center xl:px-4"
+            >
+              <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
+                <Image
+                  src="/images/Event/HostPage/Paper_fill.svg"
+                  alt="print"
+                  width={32}
+                  height={32}
+                />
+              </div>
+              <div className="font-medium xl:text-lg text-md text-white text-left leading-tight xl:ml-4 md:ml-2">
+                Register event
+              </div>
+            </button>
+          )}
 
           <button className="flex xl:w-36 w-32 xl:h-16 h-12 bg-[#455273] rounded-r-2xl items-center xl:px-4">
             <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
@@ -144,6 +247,20 @@ export default function HostSideBar({
             </div>
           </button>
         </div>
+
+        <button className="flex xl:w-72 w-32 xl:h-16 h-8  bg-[#D47151] rounded-2xl items-center xl:px-4  ">
+          <div className=" w-10 h-8 mt-2 ml-2 xl:ml-0">
+            <Image
+              src="/images/Event/HostPage/Check_fill.svg"
+              alt="print"
+              width={32}
+              height={32}
+            />
+          </div>
+          <div className="font-medium xl:text-lg text-md text-white text-left leading-tight ml-4">
+            Buy tickets
+          </div>
+        </button>
       </div>
     </div>
   );
