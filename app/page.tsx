@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import EventCardDisabled from "@/components/EventCardDisabled";
 import { formatDate } from "@/util/helper";
 import EventViewMode from "@/components/EventViewMode";
+import HeroSection from "@/components/HeroSection";
 // import EventCardDisabled from "@/components/EventCardDisabled";
 
 // import EventViewMode from "../components/EventViewMode";
@@ -67,13 +68,10 @@ export default async function Home() {
   const event = await getEvent();
   return (
     <div>
-
       <HeroSection />
 
-    
       <EventViewMode event={event} />
       <div className="font-bold text-[30px] md:text-[40px] lg:text-[60px] text-[#906953] drop-shadow-lg ms-8">
-
         Outdated Events
       </div>
 
