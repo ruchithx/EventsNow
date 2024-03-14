@@ -1,8 +1,8 @@
-import React from 'react'
-import Image from 'next/image'
-import PostTab from './PostTab';
+import React from "react";
+import Image from "next/image";
+import PostTab from "./PostTab";
 
-interface SmallView{
+interface SmallView {
   EventName: String;
   Location: String;
   Time: String;
@@ -17,11 +17,10 @@ export default function SmallView({
 }: SmallView) {
   return (
     <div>
-       <div className=' text-center text-[#454545cc] text-4xl font-normal pt-8 font-["Roboto"]'>
+      <div className=' text-center text-[#454545cc] text-4xl font-normal pt-8 font-["Roboto"]'>
         {EventName}
       </div>
 
-    
       <div className="text-left mx-12 text-[#455273] text-2xl font-bold mt-8 ">
         QUICK FACTS
       </div>
@@ -30,7 +29,7 @@ export default function SmallView({
         <div>
           <div className="w-8 h-8 ">
             <Image
-              src="/images/ReusableComponents/Pin_fill.svg"
+              src="/images/reusableComponents/Pin_fill.svg"
               alt="print"
               width={32}
               height={32}
@@ -44,7 +43,7 @@ export default function SmallView({
         <div>
           <div className="w-8 h-8 ">
             <Image
-              src="/images/ReusableComponents/Date_org.svg"
+              src="/images/reusableComponents/Date_org.svg"
               alt="print"
               width={32}
               height={32}
@@ -58,7 +57,7 @@ export default function SmallView({
         <div>
           <div className="w-8 h-8 ">
             <Image
-              src="/images/ReusableComponents/Clock_fill.svg"
+              src="/images/reusableComponents/Clock_fill.svg"
               alt="print"
               width={32}
               height={32}
@@ -69,13 +68,11 @@ export default function SmallView({
           </div>
         </div>
 
-        
-
         <div className="flex xl:pt-24 md:pt-14 items-center ">
           <button className="flex w-32 h-16  bg-[#D47151] rounded-l-2xl items-center px-4  ">
             <div className=" w-10 h-10 mt-4">
               <Image
-                src="/images/Event/HostPage/Check_fill.svg"
+                src="/images/event/HostPage/Check_fill.svg"
                 alt="print"
                 width={32}
                 height={32}
@@ -89,7 +86,7 @@ export default function SmallView({
           <button className="flex w-36 h-16 bg-[#455273] rounded-r-2xl items-center px-4">
             <div className=" w-10 h-10 mt-4 px-1">
               <Image
-                src="/images/Event/HostPage/Paper_fill.svg"
+                src="/images/event/HostPage/Paper_fill.svg"
                 alt="print"
                 width={32}
                 height={32}
@@ -102,16 +99,13 @@ export default function SmallView({
         </div>
       </div>
 
-      
-
       <div className="text-center text-[#455273] text-2xl font-bold mt-12 ">
         COMMUNITY
       </div>
 
-      <div className='flex items-center justify-center'>
+      <div className="flex items-center justify-center">
         <PostTab />
       </div>
-
     </div>
-  )
+  );
 }

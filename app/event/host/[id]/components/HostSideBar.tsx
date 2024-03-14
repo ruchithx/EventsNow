@@ -301,7 +301,7 @@ export default function HostSideBar({
             >
               <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
                 <Image
-                  src="/images/Event/HostPage/Paper_fill.svg"
+                  src="/images/event/HostPage/Paper_fill.svg"
                   alt="print"
                   width={32}
                   height={32}
@@ -320,7 +320,7 @@ export default function HostSideBar({
             >
               <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
                 <Image
-                  src="/images/Event/HostPage/Paper_fill.svg"
+                  src="/images/event/HostPage/Paper_fill.svg"
                   alt="print"
                   width={32}
                   height={32}
@@ -337,7 +337,7 @@ export default function HostSideBar({
             >
               <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
                 <Image
-                  src="/images/Event/HostPage/Paper_fill.svg"
+                  src="/images/event/HostPage/Paper_fill.svg"
                   alt="print"
                   width={32}
                   height={32}
@@ -353,7 +353,7 @@ export default function HostSideBar({
         <button className="flex xl:w-72 w-32 xl:h-16 h-8  bg-[#D47151] rounded-2xl items-center xl:px-4  ">
           <div className=" w-10 h-8 mt-2 ml-2 xl:ml-0">
             <Image
-              src="/images/Event/HostPage/Check_fill.svg"
+              src="/images/event/HostPage/Check_fill.svg"
               alt="print"
               width={32}
               height={32}
