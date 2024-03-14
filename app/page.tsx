@@ -30,9 +30,7 @@ async function getOutDateEvent() {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/v1/event/outdatedEvents`,
-      {
-        cache: "no-store",
-      }
+      { next: { revalidate: 10 } }
     );
     const data = await response.json();
 
@@ -47,9 +45,7 @@ async function getEvent() {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getPublishedEvents`,
-      {
-        cache: "no-store",
-      }
+      { next: { revalidate: 10 } }
     );
     const event = await response.json();
 
