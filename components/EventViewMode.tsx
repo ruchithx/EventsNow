@@ -314,7 +314,7 @@ const EventViewMode = ({ event }: { event: EventType[] }) => {
               img={event.dashboardImage}
               location={event.selectedTab}
               date={formatDate(event.eventStartDate)}
-              time={event.eventTimeZone}
+              time={event.startTime}
             />
           ) : (
             <EventListView
