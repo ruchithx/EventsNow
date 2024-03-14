@@ -24,7 +24,7 @@ export default function Template({ event }: { event: Event }) {
 
   return (
     <div>
-      <div className="md:flex  ">
+      <div className="md:flex md:justify-between ">
         {activeComponent === "CoverPhoto" && (
           <CoverPhoto
             image={event.coverImage}

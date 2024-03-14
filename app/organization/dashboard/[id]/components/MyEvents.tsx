@@ -42,7 +42,7 @@ export default function MyEvents() {
                 id={event._id}
                 key={event._id}
                 isSlideBar={isSlideBar}
-                img={event.postImageLink}
+                img={event.coverImage}
                 location={event.selectedTab}
                 time={event.startTime}
                 name={event.eventName}
