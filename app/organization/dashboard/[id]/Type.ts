@@ -96,7 +96,8 @@ export type Event = {
   eventName: string;
   organizationId: string;
   description: string;
-  postImageLink: string;
+  coverImage: string;
   isActive?: boolean;
+  dashboardImage: string;
   __v: number;
 };
