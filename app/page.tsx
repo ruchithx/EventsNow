@@ -68,7 +68,7 @@ export default async function Home() {
       <HeroSection />
 
       <EventViewMode event={event} />
-      <div className="font-bold text-[30px] md:text-[40px] lg:text-[60px] text-[#906953] drop-shadow-lg ms-8">
+      <div className="font-bold text-[30px] md:text-[40px] lg:text-5xl text-[#906953] drop-shadow-lg ms-8">
         Outdated Events
       </div>
 

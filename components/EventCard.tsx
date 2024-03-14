@@ -27,7 +27,7 @@ function EventCard({ name, img, location, date, time, id }: EventCard) {
         <div className="text ml-5 col-span-2  text-xl font-mono  font-extrabold ">
           {name}
         </div>
-        <button className="hover:bg-[#526595] col-span-1 w-63 h-22 mr-4 rounded-[10px]   text-center text-sm font-mono bg-custom-blue">
+        <button className="hover:bg-[#526595] button col-span-1 w-63 h-22 mr-4 rounded-[10px]   text-center text-sm font-mono bg-custom-blue">
           <Link href={`/event/host/${id}`}> INFO</Link>
         </button>
       </div>

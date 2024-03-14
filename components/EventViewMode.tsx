@@ -258,11 +258,11 @@ const EventViewMode = ({ event }: { event: EventType[] }) => {
   const currentEvents = eventarr.slice(indexOfFirstEvent, indexOfLastEvent);
   return (
     <div>
-      <div className="flex flex-col md:flex-row lg:flex-row justify-between">
-        <div className="font-bold text-[30px] md:text-[40px] lg:text-[60px] text-[#906953] drop-shadow-lg ms-8 ">
+      <div className="flex flex-col md:flex-row lg:flex-row items-center justify-between">
+        <div className="font-bold text-[30px] md:text-[40px] lg:text-5xl text-[#906953] drop-shadow-lg ms-8 ">
           Upcoming Events
         </div>
-        <div className="ms-12 sm:ms-0 flex flex-col md:flex-col lg:flex-row gap-2 md:gap-2 lg:gap-6 mr-0 md:mr-20 lg:mr-20 text-gray-600">
+        <div className="ms-12 sm:ms-0 justify-center items-center flex flex-col md:flex-col lg:flex-row gap-2 md:gap-2 lg:gap-6 mr-0 md:mr-20 lg:mr-20 text-gray-600">
           <div className=" mt-2 md:mt-6 lg:mt-10 flex flex-row">
             Sort By
             <div className="relative ml-4">

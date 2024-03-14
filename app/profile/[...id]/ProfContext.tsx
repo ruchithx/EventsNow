@@ -70,7 +70,7 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
     __v: 0,
   });
   const [eventDetails, setEventDetails] = useState<any>();
-  const [register, setRegister] = useState<any>();
+  const [register, setRegister] = useState<any>([]);
   const [userImage, setUserImage] = useState<string>("");
   const [fname, setFname] = useState<string>("");
   const [lname, setLname] = useState<string>("");
@@ -156,7 +156,9 @@ function ProfContextProvider({ children }: ProfContextProviderProps) {
           return;
         }
         const finalrespone = await res.json();
-        setRegister(finalrespone);
+        if (finalrespone.length > 0) {
+          setRegister(finalrespone);
+        }
       }
       async function getManageEvents() {
         const res = await fetch(
