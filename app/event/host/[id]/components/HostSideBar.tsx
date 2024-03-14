@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import PostTab from "./PostTab";
@@ -45,7 +46,6 @@ export default function HostSideBar({
 
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
 
-  
   const [isAddWishList, setIsAddWishList] = useState<boolean>(false);
 
   const handleClick = (buttonNumber: number) => {
@@ -92,7 +92,6 @@ export default function HostSideBar({
 
     success("remove user from event successfully");
     setIsRegistered(false);
-    
   }
 
   useEffect(() => {
@@ -137,7 +136,6 @@ export default function HostSideBar({
           }
         );
         const data = await res.json();
-        
 
         const wishlistStatus = data?.includes(id || "");
         setIsAddWishList(wishlistStatus);
@@ -146,7 +144,7 @@ export default function HostSideBar({
       }
     };
     getUser();
-  }, [id, userId,isAddWishList]);
+  }, [id, userId, isAddWishList]);
 
   // add to wishlist
 
@@ -170,7 +168,7 @@ export default function HostSideBar({
     setIsAddWishList(true);
   }
 
-  //remove from wishlist 
+  //remove from wishlist
 
   async function removeFromWishlistHandler() {
     const res = await fetch(
@@ -200,7 +198,7 @@ export default function HostSideBar({
 
       <div className="flex md:w-64 xl:h-14 md:h-10 rounded-3xl bg-[#F9EBE9] items-center xl:mx-16 md:mx-8 xl:my-12 md:my-8 ">
         <button
-          className={` md:text-md font-medium ml-2 w-40 h-8 xl:h-12 rounded-3xl  ${
+          className={` md:text-md  font-medium ml-2 w-40 h-8 xl:h-12 rounded-3xl  ${
             activeButton === 1
               ? "bg-[#D47151] text-white shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
               : "hover:bg-gray-200 text-[#D47151] bg-[#F9EBE9]"
@@ -215,7 +213,7 @@ export default function HostSideBar({
           EVENT HOST
         </button>
         <button
-          className={` md:text-md font-medium mr-2 w-40 h-8 xl:h-12 rounded-3xl  ${
+          className={` md:text-md button cursor-pointer font-medium mr-2 w-40 h-8 xl:h-12 rounded-3xl  ${
             activeButton === 2
               ? "bg-[#D47151] text-white shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
               : "hover:bg-gray-200 text-[#D47151] bg-[#F9EBE9]"
@@ -315,42 +313,41 @@ export default function HostSideBar({
             </button>
           )}
 
-{isAddWishList ? 
-  <button
-            onClick={removeFromWishlistHandler}
-            className="flex xl:w-36 w-32 xl:h-16 h-12 bg-[#455273] rounded-r-2xl items-center xl:px-4"
-          >
-            <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
-              <Image
-                src="/images/Event/HostPage/Paper_fill.svg"
-                alt="print"
-                width={32}
-                height={32}
-              />
-            </div>
-            <div className="font-medium xl:text-lg text-md text-white text-left leading-tight xl:ml-4 md:ml-2">
-              Remove Wish List
-            </div>
-          </button>:
-  <button
-            onClick={addTowishlistHandler}
-            className="flex xl:w-36 w-32 xl:h-16 h-12 bg-[#455273] rounded-r-2xl items-center xl:px-4"
-          >
-            <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
-              <Image
-                src="/images/Event/HostPage/Paper_fill.svg"
-                alt="print"
-                width={32}
-                height={32}
-              />
-            </div>
-            <div className="font-medium xl:text-lg text-md text-white text-left leading-tight xl:ml-4 md:ml-2">
-              Add to Wish List
-            </div>
-          </button>}
-
-
-          
+          {isAddWishList ? (
+            <button
+              onClick={removeFromWishlistHandler}
+              className="flex xl:w-36 w-32 xl:h-16 h-12 bg-[#455273] rounded-r-2xl items-center xl:px-4"
+            >
+              <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
+                <Image
+                  src="/images/Event/HostPage/Paper_fill.svg"
+                  alt="print"
+                  width={32}
+                  height={32}
+                />
+              </div>
+              <div className="font-medium xl:text-lg text-md text-white text-left leading-tight xl:ml-4 md:ml-2">
+                Remove Wish List
+              </div>
+            </button>
+          ) : (
+            <button
+              onClick={addTowishlistHandler}
+              className="flex xl:w-36 w-32 xl:h-16 h-12 bg-[#455273] rounded-r-2xl items-center xl:px-4"
+            >
+              <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
+                <Image
+                  src="/images/Event/HostPage/Paper_fill.svg"
+                  alt="print"
+                  width={32}
+                  height={32}
+                />
+              </div>
+              <div className="font-medium xl:text-lg text-md text-white text-left leading-tight xl:ml-4 md:ml-2">
+                Add to Wish List
+              </div>
+            </button>
+          )}
         </div>
 
         <button className="flex xl:w-72 w-32 xl:h-16 h-8  bg-[#D47151] rounded-2xl items-center xl:px-4  ">

@@ -24,9 +24,7 @@ export default function Template({ event }: { event: Event }) {
 
   return (
     <div>
-
-      <div className="md:flex relative -z-10">
-
+      <div className="md:flex  ">
         {activeComponent === "CoverPhoto" && (
           <CoverPhoto
             image={event.coverImage}
@@ -46,7 +44,7 @@ export default function Template({ event }: { event: Event }) {
           />
         </div>
 
-        <div className="md:absolute md:right-0 hidden md:block ">
+        <div className=" hidden md:block ">
           <HostSideBar
             EventName={event.eventName}
             Location={event.selectedTab}

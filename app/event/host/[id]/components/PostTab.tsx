@@ -42,8 +42,6 @@ export default function PostTab() {
     const postFunction = async () => {
       const session = await getSession();
 
-      setEmail(session?.user?.email);
-
       const res = await fetch(`/api/v1/post/getAllPostEvent/${id}`);
       const data = await res.json();
 

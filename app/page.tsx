@@ -23,6 +23,7 @@ export interface EventType {
   organizationId: [string];
   isPublished: boolean;
   registerUser: [string];
+  dashboardImage: string;
   __v: number;
 }
 
@@ -33,7 +34,7 @@ async function getOutDateEvent() {
       { next: { revalidate: 10 } }
     );
     const data = await response.json();
-    console.log(data);
+
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -76,7 +77,7 @@ export default async function Home() {
           <EventCardDisabled
             key={e._id}
             name={e.eventName}
-            img={e.postImageLink}
+            img={e.dashboardImage}
             location={e.selectedTab}
             date={formatDate(e.eventStartDate)}
           />

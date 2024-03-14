@@ -9,7 +9,6 @@ export async function POST(req: NextRequest) {
     eventLocation,
     eventStartDate,
     startTime,
-
     description,
     coverImage,
     dashboardImage,

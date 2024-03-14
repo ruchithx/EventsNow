@@ -8,7 +8,6 @@ async function getData({ id }: any) {
       method: "POST",
       mode: "cors",
       body: JSON.stringify(id),
-      cache: "no-store",
     }
   );
 

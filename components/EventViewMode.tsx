@@ -311,7 +311,7 @@ const EventViewMode = ({ event }: { event: EventType[] }) => {
               id={event._id}
               key={index}
               name={event.eventName}
-              img={event.postImageLink}
+              img={event.dashboardImage}
               location={event.selectedTab}
               date={formatDate(event.eventStartDate)}
               time={event.eventTimeZone}
@@ -321,7 +321,7 @@ const EventViewMode = ({ event }: { event: EventType[] }) => {
               id={event._id}
               key={index}
               name={event.eventName}
-              img={event.postImageLink}
+              img={event.dashboardImage}
               location={event.selectedTab}
               date={formatDate(event.eventStartDate)}
               time={event.eventTimeZone}
