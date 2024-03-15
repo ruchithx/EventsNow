@@ -26,7 +26,7 @@ export default function MyProfile() {
                 Time={e.startTime}
                 Date={e.eventStartDate}
                 Ratings={"4.5"}
-                image={e.postImageLink}
+                image={e.dashboardImage}
                 buttonDesc={"Remove from wishlist"}
               />
             ))

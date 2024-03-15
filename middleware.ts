@@ -4,56 +4,6 @@
 
 export { default } from "next-auth/middleware";
 
-// import { withAuth } from "next-auth/middleware";
-
-// export const adminMinndleWare = withAuth(
-//   // `withAuth` augments your `Request` with the user's token.
-//   function middleware(req) {
-//     console.log("about page");
-//   },
-//   {
-//     callbacks: {
-//       authorized: ({ token }) => token?.role === "admin",
-//     },
-//   }
-// );
-
-// export const config = { matcher: ["/about", "/auth/signup"] };
-
-// export default withAuth(
-//   // `withAuth` augments your `Request` with the user's token.
-//   function middleware(req: NextRequest) {
-//     if (req.nextUrl.pathname === "/about") {
-//       console.log("middleware");
-//     }
-//   },
-//   {
-//     callbacks: {
-//       authorized: ({ token }) => token?.role === "admin",
-//     },
-//   }
-// );
-
-// import { NextRequestWithAuth, withAuth } from "next-auth/middleware";
-// export { default } from "next-auth/middleware";
-
-// const nextAuthMiddleware = withAuth({
-//   pages: {
-//     signIn: "/login",
-//   },
-// });
-
-// export async function middleware(
-//   request: NextRequestWithAuth,
-//   event: NextFetchEvent
-// ) {
-// if (request.nextUrl.pathname === "/about") {
-//   console.log("middleware");
-// }
-
-//   await nextAuthMiddleware(request, event);
-// }
-
 export const config = {
   matcher: [
     "/admin/:path*",

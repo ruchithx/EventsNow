@@ -33,7 +33,7 @@ export default function SideBar() {
           >
             <div>
               <button
-                className="xl:hidden block"
+                className="md:hidden block"
                 onClick={() => setIsSideBar(!isSideBar)}
               >
                 <div className="flex items-end  ">
