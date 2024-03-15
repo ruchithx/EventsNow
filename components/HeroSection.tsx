@@ -70,7 +70,7 @@ export default function HeroSection() {
 
             <label className="relative block">
               <input
-                className=" placeholder:text-slate-400 block bg-white w-full md:h-11 border border-slate-300 py-1 sm:py-1.5 pl-9 pr-3 shadow-sm focus:outline-none focus:border-custom-orange focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                className="outlined-none placeholder:text-slate-400 block bg-white w-full md:h-11 border border-slate-300 py-1 sm:py-1.5 pl-9 pr-3 shadow-sm focus:outline-none focus:border-custom-orange focus:ring-sky-500 focus:ring-1 sm:text-sm"
                 placeholder="Title, Venue, Organizer..."
                 type="text"
                 name="search"

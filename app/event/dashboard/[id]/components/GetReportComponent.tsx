@@ -37,7 +37,7 @@ export default function GetReportComponent({
         >
           <Image
             className="my-auto mx-2"
-            src="/images/eventDash/print.svg"
+            src="/images/eventDash/Print.svg"
             alt="print"
             width={20}
             height={20}

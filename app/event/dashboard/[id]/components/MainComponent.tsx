@@ -134,7 +134,7 @@ export default function MainComponent() {
           />
           <EventDashButton
             isSlideBar={isSideBar}
-            img="Setting.svg"
+            img="setting.svg"
             text="Settings"
             onClick={() => handleSetting()}
           />

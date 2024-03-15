@@ -40,8 +40,6 @@ export default function PostTab() {
     setLoading(true);
 
     const postFunction = async () => {
-      const session = await getSession();
-
       const res = await fetch(`/api/v1/post/getAllPostEvent/${id}`);
       const data = await res.json();
 
@@ -86,38 +84,6 @@ export default function PostTab() {
         ) : (
           <EmptyStateComponent message="No post publish yet" />
         )}
-
-        {/* <Post 
-            profilePic="profilpic"
-            name="Oshadhi Yasundara"
-            caption="Hello everyone"
-            post="PictureOfPost"
-        />
-       
-        <Post 
-            profilePic="profilpic"
-            name="Chamodi vimodya"
-            caption="Hello everyone"
-            post="PictureOfPost"
-        />
-        <Post 
-            profilePic="profilpic"
-            name="Ashan DIlsara"
-            caption="Hello everyone"
-            post="PictureOfPost"
-        />
-        <Post 
-            profilePic="profilpic"
-            name="Ruchith Samarawicrama"
-            caption="Hello everyone"
-            post="PictureOfPost"
-        />
-        <Post 
-            profilePic="profilpic"
-            name="Arkham"
-            caption="Hello everyone"
-            post="PictureOfPost"
-        /> */}
       </div>
     </div>
   );

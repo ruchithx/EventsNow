@@ -42,7 +42,7 @@ export default function Event({
         <div className="flex gap-3">
           <Image
             className="grid content-center "
-            src="/images/ReusableComponents/Pin_fill.svg"
+            src="/images/reusableComponents/Pin_fill.svg"
             alt="print"
             width={32}
             height={32}
@@ -56,7 +56,7 @@ export default function Event({
         <div className="flex gap-3">
           <Image
             className="grid content-center"
-            src="/images/ReusableComponents/Date_org.svg"
+            src="/images/reusableComponents/Date_org.svg"
             alt="print"
             width={32}
             height={32}
@@ -70,7 +70,7 @@ export default function Event({
         <div className="flex gap-3 ">
           <Image
             className="grid content-center"
-            src="/images/ReusableComponents/Clock_fill.svg"
+            src="/images/reusableComponents/Clock_fill.svg"
             alt="print"
             width={32}
             height={32}
@@ -88,7 +88,7 @@ export default function Event({
           >
             <div className=" pl-4 pt-2  ">
               <Image
-                src={"/images/ReusableComponents/Vector.svg"}
+                src={"/images/reusableComponents/Vector.svg"}
                 alt="info"
                 width={50}
                 height={50}
@@ -105,7 +105,7 @@ export default function Event({
           >
             <div className=" pl-4 pt-1  ">
               <Image
-                src={"/images/ReusableComponents/View_alt.svg"}
+                src={"/images/reusableComponents/View_alt.svg"}
                 alt="info"
                 width={60}
                 height={60}

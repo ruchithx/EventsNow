@@ -17,7 +17,11 @@ import CommentBox from "./CommentBox";
 import CommentBtn from "./CommentBtn";
 import { IoMdHeart } from "react-icons/io";
 import { success } from "@/util/Toastify";
-
+import {
+  FacebookShareButton,
+  FacebookShareCount,
+  TwitterShareButton,
+} from "react-share";
 interface Post {
   profilePic: string;
   name: string;
@@ -165,7 +169,6 @@ Post) {
     });
 
     if (!like.ok) {
-     
       return;
     }
     setLike((prev) => prev + 1);
@@ -186,7 +189,6 @@ Post) {
     });
 
     if (!like.ok) {
-     
       return;
     }
 
@@ -337,30 +339,34 @@ Post) {
           )}
           {isShare && (
             <div className="flex gap-3 mb-3 mt-3 mx-6">
-              <Image
-                src={"/images/reusableComponents/FacebookIconPost.svg"}
-                alt="facebook"
-                width={40}
-                height={34}
-                className={styles.zoom}
-              />
-              <Image
-                src={"/images/reusableComponents/TwitterIconPost.svg"}
-                alt="facebook"
-                width={40}
-                height={34}
-                className={styles.zoom}
-              />
+              <FacebookShareButton url={`${post}`}>
+                <Image
+                  src={"/images/reusableComponents/FacebookIconPost.svg"}
+                  alt="facebook"
+                  width={40}
+                  height={34}
+                  className={styles.zoom}
+                />
+              </FacebookShareButton>
+              <TwitterShareButton url={`${post}`}>
+                <Image
+                  src={"/images/reusableComponents/TwitterIconPost.svg"}
+                  alt="twtter"
+                  width={40}
+                  height={34}
+                  className={styles.zoom}
+                />
+              </TwitterShareButton>
               <Image
                 src={"/images/reusableComponents/InstagramIconPost.svg"}
-                alt="facebook"
+                alt="instagram"
                 width={40}
                 height={34}
                 className={styles.zoom}
               />
               <Image
                 src={"/images/reusableComponents/threads-app-icon.svg"}
-                alt="facebook"
+                alt="threads"
                 width={31}
                 height={28}
                 className={styles.zoom}
