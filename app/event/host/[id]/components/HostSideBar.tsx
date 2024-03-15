@@ -278,11 +278,11 @@ export default function HostSideBar({
           {isRegistered ? (
             <button
               onClick={removeUserFromRegisteredEvent}
-              className="flex xl:w-36 w-32 xl:h-16 h-12 bg-custom-orange rounded-l-2xl items-center xl:px-4"
+              className="flex button xl:w-36 w-32 xl:h-16 h-12 bg-custom-orange rounded-l-2xl items-center xl:px-4"
             >
               <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
                 <Image
-                  src="/images/event/HostPage/Paper_fill.svg"
+                  src="https://res.cloudinary.com/dpk9utvby/image/upload/v1710478589/ew/tecmf69jzdyv2sn22saa.svg"
                   alt="print"
                   width={32}
                   height={32}
@@ -295,11 +295,11 @@ export default function HostSideBar({
           ) : (
             <button
               onClick={userRegistrationForEventHandler}
-              className="flex xl:w-36 w-32 xl:h-16 h-12  bg-custom-orange rounded-l-2xl items-center xl:px-4"
+              className="flex button xl:w-36 w-32 xl:h-16 h-12  bg-custom-orange rounded-l-2xl items-center xl:px-4"
             >
               <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
                 <Image
-                  src="/images/event/HostPage/Paper_fill.svg"
+                  src="https://res.cloudinary.com/dpk9utvby/image/upload/v1710478589/ew/tecmf69jzdyv2sn22saa.svg"
                   alt="print"
                   width={32}
                   height={32}
@@ -314,11 +314,11 @@ export default function HostSideBar({
           {isAddWishList ? (
             <button
               onClick={removeFromWishlistHandler}
-              className="flex xl:w-36 w-32 xl:h-16 h-12 bg-[#455273] rounded-r-2xl items-center xl:px-4"
+              className="flex button xl:w-36 w-32 xl:h-16 h-12 bg-[#455273] rounded-r-2xl items-center xl:px-4"
             >
               <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
                 <Image
-                  src="/images/event/HostPage/Paper_fill.svg"
+                  src="https://res.cloudinary.com/dpk9utvby/image/upload/v1710478589/ew/tecmf69jzdyv2sn22saa.svg"
                   alt="print"
                   width={32}
                   height={32}
@@ -331,11 +331,11 @@ export default function HostSideBar({
           ) : (
             <button
               onClick={addTowishlistHandler}
-              className="flex xl:w-36 w-32 xl:h-16 h-12 bg-[#455273] rounded-r-2xl items-center xl:px-4"
+              className="flex button xl:w-36 w-32 xl:h-16 h-12 bg-[#455273] rounded-r-2xl items-center xl:px-4"
             >
               <div className=" w-10 h-10 mt-2 md:ml-4 xl:ml-0">
                 <Image
-                  src="/images/event/HostPage/Paper_fill.svg"
+                  src="https://res.cloudinary.com/dpk9utvby/image/upload/v1710478589/ew/tecmf69jzdyv2sn22saa.svg"
                   alt="print"
                   width={32}
                   height={32}
@@ -348,10 +348,10 @@ export default function HostSideBar({
           )}
         </div>
 
-        <button className="flex xl:w-72 w-64 xl:h-16 h-12  bg-[#D47151] rounded-2xl items-center xl:px-4  ">
+        <button className="flex button xl:w-72 w-64 xl:h-16 h-12  bg-[#D47151] rounded-2xl items-center xl:px-4  ">
           <div className=" w-10 h-8 mt-2 ml-2 xl:ml-0">
             <Image
-              src="/images/event/HostPage/Check_fill.svg"
+              src="https://res.cloudinary.com/dpk9utvby/image/upload/v1710478589/ew/tecmf69jzdyv2sn22saa.svg"
               alt="print"
               width={32}
               height={32}
