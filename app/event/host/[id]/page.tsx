@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SelectTemplate from "./SelectTemplate";
 
+
 async function getData({ id }: any) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_URL}/api/v1/event/getEvent`,
@@ -34,6 +35,7 @@ export default async function Home({ params }: any) {
   return (
     <div>
       <SelectTemplate event={data} />
+      
     </div>
   );
 }

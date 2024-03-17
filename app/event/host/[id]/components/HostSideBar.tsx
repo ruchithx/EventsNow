@@ -10,6 +10,7 @@ import { Session } from "inspector";
 import { useLocalizedStringDictionary } from "@react-aria/i18n";
 import { get, set } from "lodash";
 import { is } from "date-fns/locale";
+import QRcodeGenerator from "@/app/organization/dashboard/[id]/components/QRcodegenerator";
 
 interface HostSideBar {
   EventName: String;
@@ -27,7 +28,7 @@ interface customUser {
   _id: string;
 }
 
-function buyTckets() {}
+
 
 export default function HostSideBar({
   EventName,
@@ -43,6 +44,10 @@ export default function HostSideBar({
   const [registeredUserList, setRegisteredUserList] = useState<string[] | null>(
     null
   );
+  function buyTckets() {
+    setqrVisible(true );
+  }
+  const [qrVisible,setqrVisible]=useState(false)
 
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
 
@@ -348,7 +353,7 @@ export default function HostSideBar({
           )}
         </div>
 
-        <button className="flex button xl:w-72 w-64 xl:h-16 h-12  bg-[#D47151] rounded-2xl items-center xl:px-4  ">
+        <button  onClick={buyTckets} className="flex button xl:w-72 w-64 xl:h-16 h-12  bg-[#D47151] rounded-2xl items-center xl:px-4  ">
           <div className=" w-10 h-8 mt-2 ml-2 xl:ml-0">
             <Image
               src="https://res.cloudinary.com/dpk9utvby/image/upload/v1710478589/ew/tecmf69jzdyv2sn22saa.svg"
@@ -361,6 +366,10 @@ export default function HostSideBar({
             Buy tickets
           </div>
         </button>
+        {qrVisible && <QRcodeGenerator 
+        eventId={id}
+        userId={userId||""}
+        />}
       </div>
     </div>
   );
