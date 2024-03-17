@@ -16,7 +16,7 @@ import navbar from "grapesjs-navbar";
 
 export default function Build({ onHtmlRendered }) {
   const [editor, setEditor] = useState(null);
-  const [html, setHtml] = useState(null); // State to store rendered HTML
+  const [html, setHtml] = useState(null);
 
   useEffect(() => {
     const editor = grapesjs.init({
@@ -42,13 +42,15 @@ export default function Build({ onHtmlRendered }) {
         "grapesjs-style-bg": {},
         "grapesjs-preset-webpage": {},
         "grapesjs-touch": {},
-        "grapesjs-preset-newsletter": {},
+        "grapesjs-preset-newsletter": {
+          modalTitleImport: "Import template",
+          "grapesjs-plugin-export": {
+            /* options */
+          },
+        },
         "grapesjs-indexeddb": {
           options: {
-            // In case of multiple projects on the same page indicate an id to
-            // prevent collisions
             key: "user-project-id",
-            // Update IndexedDB name for the DB and the table containing project data
             dbName: "editorLocalData",
             objectStoreName: "projects",
           },
@@ -65,13 +67,12 @@ export default function Build({ onHtmlRendered }) {
     const html = editor.getHtml();
     setHtml(html);
 
-    // Optionally call the callback function with the rendered HTML
     onHtmlRendered?.(html);
   };
 
   useEffect(() => {
-    renderPage(); // Render initially
-    editor?.on("update", renderPage); // Re-render on editor updates
+    renderPage();
+    editor?.on("update", renderPage);
   }, [editor]);
 
   return (
