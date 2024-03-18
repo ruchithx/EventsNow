@@ -2,14 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-interface MyEventCard {
+interface MyEventCardProps {
   image: string;
   OrgName: string;
   btn: string;
   id: string;
 }
 
-function MyEventCard({ image, OrgName, btn, id }: MyEventCard) {
+function MyEventCard({ image, OrgName, btn, id }: MyEventCardProps) {
   return (
     <div className="max-w-lg w-fit lg:max-w-full lg:flex rounded-lg ">
       <div

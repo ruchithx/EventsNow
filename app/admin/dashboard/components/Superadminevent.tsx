@@ -1,10 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import { Event } from "@/app/admin/Type";
+import { EventType } from "@/app/Type";
+// import { Event } from "@/app/admin/Type";
 function info() {}
 
 interface Upcoming_Events {
-  event: Event;
+  event: EventType;
 }
 
 export default function Upcoming_Events({ event }: Upcoming_Events) {
@@ -14,7 +15,7 @@ export default function Upcoming_Events({ event }: Upcoming_Events) {
     <div className="bg-[#D9D9D9] h-[450px] my-6 mx-2 rounded-lg md:grid md:grid-cols-2 sm:grid-cols-2 w-[300px] md:w-[480px] lg:w-[800px] md:h-[13.5rem] xl:grid-cols-12 xl:h-[13.5rem] shadow-3xl">
       <div className="pt-4 mx-4 my-4 md:mx-0 md:my-0 md:pt-0 rounded-lg overflow-hidden h-[12.15rem] md:h-[13.5rem] xl:col-span-5">
         <Image
-          src={`/images/admin/${event.postImageLink}`}
+          src={`/images/admin/${event.dashboardImage}`}
           alt="hay"
           width={410}
           height={200}

@@ -1,9 +1,10 @@
 import { Session } from "next-auth";
 import Image from "next/image";
-import { User } from "./Post";
+// import { User } from "./Post";
 import { error } from "@/util/Toastify";
-import { EventContextType, UseEventContext } from "../EventDashContext";
+import { UseEventContext } from "../EventDashContext";
 import { comment } from "postcss";
+import { EventContextType } from "@/app/Type";
 
 export default function CommentBtn({
   id,

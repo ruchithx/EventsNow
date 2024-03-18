@@ -1,5 +1,5 @@
 "use client";
-import { voidFunc } from "@/app/organization/dashboard/[id]/Type";
+// import { voidFunc } from "@/app/organization/dashboard/[id]/Type";
 
 import React, {
   createContext,
@@ -10,70 +10,67 @@ import React, {
   SetStateAction,
 } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { AuthContext, useAuth } from "@/app/AuthContext";
+import { useAuth } from "@/app/AuthContext";
 // import { Post } from "../../host/[id]/components/PostTab";
 
-import { Post } from "../../host/[id]/SelectTemplate";
+// import { Post } from "../../host/[id]/SelectTemplate";
+import {
+  AuthContext,
+  Comment,
+  EventContextType,
+  EventUserDeatils,
+  PostType,
+  voidFunc,
+} from "@/app/Type";
 
-export interface EventContextType {
-  id: String;
-  status: String;
-  handleOverview: voidFunc;
-  handleHostPage: voidFunc;
-  handleMyteam: voidFunc;
-  handleReports: voidFunc;
-  handleCampaign: voidFunc;
-  handleSetting: voidFunc;
-  isSideBar: boolean;
-  setIsSideBar: (value: boolean) => void;
+// export interface EventContextType {
+//   id: String;
+//   status: String;
+//   handleOverview: voidFunc;
+//   handleHostPage: voidFunc;
+//   handleMyteam: voidFunc;
+//   handleReports: voidFunc;
+//   handleCampaign: voidFunc;
+//   handleSetting: voidFunc;
+//   isSideBar: boolean;
+//   setIsSideBar: (value: boolean) => void;
 
-  user: EventUserDeatils[];
-  setStatus: Dispatch<SetStateAction<string>>;
-  eventPosts: Post[];
-  setEventPosts: Dispatch<SetStateAction<Post[]>>;
-  allComment: Comment[];
-  setAllComment: Dispatch<SetStateAction<Comment[]>>;
+//   user: EventUserDeatils[];
+//   setStatus: Dispatch<SetStateAction<string>>;
+//   eventPosts: Post[];
+//   setEventPosts: Dispatch<SetStateAction<Post[]>>;
+//   allComment: Comment[];
+//   setAllComment: Dispatch<SetStateAction<Comment[]>>;
 
-  eventname: String;
-  eventLocation: String;
-  eventType: String;
-  eventDate: String;
-  eventStartTime: String;
+//   eventname: String;
+//   eventLocation: String;
+//   eventType: String;
+//   eventDate: String;
+//   eventStartTime: String;
 
-  endTime: String;
-  eventVisibility: boolean;
+//   endTime: String;
+//   eventVisibility: boolean;
 
-  setEventname: (value: string) => void;
-  setEventLocation: (value: string) => void;
-  setEventType: (value: string) => void;
-  setEventDate: (value: string) => void;
-  setEventStartTime: (value: string) => void;
+//   setEventname: (value: string) => void;
+//   setEventLocation: (value: string) => void;
+//   setEventType: (value: string) => void;
+//   setEventDate: (value: string) => void;
+//   setEventStartTime: (value: string) => void;
 
-  setEndTime: (value: string) => void;
-  setEventVisibility: (value: boolean) => void;
+//   setEndTime: (value: string) => void;
+//   setEventVisibility: (value: boolean) => void;
 
-  eventDashboardImage: string;
-  eventCoverImage: string;
-  eventEndTime: string;
-  startTime: string;
+//   eventDashboardImage: string;
+//   eventCoverImage: string;
+//   eventEndTime: string;
+//   startTime: string;
 
-  setEventEndDate: React.Dispatch<React.SetStateAction<string>>;
-  eventEndDate: string;
+//   setEventEndDate: React.Dispatch<React.SetStateAction<string>>;
+//   eventEndDate: string;
 
-  setEventDashboardImage: React.Dispatch<React.SetStateAction<string>>;
-  setEventCoverImage: React.Dispatch<React.SetStateAction<string>>;
-}
-
-type EventUserDeatils = {
-  email: string;
-  name: string;
-};
-type Comment = {
-  _id: string;
-  userImage: string;
-  postId: string;
-  description: string;
-};
+//   setEventDashboardImage: React.Dispatch<React.SetStateAction<string>>;
+//   setEventCoverImage: React.Dispatch<React.SetStateAction<string>>;
+// }
 
 const EventContext = createContext<EventContextType | string>("");
 
@@ -83,7 +80,7 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
   const params = useParams<{ id: string }>();
   const [isSideBar, setIsSideBar] = useState(true);
 
-  const [eventPosts, setEventPosts] = useState<Post[]>([]);
+  const [eventPosts, setEventPosts] = useState<PostType[]>([]);
   const [allComment, setAllComment] = useState<Comment[]>([]);
 
   const [isloading, setIsloading] = useState(false);

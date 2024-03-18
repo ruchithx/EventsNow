@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import SuperadminPages from "@/app/admin/dashboard/components/SuperadminPages";
 import Available_Orgs from "@/app/admin/dashboard/components/Available_Orgs";
-import { Organization } from "@/app/admin/Type";
+// import { Organization } from "@/app/admin/Type";
 import { useAdmin } from "../AdminContextFile";
 import EmptyStateComponent from "@/components/EmptyStateComponent";
-import { AdminContext } from "../../Type";
+// import { AdminContext } from "../../Type";
 import { getAllOrganization } from "../FetchData";
 import Spinner from "@/components/Spinner";
 import { MdRefresh } from "react-icons/md";
+import { AdminContext, OrganizationType } from "@/app/Type";
 
 export default function Organization() {
   const { organization, setOrganization, setNotification } =
@@ -26,8 +27,12 @@ export default function Organization() {
 
     const { organization } = await res3.json();
 
-    const resActive = organization.filter((org: Organization) => org.isActive);
-    const notActive = organization.filter((org: Organization) => !org.isActive);
+    const resActive = organization.filter(
+      (org: OrganizationType) => org.isActive
+    );
+    const notActive = organization.filter(
+      (org: OrganizationType) => !org.isActive
+    );
 
     if (resActive.length !== 0) {
       setOrganization(resActive);

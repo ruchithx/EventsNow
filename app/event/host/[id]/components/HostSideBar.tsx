@@ -11,7 +11,7 @@ import { useLocalizedStringDictionary } from "@react-aria/i18n";
 import { get, set } from "lodash";
 import { is } from "date-fns/locale";
 
-interface HostSideBar {
+interface HostSideBarProps {
   EventName: String;
   Location: String;
   Time: String;
@@ -36,7 +36,7 @@ export default function HostSideBar({
   Date,
   activeComponent,
   handleComponentChange,
-}: HostSideBar) {
+}: HostSideBarProps) {
   const [activeButton, setActiveButton] = useState<number | null>(1);
   const [userId, setUserId] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);

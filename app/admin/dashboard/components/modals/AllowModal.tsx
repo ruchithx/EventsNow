@@ -1,23 +1,24 @@
 import React from "react";
 import axios from "axios";
-import { Organization } from "@/app/admin/Type";
+// import { Organization } from "@/app/admin/Type";
 import { useAdmin } from "../../AdminContextFile";
 import { success } from "@/util/Toastify";
 import { error } from "@/util/Toastify";
+import { AdminContext, OrganizationType } from "@/app/Type";
 
 interface Data {
-  organization: Organization;
+  organization: OrganizationType;
 }
 
-type ContextData = {
-  setOrganization: React.Dispatch<React.SetStateAction<Organization[]>>;
-  setNotification: React.Dispatch<React.SetStateAction<Organization[]>>;
-  notification: Organization[];
-};
+// type ContextData = {
+//   setOrganization: React.Dispatch<React.SetStateAction<Organization[]>>;
+//   setNotification: React.Dispatch<React.SetStateAction<Organization[]>>;
+//   notification: Organization[];
+// };
 
 const AllowModalContent = ({ organization }: Data) => {
   const { setOrganization, setNotification, notification } =
-    useAdmin() as ContextData;
+    useAdmin() as AdminContext;
 
   const handleAllow = async () => {
     try {
@@ -39,7 +40,7 @@ const AllowModalContent = ({ organization }: Data) => {
       success("Organization Allowed successfully");
       setNotification(newNotification);
 
-      setOrganization((prev: Organization[]) => [...prev, organization]);
+      setOrganization((prev: OrganizationType[]) => [...prev, organization]);
     } catch (error) {
       console.error("Error updating......", error);
     }

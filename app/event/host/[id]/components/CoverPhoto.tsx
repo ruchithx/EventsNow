@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
 
-interface CoverPhoto {
+interface CoverPhotoProps {
   image: String;
 }
 
-export default function CoverPhoto({ image }: CoverPhoto) {
+export default function CoverPhoto({ image }: CoverPhotoProps) {
   return (
     <div className="overflow-hidden xl:w-[71rem]  md:w-[57rem] sm:w-full ">
       <Image

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, useOrg } from "../OrgContext";
+import { useOrg } from "../OrgContext";
 
 import EmptyStateComponent from "@/components/EmptyStateComponent";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -8,10 +8,11 @@ import GivenPermission from "./modal/GivenPermission";
 import AllPermission from "./modal/AllPermission";
 import PermissionOneEvent from "./modal/PermissionOneEvent";
 import SelectOneEvent from "./modal/SelectOneEvent";
-import { OrgContext, Team, User } from "../Type";
+// import { OrgContext, Team, User } from "../Type";
 import InviteButton from "./InviteButton";
 import { MdRefresh } from "react-icons/md";
 import Spinner from "@/components/Spinner";
+import { OrgContext, OrganizationTeamType } from "@/app/Type";
 
 export default function MyTeam() {
   const { modal, team, id, setTeam, organization } = useOrg() as OrgContext;
@@ -31,7 +32,7 @@ export default function MyTeam() {
     const finalResponse2 = await res2.json();
 
     const team = finalResponse2.filter(
-      (user: Team) => user.userData.email !== organization.email
+      (user: OrganizationTeamType) => user.userData.email !== organization.email
     );
 
     setTeam(team);

@@ -4,10 +4,11 @@ import Modal from "./ModalContext";
 import DetailsModalContent from "./modals/DetailsModal";
 import AllowModalContent from "./modals/AllowModal";
 import DenyModalContent from "./modals/DenyModal";
-import { Organization } from "@/app/admin/Type";
+import { OrganizationType } from "@/app/Type";
+// import { Organization } from "@/app/admin/Type";
 
 interface OrgRequestHandleProps {
-  organization: Organization;
+  organization: OrganizationType;
 }
 
 export default function Org_RequestHandle({

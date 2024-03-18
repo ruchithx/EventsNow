@@ -3,14 +3,15 @@ import Modal from "./ModalContext";
 import BlacklistModalContent from "./modals/BlacklistModal";
 import MakeAdminModalContent from "./modals/MakeAdminModal";
 import Image from "next/image";
-import { User } from "../../Type";
+import { UserType } from "@/app/Type";
+// import { User } from "../../Type";
 
 interface PresonDetailsBar {
   name: string;
   email: string;
   userId: String;
   role: String;
-  setUser: React.Dispatch<React.SetStateAction<User[]>>;
+  setUser: React.Dispatch<React.SetStateAction<UserType[]>>;
 }
 
 export default function AdminPersonDetailsBar({
@@ -34,12 +35,10 @@ export default function AdminPersonDetailsBar({
         </div>
 
         <div className="col-span-4  flex gap-2 ">
-
           {role !== "admin" && (
             <>
               <button
                 onClick={() => setMakeAdminModal(true)}
-
                 className={`bg-custom-blue h-[34px]  rounded-[5px] w-20 md:w-32 xl:w-44  shadow-3xl`}
               >
                 <div className="flex justify-around pl-1">
@@ -52,14 +51,12 @@ export default function AdminPersonDetailsBar({
                     />
                   </div>
                   <div className="text-white font-mono self-center text-center text-base font-medium mr-2 hidden lg:flex ">
-
                     Make admin
                   </div>
                 </div>
               </button>
               <button
                 onClick={() => setShowBlacklistModal(true)}
-
                 className={`bg-custom-green h-[34px]  rounded-[5px] w-20 md:w-32 xl:w-44  shadow-3xl `}
               >
                 <div className="flex justify-around pl-1">
@@ -72,7 +69,6 @@ export default function AdminPersonDetailsBar({
                     />
                   </div>
                   <div className="text-white font-mono self-center text-center text-base font-medium xl:mr-2 hidden lg:flex ">
-
                     Block user
                   </div>
                 </div>
@@ -82,24 +78,23 @@ export default function AdminPersonDetailsBar({
 
           {role === "admin" && (
             <>
-
               <div className="">
                 <button className="bg-custom-blue  h-[34px] rounded-[5px]  w-[3.9rem] sm:w-[5.4rem] md:w-[7.3rem] xl:w-36 shadow-3xl ">
                   <div className="flex justify-around pl-1">
-                  <div className="lg:hidden xl:grid grid">
-                    <Image
-                      src={"/images/admin/Info_fill.png"}
-                      width={25}
-                      height={25}
-                      alt="cancel"
-                    /></div>
+                    <div className="lg:hidden xl:grid grid">
+                      <Image
+                        src={"/images/admin/Info_fill.png"}
+                        width={25}
+                        height={25}
+                        alt="cancel"
+                      />
+                    </div>
                     <div className="text-white font-mono self-center text-center text-base font-medium xl:mr-6 hidden lg:flex ">
                       Admin
                     </div>
                   </div>
                 </button>
               </div>
-
             </>
           )}
         </div>

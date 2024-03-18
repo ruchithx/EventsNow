@@ -7,10 +7,11 @@ import { error } from "@/util/Toastify";
 
 import Image from "next/image";
 import { useAuth } from "@/app/AuthContext";
+import { AuthContext } from "@/app/Type";
 
-interface contextProps {
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
-}
+// interface contextProps {
+//   setEmail: React.Dispatch<React.SetStateAction<string>>;
+// }
 
 export default function LoginForm() {
   const usernameInputRef = useRef<HTMLInputElement>(null);
@@ -19,7 +20,7 @@ export default function LoginForm() {
   const [password, setPassword] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [isPageSubmitting, setIsPageSubmitting] = useState<boolean>(false);
-  const { setEmail }: any = useAuth() as contextProps;
+  const { setEmail }: any = useAuth() as AuthContext;
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -78,7 +79,6 @@ export default function LoginForm() {
         error("Enter username and password");
         return;
       }
-    
 
       const res = await fetch("/api/v1/user/checkLogin", {
         method: "POST",
@@ -105,7 +105,6 @@ export default function LoginForm() {
         password: enteredPassword,
       });
 
-    
       // remember this has error solve it later
       // if (!result?.error && result)
       if (result?.status === 200 && result?.ok) {

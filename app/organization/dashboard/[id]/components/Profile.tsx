@@ -3,20 +3,21 @@ import React from "react";
 
 import ProfCard from "./ProfCard";
 import { useOrg } from "../OrgContext";
-import { Event, Organization, Team } from "../Type";
+// import { Event, Organization, Team } from "../Type";
+import { OrgContext } from "@/app/Type";
 // import ProfileCard from "@/app/profile/[...id]/components/ProfileCard";
 
-interface contextProps {
-  editedName: string;
-  team: Team[];
-  events: Event[];
-  organization: Organization;
-  organizationImage: string;
-}
+// interface contextProps {
+//   editedName: string;
+//   team: Team[];
+//   events: Event[];
+//   organization: Organization;
+//   organizationImage: string;
+// }
 
 export default function Profile() {
   const { editedName, team, events, organizationImage } =
-    useOrg() as contextProps;
+    useOrg() as OrgContext;
 
   return (
     <div className=" lg:p-3 p-0 h-fit w-fit items-center justify-center rounded-xl shadow-3xl bg-custom-lightorange">

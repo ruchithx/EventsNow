@@ -1,31 +1,32 @@
 import React, { memo } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { EventPermission, Modal, useOrg } from "../../OrgContext";
+import { useOrg } from "../../OrgContext";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { RiAddCircleFill } from "react-icons/ri";
-import { Event, Team } from "../../Type";
+// import { Event, Team } from "../../Type";
 import { error, success } from "@/util/Toastify";
+import { OrgContext } from "@/app/Type";
 
-export type orgContext = {
-  setModal: React.Dispatch<React.SetStateAction<Modal>>;
-  modalUserName: string;
-  setModalUserName: React.Dispatch<React.SetStateAction<string>>;
-  setPermissionID: React.Dispatch<React.SetStateAction<string>>;
-  permissionID: string;
-  setGlobalPermission: React.Dispatch<React.SetStateAction<string[]>>;
-  globalPermission: string[];
-  setSelectEventForPermission: any;
-  events: Event[];
-  selectEventForPermission: Event;
-  setEventPermission: React.Dispatch<React.SetStateAction<EventPermission[]>>;
-  eventPermission: EventPermission[];
-  team: Team[];
-  setTeam: React.Dispatch<React.SetStateAction<Team[]>>;
-};
+// export type orgContext = {
+//   setModal: React.Dispatch<React.SetStateAction<Modal>>;
+//   modalUserName: string;
+//   setModalUserName: React.Dispatch<React.SetStateAction<string>>;
+//   setPermissionID: React.Dispatch<React.SetStateAction<string>>;
+//   permissionID: string;
+//   setGlobalPermission: React.Dispatch<React.SetStateAction<string[]>>;
+//   globalPermission: string[];
+//   setSelectEventForPermission: any;
+//   events: Event[];
+//   selectEventForPermission: Event;
+//   setEventPermission: React.Dispatch<React.SetStateAction<EventPermission[]>>;
+//   eventPermission: EventPermission[];
+//   team: Team[];
+//   setTeam: React.Dispatch<React.SetStateAction<Team[]>>;
+// };
 
 export default memo(function GivenPermission() {
   const { setModal, modalUserName, team, setTeam, permissionID } =
-    useOrg() as orgContext;
+    useOrg() as OrgContext;
 
   async function deletePermission() {
     const res = await fetch(

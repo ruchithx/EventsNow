@@ -10,11 +10,13 @@ import {
 import { error, success } from "@/util/Toastify";
 import { useParams } from "next/navigation";
 
-interface Props {
+interface GenaralUpdateProps {
   setGenaralUpdate: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default memo(function GenaralUpdate({ setGenaralUpdate }: Props) {
+export default memo(function GenaralUpdate({
+  setGenaralUpdate,
+}: GenaralUpdateProps) {
   const params = useParams();
 
   const [subject, setSubject] = useState("");

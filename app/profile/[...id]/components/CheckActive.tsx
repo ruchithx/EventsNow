@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import SideBar from "./SideBar";
 import Content from "./Content";
-import { ProfContext, useProf } from "../ProfContext";
+import { useProf } from "../ProfContext";
 import Image from "next/image";
 
 import OrganizationRequestPending from "@/components/OrganizationRequestPending";
@@ -10,6 +10,7 @@ import OrganizationRequestPending from "@/components/OrganizationRequestPending"
 import Dashboard_Btn from "@/app/organization/dashboard/[id]/components/Dashboard_Btn";
 import Profile from "./profile";
 import Spinner from "@/components/Spinner";
+import { ProfContext } from "@/app/Type";
 // import ProfContext from './../ProfContext'
 
 export default function CheckActive() {

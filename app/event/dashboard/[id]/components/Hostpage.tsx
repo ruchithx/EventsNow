@@ -4,13 +4,16 @@ import ContainerWithStroke from "./ContainerWithStroke";
 import Image from "next/image";
 import Template from "./hostPage/Template";
 import Template1 from "./hostPage/Template1";
+
 export default function Hostpage() {
   const [showTemplate, setShowTemplate] = useState(false);
   const [isTemplate1, setIsTemplate1] = useState(false);
+
   function handleTemplate1() {
     setIsTemplate1(true);
     setShowTemplate(false);
   }
+
   return (
     <div>
       <Container>

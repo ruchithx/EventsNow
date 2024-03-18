@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
-// import Post from "@/components/Post";
-import Spinner from "@/components/Spinner";
+
 import Post from "../Post";
 
 // interface Post {

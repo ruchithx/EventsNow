@@ -10,9 +10,10 @@ import { RiAddCircleFill } from "react-icons/ri";
 
 import { Checkbox } from "@material-tailwind/react";
 import { FaBackspace } from "react-icons/fa";
-import { orgContext } from "./GivenPermission";
+// import { orgContext } from "./GivenPermission";
 import { useOrg } from "../../OrgContext";
 import { error, success } from "@/util/Toastify";
+import { OrgContext } from "@/app/Type";
 
 export default memo(function AllPermission() {
   const [viewOnlyEvent, setViewOnlyEvent] = useState<boolean>(false);
@@ -35,7 +36,7 @@ export default memo(function AllPermission() {
     globalPermission,
     modalUserName,
     setGlobalPermission,
-  } = useOrg() as orgContext;
+  } = useOrg() as OrgContext;
 
   useEffect(() => {
     globalPermission.map((permission) => {

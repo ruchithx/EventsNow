@@ -2,16 +2,17 @@ import React from "react";
 
 import { useOrg } from "../OrgContext";
 import EmptyStateComponent from "@/components/EmptyStateComponent";
-import { Event } from "../Type";
+// import { Event } from "../Type";
 import EventCardOrgDash from "./EventCardOrgDash";
+import { OrgContext } from "@/app/Type";
 
-interface contextProps {
-  isSlideBar: boolean;
-  events: Event[];
-}
+// interface contextProps {
+//   isSlideBar: boolean;
+//   events: Event[];
+// }
 
 export default function MyEvents() {
-  const { events, isSlideBar } = useOrg() as contextProps;
+  const { events, isSlideBar } = useOrg() as OrgContext;
 
   return (
     <div className="flex rounded-lg  md:ml-2 pl-2 shadow-3xl bg-[#fff] pt-8 md:pl-12 flex-col justify-start items-start gap-12">

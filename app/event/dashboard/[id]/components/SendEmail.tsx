@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import Container from "./Container";
 import Image from "next/image";
 import CreatePost from "./post/CreatePost";
-import { User } from "@/app/organization/dashboard/[id]/Type";
+// import { User } from "@/app/organization/dashboard/[id]/Type";
 import { getSession } from "next-auth/react";
-import { EventContextType, UseEventContext } from "../EventDashContext";
+import { UseEventContext } from "../EventDashContext";
 import { MdArrowBack } from "react-icons/md";
 import GeneralUpdate from "./GeneralUpdate";
+import { EventContextType } from "@/app/Type";
 
 export default function SendEmail() {
   const [createPost, setCreatePost] = useState(false);

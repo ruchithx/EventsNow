@@ -1,36 +1,39 @@
 "use client";
 
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  use,
-} from "react";
-import {
-  AdminContext,
-  voidFunc,
-  Event,
-  User,
-  Organization,
-} from "@/app/admin/Type";
+import React, { createContext, useContext, useState, useEffect } from "react";
+// import {
+//   AdminContext,
+//   voidFunc,
+//   Event,
+//   User,
+//   Organization,
+// } from "@/app/admin/Type";
 import { getAllEvents, getAllOrganization, getAllUser } from "./FetchData";
 import { getSession, useSession } from "next-auth/react";
 import { getUser } from "@/components/Navbar/NavBar";
 import { useRouter } from "next/navigation";
 
-interface AdminContextProps {
-  children: React.ReactNode;
-}
+import {
+  AdminContext,
+  ChildrenType,
+  EventType,
+  OrganizationType,
+  UserType,
+  voidFunc,
+} from "@/app/Type";
+
+// interface AdminContextProps {
+//   children: React.ReactNode;
+// }
 
 const adminContext = createContext<AdminContext | string>("");
 
-function AdminContextProvider({ children }: AdminContextProps) {
+function AdminContextProvider({ children }: ChildrenType) {
   const [status, setStatus] = useState("");
-  const [user, setUser] = useState<User[]>([]);
-  const [event, setEvent] = useState<Event[]>([]);
-  const [notification, setNotification] = useState<Organization[]>([]);
-  const [organization, setOrganization] = useState<Organization[]>([]);
+  const [user, setUser] = useState<UserType[]>([]);
+  const [event, setEvent] = useState<EventType[]>([]);
+  const [notification, setNotification] = useState<OrganizationType[]>([]);
+  const [organization, setOrganization] = useState<OrganizationType[]>([]);
   const [payment, setPayment] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -87,10 +90,10 @@ function AdminContextProvider({ children }: AdminContextProps) {
       const { organization } = await res3.json();
 
       const resActive = organization.filter(
-        (org: Organization) => org.isActive
+        (org: OrganizationType) => org.isActive
       );
       const notActive = organization.filter(
-        (org: Organization) => !org.isActive
+        (org: OrganizationType) => !org.isActive
       );
 
       if (resActive.length !== 0) {

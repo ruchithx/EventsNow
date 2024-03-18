@@ -9,8 +9,9 @@ import OrganizationRequestPending from "@/components/OrganizationRequestPending"
 import DashboardDetails from "@/app/organization/dashboard/[id]/components/DashboardDetails";
 import Dashboard_Btn from "@/app/organization/dashboard/[id]/components/Dashboard_Btn";
 import Spinner from "@/components/Spinner";
-import { OrgContext, voidFunc } from "../Type";
+// import { OrgContext, voidFunc } from "../Type";
 import Profile from "./Profile";
+import { OrgContext } from "@/app/Type";
 
 // import Profile from "./Profile";
 

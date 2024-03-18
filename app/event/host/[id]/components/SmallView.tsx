@@ -5,10 +5,9 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { error, success } from "@/util/Toastify";
 import { getSession } from "next-auth/react";
-interface SmallView {
+interface SmallViewProps {
   EventName: String;
   Location: String;
-  Time: String;
   Date: String;
 }
 interface customUser {
@@ -21,9 +20,9 @@ interface customUser {
 export default function SmallView({
   EventName,
   Location,
-  Time,
+
   Date,
-}: SmallView) {
+}: SmallViewProps) {
   const [userId, setUserId] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
   const [registeredUserList, setRegisteredUserList] = useState<string[] | null>(
@@ -217,9 +216,9 @@ export default function SmallView({
               height={32}
             />
           </div>
-          <div className="text-[#353C4E] text-xl  font-['Roboto'] align-top -mt-8 ml-12">
+          {/* <div className="text-[#353C4E] text-xl  font-['Roboto'] align-top -mt-8 ml-12">
             {Time}
-          </div>
+          </div> */}
         </div>
 
         <div className="flex xl:pt-12 md:pt-14 items-center ">

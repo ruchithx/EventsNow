@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import SuperadminPages from "@/app/admin/dashboard/components/SuperadminPages";
 import AdminPersonDetailsBar from "./AdminPersonalDetailBar";
-import { AdminContext, User } from "@/app/admin/Type";
+// import { AdminContext, User } from "@/app/admin/Type";
 import { useAdmin } from "../AdminContextFile";
 import { getAllUser } from "../FetchData";
 import Spinner from "@/components/Spinner";
+import { AdminContext } from "@/app/Type";
 
 export default function Notification() {
   const { user, setUser } = useAdmin() as AdminContext;

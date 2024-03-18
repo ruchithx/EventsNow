@@ -21,13 +21,7 @@ import NavBarProfile from "./NavBarProfile";
 import ResponsiveMenuBar from "./ResponsiveMenuBar";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { FaCircle } from "react-icons/fa";
-
-export type OrganizationProps = {
-  map: any;
-  name: string;
-  image: string;
-  id: string;
-};
+import { OrganizationProps } from "@/app/Type";
 
 type ID = {
   id: string;

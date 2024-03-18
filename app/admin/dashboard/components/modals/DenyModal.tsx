@@ -1,20 +1,22 @@
 import React from "react";
 import axios from "axios";
-import { Organization } from "@/app/admin/Type";
+// import { Organization } from "@/app/admin/Type";
 import { success } from "@/util/Toastify";
 import { useAdmin } from "../../AdminContextFile";
+import { AdminContext, OrganizationType } from "@/app/Type";
 
 interface DenyModalProps {
-  organization: Organization;
+  organization: OrganizationType;
 }
-type ContextData = {
-  setNotification: React.Dispatch<React.SetStateAction<Organization[]>>;
-  setOrganization: React.Dispatch<React.SetStateAction<Organization[]>>;
-  notification: Organization[];
-};
+// type ContextData = {
+//   setNotification: React.Dispatch<React.SetStateAction<Organization[]>>;
+//   setOrganization: React.Dispatch<React.SetStateAction<Organization[]>>;
+//   notification: Organization[];
+// };
+
 const DenyModalContent = ({ organization }: DenyModalProps) => {
   const { setOrganization, setNotification, notification } =
-    useAdmin() as ContextData;
+    useAdmin() as AdminContext;
   const handleDeny = async () => {
     try {
       await axios.put(
@@ -27,7 +29,7 @@ const DenyModalContent = ({ organization }: DenyModalProps) => {
       const updatedNotifications = [...notification, organization];
       success("Organization Denied successfully");
       setNotification(updatedNotifications);
-      setOrganization((prev: Organization[]) =>
+      setOrganization((prev: OrganizationType[]) =>
         prev.filter((org) => org._id !== organization._id)
       );
     } catch (error) {

@@ -5,7 +5,7 @@ function Share() {}
 
 function preview() {}
 
-interface Event {
+interface EventProps {
   EventName: String;
   Location: String;
   Time: String;
@@ -23,7 +23,7 @@ export default function Event({
   eventCover,
   endTime,
   endDate,
-}: Event) {
+}: EventProps) {
   return (
     <div className=" w-64 xl:w-72   rounded-xl bg-[#D9D9D9] shadow-inner xl:pt-8 xl:px-8 pt-6 px-6  ">
       <Image

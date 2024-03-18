@@ -15,7 +15,8 @@ import PostTab from "./PostTab";
 import SmallView from "@/app/event/host/[id]/components/SmallView";
 import HostSideBar from "@/app/event/host/[id]/components/HostSideBar";
 import { useParams } from "next/navigation";
-import { AuthContext, useAuth } from "@/app/AuthContext";
+import { useAuth } from "@/app/AuthContext";
+import { AuthContext } from "@/app/Type";
 type Props = {
   setIsTemplate1: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -88,7 +89,6 @@ export default function Template1({ setIsTemplate1 }: Props) {
                 <SmallView
                   EventName={"'KUWENI'"}
                   Location={"Matara"}
-                  Time={"12.00 to 14.00"}
                   Date={"21th April 2020"}
                 />
               </div>

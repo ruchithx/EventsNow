@@ -18,7 +18,7 @@ import {
   DropdownItem,
 } from "@nextui-org/dropdown";
 import { getSession } from "next-auth/react";
-import { OrganizationProps } from "@/components/Navbar/NavBar";
+// import { OrganizationProps } from "@/components/Navbar/NavBar";
 import { useAuth } from "@/app/AuthContext";
 import {
   CldUploadWidget,
@@ -27,6 +27,7 @@ import {
 } from "next-cloudinary";
 import { tr } from "date-fns/locale";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import { OrganizationProps } from "@/app/Type";
 
 export default function CreateOrganizationFormBasic() {
   const [fullName, setFullName] = useState("");

@@ -3,7 +3,8 @@ import { HiEye, HiEyeOff } from "react-icons/hi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { error, success } from "@/util/Toastify";
-import { ProfContext, useProf } from "../ProfContext";
+import { useProf } from "../ProfContext";
+import { ProfContext } from "@/app/Type";
 
 const ChangePassword = () => {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -64,7 +65,7 @@ const ChangePassword = () => {
         if (data.message === "Password changed successfully") {
           success("Password Changed Successfully");
         }
-       
+
         setCurrentPassword("");
         setNewPassword("");
         setConfirmPassword("");

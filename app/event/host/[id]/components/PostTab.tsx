@@ -5,17 +5,9 @@ import Spinner from "@/components/Spinner";
 import { getSession } from "next-auth/react";
 import EmptyStateComponent from "@/components/EmptyStateComponent";
 
-export interface Post {
-  _id: string;
-  userImage: string;
-  userName: string;
-  description: string;
-  image: string;
-  like: number;
-  likeBy: any;
-}
 import { useParams } from "next/navigation";
-import { Post as PostType } from "../SelectTemplate";
+import { PostType } from "@/app/Type";
+// import { Post as PostType } from "../SelectTemplate";
 
 export default function PostTab() {
   const [data, setData] = useState([]);
@@ -24,17 +16,17 @@ export default function PostTab() {
   const [email, setEmail] = useState<string | null | undefined>("");
   const { id } = useParams();
 
-  interface CustomUser {
-    _id: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-    role: string;
-    image: string;
-    wishListId: string;
-    registeredUser: boolean;
-    // Add any other properties you expect in your user object here
-  }
+  // interface CustomUser {
+  //   _id: string;
+  //   email: string;
+  //   firstName: string;
+  //   lastName: string;
+  //   role: string;
+  //   image: string;
+  //   wishListId: string;
+  //   registeredUser: boolean;
+  //   // Add any other properties you expect in your user object here
+  // }
 
   useEffect(() => {
     setLoading(true);

@@ -5,7 +5,7 @@ import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContextProvider } from "./AuthContext";
 const inter = Inter({ subsets: ["latin"] });
-
+import Script from "next/script";
 import NavBar from "@/components/Navbar/NavBar";
 import AuthProvider from "./AuthProvider";
 import TostifyProvider from "@/provider/TostifyProvider";

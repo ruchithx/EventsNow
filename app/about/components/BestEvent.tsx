@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
-interface Best_Event {
+interface BestEventProps {
   img: String;
   eventname: String;
   year: String;
@@ -15,7 +15,7 @@ export default function BestEvent({
   eventname,
   year,
   description,
-}: Best_Event) {
+}: BestEventProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [showReadMoreButton, setShowReadMoreButton] = useState(false);
   const ref = useRef<any>(null);

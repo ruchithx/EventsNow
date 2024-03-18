@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import Container from "./Container";
 import Image from "next/image";
 import CreatePost from "./post/CreatePost";
-import { User } from "@/app/organization/dashboard/[id]/Type";
+// import { User } from "@/app/organization/dashboard/[id]/Type";
 import { getSession } from "next-auth/react";
-import { EventContextType, UseEventContext } from "../EventDashContext";
+import { UseEventContext } from "../EventDashContext";
+import { EventContextType } from "@/app/Type";
 
 export default function Campaign() {
   const [createPost, setCreatePost] = useState(false);
@@ -14,7 +15,7 @@ export default function Campaign() {
   useEffect(() => {
     const getUser = async () => {
       const user = await getSession();
-   
+
       if (user) {
         setUser(user);
       }

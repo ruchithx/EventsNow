@@ -4,7 +4,7 @@ import Switch from "react-switch";
 import ContainerWithStroke from "./ContainerWithStroke";
 import Image from "next/image";
 import { Button } from "@material-tailwind/react";
-import { UseEventContext, EventContextType } from "../EventDashContext";
+// import { UseEventContext } from "../EventDashContext";
 import { error, success } from "@/util/Toastify";
 import {
   CldUploadWidget,
@@ -12,6 +12,8 @@ import {
   CloudinaryUploadWidgetResults,
 } from "next-cloudinary";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import { EventContextType } from "@/app/Type";
+import { UseEventContext } from "../EventDashContext";
 export default function Settings() {
   const {
     id,

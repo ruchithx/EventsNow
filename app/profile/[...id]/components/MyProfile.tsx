@@ -1,12 +1,10 @@
 import React from "react";
 import ProfileDetails from "./ProfileDetails";
-import { ProfContext, UserDetails, useProf } from "../ProfContext";
+import { useProf } from "../ProfContext";
+import { ProfContext } from "@/app/Type";
 
-type Details = {
-  userDeatails: UserDetails;
-};
 export default function MyProfile() {
-  const { userDeatails } = useProf() as Details;
+  const { userDeatails } = useProf() as ProfContext;
   return (
     <div className="flex flex-col md:flex-row rounded-lg shadow-3xl p-0  bg-[#fff] pt-8  justify-start items-start ">
       <div className="w-full ml-0">

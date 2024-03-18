@@ -7,11 +7,12 @@ import PostTab from "../components/PostTab";
 import SmallView from "../components/SmallView";
 import HostSideBar from "../components/HostSideBar";
 import Description from "../components/Description";
-import { Event, Post } from "../SelectTemplate";
+// import { Event, Post } from "../SelectTemplate";
 
 import { formatDate } from "@/util/helper";
+import { EventType } from "@/app/Type";
 
-export default function Template({ event }: { event: Event }) {
+export default function Template({ event }: { event: EventType }) {
   const date = `${formatDate(event.eventStartDate)} to ${formatDate(
     event.eventEndDate
   )}`;
@@ -37,9 +38,9 @@ export default function Template({ event }: { event: Event }) {
           <SmallView
             EventName={event.eventName}
             Location={event.selectedTab}
-            Time={`${event.startTime} to ${
-              parseInt(event.startTime, 10) + parseInt(event.duration, 10)
-            }`}
+            // Time={`${event.startTime} to ${
+            //   parseInt(event.startTime, 10) + parseInt(event.duration, 10)
+            // }`}
             Date={date}
           />
         </div>

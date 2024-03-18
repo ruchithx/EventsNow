@@ -2,7 +2,7 @@
 import React from "react";
 import ContainerWithStroke from "./ContainerWithStroke";
 import Image from "next/image";
-interface Props {
+interface GetReportComponentProps {
   reportName: string;
   image: string;
   getReport: () => void;
@@ -14,7 +14,7 @@ export default function GetReportComponent({
   image,
   getReport,
   size,
-}: Props) {
+}: GetReportComponentProps) {
   return (
     <ContainerWithStroke>
       <div className="sm:flex justify-between lg:pr-20 pl-4 text-left sm:text-center mb-4">

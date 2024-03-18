@@ -1,17 +1,18 @@
 import Image from "next/image";
 import React, { memo } from "react";
 import { useOrg } from "../OrgContext";
-import { Event, Organization, Team, User } from "../Type";
+import { OrgContext } from "@/app/Type";
+// import { Event, Organization, Team, User } from "../Type";
 
-interface contextProps {
-  organization: Organization;
-  editedName: string;
-  team: Team[];
-  events: Event[];
-}
+// interface contextProps {
+//   organization: Organization;
+//   editedName: string;
+//   team: Team[];
+//   events: Event[];
+// }
 
 const DashboardDetails = memo(function DashboardDetails() {
-  const { organization, editedName, team, events } = useOrg() as contextProps;
+  const { organization, editedName, team, events } = useOrg() as OrgContext;
 
   return (
     <div>

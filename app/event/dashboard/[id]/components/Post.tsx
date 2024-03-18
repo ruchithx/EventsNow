@@ -10,11 +10,12 @@ import { Session } from "next-auth";
 
 import { error, success } from "@/util/Toastify";
 import CommentBtn from "./CommentBtn";
-import { EventContextType, UseEventContext } from "../EventDashContext";
+import { UseEventContext } from "../EventDashContext";
 import { IoMdSettings } from "react-icons/io";
 import { IoSave } from "react-icons/io5";
+import { EventContextType } from "@/app/Type";
 
-interface Post {
+interface PostProps {
   profilePic: string;
   name: string;
   caption: string;
@@ -23,7 +24,7 @@ interface Post {
   likes: number;
 }
 
-export type User = {
+export type UserSession = {
   user: {
     image: string;
     email: string;
@@ -39,7 +40,7 @@ export default function Post({
   post,
   id,
   likes,
-}: Post) {
+}: PostProps) {
   const [like, setLike] = useState(likes);
   const [captionText, setCaptionText] = useState(caption);
   const [comment, setComment] = useState("");
@@ -49,7 +50,7 @@ export default function Post({
   const [isShare, setIsShare] = useState(false);
   const { allComment, setAllComment } = UseEventContext() as EventContextType;
 
-  const [user, setUser] = useState<User | Session>({
+  const [user, setUser] = useState<UserSession | Session>({
     user: { image: "", email: "", name: "" },
     expires: "",
   });

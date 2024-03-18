@@ -1,17 +1,18 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { useOrg } from "../OrgContext";
-import { Event } from "../Type";
+// import { Event } from "../Type";
+import { OrgContext } from "@/app/Type";
 
-interface ContentProps {
-  revenue: number;
-  ticketSold: number;
-  isSlideBar: boolean;
-  events: Event[];
-}
+// interface ContentProps {
+//   revenue: number;
+//   ticketSold: number;
+//   isSlideBar: boolean;
+//   events: Event[];
+// }
 
 export default function Dashboard() {
-  const { revenue, ticketSold, isSlideBar, events } = useOrg() as ContentProps;
+  const { revenue, ticketSold, isSlideBar, events } = useOrg() as OrgContext;
   const [selectedEvent, setSelectedEvent] = useState<string>("Choose an event");
 
   return (

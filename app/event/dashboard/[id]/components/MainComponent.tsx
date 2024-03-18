@@ -2,10 +2,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import SideBar from "./SideBar";
 import MidContent from "./MidContent";
-import { UseEventContext, EventContextType } from "../EventDashContext";
+import { UseEventContext } from "../EventDashContext";
 import Image from "next/image";
 import EventDashButton from "./EventDashButton";
 import Event from "../components/Event";
+import { EventContextType } from "@/app/Type";
 
 export default function MainComponent() {
   const {

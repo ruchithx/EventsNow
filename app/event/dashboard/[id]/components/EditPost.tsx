@@ -2,9 +2,10 @@
 import React, { useState } from "react";
 import Container from "./Container";
 import { MdArrowBack } from "react-icons/md";
-import { EventContextType, UseEventContext } from "../EventDashContext";
+import { UseEventContext } from "../EventDashContext";
 import Post from "./Post";
-import { Post as PostType } from "@/app/event/host/[id]/components/PostTab";
+// import { Post as PostType } from "@/app/event/host/[id]/components/PostTab";
+import { EventContextType, PostType } from "@/app/Type";
 
 export default function EditPost() {
   const { setStatus, eventPosts } = UseEventContext() as EventContextType;
