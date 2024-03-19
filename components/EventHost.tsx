@@ -1,11 +1,8 @@
-import {
-  ProfContext,
-  RegisterEventType,
-  useProf,
-} from "@/app/profile/[...id]/ProfContext";
+import { useProf } from "@/app/profile/[...id]/ProfContext";
 import MyEventCard from "@/app/profile/[...id]/components/MyEventCard";
 import React, { useState } from "react";
 import EmptyStateComponent from "./EmptyStateComponent";
+import { ProfContext, RegisterEventType } from "@/app/Type";
 type RigisterEvent = {
   register: any[];
 };

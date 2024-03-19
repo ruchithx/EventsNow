@@ -7,7 +7,7 @@ type EventListViewProps = {
   id: string;
   name: string;
   location: string;
-  time: string;
+
   date: string;
   img: string;
 };
@@ -16,7 +16,6 @@ export default function EventListView({
   id,
   name,
   location,
-  time,
   date,
   img,
 }: EventListViewProps) {
@@ -59,7 +58,7 @@ export default function EventListView({
               width={30}
               height={30}
             />
-            {time}
+            10:00 AM - 5:00 PM
           </div>
         </div>
         <div className="flex gap-2 sm:w-1/2	w-full mt-2	 ">
