@@ -31,7 +31,7 @@ type Organization = {
 const NavBarProfile = memo(function NavBarProfile({
   user,
   showProfile,
-  setShowProfile,
+  setShowProfila,
   clickLogoutBtn,
 }: NavBarProfileProps) {
   const [isOrganizationShowButton, setIsOrganizationShowButton] =
