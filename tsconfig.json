@@ -46,6 +46,6 @@
 
     "app/api/v1/organization/denyOrganization/[...id]/route.jsx",
     "app/api/v1/post/getOnePost/[...id]/route.jsx"
-  ],
+, "app/event/dashboard/[id]/components/QRcodeScanner.jsx"  ],
   "exclude": ["node_modules"]
 }

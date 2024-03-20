@@ -4,6 +4,7 @@ import EventCardDisabled from "@/components/EventCardDisabled";
 import { formatDate } from "@/util/helper";
 import EventViewMode from "@/components/EventViewMode";
 import HeroSection from "@/components/HeroSection";
+import QRcodeScanner from "@/app/event/dashboard/[id]/components/QRcodeScanner";
 // import EventCardDisabled from "@/components/EventCardDisabled";
 
 // import EventViewMode from "../components/EventViewMode";
@@ -64,29 +65,30 @@ export default async function Home() {
   const data = await getOutDateEvent();
   const event = await getEvent();
   return (
-    <div>
-      <HeroSection />
+    // <div>
+    //   <HeroSection />
 
-      <EventViewMode event={event} />
-      {data.length !== 0 && (
-        <div className="font-bold text-[30px] md:text-[40px] lg:text-5xl text-[#906953] drop-shadow-lg ms-8">
-          Outdated Events
-        </div>
-      )}
+    //   <EventViewMode event={event} />
+    //   {data.length !== 0 && (
+    //     <div className="font-bold text-[30px] md:text-[40px] lg:text-5xl text-[#906953] drop-shadow-lg ms-8">
+    //       Outdated Events
+    //     </div>
+    //   )}
 
-      <div className="flex flex-wrap ms-12">
-        {data.map((e: any) => (
-          <EventCardDisabled
-            key={e._id}
-            name={e.eventName}
-            img={e.dashboardImage}
-            location={e.selectedTab}
-            date={formatDate(e.eventStartDate)}
-          />
-        ))}
-      </div>
+    //   <div className="flex flex-wrap ms-12">
+    //     {data.map((e: any) => (
+    //       <EventCardDisabled
+    //         key={e._id}
+    //         name={e.eventName}
+    //         img={e.dashboardImage}
+    //         location={e.selectedTab}
+    //         date={formatDate(e.eventStartDate)}
+    //       />
+    //     ))}
+    //   </div>
 
-      <Footer />
-    </div>
+    //   <Footer />
+    // </div>
+    <QRcodeScanner />
   );
 }
