@@ -1,4 +1,6 @@
+import { m } from "framer-motion";
 import Comment from "./comment";
+import User from "./userModel";
 
 const mongoose = require("mongoose");
 
@@ -27,9 +29,14 @@ const postSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    likeBy: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: User,
+    },
     comment: {
       type: mongoose.Schema.Types.ObjectId,
       ref: Comment,
+      unique: true,
     },
   },
   {

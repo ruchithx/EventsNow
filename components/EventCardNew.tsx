@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
-import { Organization } from "@/app/admin/Type";
+// import { Organization } from "@/app/admin/Type";
 import { FaRegBuilding } from "react-icons/fa6";
 
 interface eventCard {

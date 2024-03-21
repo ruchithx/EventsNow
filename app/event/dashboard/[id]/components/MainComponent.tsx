@@ -1,10 +1,12 @@
 "use client";
-import React, { useState,useEffect,useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import SideBar from "./SideBar";
 import MidContent from "./MidContent";
-import { UseEventContext, EventContextType } from "../EventDashContext";
+import { UseEventContext } from "../EventDashContext";
 import Image from "next/image";
 import EventDashButton from "./EventDashButton";
+import Event from "../components/Event";
+import { EventContextType } from "@/app/Type";
 
 export default function MainComponent() {
   const {
@@ -16,6 +18,14 @@ export default function MainComponent() {
     handleSetting,
     isSideBar,
     setIsSideBar,
+    eventname,
+    eventLocation,
+    eventDate,
+    eventStartTime,
+    eventDashboardImage,
+
+    endTime,
+    eventEndDate,
   } = UseEventContext() as EventContextType;
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
 
@@ -125,7 +135,7 @@ export default function MainComponent() {
           />
           <EventDashButton
             isSlideBar={isSideBar}
-            img="Setting.svg"
+            img="setting.svg"
             text="Settings"
             onClick={() => handleSetting()}
           />
@@ -143,7 +153,7 @@ export default function MainComponent() {
         </div>
         <div
           className={`lg:col-span-7 col-span-12  ${
-            isSideBar ? "md:col-span-6 " : "md:col-span-8 "
+            isSideBar ? "md:col-span-5 " : "md:col-span-7 "
           }`}
         >
           <MidContent />
@@ -152,7 +162,15 @@ export default function MainComponent() {
           className={`lg:col-span-3 md:block hidden
              ${isSideBar ? "md:col-span-3 md:mr-2 " : "md:col-span-3  "}`}
         >
-          right hand side component
+          <Event
+            EventName={eventname}
+            Location={eventLocation}
+            Time={eventStartTime}
+            endTime={endTime}
+            endDate={eventEndDate.substring(0, 10)}
+            Date={eventDate.substring(0, 10)}
+            eventCover={eventDashboardImage}
+          />
         </div>
       </div>
     </div>

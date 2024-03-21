@@ -104,7 +104,7 @@ export default function NavBar() {
   const router = useRouter();
 
   async function clickLogoutBtn() {
-    await signOut();
+    await signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_URL}` });
     setEmail("");
     localStorage.removeItem("email");
     router.push("/");
@@ -171,6 +171,7 @@ export default function NavBar() {
             }
           } else {
             const email = emailAuth;
+
             const data = await getUser({ email });
 
             if (data) {

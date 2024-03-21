@@ -13,7 +13,7 @@ import { BiWorld } from "react-icons/bi";
 import { LiaBookSolid } from "react-icons/lia";
 import { GoPeople } from "react-icons/go";
 import { FiFileText } from "react-icons/fi";
-import { AdminContext } from "@/app/admin/Type";
+import { AdminContext } from "@/app/Type";
 import Spinner from "@/components/Spinner";
 
 export default function AdminDashboard() {

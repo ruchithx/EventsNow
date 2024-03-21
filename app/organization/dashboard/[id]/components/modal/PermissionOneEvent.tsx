@@ -7,9 +7,10 @@ import React, {
 } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { RiAddCircleFill } from "react-icons/ri";
-import { orgContext } from "./GivenPermission";
+
 import { useOrg } from "../../OrgContext";
 import { error, success } from "@/util/Toastify";
+import { OrgContext } from "@/app/Type";
 
 export default function PermissionOneEvent() {
   const [viewattendees, setViewattendees] = useState<boolean>(false);
@@ -32,10 +33,11 @@ export default function PermissionOneEvent() {
     selectEventForPermission,
     modalUserName,
     eventPermission,
-  } = useOrg() as orgContext;
+  } = useOrg() as OrgContext;
 
   useEffect(() => {
     if (!eventPermission) return;
+
     const existingDocument = eventPermission.find(
       (permission) => permission.eventId === selectEventForPermission._id
     );

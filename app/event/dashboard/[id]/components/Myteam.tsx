@@ -1,15 +1,14 @@
 import React from "react";
 import Container from "./Container";
 import TeamMemberCard from "./TeamMemberCard";
-import { EventContextType, UseEventContext } from "../EventDashContext";
+import { UseEventContext } from "../EventDashContext";
 import EmptyStateComponent from "@/components/EmptyStateComponent";
+import { EventContextType } from "@/app/Type";
 
 export default function Myteam() {
   const { user } = UseEventContext() as EventContextType;
 
-  function handleInvite() {
-    console.log("Invite button clicked");
-  }
+  function handleInvite() {}
   return (
     <div>
       <Container>
@@ -34,7 +33,7 @@ export default function Myteam() {
               Invite
             </button>
           </div> */}
-          <div className="mt-6 grid overflow-auto h-40  md:w-full">
+          <div className="mt-6 grid overflow-auto h-80 md:w-full">
             {user.length === 0 ? (
               <EmptyStateComponent message="No user in the event" />
             ) : (

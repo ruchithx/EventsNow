@@ -1,35 +1,33 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
 import { useParams } from "next/navigation";
 import Template from "./template1/Template1";
+import { EventType } from "@/app/Type";
 
-export default function SelectTemplate() {
-  console.log("hello2");
-  const params = useParams<{ id: string }>();
-  const [template, setTemplate] = useState("");
-  useEffect(() => {
-    async function checkTemplate() {
-      const res = await fetch(`/api/v1/event/getOneEvent`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: params.id,
-        }),
-      });
-      const data = await res.json();
-      if (!data) {
-        console.log("no template");
-        return;
-      }
-      if (data.template === "template1") {
-        setTemplate("template1");
-      }
-      console.log(data);
-    }
-    checkTemplate();
-  }, [params.id]);
-  return <div>{template === "template1" && <Template />}</div>;
+// export type Event = {
+//   _id: string;
+//   eventName: string;
+//   selectedTab: string;
+
+//   startTime: string;
+//   duration: string;
+//   eventTimeZone: string;
+//   description: string;
+//   postImageLink: string;
+//   organizationId: string;
+//   eventEndDate: string;
+//   __v: 0;
+//   template: string;
+//   endTime: string;
+//   isPublished: boolean;
+//   registerUser: [string];
+//   dashboardImage: string;
+//   coverImage: string;
+//   eventStartDate: string;
+// };
+
+export default function SelectTemplate({ event }: { event: EventType }) {
+  return (
+    <div>{event.template === "template1" && <Template event={event} />}</div>
+  );
 }

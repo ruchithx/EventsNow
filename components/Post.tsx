@@ -17,7 +17,11 @@ import CommentBox from "./CommentBox";
 import CommentBtn from "./CommentBtn";
 import { IoMdHeart } from "react-icons/io";
 import { success } from "@/util/Toastify";
-
+import {
+  FacebookShareButton,
+  FacebookShareCount,
+  TwitterShareButton,
+} from "react-share";
 interface Post {
   profilePic: string;
   name: string;
@@ -25,6 +29,8 @@ interface Post {
   post: string;
   id: string;
   likes: number;
+  liked: boolean;
+  // email: string;
 }
 
 export type User = {
@@ -50,12 +56,14 @@ export default function Post({
   post,
   id,
   likes,
-}: Post) {
+  liked,
+}: // email,
+Post) {
   const [like, setLike] = useState(likes);
   const [allComment, setAllComment] = useState<Comment[]>([]);
   const [comment, setComment] = useState("");
   const [isComment, setIsComment] = useState(false);
-  const [isLike, setIsLike] = useState(false);
+  const [isLike, setIsLike] = useState(liked);
   const [hasComment, setHasComment] = useState(false);
   const [isShare, setIsShare] = useState(false);
 
@@ -156,11 +164,11 @@ export default function Post({
       body: JSON.stringify({
         id,
         type: "like",
+        email: user?.user?.email,
       }),
     });
 
     if (!like.ok) {
-      console.log(" like");
       return;
     }
     setLike((prev) => prev + 1);
@@ -175,12 +183,12 @@ export default function Post({
       },
       body: JSON.stringify({
         id,
+        email: user?.user?.email,
         type: "dislike",
       }),
     });
 
     if (!like.ok) {
-      console.log("not like");
       return;
     }
 
@@ -331,30 +339,34 @@ export default function Post({
           )}
           {isShare && (
             <div className="flex gap-3 mb-3 mt-3 mx-6">
-              <Image
-                src={"/images/reusableComponents/FacebookIconPost.svg"}
-                alt="facebook"
-                width={40}
-                height={34}
-                className={styles.zoom}
-              />
-              <Image
-                src={"/images/reusableComponents/TwitterIconPost.svg"}
-                alt="facebook"
-                width={40}
-                height={34}
-                className={styles.zoom}
-              />
+              <FacebookShareButton url={`${post}`}>
+                <Image
+                  src={"/images/reusableComponents/FacebookIconPost.svg"}
+                  alt="facebook"
+                  width={40}
+                  height={34}
+                  className={styles.zoom}
+                />
+              </FacebookShareButton>
+              <TwitterShareButton url={`${post}`}>
+                <Image
+                  src={"/images/reusableComponents/TwitterIconPost.svg"}
+                  alt="twtter"
+                  width={40}
+                  height={34}
+                  className={styles.zoom}
+                />
+              </TwitterShareButton>
               <Image
                 src={"/images/reusableComponents/InstagramIconPost.svg"}
-                alt="facebook"
+                alt="instagram"
                 width={40}
                 height={34}
                 className={styles.zoom}
               />
               <Image
                 src={"/images/reusableComponents/threads-app-icon.svg"}
-                alt="facebook"
+                alt="threads"
                 width={31}
                 height={28}
                 className={styles.zoom}

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { OrgContext } from "../Type";
+// import { OrgContext } from "../Type";
 import { useOrg } from "../OrgContext";
 import { error, success } from "@/util/Toastify";
+import { OrgContext } from "@/app/Type";
 
 export default function InviteButton() {
   const { organization, isSlideBar } = useOrg() as OrgContext;

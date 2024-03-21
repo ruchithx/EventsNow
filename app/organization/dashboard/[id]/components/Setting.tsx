@@ -3,7 +3,7 @@ import { useOrg } from "../OrgContext";
 import { error } from "@/util/Toastify";
 import { success } from "@/util/Toastify";
 import dynamic from "next/dynamic";
-import { Organization } from "../Type";
+// import { Organization } from "../Type";
 import { IoSaveOutline } from "react-icons/io5";
 import { FaCloudUploadAlt, FaRegWindowClose } from "react-icons/fa";
 import {
@@ -12,19 +12,20 @@ import {
   CloudinaryUploadWidgetResults,
 } from "next-cloudinary";
 import Image from "next/image";
+import { OrgContext } from "@/app/Type";
 const ProfileSettings = dynamic(
   () => import("@/app/organization/dashboard/[id]/components/ProfileSettings")
 );
 
-interface contextProps {
-  organization: Organization;
-  id: string;
-  setOrganizationImage: React.Dispatch<React.SetStateAction<string>>;
-}
+// interface contextProps {
+//   organization: Organization;
+//   id: string;
+//   setOrganizationImage: React.Dispatch<React.SetStateAction<string>>;
+// }
 
 export default function Setting() {
   const [profileImage, setProfileImage] = useState("");
-  const { organization, id, setOrganizationImage } = useOrg() as contextProps;
+  const { organization, id, setOrganizationImage } = useOrg() as OrgContext;
   const [bank, setBank] = useState(organization.bank || "");
   const [branch, setBranch] = useState(organization.branch || "");
   const [payout, setPayout] = useState(organization.payout || "");

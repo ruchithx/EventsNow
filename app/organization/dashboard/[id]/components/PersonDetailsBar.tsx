@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import GivenPermission, { orgContext } from "./modal/GivenPermission";
-import { EventPermission, useOrg } from "../OrgContext";
+import GivenPermission from "./modal/GivenPermission";
+import { useOrg } from "../OrgContext";
+import { EventPermissionType, OrgContext } from "@/app/Type";
 interface PresonDetailsBar {
   name: string;
   email: string;
   permissionDocumentId: string;
   globalPermission: string[];
-  eventPermission: EventPermission[];
+  eventPermission: EventPermissionType[];
 }
 
 export default function PersonDetailsBar({
@@ -22,7 +23,7 @@ export default function PersonDetailsBar({
     setPermissionID,
     setGlobalPermission,
     setEventPermission,
-  } = useOrg() as orgContext;
+  } = useOrg() as OrgContext;
 
   const handleEditButton = () => {
     setModal("givenPermission");

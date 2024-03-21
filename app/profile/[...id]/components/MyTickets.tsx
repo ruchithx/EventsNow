@@ -4,6 +4,7 @@ import Upcoming_Events from "@/components/Upcoming_Events";
 import Org_RequestHandle from "./Org_RequestHandle";
 import EventHost from "@/components/EventHost";
 import MyEventCard from "./MyEventCard";
+import EmptyStateComponent from "@/components/EmptyStateComponent";
 export default function MyTickets() {
   return (
     <div className="flex flex-col md:flex-row rounded-lg shadow-3xl bg-[#fff] pt-8  justify-start items-start">
@@ -12,11 +13,13 @@ export default function MyTickets() {
           My Tickets
         </div>
         <div className="mt-10 mx-10">
-          <MyEventCard
+          <EmptyStateComponent message="No ticket create yet" />
+          {/* <MyEventCard
+            id="1"
             OrgName={"Stein Studios "}
             image={"./images/reusableComponents/login.jpg"}
             btn="View event"
-          />
+          /> */}
         </div>
       </div>
     </div>

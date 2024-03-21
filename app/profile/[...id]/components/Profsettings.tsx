@@ -1,5 +1,6 @@
 import React from "react";
-import { UserDetails, useProf } from "../ProfContext";
+import { useProf } from "../ProfContext";
+import { UserType } from "@/app/Type";
 
 interface Details {
   name: string;
@@ -7,9 +8,10 @@ interface Details {
   value?: string | number;
   setFname?: any;
 }
+
 type Detailss = {
   fname: string;
-  userDeatails: UserDetails;
+  userDeatails: UserType;
   lname: string;
 };
 

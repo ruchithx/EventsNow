@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     if (!data) {
       return NextResponse.json({ data: "Invalid user name or password" });
     }
-    console.log(password, data.password);
+   
 
     const checkPassword = await comparePassword(password, data.password);
 

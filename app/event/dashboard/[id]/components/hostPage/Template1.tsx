@@ -15,7 +15,8 @@ import PostTab from "./PostTab";
 import SmallView from "@/app/event/host/[id]/components/SmallView";
 import HostSideBar from "@/app/event/host/[id]/components/HostSideBar";
 import { useParams } from "next/navigation";
-import { AuthContext, useAuth } from "@/app/AuthContext";
+import { useAuth } from "@/app/AuthContext";
+import { AuthContext } from "@/app/Type";
 type Props = {
   setIsTemplate1: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -88,7 +89,6 @@ export default function Template1({ setIsTemplate1 }: Props) {
                 <SmallView
                   EventName={"'KUWENI'"}
                   Location={"Matara"}
-                  Time={"12.00 to 14.00"}
                   Date={"21th April 2020"}
                 />
               </div>
@@ -105,7 +105,7 @@ export default function Template1({ setIsTemplate1 }: Props) {
               </div>
             </div>
 
-            <Description />
+            <Description description="In the heart of a bustling city, amidst the cacophony of sounds and the hustle of people, there lies a quaint little cafe. Its walls adorned with vintage photographs and the aroma of freshly brewed coffee wafting through the air, it's a haven for weary souls seeking solace. As the sunlight gently filters through the curtains, casting a warm glow upon the wooden tables, patrons engage in lively conversations or lose themselves in the pages of their favorite books. Here, time seems to stand still, and for a fleeting moment, all worries fade away, replaced by a sense of serenity and contentment." />
           </div>
 
           <div className="flex justify-end">

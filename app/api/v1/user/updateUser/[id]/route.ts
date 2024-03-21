@@ -50,7 +50,6 @@ export async function POST(req: Request) {
 
     const data = await User.findOne({ _id: id });
 
-    console.log(data);
     if (!data) {
       return NextResponse.json("No User");
     }

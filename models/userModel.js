@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const validator = require("validator");
 import bcrypt from "bcrypt";
+import Event from "./eventModel";
 
 // const bcrypt = require("bcryptjs");
 
@@ -78,6 +79,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "user",
     enum: ["user", "admin"],
+  },
+  wishListId: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: Event,
+  },
+  registeredEvents: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: Event,
   },
 });
 

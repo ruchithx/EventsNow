@@ -6,7 +6,8 @@ import EventDashButton from "./EventDashButton";
 import { HiArrowCircleRight } from "react-icons/hi";
 import { HiArrowCircleLeft } from "react-icons/hi";
 import Container from "./Container";
-import { UseEventContext, EventContextType } from "../EventDashContext";
+import { UseEventContext } from "../EventDashContext";
+import { EventContextType } from "@/app/Type";
 
 export default function SideBar() {
   const {
@@ -33,7 +34,7 @@ export default function SideBar() {
           >
             <div>
               <button
-                className="xl:hidden block"
+                className="md:hidden block"
                 onClick={() => setIsSideBar(!isSideBar)}
               >
                 <div className="flex items-end  ">

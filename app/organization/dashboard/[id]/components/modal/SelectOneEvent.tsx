@@ -1,13 +1,14 @@
 import React, { memo } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { RiAddCircleFill } from "react-icons/ri";
-import { orgContext } from "./GivenPermission";
+// import { orgContext } from "./GivenPermission";
 import { useOrg } from "../../OrgContext";
-import { Event } from "../../Type";
+// import { Event } from "../../Type";
+import { EventType, OrgContext } from "@/app/Type";
 
 export default memo(function SelectOneEvent() {
   const { setModal, setSelectEventForPermission, events, modalUserName } =
-    useOrg() as orgContext;
+    useOrg() as OrgContext;
 
   return (
     <>
@@ -21,8 +22,6 @@ export default memo(function SelectOneEvent() {
         aria-hidden="true"
         className=" overflow-y-auto overflow-x-hidden p-4 fixed  z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
       >
-   
-
         <div className="border-[1px] border-custom-orange rounded-md bg-white  w-2/5 relative top-[25%] left-[25%]">
           <div className="mr-4 flex items-center justify-between ">
             <button
@@ -99,12 +98,12 @@ const EvntsDetails = memo(function EvntsDetails({
   event,
 }: {
   name: string;
-  event: Event;
+  event: EventType;
 }) {
   const { setModal, setSelectEventForPermission, events } =
-    useOrg() as orgContext;
+    useOrg() as OrgContext;
 
-  function editButton(event: Event) {
+  function editButton(event: EventType) {
     setModal("permissionOneEvent");
     setSelectEventForPermission(event);
   }

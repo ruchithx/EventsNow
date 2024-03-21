@@ -21,8 +21,11 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 export default function EventRegisterFormBasic() {
   const [eventName, setEventName] = useState("");
   const [selectedTab, setSelectedTab] = useState("Onsite");
+  const [eventLocation, setEventLocation] = useState("");
   const [eventStartDate, setEventStartDate] = useState(new Date());
+  const [eventEndDate, setEventEndDate] = useState(new Date());
   const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
   const [duration, setDuration] = useState("");
   const [eventTimeZone, setEventTimeZone] = useState("");
   const [description, setDescription] = useState("");
@@ -33,40 +36,39 @@ export default function EventRegisterFormBasic() {
   const params = useParams();
   const router = useRouter();
 
-  const [profileImage, setProfileImage] = useState("");
+  const [coverImage, setcoverImage] = useState("");
+  const [dashboardImage, setdashboardImage] = useState("");
 
   const validateEvent = z.object({
     eventName: z.string().min(1, "Enter event name "),
     selectedTab: z.string().min(1, { message: "select the event type" }),
+    eventLocation: z.string().min(1, { message: " Enter event location " }),
     eventStartDate: z.date(),
+    eventEndDate: z.date(),
     startTime: z.string().min(1, { message: "Enter event start time " }),
-    duration: z.string(),
-    eventTimeZone: z.string().min(1, { message: "Enter event time zone" }),
+    endTime: z.string().min(1, { message: "Enter event start time " }),
     description: z.string(),
-    postImage: z.any(),
-    postImageLink: z.string().min(1, { message: "Enter event cover" }),
+    coverImage: z.string().min(1, { message: "Upload event cover photo " }),
+    dashboardImage: z
+      .string()
+      .min(1, { message: "Upload event dashboard photo " }),
   });
 
   async function sendEventData(e: any) {
     e.preventDefault();
     setIsSubmitting(true);
-    // const storageRef = firebase.storage().ref();
-    // const fileRef = storageRef.child(`eventCover-${eventName}`);
-    // const postImageLink = await fileRef
-    //   .put(postImage)
-    //   .then((snapshot) =>
-    //     snapshot.ref.getDownloadURL().then((downloadURL) => downloadURL)
-    //   );
 
     const data = {
       eventName,
       selectedTab,
+      eventLocation,
       eventStartDate,
       startTime,
-      duration,
-      eventTimeZone,
+      endTime,
+      eventEndDate,
       description,
-      postImageLink: profileImage,
+      coverImage,
+      dashboardImage,
       organizationId: params.id,
     };
 
@@ -87,9 +89,11 @@ export default function EventRegisterFormBasic() {
         setIsSubmitting(false);
         return;
       }
-      router.push(`/organization/dashboard/${params.id}`);
+      const { event } = await res.json();
 
-      success("registration data sent succesfully");
+      router.push(`/event/dashboard/${event._id}`);
+
+      success("event created succesfully");
 
       setEventStartDate(new Date());
       setStartTime("");
@@ -98,9 +102,6 @@ export default function EventRegisterFormBasic() {
       setDescription("");
       setPreviewImage("");
       setEventName("");
-      // if (fileInputRef.current) {
-      //   fileInputRef.current.value = "";
-      // }
     } else {
       error(result.error.errors[0].message);
     }
@@ -112,12 +113,7 @@ export default function EventRegisterFormBasic() {
       <div className=" mt-8 leading-none text-center text-[#455273] font-khand text-[40px] sm:text-[64px] font-semibold mx-2">
         Create Event
       </div>
-      <form
-        method="POST"
-        // onSubmit={(e: any) => sendEventData(e)}
-        // onSubmit={() => sendEventData()}
-        className="px-8"
-      >
+      <form method="POST" className="px-8">
         <label
           htmlFor="eventName"
           className=" mt-6 font-khand text-[#455273] flex text-basic font-normal m-0"
@@ -167,21 +163,35 @@ export default function EventRegisterFormBasic() {
                 Online
               </button>
             </div>
-            <div className="pl-4 text-custom-orange font-khand">
-              Select venue
+            <div className="px-4 text-custom-orange font-khand">
+              <div className="flex">
+                {selectedTab == "Onsite"
+                  ? "Enter event venue"
+                  : "Enter event platform"}
+                <div className="text-red-500 font-">*</div>
+              </div>
+              <input
+                required
+                type="text"
+                name="eventLocation"
+                id="eventLocation"
+                value={eventLocation}
+                onChange={(e) => setEventLocation(e.target.value)}
+                className=" my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-[12px] focus:outline-custom-orange "
+              ></input>
             </div>
           </div>
         </div>
         <div className="mt-1 font-khand text-[#455273] flex text-basic font-normal m-0">
           Event date and time <div className="text-red-500 font-">*</div>
         </div>
-        <div className="border-solid border-2 rounded-xl grid grid-cols-2 gap-2 px-2 pb-4">
+        <div className="border-solid border-2 rounded-xl grid grid-cols-2 gap-2 px-2 py-2 pb-4">
           <div>
             <label
               htmlFor="eventDate"
               className="  font-khand text-[#455273] flex text-basic font-normal m-0"
             >
-              Date <div className="text-red-500 font-">*</div>
+              Start Date <div className="text-red-500 font-">*</div>
             </label>
 
             <DatePicker
@@ -189,6 +199,23 @@ export default function EventRegisterFormBasic() {
               selected={eventStartDate}
               onChange={(date: Date | null) =>
                 setEventStartDate(date || new Date())
+              }
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="eventDate"
+              className="  font-khand text-[#455273] flex text-basic font-normal m-0"
+            >
+              End Date <div className="text-red-500 font-">*</div>
+            </label>
+
+            <DatePicker
+              className="my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-xl  xl:pr-20 lg:pr-10 md:pr-40 md:max-lg:mr-20 sm:max-md:mr-40 mr-24 lg:mr-0 focus:outline-custom-orange"
+              selected={eventEndDate}
+              onChange={(date: Date | null) =>
+                setEventEndDate(date || new Date())
               }
             />
           </div>
@@ -213,35 +240,18 @@ export default function EventRegisterFormBasic() {
 
           <div>
             <label
-              htmlFor="duration"
+              htmlFor="eventTime"
               className="  font-khand text-[#455273] flex text-basic font-normal m-0"
             >
-              Duration (h)
-            </label>
-            <input
-              type="text"
-              name="duration"
-              id="duration"
-              value={duration}
-              onChange={(e) => setDuration(e.target.value)}
-              className=" my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-xl focus:outline-custom-orange "
-            ></input>
-          </div>
-
-          <div>
-            <label
-              htmlFor="eventTimezone"
-              className="  font-khand text-[#455273] flex text-basic font-normal m-0"
-            >
-              Timezone <div className="text-red-500 font-">*</div>
+              End time <div className="text-red-500 font-">*</div>
             </label>
             <input
               required
               type="text"
-              name="eventTimezone"
-              id="eventTimezone"
-              value={eventTimeZone}
-              onChange={(e) => setEventTimeZone(e.target.value)}
+              name="eventTime"
+              id="eventTime"
+              value={endTime}
+              onChange={(e) => setEndTime(e.target.value)}
               className=" my-1 w-full h-8 block flex-1  bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 border-2 rounded-xl focus:outline-custom-orange "
             ></input>
           </div>
@@ -261,39 +271,10 @@ export default function EventRegisterFormBasic() {
           className=" mt-1 w-full h-24 bg-transparent  pl-1 text-gray-900focus:ring-0 focus:outline-custom-orange sm:text-sm sm:leading-6 border-2 rounded-xl "
           cols={30}
         ></textarea>
-        <div className=" mt-4 pb-1 font-khand text-[#455273] flex text-basic font-normal m-0">
-          Cover photo <div className="text-red-500 font-">*</div>
+        <div className="mt-4 pb-1 font-khand text-[#455273] flex text-basic font-normal m-0">
+          Event cover photo <div className="text-red-500 font-">*</div>
         </div>
 
-        {/* <div className=" border-2 w-auto border-solId rounded-xl  ">
-          <input
-            required
-            type="file"
-            accept="image/*"
-            ref={fileInputRef}
-            onChange={async (e) => {
-              if (e.target.files && e.target.files.length > 0) {
-                setPreviewImage(URL.createObjectURL(e.target.files[0]));
-                setPostImage(e.target.files[0]);
-              }
-            }}
-            className="block  text-sm text-slate-500
-      file:mr-4 file:py-2 file:px-4
-      file:rounded-lg file:border-0
-      file:text-sm file:font-semibold
-      file:bg-violet-50 file:text-custom-orange
-      hover:file:bg-gray-200"
-          />
-          {previewImage.length > 0 && (
-            <Image
-              className="p-4"
-              src={previewImage}
-              width={500}
-              height={500}
-              alt="Picture of the author"
-            />
-          )}
-        </div> */}
         <div>
           <CldUploadWidget
             uploadPreset="events"
@@ -305,7 +286,95 @@ export default function EventRegisterFormBasic() {
               const profileImageURL = {
                 image: uploadedResult.secure_url,
               };
-              setProfileImage(profileImageURL.image);
+              setcoverImage(profileImageURL.image);
+            }}
+            options={{
+              tags: ["events image"],
+              // publicId: `${organizationName}/${Date.now()}`,
+              // publicId: "b2c",
+
+              sources: ["local"],
+              googleApiKey: "<image_search_google_api_key>",
+              showAdvancedOptions: false,
+              cropping: true,
+              multiple: false,
+              showSkipCropButton: false,
+              croppingAspectRatio: 1.61,
+              croppingDefaultSelectionRatio: 1.61,
+              croppingShowDimensions: true,
+              croppingCoordinatesMode: "custom",
+              // maxImageHeight: 100,
+              // croppingValidateDimensions: true,
+              defaultSource: "local",
+              resourceType: "image",
+              folder: "events",
+
+              styles: {
+                palette: {
+                  window: "#ffffff",
+                  sourceBg: "#f4f4f5",
+                  windowBorder: "#90a0b3",
+                  tabIcon: "#000000",
+                  inactiveTabIcon: "#555a5f",
+                  menuIcons: "#555a5f",
+                  link: "#000000",
+                  action: "#000000",
+                  inProgress: "#464646",
+                  complete: "#000000",
+                  error: "#cc0000",
+                  textDark: "#000000",
+                  textLight: "#fcfffd",
+                  theme: "white",
+                },
+              },
+            }}
+          >
+            {({ open }) => {
+              return (
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    open();
+                  }}
+                >
+                  <div className="p-1 text-white font-semibold flex items-center justify-center gap-2 bg-slate-400 rounded-2xl">
+                    <FaCloudUploadAlt />
+                    upload event cover image
+                  </div>
+                </button>
+              );
+            }}
+          </CldUploadWidget>
+        </div>
+
+        {coverImage.length > 0 && (
+          <div className=" mt-5 border-2 w-auto border-solId rounded-xl   ">
+            <Image
+              className=" p-4"
+              src={coverImage}
+              width={500}
+              height={500}
+              alt="event cover image"
+            />
+          </div>
+        )}
+
+        <div className=" mt-4 pb-1 font-khand text-[#455273] flex text-basic font-normal m-0">
+          Event dashboard photo <div className="text-red-500 font-">*</div>
+        </div>
+
+        <div>
+          <CldUploadWidget
+            uploadPreset="events"
+            onOpen={() => {
+              console.log("isPhotographer");
+            }}
+            onSuccess={(results: CloudinaryUploadWidgetResults) => {
+              const uploadedResult = results.info as CloudinaryUploadWidgetInfo;
+              const profileImageURL = {
+                image: uploadedResult.secure_url,
+              };
+              setdashboardImage(profileImageURL.image);
             }}
             options={{
               tags: ["events image"],
@@ -366,11 +435,11 @@ export default function EventRegisterFormBasic() {
           </CldUploadWidget>
         </div>
 
-        {profileImage.length > 0 && (
+        {dashboardImage.length > 0 && (
           <div className=" mt-5 border-2 w-auto border-solId rounded-xl   ">
             <Image
               className=" p-4"
-              src={profileImage}
+              src={dashboardImage}
               width={500}
               height={500}
               alt="event cover image"

@@ -1,7 +1,5 @@
-import Organization from "./organizationModel";
-import User from "./userModel";
-
 const mongoose = require("mongoose");
+import Organization from "./organizationModel";
 
 const eventSchema = new mongoose.Schema({
   eventName: {
@@ -13,30 +11,40 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please select the event type"],
   },
+  eventLocation: {
+    type: String,
+    required: [true, "please enter event location"],
+  },
   eventStartDate: {
     type: String,
     required: [true, "Please select the event start date"],
+  },
+  eventEndDate: {
+    type: String,
+    required: [true, "Please select the event end date"],
   },
   startTime: {
     type: String,
     required: [true, "Please select the event start time"],
   },
-  duration: {
+  endTime: {
     type: String,
+    required: [true, "Please select the event end time"],
   },
-  eventTimeZone: {
-    type: String,
-    required: [true, "Please select the event time zone"],
-  },
+
   description: {
     type: String,
   },
-  postImageLink: {
+  coverImage: {
     type: String,
     required: [true, "Please upload the event cover photo"],
   },
+  dashboardImage: {
+    type: String,
+    required: [true, "Please upload the event dashboard photo"],
+  },
   organizationId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: [mongoose.Schema.Types.ObjectId],
     ref: Organization,
     required: [true, "Please enter organization Id"],
   },
@@ -44,12 +52,14 @@ const eventSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  registerUser: {
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: User,
-  },
+
   template: {
     type: String,
+  },
+
+  registerUser: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "User",
   },
 });
 

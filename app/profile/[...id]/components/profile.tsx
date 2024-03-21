@@ -2,9 +2,10 @@
 import React from "react";
 
 import ProfCard from "./ProfCard";
-import { UserDetails, useProf } from "../ProfContext";
+import { useProf } from "../ProfContext";
+import { UserType } from "@/app/Type";
 type Details = {
-  userDeatails: UserDetails;
+  userDeatails: UserType;
   fname: string;
   lname: string;
   userImage: string;

@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from "next";
 import connectMongoDB from "@/lib/mongo/mongodb";
-import Event from "@/models/eventModel"; 
-export async function PUT(request: NextRequest, response: NextResponse) {
+import Event from "@/models/eventModel";
 
+export async function PUT(request: NextRequest, response: NextResponse) {
   try {
     const data = await request.json();
 
@@ -16,8 +16,11 @@ export async function PUT(request: NextRequest, response: NextResponse) {
         selectedTab: data.selectedTab,
         eventStartDate: data.eventStartDate,
         startTime: data.startTime,
-        duration: data.duration,
         endTime: data.endTime,
+        isPublished: data.eventVisibility,
+        eventDashboardImage: data.eventDashboardImage,
+        eventCoverImage: data.eventCoverImage,
+        eventEndDate: data.eventEndDate,
       },
     });
 

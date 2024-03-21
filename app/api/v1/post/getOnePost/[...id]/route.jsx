@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { NextResponse } from "next/server";
 import User from "@/models/userModel";
 import connectMongoDB from "@/lib/mongo/mongodb";
@@ -8,11 +10,9 @@ import { request } from "http";
 export const GET = async (request, { params }) => {
   const id = params.id;
 
-  // console.log(id);
-
   try {
     connectMongoDB();
-    const post = await Post.find({ _id: id });
+    const post = await Post.find({ eventId: id });
 
     return new NextResponse(JSON.stringify(post), { status: 200 });
   } catch (error) {

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface EventCard {
   name: string;
@@ -6,15 +7,16 @@ interface EventCard {
   location: string;
   date: string;
   time: string;
+  id: string;
 }
 
-function EventCard({ name, img, location, date, time }: EventCard) {
+function EventCard({ name, img, location, date, time, id }: EventCard) {
   return (
     <div className="text-neutral-50  bg-myBrown rounded-[9px] w-64 shrink-0 drop-shadow-[4px_4px_4px_rgba(0,0,0,0.25)]  m-10">
       <div className="styleQ h-[301px] overflow-hidden">
         <Image
           className="rounded-t-[9px]"
-          src={`/${img}`}
+          src={`${img}`}
           alt={"event-img"}
           width={256}
           height={301}
@@ -25,8 +27,8 @@ function EventCard({ name, img, location, date, time }: EventCard) {
         <div className="text ml-5 col-span-2  text-xl font-mono  font-extrabold ">
           {name}
         </div>
-        <button className="hover:bg-[#526595] col-span-1 w-63 h-22 mr-4 rounded-[10px]   text-center text-sm font-mono bg-custom-blue">
-          INFO
+        <button className="hover:bg-[#526595] button col-span-1 w-63 h-22 mr-4 rounded-[10px]   text-center text-sm font-mono bg-custom-blue">
+          <Link href={`/event/host/${id}`}> INFO</Link>
         </button>
       </div>
       <div>

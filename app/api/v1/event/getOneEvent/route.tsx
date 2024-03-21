@@ -5,7 +5,6 @@ import Event from "@/models/eventModel";
 
 export async function POST(req: Request) {
   const id = await req.json();
-  console.log(id);
   // const objectId = new mongoose.Types.ObjectId(id);
   await connectMongoDB();
   const event = await Event.findOne({ _id: id.id });

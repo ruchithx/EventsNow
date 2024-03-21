@@ -7,7 +7,7 @@ import Profsettings from "./Profsettings";
 import ChangePassword from "./ChangePassword";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { UserDetails, useProf } from "../ProfContext";
+import { useProf } from "../ProfContext";
 import { useParams } from "next/navigation";
 import { error, success } from "@/util/Toastify";
 
@@ -19,9 +19,10 @@ import {
 import { FaCloudUploadAlt } from "react-icons/fa";
 import Image from "next/image";
 import { ZodNull } from "zod";
+import { UserType } from "@/app/Type";
 
 type Detailss = {
-  userDeatails: UserDetails;
+  userDeatails: UserType;
   setLname: React.Dispatch<React.SetStateAction<string>>;
   setFname: React.Dispatch<React.SetStateAction<string>>;
   fname: string;

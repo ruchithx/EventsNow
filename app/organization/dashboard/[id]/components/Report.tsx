@@ -1,17 +1,18 @@
 import View_Report from "@/app/organization/dashboard/[id]/components/View_Report";
 import React, { useState } from "react";
 import { useOrg } from "../OrgContext";
-import { Event } from "../Type";
+// import { Event } from "../Type";
 import EmptyStateComponent from "@/components/EmptyStateComponent";
+import { OrgContext } from "@/app/Type";
 
-interface contextProps {
-  isSlideBar: boolean;
-  events: Event[];
-}
+// interface contextProps {
+//   isSlideBar: boolean;
+//   events: Event[];
+// }
 
 export default function Report() {
   const [selectedEvent, setSelectedEvent] = useState<string>("Choose an event");
-  const { isSlideBar, events } = useOrg() as contextProps;
+  const { isSlideBar, events } = useOrg() as OrgContext;
 
   function report() {
     if (selectedEvent === "Choose an event") {

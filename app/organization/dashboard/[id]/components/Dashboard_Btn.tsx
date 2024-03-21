@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React from "react";
 
-interface Dashboard_Btn {
+interface Dashboard_BtnProps {
   onClick: () => void;
   text: string;
   img: string;
@@ -14,7 +14,7 @@ export default function Dashboard_Btn({
   isSlideBar,
   text,
   img,
-}: Dashboard_Btn) {
+}: Dashboard_BtnProps) {
   return (
     <button onClick={onClick} className="  hover:opacity-80  my-12 mt-2 ">
       <div className=" flex lg:gap-3 xl:gap-5 gap-5	">

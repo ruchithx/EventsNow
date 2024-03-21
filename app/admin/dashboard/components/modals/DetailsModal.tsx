@@ -1,9 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import { Organization } from "@/app/admin/Type";
+// import { Organization } from "@/app/admin/Type";
+import { OrganizationType } from "@/app/Type";
 
 interface Data {
-  organization: Organization;
+  organization: OrganizationType;
 }
 
 const DetailsModalContent = ({ organization }: Data) => {

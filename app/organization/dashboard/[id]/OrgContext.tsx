@@ -1,51 +1,64 @@
 "use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { useRouter, useParams } from "next/navigation";
-import {
-  Event,
-  OrgContext,
-  OrgStatus,
-  Organization,
-  Team,
-  User,
-  voidFunc,
-} from "./Type";
+import { useRouter, useParams, notFound } from "next/navigation";
+// import {
+//   Event,
+//   OrgContext,
+//   OrgStatus,
+//   Organization,
+//   Team,
+//   User,
+//   voidFunc,
+// } from "./Type";
 import { useAuth } from "@/app/AuthContext";
 import { AuthContext } from "@/components/Navbar/NavBar";
+import type {
+  ChildrenType,
+  EventPermissionType,
+  EventType,
+  ModalType,
+  OrgContext,
+  OrgDashboardType,
+  OrganizationTeamType,
+  OrganizationType,
+  voidFunc,
+} from "@/app/Type";
 
-export type Modal =
-  | ""
-  | "givenPermission"
-  | "allPermission"
-  | "permissionOneEvent"
-  | "selectOneEvent";
+// export type Modal =
+//   | ""
+//   | "givenPermission"
+//   | "allPermission"
+//   | "permissionOneEvent"
+//   | "selectOneEvent";
 
-interface OrgContextProviderProps {
-  children: React.ReactNode;
-}
+// interface OrgContextProviderProps {
+//   children: React.ReactNode;
+// }
 
-export type EventPermission = {
-  eventId: string;
-  eventPermission: string[];
-};
+// export type EventPermission = {
+//   eventId: string;
+//   eventPermission: string[];
+// };
 
 const orgContext = createContext<OrgContext | string>("");
 
-function OrgContextProvider({ children }: OrgContextProviderProps) {
-  const [status, setStatus] = useState<OrgStatus>("dashboard");
+function OrgContextProvider({ children }: ChildrenType) {
+  const [status, setStatus] = useState<OrgDashboardType>("dashboard");
   const [revenue, setRevenue] = useState<number>(0);
   const [ticketSold, setTicketSold] = useState<number>(0);
-  const [events, setEvents] = useState<Event[]>([]);
-  const [team, setTeam] = useState<Team[]>([]);
+  const [events, setEvents] = useState<EventType[]>([]);
+  const [team, setTeam] = useState<OrganizationTeamType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isDashboardOpen, setIsDashboardOpen] = useState<boolean>(false);
   const [isSlideBar, setIsSlideBar] = useState<boolean>(true);
-  const [organization, setOrganization] = useState<Organization | null>(null);
+  const [organization, setOrganization] = useState<OrganizationType | null>(
+    null
+  );
   const params = useParams();
   const router = useRouter();
   const [editedName, setEditedName] = useState<string>("");
-  const [modal, setModal] = useState<Modal>("");
+  const [modal, setModal] = useState<ModalType>("");
   const [modalUserName, setModalUserName] = useState<string>("");
   const [permissionID, setPermissionID] = useState<string>("");
   const [globalPermission, setGlobalPermission] = useState<string[]>([]);
@@ -70,71 +83,79 @@ function OrgContextProvider({ children }: OrgContextProviderProps) {
   //   return finalResponse2;
   // }
 
-  const [eventPermission, setEventPermission] = useState<EventPermission[]>([]);
+  const [eventPermission, setEventPermission] = useState<EventPermissionType[]>(
+    []
+  );
   useEffect(
     function () {
       async function getData() {
         setIsLoading(true);
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getOrganization`,
-          {
-            method: "POST",
-            mode: "cors",
-            body: JSON.stringify(params.id),
+        try {
+          const res = await fetch(
+            `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getOrganization`,
+            {
+              method: "POST",
+              mode: "cors",
+              body: JSON.stringify(params.id),
+            }
+          );
+
+          if (!res.ok) {
+            router.push("/404");
+            return;
           }
-        );
 
-        const finalResponse = await res.json();
+          const finalResponse = await res.json();
 
-        if (!res.ok || finalResponse.message === "No organization") {
+          if (finalResponse.message === "No organization") {
+            router.push("/404");
+          }
+
+          setEditedName(finalResponse.organization.organizationName || "");
+          setOrganization(finalResponse.organization);
+          setOrganizationImage(finalResponse.organization.postImageLink || "");
+
+          setIsActive(finalResponse.organization.isActive);
+
+          // get users in organization
+          const res2 = await fetch(
+            `${process.env.NEXT_PUBLIC_URL}/api/v1/permission/getOrganiztionUsers`,
+            {
+              method: "POST",
+              mode: "cors",
+              body: JSON.stringify({ id: params.id }),
+            }
+          );
+
+          const finalResponse2 = await res2.json();
+
+          const team = finalResponse2.filter(
+            (user: OrganizationTeamType) =>
+              user.userData.email !== finalResponse.organization.email
+          );
+
+          setTeam(team);
+          setOrganizationId(params.id);
+          // get events in organization
+          const res3 = await fetch(
+            `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getOrganizationEvent`,
+            {
+              method: "POST",
+              mode: "cors",
+              body: JSON.stringify(params.id),
+            }
+          );
+
+          const finalResponse3 = await res3.json();
+          setEvents(finalResponse3);
+
+          setIsLoading(false);
+        } catch (error) {
           router.push("/404");
-          return;
+          notFound();
         }
-
-        if (!finalResponse.organization) {
-          return;
-        }
-
-        setEditedName(finalResponse.organization.organizationName || "");
-        setOrganization(finalResponse.organization);
-        setOrganizationImage(finalResponse.organization.postImageLink || "");
-
-        setIsActive(finalResponse.organization.isActive);
-
-        // get users in organization
-        const res2 = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/api/v1/permission/getOrganiztionUsers`,
-          {
-            method: "POST",
-            mode: "cors",
-            body: JSON.stringify({ id: params.id }),
-          }
-        );
-
-        const finalResponse2 = await res2.json();
-
-        const team = finalResponse2.filter(
-          (user: Team) =>
-            user.userData.email !== finalResponse.organization.email
-        );
-
-        setTeam(team);
-        setOrganizationId(params.id);
-        // get events in organization
-        const res3 = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/getOrganizationEvent`,
-          {
-            method: "POST",
-            mode: "cors",
-            body: JSON.stringify(params.id),
-          }
-        );
-
-        const finalResponse3 = await res3.json();
-        setEvents(finalResponse3);
-
-        setIsLoading(false);
       }
+
       getData();
     },
     [params.id, router, setOrganizationId]

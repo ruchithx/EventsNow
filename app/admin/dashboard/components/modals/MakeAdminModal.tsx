@@ -1,12 +1,19 @@
+import { UserType } from "@/app/Type";
+// import { User } from "@/app/admin/Type";
 import { error, success } from "@/util/Toastify";
 import React from "react";
 interface MAkeAdminprops {
+  setUser: React.Dispatch<React.SetStateAction<UserType[]>>;
   userId: String;
+  setMakeAdminModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const MakeAdminModalContent = ({ userId }: MAkeAdminprops ) => {
-  const adminUser = async () => {
 
-    console.log(userId);
+const MakeAdminModalContent = ({
+  userId,
+  setMakeAdminModal,
+  setUser,
+}: MAkeAdminprops) => {
+  const adminUser = async () => {
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/api/v1/makeAdmin`,
@@ -17,21 +24,28 @@ const MakeAdminModalContent = ({ userId }: MAkeAdminprops ) => {
       );
 
       if (!response.ok) {
-        error ("Failed to make user an admin");
+        error("Failed to make user an admin");
         return;
       }
 
-     
       success("User is now an admin");
+      setMakeAdminModal(false);
+      setUser((user: UserType[]) => {
+        const userChangers = user.map((user: UserType) => {
+          if (user._id === userId) {
+            user.role = "admin";
+          }
+          return user;
+        });
+        return userChangers;
+      });
 
+      // (user.find((user) => user._id === userId)?.role = "admin")
     } catch (error) {
       console.error("Error make admin user:", error);
     }
-
-    
   };
 
-  
   return (
     <div className="sm:flex sm:items-start mb-2">
       <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">

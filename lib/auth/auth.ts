@@ -10,6 +10,15 @@ import { redirect } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { JWT } from "next-auth/jwt";
 
+type User = {
+  _id: string;
+  email: string;
+  firstName: string;
+  role: string;
+ image: string;
+};
+
+
 export async function comparePassword(password: string, hashPassword: string) {
   const isValid = await compare(password, hashPassword);
   return isValid;
@@ -68,12 +77,17 @@ export const authOptions: NextAuthOptions = {
     // }),
   ],
   callbacks: {
-    async signIn({ user, account }): Promise<boolean> {
+    async signIn({
+      user,
+      account,
+    }: {
+      user: any;
+      account: any;
+    }): Promise<boolean> {
       if (account?.provider === "google") {
         const email = user?.email;
         const name = user?.name;
         const image = user?.image;
-
         const data = await fetch(
           `${process.env.NEXT_PUBLIC_URL}/api/v1/user/signInRegister`,
           {
@@ -85,9 +99,16 @@ export const authOptions: NextAuthOptions = {
           }
         ).then((res) => res.json());
 
+        user.role = data.user.role;
+        user.firstName = data.user.firstName;
+        user.lastName = data.user.lastName;
+        user._id = data.user._id;
+        user.image = data.user.image;
+        user.wishListId = data.user.wishListId;
+        user.registeredUser = data.user.registeredUser;
+
         return data;
       }
-
       // if (account?.provider === "google") {
       //   console.log("google");
       //   const userdata = await User.findOne({ email: user.email });
@@ -109,24 +130,21 @@ export const authOptions: NextAuthOptions = {
       //     }
       //   }
       // }
-
       return true;
     },
     async session(params: { session: any; token: JWT; user: any }) {
-      // console.log("session params 🦊🦒🐯🦁", params.user);
-
       // if (params.session.user) {
       //   params.session.user.email = params.token.email;
       //   params.session.user.firstName = params.token.firstName;
       //   params.session.user.userRole = params.token.userRole;
       // }
+
       params.session.user.email = params.token.email;
       params.session.user.firstName = params.token.firstName;
-      params.session.user.userRole = params.token.userRole;
-
+      params.session.user.role = params.token.role;
+      params.session.user._id = params.token.id;
       return params.session;
     },
-
     async jwt(params: {
       token: any;
       user: any;
@@ -136,15 +154,14 @@ export const authOptions: NextAuthOptions = {
       // isNewUser?: boolean | undefined;
     }) {
       if (params.user) {
-        console.log("User:", params.user);
         params.token.id = params.user._id;
         params.token.firstName = params.user.firstName;
-        params.token.userRole = params.user.role;
+        params.token.role = params.user.role;
+
         // Handle user-related logic here
       } else {
         // Handle the case when the user is undefined
       }
-
       return params.token;
     },
   },

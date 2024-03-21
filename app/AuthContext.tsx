@@ -1,26 +1,27 @@
 "use client";
-import { OrganizationProps } from "@/components/Navbar/NavBar";
+// import { OrganizationProps } from "@/components/Navbar/NavBar";
 import { useContext, createContext, useState, useEffect } from "react";
-import { any } from "zod";
 
-export interface AuthContext {
-  eventPublish: boolean;
-  setEventPublish: React.Dispatch<React.SetStateAction<boolean>>;
-  organizationId: string | null;
-  setOrganizationId: React.Dispatch<React.SetStateAction<string>>;
-  emailAuth: string | null;
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
-  organization: OrganizationProps[];
-  setOrganization: React.Dispatch<React.SetStateAction<OrganizationProps[]>>;
-}
+import { AuthContext, ChildrenType, OrganizationProps } from "./Type";
 
-interface AuthContextProviderProps {
-  children: React.ReactNode;
-}
+// export interface AuthContext {
+//   eventPublish: boolean;
+//   setEventPublish: React.Dispatch<React.SetStateAction<boolean>>;
+//   organizationId: string | null;
+//   setOrganizationId: React.Dispatch<React.SetStateAction<string>>;
+//   emailAuth: string | null;
+//   setEmail: React.Dispatch<React.SetStateAction<string>>;
+//   organization: OrganizationProps[];
+//   setOrganization: React.Dispatch<React.SetStateAction<OrganizationProps[]>>;
+// }
+
+// interface AuthContextProviderProps {
+//   children: React.ReactNode;
+// }
 
 const authContext = createContext<AuthContext | null>(null);
 
-function AuthContextProvider({ children }: AuthContextProviderProps) {
+function AuthContextProvider({ children }: ChildrenType) {
   const [organization, setOrganization] = useState<OrganizationProps[]>([]);
   const [emailAuth, setEmail] = useState<string>("");
   const [organizationId, setOrganizationId] = useState<string>("");

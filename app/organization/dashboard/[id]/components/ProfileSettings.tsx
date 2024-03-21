@@ -3,6 +3,7 @@ import React, { memo, useState } from "react";
 import { useOrg } from "../OrgContext";
 import { IoSaveOutline } from "react-icons/io5";
 import { FaRegWindowClose } from "react-icons/fa";
+import { OrgContext } from "@/app/Type";
 
 interface Details {
   name: string;
@@ -12,10 +13,10 @@ interface Details {
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-type Context = {
-  editedName: string;
-  setEditedName: React.Dispatch<React.SetStateAction<string>>;
-};
+// type Context = {
+//   editedName: string;
+//   setEditedName: React.Dispatch<React.SetStateAction<string>>;
+// };
 
 const ProfileSettings = memo(function ProfileSettings({
   organizationName,
@@ -24,7 +25,7 @@ const ProfileSettings = memo(function ProfileSettings({
   setIsEditing,
 }: Details) {
   // const [editedName, setEditedName] = useState<string>(organizationName || "");
-  const { editedName, setEditedName } = useOrg() as Context;
+  const { editedName, setEditedName } = useOrg() as OrgContext;
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditedName(e.target.value);
   };

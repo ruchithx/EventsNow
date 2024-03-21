@@ -1,13 +1,14 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import { Organization } from "@/app/admin/Type";
+// import { Organization } from "@/app/admin/Type";
 import Modal from "./ModalContext";
 import DetailsModalContent from "@/app/admin/dashboard/components/modals/DetailsModal";
 import DenyModalContent from "./modals/DenyModal";
+import { OrganizationType } from "@/app/Type";
 
 interface Available_Orgs {
-  organization: Organization;
+  organization: OrganizationType;
 }
 
 export default function Available_Orgs({ organization }: Available_Orgs) {

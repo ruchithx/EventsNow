@@ -2,11 +2,12 @@
 import React, { use, useState } from "react";
 import Dashboard from "@/app/organization/dashboard/[id]/components/DashboardSide";
 import Dashboard_Btn from "@/app/organization/dashboard/[id]/components/Dashboard_Btn";
-import { ProfContext, useProf } from "../ProfContext";
+import { useProf } from "../ProfContext";
 import { HiArrowCircleRight } from "react-icons/hi";
 import { HiArrowCircleLeft } from "react-icons/hi";
 import { CgProfile } from "react-icons/cg";
-type VoidFunc = () => void;
+import { ProfContext } from "@/app/Type";
+// type VoidFunc = () => void;
 
 export default function SideBar() {
   const {
