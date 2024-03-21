@@ -1,10 +1,11 @@
 "use client";
 import React, { useEffect } from "react";
 
-import md5 from "crypto-js/md5";
+// import md5 from "crypto-js/md5";
 import Head from "next/head";
 import axios from "axios";
 import Script from "next/script";
+import Image from "next/image";
 
 declare global {
   interface Window {
@@ -12,7 +13,7 @@ declare global {
   }
 }
 
-const PaymentModal = (props: any): JSX.Element | null => {
+const PaymentModal = (props: any) => {
   // initial setup
 
   // const key = "updatable";
@@ -55,7 +56,7 @@ const PaymentModal = (props: any): JSX.Element | null => {
   //   hash: hash,
   // };
 
-  // 1st way to initialize the payhere sdk
+  // // 1st way to initialize the payhere sdk
 
   // // Called when user completed the payment. It can be a successful payment or failure
   // window.payhere.onCompleted = function onCompleted(paymentId: string) {
@@ -149,11 +150,27 @@ const PaymentModal = (props: any): JSX.Element | null => {
 
   return (
     <>
-      {/* <div>
-        <Script src="https://www.payhere.lk/lib/payhere.js"></Script>
-      </div>
+      {/* <Head>
+        <script
+          type="text/javascript"
+          src="https://www.payhere.lk/lib/payhere.js"
+          async
+        />
+      </Head>
 
-      <button onClick={pay}>Pay with Payhere</button> */}
+      <button className="flex button xl:w-72 w-64 xl:h-16 h-12  bg-[#D47151] rounded-2xl items-center xl:px-4  ">
+        <div className=" w-10 h-8 mt-2 ml-2 xl:ml-0">
+          <Image
+            src="https://res.cloudinary.com/dpk9utvby/image/upload/v1710478589/ew/tecmf69jzdyv2sn22saa.svg"
+            alt="print"
+            width={32}
+            height={32}
+          />
+        </div>
+        <div className="font-medium xl:text-lg text-md text-white text-left leading-tight ml-4">
+          Buy tickets
+        </div>
+      </button> */}
     </>
   );
 };

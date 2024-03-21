@@ -22,7 +22,6 @@
     "@nextui-org/dropdown": "^2.1.16",
     "@nextui-org/react": "^2.2.9",
     "@nextui-org/tabs": "^2.0.26",
-    "@payhere-js-sdk/client": "^1.0.4",
     "@react-email/components": "^0.0.14",
     "@react-icons/all-files": "^4.1.0",
     "@types/next-auth": "^3.15.0",

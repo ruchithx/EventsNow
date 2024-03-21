@@ -12,7 +12,7 @@ import { useRouter, useParams, notFound } from "next/navigation";
 // } from "./Type";
 import { useAuth } from "@/app/AuthContext";
 import { AuthContext } from "@/components/Navbar/NavBar";
-import {
+import type {
   ChildrenType,
   EventPermissionType,
   EventType,

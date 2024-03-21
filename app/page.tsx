@@ -46,23 +46,23 @@ async function getEvent() {
 // import { formatDate } from "@/util/helper";
 
 export default async function Home() {
-  const data = await getOutDateEvent();
-  const event = await getEvent();
+  // const data = await getOutDateEvent();
+  // const event = await getEvent();
 
-  // const paymentDetails = {
-  //   items: "Event",
-  //   oder_id: "123",
-  //   currency: "LKR",
-  //   first_name: "Kasun",
-  //   last_name: "Chathuranga",
-  //   email: "ruchith.sg@gmail.com",
-  //   phone: "0771234567",
-  //   address: "No.1, Galle Road",
-  //   city: "Colombo",
-  //   country: "Sri Lanka",
-  // };
+  const paymentDetails = {
+    items: "Event",
+    oder_id: "123",
+    currency: "LKR",
+    first_name: "Kasun",
+    last_name: "Chathuranga",
+    email: "ruchith.sg@gmail.com",
+    phone: "0771234567",
+    address: "No.1, Galle Road",
+    city: "Colombo",
+    country: "Sri Lanka",
+  };
 
-  // const fullAmount = 5000;
+  const fullAmount = 5000;
 
   return (
     <div>
@@ -82,7 +82,7 @@ export default async function Home() {
         city={paymentDetails?.city}
         country={paymentDetails?.country}
       /> */}
-      <HeroSection />
+      {/* <HeroSection />
       <EventViewMode event={event} />
 
       {data.length !== 0 && (
@@ -101,7 +101,7 @@ export default async function Home() {
           />
         ))}
       </div>
-      <Footer />
+      <Footer /> */}
     </div>
   );
 }
