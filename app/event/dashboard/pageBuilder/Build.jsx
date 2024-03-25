@@ -13,6 +13,7 @@ import RenderedContent from "./RenderedContent";
 import Indexeddb from "grapesjs-indexeddb";
 import newsletter from "grapesjs-preset-newsletter";
 import navbar from "grapesjs-navbar";
+import Link from "next/link";
 
 export default function Build() {
   const [editor, setEditor] = useState(null);
@@ -77,7 +78,10 @@ export default function Build() {
 
   return (
     <div className="p-0 m-0 overflow-x-hidden ">
-      <div id="editor"></div>
+      <div className="bg-[#373D49] h-12 text-white border-0 p-5">
+        <Link href={"./"}>Back</Link>
+      </div>
+      <div id="editor">hii</div>
       {/* Placeholder for rendered content (optional, can be removed) */}
       {/* {html && <RenderedContent content={html} />} */}
     </div>
