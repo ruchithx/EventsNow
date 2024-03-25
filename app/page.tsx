@@ -6,8 +6,6 @@ import Footer from "@/components/Footer";
 
 import { useEffect, useState } from "react";
 import Post from "@/components/Post";
-import Build from "@/components/PageBuilder/Build";
-import RenderedContent from "@/components/PageBuilder/RenderedContent";
 
 interface Post {
   _id: string;
@@ -32,14 +30,6 @@ export default function Home() {
   }, []);
 
   // Option 1: Using a callback function to receive rendered HTML
-  const handleHtmlRendered = (renderedHtml: any) => {
-    console.log("Received rendered HTML:", renderedHtml);
-  };
 
-  return (
-    <>
-      <Build onHtmlRendered={handleHtmlRendered} />{" "}
-      {/* <RenderedContent content={null} />{" "} */}
-    </>
-  );
+  return <>{/* <RenderedContent content={null} />{" "} */}</>;
 }

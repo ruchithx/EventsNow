@@ -14,7 +14,7 @@ import Indexeddb from "grapesjs-indexeddb";
 import newsletter from "grapesjs-preset-newsletter";
 import navbar from "grapesjs-navbar";
 
-export default function Build({ onHtmlRendered }) {
+export default function Build() {
   const [editor, setEditor] = useState(null);
   const [html, setHtml] = useState(null);
 
@@ -61,19 +61,19 @@ export default function Build({ onHtmlRendered }) {
     setEditor(editor);
   }, []);
 
-  const renderPage = () => {
-    if (!editor) return;
+  // const renderPage = () => {
+  //   if (!editor) return;
 
-    const html = editor.getHtml();
-    setHtml(html);
+  //   const html = editor.getHtml();
+  //   setHtml(html);
 
-    onHtmlRendered?.(html);
-  };
+  //   onHtmlRendered?.(html);
+  // };
 
-  useEffect(() => {
-    renderPage();
-    editor?.on("update", renderPage);
-  }, [editor]);
+  // useEffect(() => {
+  //   renderPage();
+  //   editor?.on("update", renderPage);
+  // }, [editor]);
 
   return (
     <div className="p-0 m-0 overflow-x-hidden ">

@@ -37,6 +37,9 @@ function EventContextProvider({ children }: { children: React.ReactNode }) {
   const handleSetting: voidFunc = () => {
     setStatus("settings");
   };
+  const handlePageBuilder: voidFunc = () => {
+    setStatus("pageBuilder");
+  };
 
   return (
     <EventContext.Provider

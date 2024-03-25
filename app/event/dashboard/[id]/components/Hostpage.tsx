@@ -2,6 +2,9 @@ import React from "react";
 import Container from "./Container";
 import ContainerWithStroke from "./ContainerWithStroke";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { UseEventContext, EventContextType } from "../EventDashContext";
 export default function Hostpage() {
   return (
     <div>
@@ -45,18 +48,20 @@ export default function Hostpage() {
               </button>
             </ContainerWithStroke>
             <ContainerWithStroke>
-              <button className="w-full">
-                <div className=" py-1 flex justify-between mx-4  sm:mx-10">
-                  <div className=" flex items-center "> PAGE BUILDER</div>
-                  <Image
-                    className="mt-1"
-                    src="/images/eventDash/Arrow_left.svg"
-                    alt="arrow"
-                    width={25}
-                    height={25}
-                  />
-                </div>
-              </button>
+              <Link href={"/event/dashboard/pageBuilder"}>
+                <button className="w-full">
+                  <div className=" py-1 flex justify-between mx-4  sm:mx-10">
+                    <div className=" flex items-center "> PAGE BUILDER</div>
+                    <Image
+                      className="mt-1"
+                      src="/images/eventDash/Arrow_left.svg"
+                      alt="arrow"
+                      width={25}
+                      height={25}
+                    />
+                  </div>
+                </button>
+              </Link>
             </ContainerWithStroke>
           </div>
         </div>

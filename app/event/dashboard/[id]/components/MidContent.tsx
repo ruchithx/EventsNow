@@ -10,6 +10,7 @@ import Reports from "./Reports";
 
 export default function MidContent() {
   const { status } = UseEventContext() as EventContextType;
+
   return (
     <div>
       {status === "overview" && <Overview />}
