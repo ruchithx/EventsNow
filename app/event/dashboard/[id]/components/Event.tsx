@@ -13,6 +13,7 @@ interface Event {
   eventCover: String;
   endTime: String;
   endDate: String;
+  setStatus: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function Event({
@@ -23,6 +24,7 @@ export default function Event({
   eventCover,
   endTime,
   endDate,
+  setStatus,
 }: Event) {
   return (
     <div className=" w-64 xl:w-72   rounded-xl bg-[#D9D9D9] shadow-inner xl:pt-8 xl:px-8 pt-6 px-6  ">
@@ -100,7 +102,7 @@ export default function Event({
           </button>
 
           <button
-            onClick={() => preview()}
+            onClick={() => setStatus("preview")}
             className="w-28 h-8 rounded-3xl bg-white shrink-0 flex"
           >
             <div className=" pl-4 pt-1  ">

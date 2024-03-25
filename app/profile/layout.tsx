@@ -10,7 +10,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <main>
         <link rel="icon" href="/reusableComponents/nav-logo.png" sizes="any" />
-
         {children}
       </main>
     </>

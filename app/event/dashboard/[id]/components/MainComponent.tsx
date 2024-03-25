@@ -22,7 +22,7 @@ export default function MainComponent() {
     eventDate,
     eventStartTime,
     eventDashboardImage,
-
+    setStatus,
     endTime,
     eventEndDate,
   } = UseEventContext() as EventContextType;
@@ -169,6 +169,7 @@ export default function MainComponent() {
             endDate={eventEndDate.substring(0, 10)}
             Date={eventDate.substring(0, 10)}
             eventCover={eventDashboardImage}
+            setStatus={setStatus}
           />
         </div>
       </div>

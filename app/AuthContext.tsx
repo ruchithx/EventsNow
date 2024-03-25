@@ -1,7 +1,6 @@
 "use client";
 import { OrganizationProps } from "@/components/Navbar/NavBar";
 import { useContext, createContext, useState, useEffect } from "react";
-import { any } from "zod";
 
 export interface AuthContext {
   eventPublish: boolean;
