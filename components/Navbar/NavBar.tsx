@@ -300,7 +300,7 @@ export default function NavBar() {
                           </Link>
                         </li>
 
-                        <Link href={"/about"}>
+                        <Link href={"/aboutasd"}>
                           <NavBarButton text={"About"} />
                         </Link>
                       </>
