@@ -4,10 +4,14 @@ import EventCardDisabled from "@/components/EventCardDisabled";
 import { formatDate } from "@/util/helper";
 import EventViewMode from "@/components/EventViewMode";
 import HeroSection from "@/components/HeroSection";
+import TestNew from "@/components/TestNew";
+// import TestNew from "@/components/TestNew";
+
 // import EventCardDisabled from "@/components/EventCardDisabled";
 
 // import EventViewMode from "../components/EventViewMode";
 // import { Event } from "./admin/Type";
+// import PaymentTest from "@/components/Payment";
 
 export interface EventType {
   _id: string;
@@ -63,9 +67,11 @@ async function getEvent() {
 export default async function Home() {
   const data = await getOutDateEvent();
   const event = await getEvent();
+
   return (
     <div>
-      <HeroSection />
+      <TestNew />
+      {/* <HeroSection />
 
       <EventViewMode event={event} />
       {data.length !== 0 && (
@@ -86,7 +92,7 @@ export default async function Home() {
         ))}
       </div>
 
-      <Footer />
+      <Footer /> */}
     </div>
   );
 }

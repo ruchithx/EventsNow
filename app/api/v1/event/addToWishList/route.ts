@@ -6,6 +6,7 @@ import { ca } from "date-fns/locale";
 export async function POST(request: NextRequest, response: NextResponse) {
   try {
     const data = await request.json();
+    console.log(data);
 
     await connectMongoDB();
     console.log(data, "data");

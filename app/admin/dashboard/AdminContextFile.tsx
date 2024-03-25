@@ -8,10 +8,10 @@ import React, {
   use,
 } from "react";
 import {
-  AdminContext,
-  voidFunc,
   Event,
   User,
+  AdminContext,
+  voidFunc,
   Organization,
 } from "@/app/admin/Type";
 import { getAllEvents, getAllOrganization, getAllUser } from "./FetchData";
