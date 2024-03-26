@@ -190,7 +190,8 @@ import Pagination from "@mui/material/Pagination";
 import { Event } from "@/app/admin/Type";
 import { formatDate } from "@/util/helper";
 import EventListView from "./EventListView";
-import { EventType } from "@/app/page";
+import { EventType } from "@/app/Type";
+// import { EventType } from "@/app/page";
 
 const EventViewMode = ({ event }: { event: EventType[] }) => {
   const [eventarr, setEventarr] = useState<EventType[]>(event);
@@ -324,7 +325,7 @@ const EventViewMode = ({ event }: { event: EventType[] }) => {
               img={event.dashboardImage}
               location={event.selectedTab}
               date={formatDate(event.eventStartDate)}
-              time={event.eventTimeZone}
+              time={event.startTime}
             />
           )
         )}{" "}
