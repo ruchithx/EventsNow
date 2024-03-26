@@ -14,8 +14,6 @@ export default function CoverPhoto({ image }: CoverPhoto) {
         alt="hay"
         width={1000}
         height={100}
-        // className="w-[3500px] h-[2161px]"
-
         className="w-full h-screen object-cover"
       />
     </div>
