@@ -19,6 +19,8 @@ const AllowModalContent = ({ organization }: Data) => {
   const { setOrganization, setNotification, notification } =
     useAdmin() as ContextData;
 
+  console.log(organization);
+
   const handleAllow = async () => {
     try {
       const res = await axios.put(
@@ -36,6 +38,20 @@ const AllowModalContent = ({ organization }: Data) => {
       const newNotification = notification.filter(
         (org) => org._id !== organization._id
       );
+
+      const sendEmailRes = await axios.post(
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/organization/organizationAproveEmail`,
+        {
+          email: organization.email,
+          name: organization.organizationName,
+        }
+      );
+
+      if (sendEmailRes.status !== 200) {
+        error("Failed to send email to the organization");
+        return;
+      }
+
       success("Organization Allowed successfully");
       setNotification(newNotification);
 
