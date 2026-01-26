@@ -1,36 +1,190 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🎉 EventNow – Event Management & Ticket Booking Platform
 
-## Getting Started
+EventNow is a comprehensive **event management and ticket booking web application** designed to simplify event planning, promotion, ticketing, and attendance management for organizers and attendees through a single unified platform.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Project Overview
 
-Open [${process.env.NEXT_PUBLIC_URL}](${process.env.NEXT_PUBLIC_URL}) with your browser to see the result.
+Managing events involves multiple complex tasks such as planning, marketing, ticket sales, payments, and attendee coordination. Many existing platforms lack flexibility in **custom event pages**, **team-based role management**, and **integrated marketing tools**.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**EventNow** addresses these limitations by providing:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Role-based access control
+- Customizable event host pages
+- Built-in marketing and community engagement
+- Secure ticketing and attendance tracking
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 👥 User Roles
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🔹 General Users / Attendees
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Browse and search events
+- View event host pages
+- Register for events
+- Buy tickets
+- Add events to wishlist
+- Cancel registrations or tickets
+- Receive email & in-app notifications
 
-## Deploy on Vercel
+### 🔹 Event Organizers
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Create and manage organizations
+- Create and manage events
+- Invite team members
+- Assign roles and permissions
+- Manage event pages and campaigns
+- View attendance and revenue reports
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### 🔹 Event Team Members
+
+- Manage events based on assigned permissions
+- Create marketing campaigns
+- Upload or design event host pages
+- Mark attendance using QR codes
+- Generate reports
+
+### 🔹 Super Admin
+
+- Approve or deny organizations
+- Manage users and roles
+- Blacklist users
+- Manage payments
+- Send event-related notifications
+- View system-wide reports
+
+---
+
+## ✨ Key Features
+
+### 🔐 Authentication & Authorization
+
+- Email & password authentication
+- Google and Facebook login
+- Role-based dashboards
+
+### 🏢 Organization Management
+
+- Organization creation with admin approval
+- Team invitations via email
+- Permission-based access control
+
+### 📅 Event Management
+
+- Event creation and updates
+- Event dashboards with analytics
+- Custom event host pages:
+  - HTML upload
+  - Pre-built templates
+  - Drag-and-drop page builder
+
+### 📣 Marketing Campaigns
+
+- Email campaigns (general & special updates)
+- Community page for event posts
+- Social media sharing integration
+
+### 🎟️ Ticketing & Payments
+
+- Secure ticket purchasing
+- Ticket generation with QR codes
+- Admin-managed payment handling
+
+### 📊 Attendance & Reporting
+
+- QR-based attendance marking
+- Attendance and revenue reports
+- Printable reports for organizers
+
+### 🔔 Notifications
+
+- Real-time in-app notifications
+- Email notifications for event updates
+
+---
+
+## 🛠️ Technology Stack
+
+### Frontend
+
+- Next.js
+- TypeScript
+- Tailwind CSS
+
+### Backend
+
+- Next.js API Routes
+- NextAuth.js (Authentication)
+
+### Database
+
+- MongoDB (NoSQL)
+
+### Other Tools & Services
+
+- Cloudinary (media handling)
+- QR code generation
+- Email services
+- Figma (UI/UX design)
+
+---
+
+## 🧩 System Modules
+
+- User Management
+- Organization Management
+- Event Management
+- Attendance Management
+- Marketing Campaign Management
+- Admin Management
+- Static Pages (About & Introduction)
+
+---
+
+## 🧪 Testing
+
+The following modules were tested:
+
+- User Management
+- Event Management
+- Marketing Campaigns
+- Attendance Management
+
+Testing covered:
+
+- UI workflows
+- Backend APIs
+- Database operations
+- Input validation
+
+---
+
+## 📈 Future Enhancements
+
+- Organization rating system
+- Team member performance ratings
+- Advanced analytics dashboards
+- Mobile application support
+- Enhanced payment gateway options
+
+---
+
+## 👨‍💻 Team – OneZero
+
+- Madhushanka S.G.R.N – Team Lead & Event Management
+- Dilsara H.A.A – Marketing Campaign Module
+- Arkam B.H.M – User Management Module
+- Yasundara G.A.O – Attendance Management Module
+- Liyanage C.V.K – Event Management Module
+
+Faculty of Information Technology  
+University of Moratuwa  
+2024
+
+---
+
+## 📜 License
+
+This project was developed as an **academic project** and is intended for educational and demonstration purposes.
