@@ -1,7 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 
-interface EventCard {
+interface EventCardProps {
   name: string;
   img: string;
   location: string;
@@ -10,61 +21,64 @@ interface EventCard {
   id: string;
 }
 
-function EventCard({ name, img, location, date, time, id }: EventCard) {
+function EventCard({ name, img, location, date, time, id }: EventCardProps) {
   return (
-    <div className="text-neutral-50  bg-myBrown rounded-[9px] w-64 shrink-0 drop-shadow-[4px_4px_4px_rgba(0,0,0,0.25)]  m-10">
-      <div className="styleQ h-[301px] overflow-hidden">
+    <Card className="w-64 shrink-0 overflow-hidden m-4 bg-[#906953] text-neutral-50 border-none shadow-lg">
+      <div className="h-[301px] w-full overflow-hidden relative">
         <Image
-          className="rounded-t-[9px]"
+          className="object-cover transition-transform hover:scale-105 duration-300"
           src={`${img}`}
           alt={"event-img"}
-          width={256}
-          height={301}
+          fill
         />
       </div>
-
-      <div className="grid grid-cols-3 ">
-        <div className="text ml-5 col-span-2  text-xl font-mono  font-extrabold ">
+      <CardContent className="p-4 grid grid-cols-3 gap-2">
+        <div className="col-span-2 text-xl font-mono font-extrabold truncate">
           {name}
         </div>
-        <button className="hover:bg-[#526595] button col-span-1 w-63 h-22 mr-4 rounded-[10px]   text-center text-sm font-mono bg-custom-blue">
-          <Link href={`/event/host/${id}`}> INFO</Link>
-        </button>
-      </div>
-      <div>
-        <hr className="w-52 ml-5 mt-1"></hr>
-      </div>
-
-      <div className=" grid grid-cols-12 ">
-        <div className="flex col-span-5">
+        <div className="col-span-1 flex justify-end">
+             <Button
+                asChild
+                className="w-full h-8 text-xs font-mono bg-[#526595] hover:bg-[#3e4e75]"
+              >
+                  <Link href={`/event/host/${id}`}>INFO</Link>
+             </Button>
+        </div>
+      </CardContent>
+      <Separator className="bg-white/30 mx-4 w-auto mb-2" />
+      <CardFooter className="p-4 pt-0 grid grid-cols-12 gap-1 items-center">
+        <div className="flex col-span-5 items-center">
           <Image
-            className="mt-1"
             src={"/images/organization/location1.svg"}
             alt={"pin-fill"}
-            width={47}
-            height={47}
+            width={32}
+            height={32}
+            className="w-8 h-8"
           />
-          <div className="text-xs font-khand font-semibold my-auto ">
+          <div className="text-xs font-khand font-semibold ml-1 truncate">
             {location}
           </div>
         </div>
-        <div className="col-span-1 ml-4 border-r-[1px] border-solid border-white h-10 w-1"></div>
-        <div className=" ml-1 flex col-span-6">
-          <Image
+        <div className="col-span-1 h-8 w-px bg-white/50 mx-auto"></div>
+        <div className="flex col-span-6 items-center pl-2">
+           <Image
             src={"/images/reusableComponents/Date.svg"}
             alt={"time-fill"}
-            width={30}
+            width={24}
             height={24}
+            className="w-6 h-6"
           />
-          <div className="flex flex-col mr-auto my-auto ml-3">
-            <div className="text-xs font-khand font-semibold mt-1 mb-0 ">
+          <div className="flex flex-col ml-2">
+            <div className="text-xs font-khand font-semibold whitespace-nowrap">
               {date}
             </div>
-            <div className="text-xs font-khand font-semibold mt-0 ">{time}</div>
+            <div className="text-xs font-khand font-semibold whitespace-nowrap">
+              {time}
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </CardFooter>
+    </Card>
   );
 }
 

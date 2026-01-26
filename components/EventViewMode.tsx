@@ -2,10 +2,26 @@
 import React, { useState, useEffect } from "react";
 import { HiOutlineViewGrid, HiOutlineViewList } from "react-icons/hi";
 import EventCard from "@/components/EventCard";
-import Pagination from "@mui/material/Pagination";
 import { formatDate } from "@/util/helper";
 import EventListView from "./EventListView";
 import { EventType } from "@/app/Type";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import { Button } from "@/components/ui/button";
 
 const EventViewMode = ({ event }: { event: EventType[] }) => {
   const [eventarr, setEventarr] = useState<EventType[]>(event);
@@ -16,103 +32,109 @@ const EventViewMode = ({ event }: { event: EventType[] }) => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (document.documentElement.clientWidth >= 1448) {
-        setEventsPerPage(4);
-      } else if (document.documentElement.clientWidth >= 1024) {
-        setEventsPerPage(3); // Large screens
-      } else if (document.documentElement.clientWidth >= 768) {
-        setEventsPerPage(2); // Medium screens
-      } else {
-        setEventsPerPage(1); // Small screens
+      if (typeof window !== "undefined") {
+        if (document.documentElement.clientWidth >= 1448) {
+          setEventsPerPage(4);
+        } else if (document.documentElement.clientWidth >= 1024) {
+          setEventsPerPage(3); // Large screens
+        } else if (document.documentElement.clientWidth >= 768) {
+          setEventsPerPage(2); // Medium screens
+        } else {
+          setEventsPerPage(1); // Small screens
+        }
       }
     };
     handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleSortByChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedSortBy = e.target.value;
+  const handleSortByChange = (value: string) => {
+    const selectedSortBy = value;
     setSortBy(selectedSortBy);
+    const sortedEvents = [...eventarr];
+    
     if (selectedSortBy === "name") {
-      const sortedEvents = [...eventarr].sort((a, b) =>
-        a.eventName.localeCompare(b.eventName)
-      );
-      setEventarr(sortedEvents);
+      sortedEvents.sort((a, b) => a.eventName.localeCompare(b.eventName));
     } else if (selectedSortBy === "location") {
-      const sortedEvents = [...eventarr].sort((a, b) =>
-        a.selectedTab.localeCompare(b.selectedTab)
-      );
-      setEventarr(sortedEvents);
+      sortedEvents.sort((a, b) => a.selectedTab.localeCompare(b.selectedTab));
     } else if (selectedSortBy === "date") {
-      const sortedEvents = [...eventarr].sort((a, b) =>
+      sortedEvents.sort((a, b) =>
         a.eventStartDate.localeCompare(b.eventStartDate)
       );
-      setEventarr(sortedEvents);
     }
+    setEventarr(sortedEvents);
   };
-  const handleViewChange = (mode: React.SetStateAction<string>) => {
+
+  const handleViewChange = (mode: string) => {
     setViewMode(mode);
   };
-  const paginate = (event: any, pageNumber: React.SetStateAction<number>) =>
-    setCurrentPage(pageNumber);
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   const indexOfLastEvent = currentPage * eventsPerPage;
   const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
   const currentEvents = eventarr.slice(indexOfFirstEvent, indexOfLastEvent);
+  const totalPages = Math.ceil(eventarr.length / eventsPerPage);
 
   return (
     <div>
-      <div className="flex flex-col md:flex-row lg:flex-row items-center justify-between">
-        <div className="font-bold text-[30px] md:text-[40px] lg:text-5xl text-[#906953] drop-shadow-lg ms-8 ">
+      <div className="flex flex-col md:flex-row lg:flex-row items-center justify-between px-8 py-4">
+        <div className="font-bold text-[30px] md:text-[40px] lg:text-5xl text-[#906953] drop-shadow-lg">
           Upcoming Events
         </div>
-        <div className="ms-12 sm:ms-0 justify-center items-center flex flex-col md:flex-col lg:flex-row gap-2 md:gap-2 lg:gap-6 mr-0 md:mr-20 lg:mr-20 text-gray-600">
-          <div className=" mt-2 md:mt-6 lg:mt-10 flex flex-row">
-            Sort By
-            <div className="relative ml-4">
-              <select
-                className="appearance-none bg-white border border-gray-300 px-4 py-1 rounded-md shadow-sm text-sm focus:outline-none focus:border-custom-brown items-center"
-                value={sortBy}
-                onChange={handleSortByChange}
-              >
-                <option value="location">Location</option>
-                <option value="name">Name</option>
-                <option value="organization">Organization</option>
-                <option value="date">Date</option>
-              </select>
-            </div>
+        <div className="flex flex-col sm:flex-row items-center gap-4 mt-4 md:mt-0">
+          <div className="flex items-center gap-2">
+            <span className="text-gray-600">Sort By</span>
+            <Select value={sortBy} onValueChange={handleSortByChange}>
+              <SelectTrigger className="w-[180px] bg-white">
+                <SelectValue placeholder="Select..." />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="location">Location</SelectItem>
+                <SelectItem value="name">Name</SelectItem>
+                <SelectItem value="organization">Organization</SelectItem>
+                <SelectItem value="date">Date</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
-          <div className="mt-2 md:mt-2 lg:mt-10 flex flex-row gap-4 mr-20">
-            View As
-            <div className="mt-1 flex flex-row gap-3 cursor-pointer">
-              <HiOutlineViewGrid
-                className={`cursor-pointer hover:bg-gray-400   ${
-                  viewMode === "grid" ? "" : ""
-                }`}
+          
+          <div className="flex items-center gap-2">
+            <span className="text-gray-600">View As</span>
+            <div className="flex items-center gap-1 bg-white border rounded-md p-1">
+              <Button
+                variant={viewMode === "grid" ? "secondary" : "ghost"}
+                size="icon"
+                className="h-8 w-8"
                 onClick={() => handleViewChange("grid")}
-              />
-              <HiOutlineViewList
-                className={`cursor-pointer hover:bg-gray-400 ${
-                  viewMode === "list" ? "" : ""
-                }`}
+              >
+                <HiOutlineViewGrid className="h-4 w-4" />
+              </Button>
+              <Button
+                variant={viewMode === "list" ? "secondary" : "ghost"}
+                size="icon"
+                className="h-8 w-8"
                 onClick={() => handleViewChange("list")}
-              />
+              >
+                <HiOutlineViewList className="h-4 w-4" />
+              </Button>
             </div>
           </div>
         </div>
       </div>
+
       <div
         className={`flex ${
           viewMode === "grid"
-            ? "flex-wrap ml-1 justify-center items-center"
-            : " flex-col gap-3 justify-center items-center"
-        }  `}
+            ? "flex-wrap justify-center gap-6 p-4"
+            : "flex-col gap-4 items-center p-4"
+        }`}
       >
-        {/* <EventListView /> */}
         {currentEvents.map((event, index) =>
           viewMode === "grid" ? (
             <EventCard
               id={event._id}
-              key={index}
+              key={event._id || index}
               name={event.eventName}
               img={event.dashboardImage}
               location={event.selectedTab}
@@ -122,7 +144,7 @@ const EventViewMode = ({ event }: { event: EventType[] }) => {
           ) : (
             <EventListView
               id={event._id}
-              key={index}
+              key={event._id || index}
               name={event.eventName}
               img={event.dashboardImage}
               location={event.selectedTab}
@@ -130,18 +152,52 @@ const EventViewMode = ({ event }: { event: EventType[] }) => {
               time={event.startTime}
             />
           )
-        )}{" "}
+        )}
       </div>
 
-      {/* Pagination */}
       {eventarr.length > eventsPerPage && (
-        <Pagination
-          count={Math.ceil(eventarr.length / eventsPerPage)}
-          variant="outlined"
-          shape="rounded"
-          onChange={paginate}
-          className="flex justify-center mt-4"
-        />
+        <div className="mt-8 mb-8">
+           <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious 
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if(currentPage > 1) paginate(currentPage - 1);
+                  }}
+                  className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
+                />
+              </PaginationItem>
+              
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
+                 <PaginationItem key={number}>
+                   <PaginationLink
+                     href="#"
+                     isActive={currentPage === number}
+                     onClick={(e) => {
+                        e.preventDefault();
+                        paginate(number);
+                     }}
+                   >
+                     {number}
+                   </PaginationLink>
+                 </PaginationItem>
+              ))}
+
+              <PaginationItem>
+                <PaginationNext 
+                  href="#"
+                   onClick={(e) => {
+                    e.preventDefault();
+                    if(currentPage < totalPages) paginate(currentPage + 1);
+                  }}
+                   className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
       )}
     </div>
   );

@@ -182,11 +182,11 @@ export default function NavBar() {
         <div>
           {/* check data has loaded */}
           {isLoading ? (
-            <nav className="dark:bg-navWhite ">
+            <nav className="dark:bg-[#D7CFC7] ">
               <Spinner />
             </nav>
           ) : (
-            <nav className="bg-navWhite">
+            <nav className="bg-[#D7CFC7]">
               <div className=" flex flex-wrap items-center justify-between mx-auto p-2">
                 {/* Events now logo and name */}
                 {pathname.startsWith("/event/dashboard") ? (
@@ -214,7 +214,7 @@ export default function NavBar() {
                           height={20}
                         />
 
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-eventBrown    ">
+                        <span className="self-center text-2xl font-semibold whitespace-nowrap text-[#906953] dark:text-[#906953]">
                           EventNow
                         </span>
                       </div>
@@ -226,7 +226,7 @@ export default function NavBar() {
                   className="hidden w-full md:flex md:w-auto  items-end"
                   id="navbar-default"
                 >
-                  <ul className=" justify-center items-center text-xl font-medium flex   p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white  md:dark:bg-navWhite dark:border-gray-700">
+                  <ul className=" justify-center items-center text-xl font-medium flex   p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-[#D7CFC7]  md:dark:bg-[#D7CFC7] dark:border-gray-700">
                     {pathname.startsWith("/organization/dashboard") ? (
                       <Link href={`/createevent/${organizationId}`}>
                         <Login
